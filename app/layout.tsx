@@ -4,14 +4,14 @@ import { Press_Start_2P, Space_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const pressStart2P = Press_Start_2P({ 
-  subsets: ["latin"], 
+const pressStart2P = Press_Start_2P({
+  subsets: ["latin"],
   variable: "--font-pixel",
   weight: "400"
 });
 
-const spaceMono = Space_Mono({ 
-  subsets: ["latin"], 
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
   variable: "--font-mono",
   weight: ["400", "700"]
 });
@@ -38,21 +38,12 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
+        url: '/favicon.svg',
         type: 'image/svg+xml',
       },
     ],
     apple: '/apple-icon.png',
   },
-    generator: 'v0.app'
 }
 
 export const viewport: Viewport = {
