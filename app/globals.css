@@ -120,27 +120,33 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   html {
     overflow-x: hidden;
     width: 100%;
   }
-  
+
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
     width: 100%;
     position: relative;
   }
-  
+
   /* Ensure all sections don't overflow */
   section {
     overflow-x: hidden;
     width: 100%;
   }
-  
+
   /* Prevent text from causing overflow */
-  h1, h2, h3, h4, h5, h6, p {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
@@ -151,71 +157,104 @@
   .font-pixel {
     font-family: 'Press Start 2P', monospace;
   }
-  
+
   .text-glow {
     text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff0066;
   }
-  
+
   .text-glow-subtle {
     text-shadow: 0 0 5px #00ff0044;
   }
-  
+
   .box-glow {
     box-shadow: 0 0 20px #00ff0022, inset 0 0 20px #00ff0008;
   }
-  
+
   .border-glow {
     box-shadow: 0 0 10px #00ff0033;
   }
-  
+
   .terminal-grid {
-    background-image: 
+    background-image:
       linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
     background-size: 20px 20px;
   }
-  
+
   .scanlines {
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.1) 2px,
-      rgba(0, 0, 0, 0.1) 4px
-    );
+    background: repeating-linear-gradient(0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.1) 2px,
+        rgba(0, 0, 0, 0.1) 4px);
     pointer-events: none;
   }
-  
+
   .pixel-border {
-    box-shadow: 
+    box-shadow:
       inset -2px -2px 0px #333333,
       inset 2px 2px 0px #666666;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 }
 
 /* Animations */
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { 
+
+  0%,
+  100% {
     box-shadow: 0 0 5px #00ff0033;
   }
-  50% { 
+
+  50% {
     box-shadow: 0 0 20px #00ff0066;
   }
 }
 
 @keyframes matrix-rain {
-  0% { transform: translateY(-100%); opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
+  0% {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
 }
 
 .animate-blink {

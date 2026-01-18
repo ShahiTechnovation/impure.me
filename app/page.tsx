@@ -22,7 +22,8 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-[#0a0e27] text-[#F0F4F8]">
+    <main className="min-h-screen bg-[#0a0e27] text-[#F0F4F8]" role="main">
+      <h1 className="sr-only">Punit Pal - Web3 Developer, Blockchain Builder, and BuilderBase Founder</h1>
       <Navigation scrollY={scrollY} />
       <HeroSection />
       <AboutSection />
