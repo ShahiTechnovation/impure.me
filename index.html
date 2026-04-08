@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PUNIT PAL | WEB3 DOSSIER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+</head>
+
+<body>
+  <!-- Maximize Transition Overlay -->
+  <div id="maximize-overlay">
+    <div class="loading-text">ACCESSING...</div>
+  </div>
+
+  <!-- Boot Sequence -->
+  <div id="boot-sequence">
+    <div class="boot-logs"></div>
+    <div class="boot-cursor">█</div>
+  </div>
+
+  <!-- Command Palette -->
+  <div id="cmd-palette" class="hidden">
+    <div class="cmd-overlay"></div>
+    <div class="cmd-modal animate-up">
+      <div class="cmd-header">DOSSIER COMMAND // [Esc] TO ABORT</div>
+      <input type="text" id="cmd-input" placeholder="> Enter command (e.g., 'HELP')..." autocomplete="off" />
+      <ul id="cmd-results">
+        <li data-nav="PRJ-01">view pyvax</li>
+        <li data-nav="PRJ-02">view sol2rust</li>
+        <li data-nav="PRJ-03">view ai agent</li>
+        <li data-nav="PRJ-04">view x4pn</li>
+        <li data-nav="PRJ-05">view flowmon</li>
+        <li data-nav="ACH-01">view hackathons</li>
+        <li data-nav="ACH-02">view builderbase</li>
+        <li data-nav="ACH-03">view foss contributions</li>
+        <li data-link="https://github.com/ShahiTechnovation">link github</li>
+        <li data-invert="true">toggle inversion</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cursor"></div>
+
+  <div class="page-wrapper animate-up delay-2">
+    <!-- Header -->
+    <header class="dossier-header animate-up delay-3">
+      <div class="d-row topo-row">
+        <span>AUTHORISATION: BUILDERBASE_3500</span>
+        <span>ROLE: WEB3_DEVELOPER</span>
+        <span>ACADEMIC: BTECH AI & DS (RGPV 24-28)</span>
+        <span>EXPERIENCE: 3+ YRS</span>
+      </div>
+      <div class="d-row title-row">
+        <span>DOSSIER // CONFIDENTIAL</span>
+        <span class="live-time" id="timestamp"></span>
+      </div>
+      <h1 class="massive-text">PUNIT PAL</h1>
+      <div class="d-row under-title-row">
+        <div class="sect leader">
+          <span class="label">CORE FOCUS</span>
+          <span>BLOCKCHAIN INFRASTRUCTURE / DEV TOOLS / COMPILERS</span>
+        </div>
+        <div class="sect click-btn" id="cmd-trigger">
+          <span class="label">SYSTEM PROMPT</span>
+          <span>PRESS [CTRL+K] TO EXECUTE</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-grid">
+      <!-- Left column: Tech stack and parameters -->
+      <aside class="parameters-col animate-up delay-4">
+        <h3 class="col-title">LANGUAGES / HOVER TO FILTER</h3>
+        <div class="param-box interactive-pill" data-filter="solidity"><span class="param-label">01 // SMART
+            CONTRACT</span><span class="param-val">SOLIDITY</span></div>
+        <div class="param-box interactive-pill" data-filter="rust"><span class="param-label">02 // SYSTEMS</span><span
+            class="param-val">RUST / GO</span></div>
+        <div class="param-box interactive-pill" data-filter="python"><span class="param-label">03 //
+            SCRIPTING</span><span class="param-val">PYTHON</span></div>
+        <div class="param-box interactive-pill" data-filter="js"><span class="param-label">04 // FRONTEND</span><span
+            class="param-val">TYPESCRIPT / JS</span></div>
+
+        <h3 class="col-title" style="margin-top: 1.5rem;">FRAMEWORKS</h3>
+        <div class="param-box interactive-pill" data-filter="react"><span class="param-label">FULLSTACK</span><span
+            class="param-val">REACT / NEXT.JS / NODE.JS / FASTAPI</span></div>
+        <div class="param-box interactive-pill" data-filter="solidity"><span class="param-label">WEB3 UTILS</span><span
+            class="param-val">HARDHAT / FOUNDRY / REMIX</span></div>
+
+        <h3 class="col-title" style="margin-top: 1.5rem;">NETWORKS</h3>
+        <div class="param-box interactive-pill" data-filter="chain"><span class="param-label">CHAINS</span><span
+            class="param-val" style="line-height:1.2;">ETHEREUM / ARBITRUM / AVALANCHE / APTOS / SOLANA / MONAD</span>
+        </div>
+
+        <h3 class="col-title" style="margin-top: 1.5rem;">SECURE COMMS</h3>
+        <div class="param-box interactive-pill" style="margin-bottom: 2rem;">
+          <span class="param-label"><span style="font-size:0.85rem;margin-right:4px;">✉</span> START TRANSMISSION</span>
+          <span class="param-val" style="text-transform:lowercase; font-size:0.75rem;"><a
+              href="mailto:founder@builderbase.xyz"
+              style="color:inherit;text-decoration:none;">founder@builderbase.xyz</a><br /><a
+              href="mailto:dev@pyvax.xyz" style="color:inherit;text-decoration:none;">dev@pyvax.xyz</a></span>
+        </div>
+
+        <div class="badges-container">
+          <div class="brutalist-badge">
+            <span class="icon">⚠</span>
+            <div class="badge-text" style="font-size: 0.55rem;">
+              <strong>WARNING</strong>
+              <span>100% WEB3 BUILDER<br />NO ARTIFICIAL INTELLIGENCE ADDED</span>
+            </div>
+          </div>
+
+          <div class="badges-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+            <div class="brutalist-badge click-btn"
+              style="padding: 0.25rem; flex-direction: column; gap:0.2rem; text-align: center;">
+              <span class="icon">♺</span>
+              <div class="badge-text">RECYCLE<br />CODE</div>
+            </div>
+            <div class="brutalist-badge click-btn"
+              style="padding: 0.25rem; flex-direction: column; gap:0.2rem; text-align: center;">
+              <span class="icon" style="font-size: 1.2rem; display: block;">🛠️</span>
+              <div class="badge-text" style="display: block;">HEAVY<br />LIFTER</div>
+            </div>
+          </div>
+
+          <div class="barcode-badge">
+            <svg class="barcode" viewBox="0 0 100 20" preserveAspectRatio="none">
+              <rect x="0" y="0" width="2" height="20" fill="#000" />
+              <rect x="3" y="0" width="1" height="20" fill="#000" />
+              <rect x="6" y="0" width="3" height="20" fill="#000" />
+              <rect x="11" y="0" width="1" height="20" fill="#000" />
+              <rect x="15" y="0" width="4" height="20" fill="#000" />
+              <rect x="22" y="0" width="2" height="20" fill="#000" />
+              <rect x="26" y="0" width="3" height="20" fill="#000" />
+              <rect x="31" y="0" width="1" height="20" fill="#000" />
+              <rect x="35" y="0" width="2" height="20" fill="#000" />
+              <rect x="39" y="0" width="1" height="20" fill="#000" />
+              <rect x="42" y="0" width="3" height="20" fill="#000" />
+              <rect x="47" y="0" width="1" height="20" fill="#000" />
+              <rect x="52" y="0" width="5" height="20" fill="#000" />
+              <rect x="59" y="0" width="2" height="20" fill="#000" />
+              <rect x="63" y="0" width="2" height="20" fill="#000" />
+              <rect x="68" y="0" width="1" height="20" fill="#000" />
+              <rect x="71" y="0" width="3" height="20" fill="#000" />
+              <rect x="76" y="0" width="5" height="20" fill="#000" />
+              <rect x="84" y="0" width="2" height="20" fill="#000" />
+              <rect x="88" y="0" width="1" height="20" fill="#000" />
+              <rect x="91" y="0" width="3" height="20" fill="#000" />
+              <rect x="96" y="0" width="4" height="20" fill="#000" />
+            </svg>
+            <span class="sn">SN: 5X-HACK-WINNER // ID-001845</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right column: Experience and Projects -->
+      <main class="content-col">
+        <section class="dossier-section scroll-target">
+          <h2 class="sect-heading">PROJECTS_LOG</h2>
+
+          <article class="project-item group click-btn" id="PRJ-01" data-stacks="python chain solidity">
+            <div class="proj-meta">
+              <span class="proj-id">PRJ-01</span>
+              <span class="proj-env">AVALANCHE C-CHAIN</span>
+            </div>
+            <div class="proj-content">
+              <h3>PyVax <span class="chevron">▼</span></h3>
+              <p>A Python-to-EVM compiler for the Avalanche C-Chain. Enables developers to write smart contracts
+                natively in Python and deploy without utilizing Solidity.</p>
+              <div class="expander">
+                <div class="expander-inner">
+                  <p class="mock-term">> <code>pip install pyvax --avalanche</code></p>
+                  <p class="mock-term">> <code>Compiling Python syntax to EVM bytecode... OK.</code></p>
+                  <p class="metric">IMPACT: Drastically bridges Web2 developers into Web3.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item group click-btn" id="PRJ-02" data-stacks="rust solidity chain">
+            <div class="proj-meta">
+              <span class="proj-id">PRJ-02</span>
+              <span class="proj-env">ARBITRUM STYLUS</span>
+            </div>
+            <div class="proj-content">
+              <h3>Sol2Rust <span class="chevron">▼</span></h3>
+              <p>A transpiler converting Solidity smart contracts to Rust for Arbitrum Stylus. Drastically lowers the
+                barrier for dApp migration. <strong>Awarded 1st Place at the Core Nexus Hackathon.</strong></p>
+              <div class="expander">
+                <div class="expander-inner">
+                  <p class="mock-term">> <code>sol2rust translate ./Vault.sol --target stylusrust</code></p>
+                  <p class="mock-term">> <code>Generating high-performance Rust contracts... </code></p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item group click-btn" data-stacks="python">
+            <div class="proj-meta">
+              <span class="proj-id">PRJ-03</span>
+              <span class="proj-env">AI LAYER</span>
+            </div>
+            <div class="proj-content">
+              <h3>Classified-Agent <span class="chevron">▼</span></h3>
+              <p>A no-code AI orchestration layer built on top of PyVax, enabling intuitive natural language commands to
+                compile and deploy direct smart contracts on-chain.</p>
+              <div class="expander">
+                <div class="expander-inner">
+                  <p class="mock-term">> <code>"Deploy a token named DegenToken with 1B supply" => Processing</code></p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item group click-btn" data-stacks="js react chain">
+            <div class="proj-meta">
+              <span class="proj-id">PRJ-04</span>
+              <span class="proj-env">INFRA</span>
+            </div>
+            <div class="proj-content">
+              <h3>X4PN <span class="chevron">▼</span></h3>
+              <p>A decentralized VPN (dVPN) platform incentivizing bandwidth providers where users can pay in native
+                USDC and earn yield/rewards.</p>
+            </div>
+          </article>
+
+          <article class="project-item group click-btn" id="PRJ-05" data-stacks="js react chain">
+            <div class="proj-meta">
+              <span class="proj-id">PRJ-05</span>
+              <span class="proj-env">MONAD // HACKATHON</span>
+            </div>
+            <div class="proj-content">
+              <h3>FlowMon <span class="chevron">▼</span></h3>
+              <p>Visual multi-agent orchestration for Web3 pipelines. Drag 43 protocol agents onto a canvas, wire them together, and watch real on-chain execution with <strong>zero glue code</strong>. Built for Monad Blitz &mdash; 10,000 TPS parallel execution.</p>
+              <div class="expander">
+                <div class="expander-inner">
+                  <p class="mock-term">> <code>[Chainlink] ETH=$2,148 → [Lido] APR=2.42% → [Uniswap] route → [Base] tx confirmed ✓</code></p>
+                  <p class="mock-term">> <code>43 agents. 23 protocols. 0 mock responses.</code></p>
+                  <p class="metric">IMPACT: AMP — Agent Message Protocol. One agent's outputs become the next agent's inputs.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="dossier-section scroll-target">
+          <h2 class="sect-heading">ACHIEVEMENTS / SCALE</h2>
+
+          <article class="project-item group click-btn" data-stacks="solidity chain rust">
+            <div class="proj-meta">
+              <span class="proj-id">ACH-01</span>
+              <span class="proj-env">5X WINNER</span>
+            </div>
+            <div class="proj-content">
+              <h3>Global Hackathons <span class="chevron">▼</span></h3>
+              <p>5x Hackathon Winner recognized natively by major protocols including Aptos, Arbitrum, Avalanche, and
+                Monad for shipping highly optimized, disruptive technical prototypes.</p>
+              <div class="expander">
+                <div class="expander-inner">
+                  <p class="mock-term">> <code>Compiling prototypes under 48h...</code></p>
+                  <p class="mock-term">> <code>Deploying to multiple VMs successfully.</code></p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item group click-btn" data-stacks="js react">
+            <div class="proj-meta">
+              <span class="proj-id">ACH-02</span>
+              <span class="proj-env">COMMUNITY</span>
+            </div>
+            <div class="proj-content">
+              <h3>BuilderBase <span class="chevron">▼</span></h3>
+              <p>Successfully scaled "BuilderBase" from 0 to over 3,500 active members, establishing a developer
+                epicenter. Organized 10+ major technical events and hackathons to empower the Web3 ecosystem.</p>
+              <div class="expander">
+                <div class="expander-inner">
+                  <p class="mock-term">> <code>Ping network nodes... 3,500+ ALIVE.</code></p>
+                  <p class="metric">IMPACT: Core talent incubator for emerging chains.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item group click-btn" style="border-bottom: none;"
+            data-stacks="python rust go js solidity">
+            <div class="proj-meta">
+              <span class="proj-id">ACH-03</span>
+              <span class="proj-env">OPEN SOURCE</span>
+            </div>
+            <div class="proj-content">
+              <h3>FOSS Contributions <span class="chevron">▼</span></h3>
+              <p>Maintains 10+ public repositories with over 50 meaningful PR contributions on GitHub, heavily pushing
+                the boundaries of Web3 compilation tools.</p>
+              <div class="expander">
+                <div class="expander-inner">
+                  <p class="mock-term">> <code>git commit -m "Optimize EVM routing"</code></p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <div class="dossier-section scroll-target"
+      style="border-top: 1px dashed var(--line-color); padding-top: 3rem; padding-bottom: 2rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
+      <div class="click-btn" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;"
+        onclick="window.open('https://github.com/ShahiTechnovation', '_blank')">
+        <div class="interactive-pill"
+          style="display: flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; border: 2px solid var(--line-color); font-size: 2.5rem; border-radius: 4px;">
+          <iconify-icon icon="ri:github-fill"></iconify-icon>
+        </div>
+        <span
+          style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">GitHub</span>
+      </div>
+      <div class="click-btn" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;"
+        onclick="window.open('https://twitter.com/its_punit05', '_blank')">
+        <div class="interactive-pill"
+          style="display: flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; border: 2px solid var(--line-color); font-size: 2.5rem; border-radius: 4px;">
+          <iconify-icon icon="ri:twitter-x-fill"></iconify-icon>
+        </div>
+        <span
+          style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">Twitter</span>
+      </div>
+      <div class="click-btn" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;"
+        onclick="window.open('https://linkedin.com/in/punit05', '_blank')">
+        <div class="interactive-pill"
+          style="display: flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; border: 2px solid var(--line-color); font-size: 2.5rem; border-radius: 4px;">
+          <iconify-icon icon="ri:linkedin-fill"></iconify-icon>
+        </div>
+        <span
+          style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">LinkedIn</span>
+      </div>
+      <div class="click-btn" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;"
+        onclick="window.open('https://farcaster.xyz/0x9899', '_blank')">
+        <div class="interactive-pill"
+          style="display: flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; border: 2px solid var(--line-color); font-size: 2.5rem; border-radius: 4px;">
+          <iconify-icon icon="simple-icons:farcaster"></iconify-icon>
+        </div>
+        <span
+          style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">Farcaster</span>
+      </div>
+      <div class="click-btn" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;"
+        onclick="window.open('https://instagram.com/impure.me', '_blank')">
+        <div class="interactive-pill"
+          style="display: flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; border: 2px solid var(--line-color); font-size: 2.5rem; border-radius: 4px;">
+          <iconify-icon icon="ri:instagram-fill"></iconify-icon>
+        </div>
+        <span
+          style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">Instagram</span>
+      </div>
+      <div class="click-btn" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;"
+        onclick="window.open('https://link3.to/right-almonte', '_blank')">
+        <div class="interactive-pill"
+          style="display: flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; border: 2px solid var(--line-color); font-size: 2.5rem; border-radius: 4px;">
+          <iconify-icon icon="ri:links-fill"></iconify-icon>
+        </div>
+        <span
+          style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">Link3</span>
+      </div>
+    </div>
+
+    <!-- Footer marquee -->
+    <footer class="footer-marquee">
+      <div class="marquee-content">
+        <span>DEV TOOLS // BLOCKCHAIN INFRASTRUCTURE // SMART CONTRACT DEVELOPMENT // RGPV 24-28 // FOUNDER BASE // 5X
+          HACKATHON WINNER // PYVAX // SOL2RUST // FLOWMON // MONAD BLITZ /// </span>
+        <span>DEV TOOLS // BLOCKCHAIN INFRASTRUCTURE // SMART CONTRACT DEVELOPMENT // RGPV 24-28 // FOUNDER BASE // 5X
+          HACKATHON WINNER // PYVAX // SOL2RUST // FLOWMON // MONAD BLITZ /// </span>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
