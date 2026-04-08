@@ -1,0 +1,17 @@
+Fetching deployment "dpl_9H68hfESCqd2LWHX9LgyjJREftNM" in shahitechnovations-projects
+2026-04-08T06:33:27.164Z  Running build in Washington, D.C., USA (East) ΓÇô iad1
+2026-04-08T06:33:27.165Z  Build machine configuration: 2 cores, 8 GB
+2026-04-08T06:33:27.283Z  Cloning github.com/ShahiTechnovation/impure.me (Branch: main, Commit: 7118e1a)
+2026-04-08T06:33:27.474Z  Cloning completed: 191.000ms
+2026-04-08T06:33:29.286Z  Skipping build cache since Package Manager changed from "pnpm" to "npm"
+2026-04-08T06:33:29.627Z  Running "vercel build"
+2026-04-08T06:33:30.225Z  Vercel CLI 50.38.2
+2026-04-08T06:33:30.453Z  Installing dependencies...
+2026-04-08T06:33:32.191Z  
+2026-04-08T06:33:32.192Z  added 17 packages in 2s
+2026-04-08T06:33:32.192Z  
+2026-04-08T06:33:32.193Z  9 packages are looking for funding
+2026-04-08T06:33:32.193Z  run `npm fund` for details
+2026-04-08T06:33:32.219Z  Warning: Could not identify Next.js version, ensure it is defined as a project dependency.
+2026-04-08T06:33:32.228Z  Error: No Next.js version detected. Make sure your package.json has "next" in either "dependencies" or "devDependencies". Also check your Root Directory setting matches the directory of your package.json file.
+status	ΓùÅ Error
