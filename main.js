@@ -127,6 +127,23 @@ const projectData = {
             'IMPACT: Zero-install Python smart contract development for every EVM chain.'
         ]
     },
+    'PRJ-09': {
+        title: 'APV3RSE',
+        role: 'AI DEV PLATFORM',
+        status: 'TOP 15 // APTOS WINTERSCHOOL',
+        stack: 'REACT / MOVE / APTOS',
+        link: 'https://github.com/ShahiTechnovation/Apv3rse',
+        site_link: 'https://www.apv3rse.xyz',
+        desc: 'AI-powered Aptos development platform. Build Move smart contracts and Aptos dApps directly from AI prompts. Natural language to production-ready Move code with MCP integration, multi-network deployment, and in-browser IDE. Top 15 Finalist at Aptos Winterschool 2025, IIT Delhi (900+ applicants).',
+        logs: [
+            '> [LINK] <a href="https://www.apv3rse.xyz" target="_blank" style="color:var(--accent-color);">apv3rse.xyz</a>',
+            '> Detecting Aptos query... injecting Move docs context.',
+            '> "Create an NFT collection in Move" => Generating contract...',
+            '> Compiling Move bytecode... VALID.',
+            '> Deploying to Aptos devnet... TX CONFIRMED.',
+            'IMPACT: Vibe coding on Aptos. Natural language to on-chain Move contracts.'
+        ]
+    },
     'ACH-01': {
         title: 'HACKATHONS',
         role: 'PROTOTYPER',
