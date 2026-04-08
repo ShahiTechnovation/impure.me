@@ -370,7 +370,7 @@ function reattachObserver() {
                 entry.target.classList.add('in-view');
             }
         });
-    }, { threshold: 0.1 });
+    }, { rootMargin: '0px 0px -50px 0px', threshold: 0 });
 
     document.querySelectorAll('.animate-up, .scroll-target').forEach(el => observer.observe(el));
 
