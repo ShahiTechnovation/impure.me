@@ -63,11 +63,11 @@ const projectData = {
     'PRJ-05': {
         title: 'FLOWMON',
         role: 'ORCHESTRATOR',
-        status: 'DEPLOYED / HACKATHON',
+        status: '1ST RUNNER UP // MONAD BLITZ V3',
         stack: 'TYPESCRIPT / NEXT.JS / MONAD',
         link: 'https://github.com/leojay-net/agentflow',
         site_link: 'https://flow-mon.vercel.app',
-        desc: 'Visual multi-agent orchestration platform for Web3 pipelines. Drag protocol agents onto a canvas, wire them together, and watch 43 real agents execute with live on-chain data — no SDK glue, no boilerplate. Built for Monad Blitz Hackathon.',
+        desc: 'Visual multi-agent orchestration platform for Web3 pipelines. Drag protocol agents onto a canvas, wire them together, and watch 43 real agents execute with live on-chain data — no SDK glue, no boilerplate. 1st Runner Up at Monad Blitz V3.',
         logs: [
             '> [LINK] <a href="https://github.com/leojay-net/agentflow" target="_blank" style="color:var(--accent-color);">github.com/leojay-net/agentflow</a>',
             '> Resolving dependency graph... 43 agents loaded.',
@@ -77,6 +77,54 @@ const projectData = {
             '> [Uniswap Quoter] route built ✓',
             '> [Base TX Executor] tx confirmed ✓',
             'IMPACT: Zero glue code. 43 agents. 23 protocols. 0 mock responses.'
+        ]
+    },
+    'PRJ-06': {
+        title: 'PYMON',
+        role: 'COMPILER',
+        status: '1ST RUNNER UP // MONAD DELHI',
+        stack: 'PYTHON / EVM / MONAD',
+        link: '#',
+        site_link: 'https://pokeemon-blond.vercel.app/',
+        demo_link: 'https://luma.com/zzogo8yu',
+        desc: 'Python smart contracts for Monad blockchain. Enabling Python developers to build on Monad with seamless Python-to-EVM compilation and deployment tools. 1st Runner-Up at Monad Delhi.',
+        logs: [
+            '> pyvax compile --target monad',
+            '> Transpiling Python AST to EVM opcodes...',
+            '> Deploying to Monad testnet... TX CONFIRMED.',
+            'IMPACT: Python-native smart contracts on 10,000 TPS Monad EVM.'
+        ]
+    },
+    'PRJ-07': {
+        title: 'NEUROFIT',
+        role: 'AI/ML PLATFORM',
+        status: '1ST RUNNER UP // BRAHMAX',
+        stack: 'AI / NEURAL NETS / WEB3',
+        link: 'https://github.com/ShahiTechnovation/NeuroFit',
+        site_link: 'https://neurofitt.vercel.app',
+        demo_link: 'https://unstop.com/o/Ch1wQ9l',
+        desc: 'AI-powered fitness platform using neural networks to create adaptive workout plans and track user progress with AI-driven insights. 1st Runner-Up at BrahmaX 1.0.',
+        logs: [
+            '> Loading neural fitness model...',
+            '> Analyzing user biometrics... PROFILE BUILT.',
+            '> Generating adaptive workout plan... OPTIMIZED.',
+            'IMPACT: Personalized AI fitness at the intersection of Web3 and wellness.'
+        ]
+    },
+    'PRJ-08': {
+        title: 'ZEROTHON',
+        role: 'PLAYGROUND',
+        status: 'LIVE // MANTLE HACK',
+        stack: 'PYTHON / EVM / MULTI-CHAIN',
+        link: 'https://github.com/ShahiTechnovation/zerothon',
+        site_link: 'https://zerothon.vercel.app',
+        desc: 'Python-to-EVM playground with live IDE across all EVM chains via Chainlist RPC integration. Write, compile, and deploy Python smart contracts directly in the browser.',
+        logs: [
+            '> Initializing browser IDE...',
+            '> Connecting to Chainlist RPC endpoints... 500+ chains.',
+            '> Compiling Python → EVM bytecode in-browser... OK.',
+            '> Deploying to target chain... TX HASH received.',
+            'IMPACT: Zero-install Python smart contract development for every EVM chain.'
         ]
     },
     'ACH-01': {

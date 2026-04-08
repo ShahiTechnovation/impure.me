@@ -270,3 +270,179 @@ body:hover .cursor.active {
 #maximize-overlay.animating .loading-text {
   opacity: 1;
 }
+
+/* ------------------------------------- */
+/* THREADS / TRANSMISSIONS               */
+/* ------------------------------------- */
+.threads-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.thread-item {
+  border: 2px solid var(--line-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.2s, background-color 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.thread-item:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  transform: translateY(-3px);
+}
+
+.thread-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  display: inline-block;
+  align-self: flex-start;
+  text-transform: uppercase;
+}
+
+.thread-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.thread-desc {
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+.thread-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-top: auto;
+}
+
+/* ------------------------------------- */
+/* CTA BANNER                            */
+/* ------------------------------------- */
+.cta-banner {
+  border: 3px solid var(--accent-color);
+  margin: 2rem 0;
+  position: relative;
+  animation: cta-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes cta-glow {
+  0% { box-shadow: 0 0 5px rgba(255, 0, 60, 0.15), inset 0 0 5px rgba(255, 0, 60, 0.05); }
+  100% { box-shadow: 0 0 25px rgba(255, 0, 60, 0.35), inset 0 0 15px rgba(255, 0, 60, 0.08); }
+}
+
+.cta-inner {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cta-label {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.cta-sub {
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  opacity: 0.7;
+  max-width: 500px;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta-btn {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.85rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: transform 0.15s, background-color 0.2s, color 0.2s;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.cta-btn:active {
+  transform: scale(0.97);
+}
+
+.cta-btn.primary {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: 2px solid var(--accent-color);
+}
+
+.cta-btn.primary:hover {
+  background-color: transparent;
+  color: var(--accent-color);
+}
+
+.cta-btn.secondary {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border: 2px solid var(--text-color);
+}
+
+.cta-btn.secondary:hover {
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.cta-emails {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  opacity: 0.5;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ------------------------------------- */
+/* RESPONSIVE ADDITIONS                  */
+/* ------------------------------------- */
+@media (max-width: 900px) {
+  .threads-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-label {
+    font-size: 1.5rem;
+  }
+  .cta-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.8rem;
+  }
+}
