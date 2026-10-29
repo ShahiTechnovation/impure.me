@@ -1,23 +1,23 @@
 ---
 // src/components/layout/Navbar.astro
-import ThemeToggle from '../ui/ThemeToggle.astro';
+import ThemeToggle from "../ui/ThemeToggle.astro";
 
 interface Props {
   currentPath?: string;
 }
 
-const { currentPath = '/' } = Astro.props;
+const { currentPath = "/" } = Astro.props;
 
 const navItems = [
-  { label: 'INDEX', href: '/' },
-  { label: 'BUILD', href: '/build' },
-  { label: 'GROW', href: '/grow' },
-  { label: 'STORY', href: '/story' },
-  { label: 'CONTACT', href: '/contact' }
+  { label: "INDEX", href: "/" },
+  { label: "BUILD", href: "/build" },
+  { label: "GROW", href: "/grow" },
+  { label: "STORY", href: "/story" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
 function isActive(href: string): boolean {
-  if (href === '/') return currentPath === '/' || currentPath === '';
+  if (href === "/") return currentPath === "/" || currentPath === "";
   return currentPath.startsWith(href);
 }
 ---
@@ -28,16 +28,16 @@ function isActive(href: string): boolean {
     <div class="container top-meta-content">
       <div class="meta-item">
         <span class="meta-dot"></span>
-        <span class="tech-micro">AUT: BUILDERBASE_3500</span>
+        <span class="tech-micro">AUT: BUILDERBASE</span>
       </div>
       <div class="meta-item hide-mobile">
-        <span class="tech-micro">ACADEMIC: BTECH AI &amp; DS (RGPV 24-28)</span>
+        <span class="tech-micro">ACADEMIC: BTECH AI &amp; DS</span>
       </div>
       <div class="meta-item hide-mobile">
         <span class="tech-micro">RECOGNITION: 5X PODIUM FINISHER</span>
       </div>
       <div class="meta-item">
-        <span class="tech-micro" id="live-utc-clock">UTC 00:00:00</span>
+        <span class="tech-micro" id="live-ist-clock">IST 00:00:00</span>
       </div>
     </div>
   </div>
@@ -54,21 +54,25 @@ function isActive(href: string): boolean {
       <!-- Desktop Nav Menu -->
       <nav class="desktop-nav" aria-label="Main Navigation">
         <ul class="nav-links-list">
-          {navItems.map((item) => {
-            const active = isActive(item.href);
-            return (
-              <li>
-                <a
-                  href={item.href}
-                  class:list={['nav-link', { 'active': active }]}
-                  aria-current={active ? 'page' : undefined}
-                >
-                  <span class="nav-text">{item.label}</span>
-                  {active && <span class="nav-indicator" aria-hidden="true" />}
-                </a>
-              </li>
-            );
-          })}
+          {
+            navItems.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <li>
+                  <a
+                    href={item.href}
+                    class:list={["nav-link", { active: active }]}
+                    aria-current={active ? "page" : undefined}
+                  >
+                    <span class="nav-text">{item.label}</span>
+                    {active && (
+                      <span class="nav-indicator" aria-hidden="true" />
+                    )}
+                  </a>
+                </li>
+              );
+            })
+          }
         </ul>
       </nav>
 
@@ -83,7 +87,16 @@ function isActive(href: string): boolean {
           title="Open Command Palette (Ctrl+K or Cmd+K)"
         >
           <span class="cmd-icon" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
@@ -118,28 +131,53 @@ function isActive(href: string): boolean {
     <div class="mobile-drawer-content">
       <div class="mobile-drawer-header">
         <span class="tech-micro">DOSSIER DIRECTORY</span>
-        <button id="mobile-close-btn" class="mobile-close-btn" aria-label="Close Navigation Menu">
+        <button
+          id="mobile-close-btn"
+          class="mobile-close-btn"
+          aria-label="Close Navigation Menu"
+        >
           <kbd>ESC</kbd>
         </button>
       </div>
       <nav class="mobile-nav-list" aria-label="Mobile Navigation">
-        {navItems.map((item, index) => (
-          <a
-            href={item.href}
-            class:list={['mobile-nav-item', { 'active': isActive(item.href) }]}
-          >
-            <span class="mobile-nav-num">/0{index + 1}</span>
-            <span class="mobile-nav-text">{item.label}</span>
-            {isActive(item.href) && <span class="dossier-stamp signal">ACTIVE</span>}
-          </a>
-        ))}
+        {
+          navItems.map((item, index) => (
+            <a
+              href={item.href}
+              class:list={["mobile-nav-item", { active: isActive(item.href) }]}
+            >
+              <span class="mobile-nav-num">/0{index + 1}</span>
+              <span class="mobile-nav-text">{item.label}</span>
+              {isActive(item.href) && (
+                <span class="dossier-stamp signal">ACTIVE</span>
+              )}
+            </a>
+          ))
+        }
       </nav>
       <div class="mobile-drawer-footer">
         <div class="mobile-socials">
-          <a href="https://github.com/ShahiTechnovation" target="_blank" rel="noopener noreferrer" class="tech-micro inline-link">GITHUB</a>
-          <a href="https://x.com/its_punit05" target="_blank" rel="noopener noreferrer" class="tech-micro inline-link">X / TWITTER</a>
-          <a href="https://linkedin.com/in/punit05" target="_blank" rel="noopener noreferrer" class="tech-micro inline-link">LINKEDIN</a>
-          <a href="mailto:punit@builderbase.xyz" class="tech-micro inline-link">EMAIL</a>
+          <a
+            href="https://github.com/ShahiTechnovation"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="tech-micro inline-link">GITHUB</a
+          >
+          <a
+            href="https://x.com/its_punit05"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="tech-micro inline-link">X / TWITTER</a
+          >
+          <a
+            href="https://linkedin.com/in/punit05"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="tech-micro inline-link">LINKEDIN</a
+          >
+          <a href="mailto:punit@builderbase.xyz" class="tech-micro inline-link"
+            >EMAIL</a
+          >
         </div>
       </div>
     </div>
@@ -159,7 +197,7 @@ function isActive(href: string): boolean {
 
   .top-meta-bar {
     background-color: var(--color-night);
-    color: #ECE8E0;
+    color: #ece8e0;
     border-bottom: 1px solid var(--border-color);
     padding: 4px 0;
   }
@@ -187,8 +225,15 @@ function isActive(href: string): boolean {
   }
 
   @keyframes metaPulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(0.85);
+    }
   }
 
   .main-nav-bar {
@@ -438,50 +483,54 @@ function isActive(href: string): boolean {
 
 <script>
   function setupNavbar() {
-    // Live UTC Clock updater
-    const clockEl = document.getElementById('live-utc-clock');
+    // Live IST Clock updater (Indian Standard Time, UTC+5:30)
+    const clockEl = document.getElementById("live-ist-clock");
     if (clockEl) {
+      const istFormatter = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      });
       const updateClock = () => {
-        const now = new Date();
-        const utcStr = now.toISOString().slice(11, 19);
-        clockEl.textContent = `UTC ${utcStr}`;
+        clockEl.textContent = `IST ${istFormatter.format(new Date())}`;
       };
       updateClock();
       setInterval(updateClock, 1000);
     }
 
     // Mobile menu drawer
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const closeBtn = document.getElementById('mobile-close-btn');
-    const drawer = document.getElementById('mobile-nav-drawer');
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const closeBtn = document.getElementById("mobile-close-btn");
+    const drawer = document.getElementById("mobile-nav-drawer");
 
     if (!menuBtn || !drawer) return;
 
     const openMenu = () => {
       drawer.hidden = false;
-      menuBtn.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
+      menuBtn.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
     };
 
     const closeMenu = () => {
       drawer.hidden = true;
-      menuBtn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+      menuBtn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
     };
 
-    menuBtn.addEventListener('click', openMenu);
-    closeBtn?.addEventListener('click', closeMenu);
+    menuBtn.addEventListener("click", openMenu);
+    closeBtn?.addEventListener("click", closeMenu);
 
-    drawer.addEventListener('click', (e) => {
+    drawer.addEventListener("click", (e) => {
       if (e.target === drawer) closeMenu();
     });
 
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !drawer.hidden) closeMenu();
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !drawer.hidden) closeMenu();
     });
   }
 
   setupNavbar();
-  document.addEventListener('astro:page-load', setupNavbar);
+  document.addEventListener("astro:page-load", setupNavbar);
 </script>
-
