@@ -31,17 +31,61 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle Paper Texture Overlay */
+/* Paper Texture Overlay — V1-accurate blend mode */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background-image: url('/images/paper-texture.png');
   background-repeat: repeat;
-  background-size: 320px 320px;
-  opacity: var(--texture-opacity);
+  background-size: 800px 800px;
+  opacity: var(--texture-opacity, 0.22);
+  mix-blend-mode: var(--texture-blend, multiply);
   pointer-events: none;
-  z-index: 9999;
+  z-index: 1000;
+}
+
+/* ============================================================
+   Custom Cursor — V1 Neon Dot + Dashed Ring on Interactive
+   ============================================================ */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-color: var(--text-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.2s cubic-bezier(0.19, 1, 0.22, 1),
+    height 0.2s cubic-bezier(0.19, 1, 0.22, 1),
+    background-color 0.2s,
+    border 0.2s;
+  will-change: transform;
+}
+
+.cursor.active {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 2px dashed var(--accent-color);
+  animation: cursor-rotate 4s linear infinite;
+}
+
+@keyframes cursor-rotate {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Hide cursor on touch / hover-none devices */
+@media (hover: none) {
+  .cursor {
+    display: none;
+  }
 }
 
 /* Selection Color */

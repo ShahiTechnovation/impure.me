@@ -1,23 +1,23 @@
 /* ==========================================================================
-   impure.me V2 — Design Tokens (THE EDITORIAL DOSSIER)
+   impure.me V2 — Design Tokens (AUTHENTIC DOSSIER PAPER & BRUTALIST NEON)
    ========================================================================== */
 
 :root {
-  /* Editorial Light Theme (Primary Default) */
-  --color-paper: #F4F1EB;
-  --color-ink: #171717;
-  --color-signal: #D92E32;
-  --color-signal-hover: #B52226;
-  --color-signal-subtle: rgba(217, 46, 50, 0.08);
-  --color-signal-glow: rgba(217, 46, 50, 0.25);
-  --color-muted: #67645F;
-  --color-muted-light: #8E8A84;
-  --color-line: #D5D0C9;
-  --color-line-dark: #B8B2A8;
+  /* Authentic Editorial Paper Theme (V1 Paper Identity) */
+  --color-paper: #F6F4EE;         /* Authentic tactile dossier paper */
+  --color-ink: #0D0D0D;           /* Deep ink black */
+  --color-signal: #FF003C;        /* Brutalist Neon Red from V1 */
+  --color-signal-hover: #D60032;  /* Deep signal red for hover states */
+  --color-signal-subtle: rgba(255, 0, 60, 0.08);
+  --color-signal-glow: rgba(255, 0, 60, 0.25);
+  --color-muted: #575550;
+  --color-muted-light: #7E7C76;
+  --color-line: #0D0D0D;          /* Bold architectural lines from V1 */
+  --color-line-dark: #000000;
   --color-surface: #FFFFFF;
-  --color-surface-dim: #ECE8E0;
-  --color-night: #101114;
-  --color-badge-bg: #EAE6DE;
+  --color-surface-dim: #EFECE4;
+  --color-night: #0D0D0D;
+  --color-badge-bg: #EAE6DC;
 
   /* Semantic Mappings */
   --bg-primary: var(--color-paper);
@@ -64,9 +64,9 @@
   --radius-md: 4px;
   --radius-full: 9999px;
 
-  /* Shadows (Subtle, tactile print aesthetics) */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  /* Shadows (Tactile print aesthetics & paper lift) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-dossier: 4px 4px 0px var(--color-ink);
   --shadow-signal: 3px 3px 0px var(--color-signal);
 
@@ -77,27 +77,29 @@
   --transition-base: 250ms var(--ease-editorial);
   --transition-slow: 450ms var(--ease-editorial);
 
-  /* Texture Overlay Opacity */
-  --texture-opacity: 0.045;
   --color-scheme: light;
+
+  /* Paper Texture */
+  --texture-opacity: 0.22;
+  --texture-blend: multiply;
 }
 
-/* Brutalist Dark Theme */
+/* Brutalist Dark Theme (V1 Night Identity) */
 [data-theme="dark"] {
-  --color-paper: #101114;
-  --color-ink: #F4F1EB;
-  --color-signal: #FF464B;
-  --color-signal-hover: #FF666A;
-  --color-signal-subtle: rgba(255, 70, 75, 0.12);
-  --color-signal-glow: rgba(255, 70, 75, 0.35);
-  --color-muted: #A4A29F;
-  --color-muted-light: #6E6D6A;
-  --color-line: #2C2E33;
-  --color-line-dark: #3F4248;
-  --color-surface: #18191E;
-  --color-surface-dim: #131417;
-  --color-night: #090A0C;
-  --color-badge-bg: #212328;
+  --color-paper: #0D0D0D;         /* Deep brutalist black */
+  --color-ink: #FFFFFF;
+  --color-signal: #FF003C;        /* Signature neon red */
+  --color-signal-hover: #FF3366;
+  --color-signal-subtle: rgba(255, 0, 60, 0.14);
+  --color-signal-glow: rgba(255, 0, 60, 0.4);
+  --color-muted: #A8A8A8;
+  --color-muted-light: #707070;
+  --color-line: #333333;          /* 1px-2px dark border */
+  --color-line-dark: #444444;
+  --color-surface: #141414;
+  --color-surface-dim: #1C1C1C;
+  --color-night: #070707;
+  --color-badge-bg: #222222;
 
   --bg-primary: var(--color-paper);
   --bg-surface: var(--color-surface);
@@ -112,7 +114,9 @@
 
   --shadow-dossier: 4px 4px 0px #000000;
   --shadow-signal: 3px 3px 0px var(--color-signal);
-  --texture-opacity: 0.03;
   --color-scheme: dark;
-}
 
+  /* Paper Texture (Dark) */
+  --texture-opacity: 0.15;
+  --texture-blend: overlay;
+}

@@ -48,7 +48,7 @@ export const builderBaseData = {
     },
     {
       channel: 'Verified Builder Community',
-      reach: '50,000+',
+      reach: '10,000+',
       description: 'Vetted Web3 and AI developers, founders, and contributors across curated WhatsApp and community groups.'
     }
   ],
@@ -133,7 +133,7 @@ export const gtmInitiatives: GtmInitiative[] = [
     channelsAndPartners: ['Builder Base distribution network', 'Luma events', 'University CS chapters', 'Protocol foundation grants'],
     executionDetails: 'Structured a multi-stage funnel: initial portfolio review -> technical screening -> shortlisted cohort admission. Coordinated sponsor bounties ensuring teams build against specific protocol pain points.',
     outcomes: [
-      { label: 'Developer Applicants', value: '1,200+', detail: 'Verified developer applications across India' },
+      { label: 'Developer Applicants', value: '10,500+', detail: 'Verified developer applications across India' },
       { label: 'Cohort Quality', value: 'Top 15%', detail: 'Strict shortlisting rate focused on shipped code' },
       { label: 'Protocol Partners', value: '4 Major Chains', detail: 'Dedicated tracks with active bounty grants' }
     ],
@@ -160,7 +160,7 @@ export const gtmInitiatives: GtmInitiative[] = [
     channelsAndPartners: ['Claude Community India', 'Builder Base network', 'Local tech hub venues', 'GitHub open source repos'],
     executionDetails: 'Delivered immersive 3-4 hour technical workshops where every attendee cloned a repository, configured Claude API / MCP tooling locally, and built an autonomous tool-calling application by session close.',
     outcomes: [
-      { label: 'Builders Activated', value: '850+', detail: 'Hands-on workshop participants across 3 key tech cities' },
+      { label: 'Builders Activated', value: '1100+', detail: 'Hands-on workshop participants across 3 key tech cities' },
       { label: 'Prototypes Shipped', value: '140+', detail: 'Working MCP and agent repos produced by attendees' },
       { label: 'Average Feedback', value: '4.9 / 5.0', detail: 'Rated on technical depth and direct usefulness' }
     ],
@@ -188,7 +188,7 @@ export const gtmInitiatives: GtmInitiative[] = [
     outcomes: [
       { label: 'Luma Event Reach', value: '64,000+', detail: 'Total registrations across community calendar' },
       { label: 'Newsletter Readers', value: '70,000+', detail: 'Weekly technical ecosystem dispatches' },
-      { label: 'Core Builder Base', value: '2,000+', detail: 'Direct daily engagement across active circles' }
+      { label: 'Core Builder Base', value: '10,000+', detail: 'Direct daily engagement across active circles' }
     ],
     learnings: [
       'Developers value concrete opportunities (bounties, grants, hackathons) over vague networking chat rooms.',
@@ -212,7 +212,7 @@ export const gtmInitiatives: GtmInitiative[] = [
     channelsAndPartners: ['Builder Base', 'Arbitrum ecosystem', 'Avalanche community', 'Monad teams'],
     executionDetails: 'Co-hosted and moderated technical discussions where founders and protocol engineers broke down roadmap architectures, benchmark results, and upcoming ecosystem grant opportunities.',
     outcomes: [
-      { label: 'Event Attendance', value: '350+', detail: 'Curated senior developers and protocol founders' },
+      { label: 'Event Attendance', value: '500+', detail: 'Curated senior developers and protocol founders' },
       { label: 'Partners Hosted', value: '6 Protocols', detail: 'Direct founder and core-dev panel participation' },
       { label: 'Ecosystem Connections', value: '50+ Matches', detail: 'Facilitated builder-to-grant introductions' }
     ],

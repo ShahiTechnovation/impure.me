@@ -212,7 +212,7 @@ function getProjectTemplate(id, data) {
     return `
     <header class="dossier-header animate-up delay-1 in-view">
       <div class="d-row topo-row">
-        <span>AUTHORISATION: BUILDERBASE_3500</span>
+        <span>AUTHORISATION: BUILDERBASE</span>
         <span>ROLE: ${data.role}</span>
         <span>STATUS: ${data.status}</span>
         <span class="click-btn" id="go-back" style="color:var(--accent-color); cursor:pointer;">[←] RETURN</span>

@@ -122,6 +122,9 @@ const personSchema = {
     <!-- Skip to Content Link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
+    <!-- Custom Cursor (hidden on touch devices via CSS) -->
+    <div class="cursor" aria-hidden="true"></div>
+
     <!-- Global Navigation -->
     <Navbar currentPath={Astro.url.pathname} />
 
@@ -166,6 +169,46 @@ const personSchema = {
 
       setupScrollObserver();
       document.addEventListener('astro:page-load', setupScrollObserver);
+    </script>
+
+    <!-- Custom Cursor JS -->
+    <script>
+      function setupCursor() {
+        const cursor = document.querySelector('.cursor') as HTMLElement | null;
+        if (!cursor) return;
+
+        // Don't activate on touch/pointer-less devices
+        if (window.matchMedia('(hover: none)').matches) {
+          cursor.style.display = 'none';
+          return;
+        }
+
+        document.addEventListener('mousemove', (e: MouseEvent) => {
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top = e.clientY + 'px';
+        });
+
+        const interactiveSelector = [
+          '.btn', '.dossier-card', '[data-open-cmd]',
+          '.nav-link', '.social-pill', '.filter-pill',
+          '.card-icon-link', '.cmd-item', '.footer-link',
+          '.inline-link', '.field-note-card', '.avenue-card',
+          '.related-card', '.mobile-nav-item', '.theme-toggle-btn',
+          '.easter-egg-btn', 'a[href]', 'button'
+        ].join(', ');
+
+        function bindCursorElements() {
+          document.querySelectorAll(interactiveSelector).forEach((el) => {
+            el.addEventListener('mouseenter', () => cursor!.classList.add('active'));
+            el.addEventListener('mouseleave', () => cursor!.classList.remove('active'));
+          });
+        }
+
+        bindCursorElements();
+      }
+
+      setupCursor();
+      document.addEventListener('astro:page-load', setupCursor);
     </script>
   </body>
 </html>
