@@ -48,7 +48,7 @@ export const builderBaseData = {
     },
     {
       channel: 'Verified Builder Community',
-      reach: '2,000+',
+      reach: '50,000+',
       description: 'Vetted Web3 and AI developers, founders, and contributors across curated WhatsApp and community groups.'
     }
   ],
@@ -222,3 +222,4 @@ export const gtmInitiatives: GtmInitiative[] = [
     ]
   }
 ];
+

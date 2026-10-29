@@ -73,8 +73,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <div class="channels-box dossier-card">
                 <div class="channel-row">
                   <span class="tech-label">FOUNDER EMAIL:</span>
-                  <a href="mailto:founder@builderbase.xyz" class="channel-link inline-link tech-micro">
-                    founder@builderbase.xyz
+                  <a href="mailto:punit@builderbase.xyz" class="channel-link inline-link tech-micro">
+                    punit@builderbase.xyz
                   </a>
                 </div>
                 <div class="channel-row">
@@ -198,7 +198,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <div id="form-success-box" class="form-success-alert" hidden>
                 <div class="success-header tech-label-signal">✓ TRANSMISSION PAYLOAD READY</div>
                 <p class="text-body-sm">
-                  Your mail client has been opened with your structured message. If it did not launch automatically, send directly to <a href="mailto:founder@builderbase.xyz" class="inline-link">founder@builderbase.xyz</a>.
+                  Your mail client has been opened with your structured message. If it did not launch automatically, send directly to <a href="mailto:punit@builderbase.xyz" class="inline-link">punit@builderbase.xyz</a>.
                 </p>
               </div>
             </div>
@@ -448,7 +448,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       );
 
       // Launch native email client with structured mailto
-      window.location.href = `mailto:founder@builderbase.xyz?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:punit@builderbase.xyz?subject=${subject}&body=${body}`;
 
       if (successBox) {
         successBox.hidden = false;
@@ -460,3 +460,4 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   setupContactForm();
   document.addEventListener('astro:page-load', setupContactForm);
 </script>
+

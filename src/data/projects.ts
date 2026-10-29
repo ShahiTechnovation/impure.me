@@ -728,3 +728,4 @@ export const projectCategories = [
   'Full-Stack Products',
   'Experiments'
 ] as const;
+

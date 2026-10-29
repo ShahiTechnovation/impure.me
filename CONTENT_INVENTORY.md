@@ -170,7 +170,7 @@ Headline: **5× Hackathon Podium Finisher** (+ 2 Top 15 Finalist Selections)
 - **Channel Metrics Breakdown** (Explicitly differentiated):
   - **Luma Event Audience**: 64,000+ registered attendees across multi-city events and workshops
   - **Developer Newsletter Reach**: 70,000+ technical subscribers receiving ecosystem dispatches
-  - **Active WhatsApp Community**: 2,000+ verified developers, builders, and founders
+  - **Active WhatsApp Community**: 10,000+ verified developers, builders, and founders
   - *Audit Note*: These channels have cross-network overlap and are intentionally presented as channel reach rather than unique active members.
 
 ### 5.2 Ecosystem Contributor Roles
@@ -189,7 +189,7 @@ Headline: **5× Hackathon Podium Finisher** (+ 2 Top 15 Finalist Selections)
 
 ## 6. Verified Contact & Conversion Channels
 
-- **Email**: `founder@builderbase.xyz` (Primary Founder Inquiries)
+- **Email**: `punit@builderbase.xyz` (Primary Founder Inquiries)
 - **Technical Inquiries**: `dev@pyvax.xyz` (Compiler & Protocol Collaboration)
 - **GitHub**: `https://github.com/ShahiTechnovation`
 - **Twitter / X**: `https://x.com/its_punit05`

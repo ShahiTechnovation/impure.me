@@ -1,35 +1,35 @@
 ---
 // src/pages/index.astro
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/projects/ProjectCard.astro';
-import HackathonRecord from '../components/achievements/HackathonRecord.astro';
-import { projects } from '../data/projects';
-import { builderBaseData } from '../data/ecosystems';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/projects/ProjectCard.astro";
+import HackathonRecord from "../components/achievements/HackathonRecord.astro";
+import { projects } from "../data/projects";
+import { builderBaseData } from "../data/ecosystems";
 
 const featuredProjects = projects.filter((p) => p.featured);
 
 const fieldNotes = [
   {
-    date: 'MARCH 2026',
-    tag: 'MONAD BLITZ V3',
-    title: 'Orchestrating 43 Agents at 10,000 TPS',
-    body: 'During Monad Blitz V3, our team shipped FlowMon—connecting real DeFi protocols with zero mock responses. Witnessing 43 agents pass state through Agent Message Protocol in real-time proved that agentic finance is no longer speculative.',
-    link: '/build/flowmon'
+    date: "MARCH 2026",
+    tag: "MONAD BLITZ V3",
+    title: "Orchestrating 43 Agents at 10,000 TPS",
+    body: "During Monad Blitz V3, our team shipped FlowMon—connecting real DeFi protocols with zero mock responses. Witnessing 43 agents pass state through Agent Message Protocol in real-time proved that agentic finance is no longer speculative.",
+    link: "/build/flowmon",
   },
   {
-    date: 'SEPTEMBER 2025',
-    tag: 'AVALANCHE TEAM1',
-    title: 'Compiling Python AST into EVM Opcodes',
-    body: 'Shipped PyVax at AVAX Kolkata. Bridging Web2 developers into Web3 by letting them write native smart contracts in Python without Solidity domain barriers.',
-    link: '/build/pyvax'
+    date: "SEPTEMBER 2025",
+    tag: "AVALANCHE TEAM1",
+    title: "Compiling Python AST into EVM Opcodes",
+    body: "Shipped PyVax at AVAX Kolkata. Bridging Web2 developers into Web3 by letting them write native smart contracts in Python without Solidity domain barriers.",
+    link: "/build/pyvax",
   },
   {
-    date: 'APRIL 2025',
-    tag: 'ARBITRUM STYLUS',
-    title: 'Transpiling Solidity to High-Speed Rust WASM',
-    body: 'Core Nexus Hackathon 1st Place Champion. Lowered dApp porting friction to Stylus, validating 40%+ gas improvements on cryptographic workloads.',
-    link: '/build/sol2rust'
-  }
+    date: "APRIL 2025",
+    tag: "ARBITRUM STYLUS",
+    title: "Transpiling Solidity to High-Speed Rust WASM",
+    body: "Core Nexus Hackathon 1st Place Champion. Lowered dApp porting friction to Stylus, validating 40%+ gas improvements on cryptographic workloads.",
+    link: "/build/sol2rust",
+  },
 ];
 ---
 
@@ -48,7 +48,7 @@ const fieldNotes = [
           <span class="tech-micro hide-mobile">BRAND: IMPURE&reg;</span>
         </div>
         <div class="dossier-bar-right">
-          <span class="tech-micro">ACADEMIC: BTECH AI &amp; DS (RGPV 24-28)</span>
+          <span class="tech-micro">ACADEMIC: BTECH AI &amp; DS </span>
           <span class="dossier-stamp">ACTIVE BUILDER</span>
         </div>
       </div>
@@ -66,7 +66,9 @@ const fieldNotes = [
           </p>
 
           <p class="hero-support text-body">
-            Developer, technical founder, and ecosystem builder working across compiler engineering, AI agent infrastructure, high-throughput blockchains, and developer-led distribution.
+            Developer, technical founder, and ecosystem builder working across
+            compiler engineering, AI agent infrastructure, high-throughput
+            blockchains, and developer-led distribution.
           </p>
 
           <!-- Action Buttons -->
@@ -79,7 +81,12 @@ const fieldNotes = [
               <span>ECOSYSTEM &amp; GTM</span>
               <span aria-hidden="true">&rarr;</span>
             </a>
-            <button type="button" class="btn hero-cmd-btn" data-open-cmd aria-label="Search dossier with command palette">
+            <button
+              type="button"
+              class="btn hero-cmd-btn"
+              data-open-cmd
+              aria-label="Search dossier with command palette"
+            >
               <span class="tech-micro">EXECUTE [⌘K]</span>
             </button>
           </div>
@@ -87,19 +94,39 @@ const fieldNotes = [
           <!-- Social Proof & Direct Channels -->
           <div class="hero-social-strip">
             <span class="tech-micro social-label">VERIFIED CHANNELS:</span>
-            <a href="https://github.com/ShahiTechnovation" target="_blank" rel="noopener noreferrer" class="social-pill tech-micro">
+            <a
+              href="https://github.com/ShahiTechnovation"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-pill tech-micro"
+            >
               <span>GITHUB</span>
               <span class="ext-arrow">&nearr;</span>
             </a>
-            <a href="https://x.com/its_punit05" target="_blank" rel="noopener noreferrer" class="social-pill tech-micro">
+            <a
+              href="https://x.com/its_punit05"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-pill tech-micro"
+            >
               <span>X / TWITTER</span>
               <span class="ext-arrow">&nearr;</span>
             </a>
-            <a href="https://linkedin.com/in/punit05" target="_blank" rel="noopener noreferrer" class="social-pill tech-micro">
+            <a
+              href="https://linkedin.com/in/punit05"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-pill tech-micro"
+            >
               <span>LINKEDIN</span>
               <span class="ext-arrow">&nearr;</span>
             </a>
-            <a href="https://www.builderbase.xyz" target="_blank" rel="noopener noreferrer" class="social-pill tech-micro">
+            <a
+              href="https://www.builderbase.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-pill tech-micro"
+            >
               <span>BUILDER BASE</span>
               <span class="ext-arrow">&nearr;</span>
             </a>
@@ -138,28 +165,42 @@ const fieldNotes = [
   </section>
 
   <!-- Section 02: Evidence Strip -->
-  <section class="evidence-strip-section" aria-label="Key Proof and Credentials">
+  <section
+    class="evidence-strip-section"
+    aria-label="Key Proof and Credentials"
+  >
     <div class="container">
       <div class="evidence-grid animate-reveal">
         <div class="evidence-cell">
           <span class="evidence-metric heading-md">5&times;</span>
           <span class="evidence-title tech-label">PODIUM FINISHES</span>
-          <span class="evidence-desc text-body-sm">1st Place at Arbitrum Core Nexus; 1st Runner-Up at AVAX Kolkata, Monad Delhi &amp; Monad Blitz.</span>
+          <span class="evidence-desc text-body-sm"
+            >1st Place at Arbitrum Core Nexus; 1st Runner-Up at AVAX Kolkata,
+            Monad Delhi &amp; Monad Blitz.</span
+          >
         </div>
         <div class="evidence-cell">
           <span class="evidence-metric heading-md">2&times;</span>
           <span class="evidence-title tech-label">TOP 15 SELECTIONS</span>
-          <span class="evidence-desc text-body-sm">Aptos Winter School (IIT Delhi, 900+ applicants) &amp; Algorand Hack Series 3.0.</span>
+          <span class="evidence-desc text-body-sm"
+            >Aptos Winter School (IIT Delhi, 900+ applicants) &amp; Algorand
+            Hack Series 3.0.</span
+          >
         </div>
         <div class="evidence-cell">
           <span class="evidence-metric heading-md">64K+</span>
           <span class="evidence-title tech-label">BUILDER BASE REACH</span>
-          <span class="evidence-desc text-body-sm">Event audience on Luma, 70K+ technical newsletter reach, 2K+ vetted builders.</span>
+          <span class="evidence-desc text-body-sm"
+            >Event audience on Luma, 70K+ technical newsletter reach.</span
+          >
         </div>
         <div class="evidence-cell">
           <span class="evidence-metric heading-md">Multi-VM</span>
           <span class="evidence-title tech-label">ENGINEERING DEPTH</span>
-          <span class="evidence-desc text-body-sm">Production systems across EVM Opcodes, Arbitrum Stylus (WASM), Aptos (Move), and Solana (Rust).</span>
+          <span class="evidence-desc text-body-sm"
+            >Production systems across EVM Opcodes, Arbitrum Stylus (WASM),
+            Aptos (Move), and Solana (Rust).</span
+          >
         </div>
       </div>
     </div>
@@ -174,23 +215,37 @@ const fieldNotes = [
           <span class="tech-label">SELECTED ENGINEERING WORK</span>
         </div>
         <div class="section-title-row">
-          <h2 class="heading-lg">PRODUCTION COMPILERS, AI AGENTS &amp; INFRASTRUCTURE</h2>
+          <h2 class="heading-lg">
+            PRODUCTION COMPILERS, AI AGENTS &amp; INFRASTRUCTURE
+          </h2>
           <a href="/build" class="btn hide-mobile">
             <span>VIEW ALL 18 PROJECTS</span>
             <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
         <p class="section-subtitle text-body">
-          Rigorous systems engineering over promotional demos. Featured projects spanning low-level compilers, visual multi-agent orchestration, and blockchain pre-execution assurance.
+          Rigorous systems engineering over promotional demos. Featured projects
+          spanning low-level compilers, visual multi-agent orchestration, and
+          blockchain pre-execution assurance.
         </p>
       </div>
 
       <div class="projects-featured-grid animate-reveal">
-        {featuredProjects.map((project, idx) => (
-          <div class:list={['project-grid-item', { 'wide-item': idx === 0 || idx === 2 }]}>
-            <ProjectCard project={project} featuredLayout={idx === 0 || idx === 2} />
-          </div>
-        ))}
+        {
+          featuredProjects.map((project, idx) => (
+            <div
+              class:list={[
+                "project-grid-item",
+                { "wide-item": idx === 0 || idx === 2 },
+              ]}
+            >
+              <ProjectCard
+                project={project}
+                featuredLayout={idx === 0 || idx === 2}
+              />
+            </div>
+          ))
+        }
       </div>
 
       <div class="section-footer-cta animate-reveal show-mobile">
@@ -203,7 +258,10 @@ const fieldNotes = [
   </section>
 
   <!-- Section 04: Beyond the Code -->
-  <section class="beyond-code-section" aria-label="Beyond The Code: The Three Pillars">
+  <section
+    class="beyond-code-section"
+    aria-label="Beyond The Code: The Three Pillars"
+  >
     <div class="container">
       <div class="section-header-block animate-reveal">
         <div class="section-tag-row">
@@ -212,17 +270,23 @@ const fieldNotes = [
         </div>
         <h2 class="heading-lg">BEYOND THE CODE // FULL-SPECTRUM BUILDER</h2>
         <p class="section-subtitle text-body">
-          Writing software is half the journey. Designing the distribution layer and mobilizing the developer community that adopts it completes the equation.
+          Writing software is half the journey. Designing the distribution layer
+          and mobilizing the developer community that adopts it completes the
+          equation.
         </p>
       </div>
 
       <div class="pillars-grid animate-reveal">
         <!-- Pillar 1: Systems & Compilers -->
         <div class="pillar-card dossier-card">
-          <div class="pillar-number tech-label">01 // SYSTEMS &amp; COMPILERS</div>
+          <div class="pillar-number tech-label">
+            01 // SYSTEMS &amp; COMPILERS
+          </div>
           <h3 class="heading-sm pillar-title">Ground-Up Engineering</h3>
           <p class="text-body-sm pillar-text">
-            Designing compilers, AST transpilers, and pre-execution simulation infrastructure. From lowering Python into EVM bytecode to converting Solidity into Arbitrum Stylus Rust WASM.
+            Designing compilers, AST transpilers, and pre-execution simulation
+            infrastructure. From lowering Python into EVM bytecode to converting
+            Solidity into Arbitrum Stylus Rust WASM.
           </p>
           <div class="pillar-tags">
             <span class="tech-micro stack-pill">AST Lowering</span>
@@ -236,7 +300,9 @@ const fieldNotes = [
           <div class="pillar-number tech-label">02 // DEVELOPER RELATIONS</div>
           <h3 class="heading-sm pillar-title">Technical Developer Empathy</h3>
           <p class="text-body-sm pillar-text">
-            Demystifying frontier developer tools through hands-on technical workshops, live live-coding sessions, and open source starter kits across Claude Community, TigerGraph, and Avalanche.
+            Demystifying frontier developer tools through hands-on technical
+            workshops, live live-coding sessions, and open source starter kits
+            across Claude Community, TigerGraph, and Avalanche.
           </p>
           <div class="pillar-tags">
             <span class="tech-micro stack-pill">Workshops</span>
@@ -250,7 +316,9 @@ const fieldNotes = [
           <div class="pillar-number tech-label">03 // ECOSYSTEM GTM</div>
           <h3 class="heading-sm pillar-title">Community-Led Distribution</h3>
           <p class="text-body-sm pillar-text">
-            Scaling Builder Base into an ecosystem distribution layer with 64K+ event audience on Luma. Connecting emerging protocol foundations with vetted, high-signal developer talent.
+            Scaling Builder Base into an ecosystem distribution layer with 64K+
+            event audience on Luma. Connecting emerging protocol foundations
+            with vetted, high-signal developer talent.
           </p>
           <div class="pillar-tags">
             <span class="tech-micro stack-pill">64K+ Audience</span>
@@ -269,9 +337,16 @@ const fieldNotes = [
         <div class="bb-header-bar">
           <div class="bb-badge-group">
             <span class="dossier-stamp solid-signal">FOUNDER CASE STUDY</span>
-            <span class="tech-label">BUILDER BASE // THE DISTRIBUTION LAYER FOR BUILDERS</span>
+            <span class="tech-label"
+              >BUILDER BASE // THE DISTRIBUTION LAYER FOR BUILDERS</span
+            >
           </div>
-          <a href="https://www.builderbase.xyz" target="_blank" rel="noopener noreferrer" class="btn bb-visit-btn">
+          <a
+            href="https://www.builderbase.xyz"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn bb-visit-btn"
+          >
             <span>VISIT BUILDERBASE.XYZ</span>
             <span class="ext-arrow">&nearr;</span>
           </a>
@@ -289,22 +364,30 @@ const fieldNotes = [
               <div class="bb-partner-strip">
                 <span class="tech-label-muted">ACTIVE PROTOCOL PARTNERS:</span>
                 <div class="bb-partner-pills">
-                  {builderBaseData.partnerEcosystems.map((partner) => (
-                    <span class="tech-micro stack-pill">{partner}</span>
-                  ))}
+                  {
+                    builderBaseData.partnerEcosystems.map((partner) => (
+                      <span class="tech-micro stack-pill">{partner}</span>
+                    ))
+                  }
                 </div>
               </div>
             </div>
 
             <div class="bb-metrics-col">
               <div class="bb-metrics-box">
-                {builderBaseData.channels.map((ch) => (
-                  <div class="bb-metric-row">
-                    <span class="bb-metric-val heading-md">{ch.reach}</span>
-                    <span class="bb-metric-name tech-label">{ch.channel}</span>
-                    <span class="bb-metric-desc text-body-sm">{ch.description}</span>
-                  </div>
-                ))}
+                {
+                  builderBaseData.channels.map((ch) => (
+                    <div class="bb-metric-row">
+                      <span class="bb-metric-val heading-md">{ch.reach}</span>
+                      <span class="bb-metric-name tech-label">
+                        {ch.channel}
+                      </span>
+                      <span class="bb-metric-desc text-body-sm">
+                        {ch.description}
+                      </span>
+                    </div>
+                  ))
+                }
               </div>
             </div>
           </div>
@@ -330,7 +413,9 @@ const fieldNotes = [
         </div>
         <h2 class="heading-lg">VERIFIED HACKATHON ACCOLADES</h2>
         <p class="section-subtitle text-body">
-          Recognized natively by Arbitrum, Avalanche, Monad, Aptos, and Algorand for shipping high-speed, verified technical prototypes in 48-hour sprints.
+          Recognized natively by Arbitrum, Avalanche, Monad, Aptos, and Algorand
+          for shipping high-speed, verified technical prototypes in 48-hour
+          sprints.
         </p>
       </div>
 
@@ -346,60 +431,70 @@ const fieldNotes = [
       <div class="section-header-block animate-reveal">
         <div class="section-tag-row">
           <span class="dossier-stamp">SECTION 07</span>
-          <span class="tech-label">FIELD NOTES // DISPATCHES FROM THE ARENA</span>
+          <span class="tech-label"
+            >FIELD NOTES // DISPATCHES FROM THE ARENA</span
+          >
         </div>
         <h2 class="heading-lg">MOMENTS OF TECHNICAL MOMENTUM</h2>
         <p class="section-subtitle text-body">
-          Concise dispatches from intense hackathon weekends, community workshops, and protocol deployments.
+          Concise dispatches from intense hackathon weekends, community
+          workshops, and protocol deployments.
         </p>
       </div>
 
       <div class="field-notes-grid animate-reveal">
-        {fieldNotes.map((note) => (
-          <article class="field-note-card dossier-card">
-            <div class="note-meta-bar">
-              <span class="dossier-stamp signal">{note.tag}</span>
-              <span class="tech-micro">{note.date}</span>
-            </div>
-            <div class="note-body">
-              <h3 class="heading-sm note-title">{note.title}</h3>
-              <p class="text-body-sm note-text">{note.body}</p>
-            </div>
-            <div class="note-footer">
-              <a href={note.link} class="inline-link tech-micro">
-                <span>VIEW CASE STUDY &rarr;</span>
-              </a>
-            </div>
-          </article>
-        ))}
+        {
+          fieldNotes.map((note) => (
+            <article class="field-note-card dossier-card">
+              <div class="note-meta-bar">
+                <span class="dossier-stamp signal">{note.tag}</span>
+                <span class="tech-micro">{note.date}</span>
+              </div>
+              <div class="note-body">
+                <h3 class="heading-sm note-title">{note.title}</h3>
+                <p class="text-body-sm note-text">{note.body}</p>
+              </div>
+              <div class="note-footer">
+                <a href={note.link} class="inline-link tech-micro">
+                  <span>VIEW CASE STUDY &rarr;</span>
+                </a>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- Section 08: Contact CTA -->
-  <section class="contact-cta-section" aria-label="Contact and Collaboration CTA">
+  <section
+    class="contact-cta-section"
+    aria-label="Contact and Collaboration CTA"
+  >
     <div class="container">
       <div class="dossier-card contact-cta-card animate-reveal">
         <div class="cta-header-bar">
-          <span class="dossier-stamp solid-signal">SECTION 08 // CONVERSION</span>
+          <span class="dossier-stamp solid-signal"
+            >SECTION 08 // CONVERSION</span
+          >
           <span class="tech-micro">TRANSMISSION CHANNEL</span>
         </div>
 
         <div class="cta-inner-grid">
           <div class="cta-content-col">
-            <h2 class="heading-xl cta-title">
-              HAVE SOMETHING WORTH BUILDING?
-            </h2>
+            <h2 class="heading-xl cta-title">HAVE SOMETHING WORTH BUILDING?</h2>
             <p class="text-lead cta-subtitle">
-              Whether you are recruiting a technical founder, seeking Developer Relations leadership, expanding protocol ecosystem distribution, or exploring compiler and agent collaboration.
+              Whether you are recruiting a technical founder, seeking Developer
+              Relations leadership, expanding protocol ecosystem distribution,
+              or exploring compiler and agent collaboration.
             </p>
             <div class="cta-buttons">
               <a href="/contact" class="btn btn-primary cta-btn">
                 <span>INITIATE TRANSMISSION</span>
                 <span aria-hidden="true">&rarr;</span>
               </a>
-              <a href="mailto:founder@builderbase.xyz" class="btn cta-btn">
-                <span>founder@builderbase.xyz</span>
+              <a href="mailto:punit@builderbase.xyz" class="btn cta-btn">
+                <span>punit@builderbase.xyz</span>
               </a>
             </div>
           </div>
@@ -407,15 +502,32 @@ const fieldNotes = [
           <div class="cta-channels-col">
             <span class="tech-label-muted">FAST-RESPONSE CHANNELS:</span>
             <div class="cta-channel-list">
-              <a href="https://x.com/its_punit05" target="_blank" rel="noopener noreferrer" class="cta-channel-item">
+              <a
+                href="https://x.com/its_punit05"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cta-channel-item"
+              >
                 <span class="tech-label">X / TWITTER:</span>
                 <span class="tech-micro inline-link">@its_punit05 &nearr;</span>
               </a>
-              <a href="https://github.com/ShahiTechnovation" target="_blank" rel="noopener noreferrer" class="cta-channel-item">
+              <a
+                href="https://github.com/ShahiTechnovation"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cta-channel-item"
+              >
                 <span class="tech-label">GITHUB:</span>
-                <span class="tech-micro inline-link">@ShahiTechnovation &nearr;</span>
+                <span class="tech-micro inline-link"
+                  >@ShahiTechnovation &nearr;</span
+                >
               </a>
-              <a href="https://linkedin.com/in/punit05" target="_blank" rel="noopener noreferrer" class="cta-channel-item">
+              <a
+                href="https://linkedin.com/in/punit05"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cta-channel-item"
+              >
                 <span class="tech-label">LINKEDIN:</span>
                 <span class="tech-micro inline-link">in/punit05 &nearr;</span>
               </a>

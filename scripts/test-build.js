@@ -135,3 +135,4 @@ if (failed > 0) {
   console.log('🎉 All automated acceptance checks passed successfully!\n');
   process.exit(0);
 }
+
