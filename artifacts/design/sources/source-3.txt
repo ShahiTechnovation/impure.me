@@ -1,0 +1,109 @@
+FlowMon
+Features
+Pricing
+Insights
+GitHub
+Launch App
+Your Multi-Agent
+Orchestrator
+
+Unlock parallel execution. Seamlessly drag, wire, and execute 48 production agents across DeFi, identity, and governance — running natively on Monad.
+
+Get Started
+View Templates
+◆ Monad
+◆ Uniswap
+◆ Lido
+◆ Chainlink
+◆ ENS
+◆ MetaMask
+◆ Venice.ai
+◆ Bankr
+Unleash Your Pipelines
+
+Discover how our AI-Powered Agent Orchestrator transforms your ideas into running pipelines effortlessly. Follow these simple steps to turn your vision into reality.
+
+Upload Brief
+
+Define your pipeline requirements. Describe what protocols you need and our AI grasps your vision.
+
+Generate Designs
+
+Watch our AI compose optimal agent configurations, selecting the best protocols tailored to your workflow.
+
+Refine Creation
+
+Perfect your pipeline with visual editing. Drag, wire, and configure 48 agents until you achieve flow perfection.
+
+Affordable Plans for
+Every Need
+
+Choose the perfect plan for your agent projects, from startups to enterprises. Our pricing tiers are designed to offer flexibility and value.
+
+Monthly
+Yearly
+FREE
+$0
+/m
+
+Free Forever
+
+Basic AI-generated designs
+Access to standard templates
+Standard template library
+5 exports per month
+Get Started
+PRO
+$14.99
+/m
+
+Most Popular
+
+Advanced AI-generated designs
+Full access to premium tools
+Premium template library
+Unlimited exports
+Real-time collaboration
+Priority email support
+Get Started
+PRO
+$29.99
+/m
+
+Billed Monthly
+
+All features included in Pro Plan
+Dedicated account manager
+Custom AI-tailored designs
+Onboarding and training sessions
+24/7 Priority support
+Advanced analytics & reporting
+Secure cloud storage
+Get Started
+Stay Inspired with Our
+Latest Insights
+
+Dive into our blog for the latest trends, tips, and insights in the world of agent orchestration and Web3. Our articles are crafted to keep you informed and inspired.
+
+Apr 8, 2025
+4 min read
+Building Multi-Agent Pipelines for DeFi
+Mar 15, 2025
+5 min read
+How Parallel Execution Changes Agent Orchestration
+Feb 28, 2025
+7 min read
+Why Monad-Native Agents Outperform the Rest
+Read More
+Start Your Agent
+Journey Today
+
+Sign up now and experience the power of AI-driven agent orchestration without any commitment.
+
+Get Started
+FlowMon
+MIT License
+Browse Agents
+GitHub
+Contribute
+Built for Monad · Blitz Hackathon

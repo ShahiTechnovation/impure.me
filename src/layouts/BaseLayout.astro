@@ -1,9 +1,10 @@
 ---
 // src/layouts/BaseLayout.astro
-import '../styles/global.css';
-import Navbar from '../components/layout/Navbar.astro';
-import Footer from '../components/layout/Footer.astro';
-import CommandPalette from '../components/ui/CommandPalette.astro';
+import "../styles/global.css";
+import "../styles/editorial.css";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+import CommandPalette from "../components/ui/CommandPalette.astro";
 
 interface Props {
   title?: string;
@@ -14,59 +15,66 @@ interface Props {
 }
 
 const {
-  title = 'Punit Pal // IMPURE® — Technical Founder, Developer & Ecosystem Builder',
-  description = 'Personal dossier of Punit Pal. Developer, technical founder, and ecosystem builder working across compiler engineering, AI agent infrastructure, high-throughput blockchains, and community distribution.',
-  ogImage = '/images/og-image.png',
+  title = "Punit Pal // IMPURE® — Technical Founder, Developer & Ecosystem Builder",
+  description = "Personal dossier of Punit Pal. Developer, technical founder, and ecosystem builder working across compiler engineering, AI agent infrastructure, high-throughput blockchains, and community distribution.",
+  ogImage = "/images/og-image.png",
   articleDate,
-  noindex = false
+  noindex = false,
 } = Astro.props;
 
-const isPreviewHost = Astro.url.hostname.includes('vercel.app');
+// Static HTML cannot detect the request host. Vercel previews are known at build time;
+// host-based X-Robots-Tag also protects vercel.app aliases of production builds.
+const isPreviewHost =
+  import.meta.env.VERCEL_ENV === "preview" ||
+  Astro.url.hostname.includes("vercel.app");
 const shouldNoIndex = noindex || isPreviewHost;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://impure.me');
-const socialImageURL = new URL(ogImage, Astro.site || 'https://impure.me');
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || "https://impure.me",
+);
+const socialImageURL = new URL(ogImage, Astro.site || "https://impure.me");
 
 // Schema.org Structured Data
 const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Punit Pal',
-  alternateName: 'IMPURE®',
-  url: 'https://impure.me',
-  image: 'https://impure.me/images/punit-pal.jpg',
-  jobTitle: 'Technical Founder & Developer Relations Strategist',
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Punit Pal",
+  alternateName: "IMPURE®",
+  url: "https://impure.me",
+  image: "https://impure.me/images/punit-pal.jpg",
+  jobTitle: "Technical Founder & Developer Relations Strategist",
   worksFor: {
-    '@type': 'Organization',
-    name: 'Builder Base',
-    url: 'https://www.builderbase.xyz'
+    "@type": "Organization",
+    name: "Builder Base",
+    url: "https://www.builderbase.xyz",
   },
   alumniOf: {
-    '@type': 'EducationalOrganization',
-    name: 'Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)'
+    "@type": "EducationalOrganization",
+    name: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)",
   },
   sameAs: [
-    'https://github.com/ShahiTechnovation',
-    'https://x.com/its_punit05',
-    'https://linkedin.com/in/punit05',
-    'https://farcaster.xyz/0x9899',
-    'https://www.builderbase.xyz'
+    "https://github.com/ShahiTechnovation",
+    "https://x.com/its_punit05",
+    "https://linkedin.com/in/punit05",
+    "https://farcaster.xyz/0x9899",
+    "https://www.builderbase.xyz",
   ],
   knowsAbout: [
-    'Compiler Design',
-    'AI Multi-Agent Systems',
-    'Blockchain Infrastructure',
-    'Developer Relations',
-    'Ecosystem Go-To-Market',
-    'Arbitrum Stylus',
-    'Monad EVM',
-    'Avalanche C-Chain',
-    'Aptos Move'
-  ]
+    "Compiler Design",
+    "AI Multi-Agent Systems",
+    "Blockchain Infrastructure",
+    "Developer Relations",
+    "Ecosystem Go-To-Market",
+    "Arbitrum Stylus",
+    "Monad EVM",
+    "Avalanche C-Chain",
+    "Aptos Move",
+  ],
 };
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -77,18 +85,26 @@ const personSchema = {
     {shouldNoIndex ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      />
     )}
 
     <!-- Theme Initialization Script (Zero FOUC) -->
     <script is:inline>
       (function () {
-        const storedTheme = localStorage.getItem('impure_theme');
+        const storedTheme = localStorage.getItem("impure_theme");
         if (storedTheme) {
-          document.documentElement.setAttribute('data-theme', storedTheme);
+          document.documentElement.setAttribute("data-theme", storedTheme);
         } else {
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
+          document.documentElement.setAttribute(
+            "data-theme",
+            prefersDark ? "dark" : "light",
+          );
         }
       })();
     </script>
@@ -106,7 +122,7 @@ const personSchema = {
     <link rel="apple-touch-icon" href="/images/punit-pal.jpg" />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content={articleDate ? 'article' : 'website'} />
+    <meta property="og:type" content={articleDate ? "article" : "website"} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -123,14 +139,16 @@ const personSchema = {
     <meta name="twitter:image" content={socialImageURL} />
 
     <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(personSchema)}
+    />
   </head>
   <body>
     <!-- Skip to Content Link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- Custom Cursor (hidden on touch devices via CSS) -->
-    <div class="cursor" aria-hidden="true"></div>
+    <a href="#main-content" class="skip-link">
+      Skip to main content
+    </a>
 
     <!-- Global Navigation -->
     <Navbar currentPath={Astro.url.pathname} />
@@ -149,74 +167,34 @@ const personSchema = {
     <!-- IntersectionObserver Reveal Script -->
     <script>
       function setupScrollObserver() {
-        const elements = document.querySelectorAll('.animate-reveal');
+        const elements = document.querySelectorAll(".animate-reveal");
         if (!elements.length) return;
 
-        if ('IntersectionObserver' in window) {
+        if ("IntersectionObserver" in window) {
           const observer = new IntersectionObserver(
             (entries) => {
               entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                  entry.target.classList.add('in-view');
+                  entry.target.classList.add("in-view");
                   observer.unobserve(entry.target);
                 }
               });
             },
             {
               threshold: 0.1,
-              rootMargin: '0px 0px -40px 0px'
-            }
+              rootMargin: "0px 0px -40px 0px",
+            },
           );
 
           elements.forEach((el) => observer.observe(el));
         } else {
-          elements.forEach((el) => el.classList.add('in-view'));
+          elements.forEach((el) => el.classList.add("in-view"));
         }
       }
 
       setupScrollObserver();
-      document.addEventListener('astro:page-load', setupScrollObserver);
+      document.addEventListener("astro:page-load", setupScrollObserver);
     </script>
 
-    <!-- Custom Cursor JS -->
-    <script>
-      function setupCursor() {
-        const cursor = document.querySelector('.cursor') as HTMLElement | null;
-        if (!cursor) return;
-
-        // Don't activate on touch/pointer-less devices
-        if (window.matchMedia('(hover: none)').matches) {
-          cursor.style.display = 'none';
-          return;
-        }
-
-        document.addEventListener('mousemove', (e: MouseEvent) => {
-          cursor.style.left = e.clientX + 'px';
-          cursor.style.top = e.clientY + 'px';
-        });
-
-        const interactiveSelector = [
-          '.btn', '.dossier-card', '[data-open-cmd]',
-          '.nav-link', '.social-pill', '.filter-pill',
-          '.card-icon-link', '.cmd-item', '.footer-link',
-          '.inline-link', '.field-note-card', '.avenue-card',
-          '.related-card', '.mobile-nav-item', '.theme-toggle-btn',
-          '.easter-egg-btn', 'a[href]', 'button'
-        ].join(', ');
-
-        function bindCursorElements() {
-          document.querySelectorAll(interactiveSelector).forEach((el) => {
-            el.addEventListener('mouseenter', () => cursor!.classList.add('active'));
-            el.addEventListener('mouseleave', () => cursor!.classList.remove('active'));
-          });
-        }
-
-        bindCursorElements();
-      }
-
-      setupCursor();
-      document.addEventListener('astro:page-load', setupCursor);
-    </script>
   </body>
 </html>
-

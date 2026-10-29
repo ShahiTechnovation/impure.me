@@ -1,0 +1,84 @@
+[
+  {
+    "width": 1440,
+    "height": 9851,
+    "words": 1726,
+    "bodyWords": 1933,
+    "sections": [
+      {
+        "name": "Hero Introduction",
+        "words": 80
+      },
+      {
+        "name": "Key Proof and Credentials",
+        "words": 65
+      },
+      {
+        "name": "Selected Engineering Work",
+        "words": 838
+      },
+      {
+        "name": "Beyond The Code: The Three Pillars",
+        "words": 136
+      },
+      {
+        "name": "Builder Base Founder Case Study",
+        "words": 126
+      },
+      {
+        "name": "Verified Hackathon Recognition",
+        "words": 290
+      },
+      {
+        "name": "Field Notes and Dispatches",
+        "words": 143
+      },
+      {
+        "name": "Contact and Collaboration CTA",
+        "words": 48
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "height": 19682,
+    "words": 1726,
+    "bodyWords": 1918,
+    "sections": [
+      {
+        "name": "Hero Introduction",
+        "words": 80
+      },
+      {
+        "name": "Key Proof and Credentials",
+        "words": 65
+      },
+      {
+        "name": "Selected Engineering Work",
+        "words": 838
+      },
+      {
+        "name": "Beyond The Code: The Three Pillars",
+        "words": 136
+      },
+      {
+        "name": "Builder Base Founder Case Study",
+        "words": 126
+      },
+      {
+        "name": "Verified Hackathon Recognition",
+        "words": 290
+      },
+      {
+        "name": "Field Notes and Dispatches",
+        "words": 143
+      },
+      {
+        "name": "Contact and Collaboration CTA",
+        "words": 48
+      }
+    ],
+    "overflow": true
+  }
+]

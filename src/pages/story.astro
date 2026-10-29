@@ -1,463 +1,162 @@
 ---
-// src/pages/story.astro
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { storyData } from '../data/story';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { storyData } from "../data/story";
 ---
 
 <BaseLayout
-  title="Story // Personal Journey, Education & Principles — Punit Pal"
-  description="The personal story, academic credentials, engineering journey, and operating principles of Punit Pal."
+  title="The Story — Punit Pal · IMPURE®"
+  description="Why Punit Pal builds developer tools and communities, from compiler experiments to founding Builder Base."
 >
-  <div class="story-page-wrapper">
-    <!-- Header Hero -->
-    <section class="story-hero-section" aria-label="Personal Story Introduction">
-      <div class="container">
-        <div class="story-meta-bar animate-reveal">
-          <span class="dossier-stamp signal">DOSSIER // STORY.LOG</span>
-          <span class="tech-micro">SUBJECT: PUNIT PAL</span>
-          <span class="tech-micro hide-mobile">ACADEMIC: RGPV 2024–2028 // BHOPAL, INDIA</span>
-        </div>
-
-        <div class="story-hero-grid">
-          <!-- Text Introduction -->
-          <div class="story-header-content animate-reveal">
-            <h1 class="heading-xl story-title">
-              ENGINEERING &amp; COMMUNITY<span class="signal-dot">.</span>
-            </h1>
-            <p class="text-lead story-tagline">
-              {storyData.tagline}
-            </p>
-            <p class="text-body story-lead-desc">
-              A personal trace of systems programming, compiler engineering, hackathon prototypes,
-              and building developer distribution through Builder Base.
-            </p>
-          </div>
-
-          <!-- Portrait & Identity Card -->
-          <div class="story-portrait-card dossier-card animate-reveal">
-            <div class="story-card-meta">
-              <span class="tech-micro">ARCHIVAL PORTRAIT</span>
-              <span class="tech-micro">PUNIT PAL</span>
-            </div>
-            <div class="story-img-frame">
-              <img
-                src="/images/punit-pal.jpg"
-                alt="Punit Pal Portrait"
-                class="story-img"
-                width="340"
-                height="340"
-              />
-            </div>
-            <div class="story-card-footer">
-              <span class="tech-micro">BTECH CS (AI &amp; DS) // FOUNDER @ BUILDERBASE</span>
-            </div>
-          </div>
-        </div>
+  <div class="container editorial-page">
+    <header class="story-intro">
+      <div>
+        <p class="eyebrow">Story / Punit Pal</p>
+        <h1 class="editorial-title">
+          Curiosity brought me
+          <br />
+          to the code.
+          <br />
+          People kept me here<span class="red-period">.</span>
+        </h1>
+        <p class="editorial-intro">
+          I’m a developer and the founder of Builder Base, studying Computer
+          Science with a focus on AI and Data Science in Bhopal.
+        </p>
       </div>
+      <figure>
+        <img
+          src="/images/punit-pal.webp"
+          alt="Punit Pal in a city arcade"
+          width="700"
+          height="700"
+        />
+        <figcaption>Builder, student, and always learning.</figcaption>
+      </figure>
+    </header>
+    <section
+      class="editorial-block editorial-prose"
+      aria-label="Personal story"
+    >
+      <h2>Making it easier to begin.</h2>
+      <p>
+        I started programming because I wanted to understand how systems work.
+        Smart contracts made that curiosity practical: why should a developer
+        have to learn a new language before trying an idea?
+      </p>
+      <p>
+        That question led me into compilers and projects like PyVax and
+        Sol2Rust. Hackathons taught me to choose a problem, make something work,
+        and explain the tradeoffs clearly.
+      </p>
+      <p>
+        Building also showed me a different kind of friction. Developers outside
+        major tech hubs needed mentorship, useful documentation and people to
+        learn alongside. I founded Builder Base to help close that gap, starting
+        with technical meetups and study groups.
+      </p>
+      <p>
+        Today I move between those two kinds of work: writing tools and helping
+        people use them. A workshop setup problem can be as useful a starting
+        point as an engineering experiment.
+      </p>
+      <a class="text-link" href="/build">
+        Explore my work ↗
+      </a>
     </section>
-
-    <!-- Editorial Narrative (Reading Column) -->
-    <section class="section-padding" aria-label="Editorial Narrative">
-      <div class="container reading-container">
-        {storyData.narrativeSections.map((section) => (
-          <article class="narrative-block animate-reveal">
-            <div class="narrative-meta">
-              <span class="narrative-title-tag tech-label">{section.title}</span>
-              <h2 class="heading-md narrative-headline">{section.subtitle}</h2>
-            </div>
-            <div class="narrative-body text-body">
-              {section.content.split('\n\n').map((paragraph) => (
-                <p class="narrative-p">{paragraph}</p>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
+    <section class="editorial-block editorial-prose" aria-label="Education">
+      <h2>Still a student.</h2>
+      <p>
+        {storyData.education.degree} · {storyData.education.specialization}
+      </p>
+      <p>
+        {storyData.education.institution}
+        <br />
+        {storyData.education.location} · {storyData.education.timeline}
+      </p>
+      <details class="editorial-disclosure">
+        <summary>Coursework and foundations</summary>
+        <div>
+          <ul>
+            {storyData.education.coursework.map((c) => (
+              <li>{c}</li>
+            ))}
+          </ul>
+        </div>
+      </details>
     </section>
-
-    <!-- Academic Background & Formal Credentials -->
-    <section class="section-padding education-section" aria-label="Academic Background">
-      <div class="container reading-container">
-        <div class="section-header-block animate-reveal">
-          <div class="section-tag-row">
-            <span class="dossier-stamp solid-signal">ACADEMIC CREDENTIALS</span>
-            <span class="tech-label">UNIVERSITY FOUNDATIONS</span>
+    <section
+      class="editorial-block editorial-prose"
+      aria-label="More of the story"
+    >
+      <h2>The longer version.</h2>
+      {storyData.narrativeSections.map((section) => (
+        <details class="editorial-disclosure">
+          <summary>{section.subtitle}</summary>
+          <div>
+            {section.content.split("\n\n").map((p) => (
+              <p class="story-paragraph">{p}</p>
+            ))}
           </div>
-          <h2 class="heading-lg">FORMAL EDUCATION</h2>
-          <p class="section-subtitle text-body">
-            Balancing formal engineering rigor with real-world protocol development and founder responsibilities.
-          </p>
-        </div>
-
-        <div class="education-card dossier-card animate-reveal">
-          <div class="edu-meta-bar">
-            <span class="tech-label">{storyData.education.timeline}</span>
-            <span class="dossier-stamp">{storyData.education.status}</span>
-          </div>
-          <div class="edu-body">
-            <h3 class="heading-md edu-degree">{storyData.education.degree}</h3>
-            <p class="text-lead edu-spec">Specialization: {storyData.education.specialization}</p>
-            <p class="text-body-sm edu-inst">
-              <strong>Institution:</strong> {storyData.education.institution} &bull; {storyData.education.location}
-            </p>
-
-            <div class="edu-coursework-box">
-              <span class="tech-label-muted">RELEVANT FOUNDATIONAL COURSEWORK:</span>
-              <div class="coursework-pills">
-                {storyData.education.coursework.map((course) => (
-                  <span class="tech-micro stack-pill">{course}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Operating Principles -->
-    <section class="section-padding principles-section" aria-label="Operating Principles">
-      <div class="container">
-        <div class="section-header-block animate-reveal">
-          <div class="section-tag-row">
-            <span class="dossier-stamp signal">CORE PHILOSOPHY</span>
-            <span class="tech-label">OPERATING PRINCIPLES</span>
-          </div>
-          <h2 class="heading-lg">HOW I BUILD &amp; OPERATE</h2>
-          <p class="section-subtitle text-body">
-            The core tenets forged in 48-hour hackathons, protocol compiler debugging, and community management.
-          </p>
-        </div>
-
-        <div class="principles-grid animate-reveal">
-          {storyData.operatingPrinciples.map((p) => (
-            <div class="principle-card dossier-card">
-              <span class="principle-num heading-md">{p.num}</span>
-              <h3 class="heading-sm principle-title">{p.title}</h3>
-              <p class="text-body-sm principle-detail">{p.detail}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Chronological Milestones Timeline -->
-    <section class="section-padding" aria-label="Chronological Milestones Timeline">
-      <div class="container reading-container">
-        <div class="section-header-block animate-reveal">
-          <div class="section-tag-row">
-            <span class="dossier-stamp">TIMELINE</span>
-            <span class="tech-label">BUILDER CHRONOLOGY</span>
-          </div>
-          <h2 class="heading-lg">KEY MILESTONES</h2>
-          <p class="section-subtitle text-body">
-            A chronological trace of technical breakthroughs, hackathon victories, and community growth.
-          </p>
-        </div>
-
-        <div class="milestones-timeline animate-reveal">
+        </details>
+      ))}
+      <details class="editorial-disclosure">
+        <summary>Milestones, 2024–2026</summary>
+        <div>
           {storyData.milestones.map((m) => (
-            <div class="milestone-row">
-              <div class="milestone-time-col">
-                <span class="milestone-year heading-sm">{m.year}</span>
-                {m.quarter && <span class="milestone-quarter tech-micro">{m.quarter}</span>}
-                <span class="dossier-stamp signal milestone-cat">{m.category}</span>
-              </div>
-              <div class="milestone-content-col dossier-card">
-                <h3 class="heading-sm milestone-title">{m.title}</h3>
-                <p class="text-body-sm milestone-desc">{m.description}</p>
-                <div class="milestone-impact">
-                  <span class="tech-micro signal-text">IMPACT:</span>
-                  <span class="tech-micro">{m.impact}</span>
-                </div>
-              </div>
-            </div>
+            <article class="milestone">
+              <p class="eyebrow">
+                {m.year} / {m.quarter}
+              </p>
+              <h3>{m.title}</h3>
+              <p>{m.description}</p>
+              <p>{m.impact}</p>
+            </article>
           ))}
         </div>
-      </div>
+      </details>
+      <details class="editorial-disclosure">
+        <summary>What I try to bring to the work</summary>
+        <div>
+          {storyData.operatingPrinciples.map((p) => (
+            <article>
+              <h3>{p.title}</h3>
+              <p>{p.detail}</p>
+            </article>
+          ))}
+        </div>
+      </details>
     </section>
   </div>
 </BaseLayout>
-
 <style>
-  .story-hero-section {
-    padding-top: clamp(2.5rem, 5vw, 4.5rem);
-    padding-bottom: clamp(2.5rem, 5vw, 4rem);
-    border-bottom: 1px solid var(--border-color);
-    background-color: var(--bg-primary);
-  }
-
-  .story-meta-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 16px;
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .story-hero-grid {
+  .story-intro {
     display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: clamp(24px, 4vw, 48px);
-    align-items: start;
+    grid-template-columns: 1fr 260px;
+    gap: 80px;
+    align-items: center;
   }
-
-  .story-header-content {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .story-title {
-    margin: 0;
-  }
-
-  .signal-dot {
-    color: var(--accent-color);
-  }
-
-  .story-tagline {
-    color: var(--text-muted);
-  }
-
-  .story-portrait-card {
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-
-  .story-card-meta,
-  .story-card-footer {
-    padding: 8px 12px;
-    background-color: var(--bg-surface-dim);
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-dim);
-  }
-
-  .story-card-footer {
-    border-bottom: none;
-    border-top: 1px solid var(--border-color);
-  }
-
-  .story-img-frame {
+  .story-intro img {
     width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    background-color: var(--color-night);
+    height: auto;
+    filter: grayscale(1);
   }
-
-  .story-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .story-paragraph {
+    white-space: pre-line;
   }
-
-  /* Narrative Blocks */
-  .narrative-block {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: clamp(3rem, 5vw, 4.5rem);
-    padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
-    border-bottom: 1px dashed var(--border-color);
+  .milestone {
+    margin-bottom: 32px;
   }
-
-  .narrative-block:last-child {
-    border-bottom: none;
+  .milestone h3 {
+    margin-top: 10px;
   }
-
-  .narrative-title-tag {
-    color: var(--accent-color);
-    display: block;
-    margin-bottom: 6px;
-  }
-
-  .narrative-headline {
-    margin: 0;
-  }
-
-  .narrative-body {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    line-height: 1.8;
-    font-size: 1.0625rem;
-  }
-
-  /* Education Card */
-  .education-section {
-    background-color: var(--bg-surface-dim);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .education-card {
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-
-  .edu-meta-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 16px;
-    background-color: var(--bg-surface-dim);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .edu-body {
-    padding: clamp(20px, 3.5vw, 32px);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .edu-degree {
-    margin: 0;
-    color: var(--accent-color);
-  }
-
-  .edu-spec {
-    color: var(--text-primary);
-  }
-
-  .edu-coursework-box {
-    margin-top: 12px;
-    padding: 16px;
-    background-color: var(--bg-surface-dim);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .coursework-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  /* Operating Principles */
-  .principles-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(16px, 2.5vw, 24px);
-  }
-
-  .principle-card {
-    padding: clamp(20px, 2.5vw, 28px);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border-radius: var(--radius-sm);
-  }
-
-  .principle-num {
-    color: var(--accent-color);
-  }
-
-  .principle-title {
-    margin: 0;
-  }
-
-  .principle-detail {
-    color: var(--text-muted);
-  }
-
-  /* Timeline */
-  .milestones-timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: relative;
-  }
-
-  .milestone-row {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 20px;
-    align-items: start;
-  }
-
-  .milestone-time-col {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    padding-top: 12px;
-  }
-
-  .milestone-year {
-    color: var(--accent-color);
-  }
-
-  .milestone-quarter {
-    color: var(--text-dim);
-  }
-
-  .milestone-content-col {
-    padding: 20px;
-    border-radius: var(--radius-sm);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .milestone-title {
-    margin: 0;
-  }
-
-  .milestone-desc {
-    color: var(--text-muted);
-  }
-
-  .milestone-impact {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 6px;
-    padding-top: 8px;
-    border-top: 1px dashed var(--border-color);
-  }
-
-  .signal-text {
-    color: var(--accent-color);
-    font-weight: 700;
-  }
-
-  @media (max-width: 900px) {
-    .story-hero-grid {
+  @media (max-width: 767px) {
+    .story-intro {
       grid-template-columns: 1fr;
+      gap: 30px;
     }
-    .story-portrait-card {
-      max-width: 320px;
-      margin: 0 auto;
-    }
-    .principles-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .milestone-row {
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-    .milestone-time-col {
-      flex-direction: row;
-      align-items: center;
-      gap: 10px;
-      padding-top: 0;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .principles-grid {
-      grid-template-columns: 1fr;
+    .story-intro figure {
+      width: 180px;
+      justify-self: end;
     }
   }
 </style>
-

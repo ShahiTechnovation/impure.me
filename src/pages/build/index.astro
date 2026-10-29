@@ -1,46 +1,45 @@
 ---
 // src/pages/build/index.astro
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectCard from '../../components/projects/ProjectCard.astro';
-import { projects, projectCategories } from '../../data/projects';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/projects/ProjectCard.astro";
+import { projects, projectCategories } from "../../data/projects";
 ---
 
 <BaseLayout
   title="Build // Engineering Portfolio & Archive — Punit Pal"
-  description="18 production systems, compilers, multi-agent frameworks, and blockchain infrastructure projects engineered by Punit Pal."
+  description="18 projects and experiments in compilers, AI agents, blockchain infrastructure and developer tools by Punit Pal."
 >
   <div class="build-page-container">
     <!-- Header Hero -->
     <section class="build-header-section" aria-label="Portfolio Introduction">
       <div class="container">
-        <div class="build-meta-bar animate-reveal">
-          <span class="dossier-stamp signal">DOSSIER // BUILD.LOG</span>
-          <span class="tech-micro">TOTAL CATALOG: 18 SYSTEMS &amp; PROTOCOLS</span>
-          <span class="tech-micro hide-mobile">CORE ARCHITECTURE: COMPILERS / AI AGENTS / MULTI-VM</span>
-        </div>
-
         <div class="build-header-content animate-reveal">
           <h1 class="heading-xl build-title">
-            ENGINEERING ARCHIVE<span class="signal-dot">.</span>
+            Selected ideas. Working code<span class="signal-dot">.</span>
           </h1>
           <p class="text-lead build-subtitle">
-            Compilers, AI agent protocols, transaction simulation infrastructure, and full-stack developer tools.
-          </p>
-          <p class="text-body build-desc">
-            Every featured project represents original systems architecture designed to eliminate friction for developers, prove performance guarantees across novel VMs, or orchestrate autonomous on-chain workflows.
+            Compilers, AI agent protocols, transaction simulation
+            infrastructure, and full-stack developer tools.
           </p>
         </div>
 
         <!-- Filter Controls & Real-Time Search -->
         <div class="filter-controls-bar animate-reveal">
-          <div class="category-pills-list" role="tablist" aria-label="Project Categories">
+          <div
+            class="category-pills-list"
+            role="group"
+            aria-label="Project Categories"
+          >
             {projectCategories.map((cat, idx) => (
               <button
                 type="button"
-                class:list={['filter-pill', 'tech-micro', { 'active': idx === 0 }]}
+                class:list={[
+                  "filter-pill",
+                  "tech-micro",
+                  { active: idx === 0 },
+                ]}
                 data-category={cat}
-                role="tab"
-                aria-selected={idx === 0 ? 'true' : 'false'}
+                aria-pressed={idx === 0 ? "true" : "false"}
               >
                 {cat}
               </button>
@@ -48,12 +47,15 @@ import { projects, projectCategories } from '../../data/projects';
           </div>
 
           <div class="search-input-wrapper">
-            <span class="search-icon" aria-hidden="true">&gt;</span>
+            <span class="search-icon" aria-hidden="true">
+              &gt;
+            </span>
             <input
               type="text"
               id="project-search-input"
               class="search-input tech-micro"
-              placeholder="FILTER BY STACK, VM, OR KEYWORD..."
+              aria-label="Search projects"
+              placeholder="Search projects or technologies"
               autocomplete="off"
               spellcheck="false"
             />
@@ -67,8 +69,12 @@ import { projects, projectCategories } from '../../data/projects';
       <div class="container">
         <!-- Results Count Readout -->
         <div class="results-readout-bar">
-          <span class="tech-micro" id="active-filter-label">SHOWING: ALL PROJECTS</span>
-          <span class="tech-micro" id="results-count-badge">18 OF 18 SYSTEMS DISPLAYED</span>
+          <span class="tech-micro" id="active-filter-label">
+            SHOWING: ALL PROJECTS
+          </span>
+          <span class="tech-micro" id="results-count-badge" aria-live="polite">
+            18 OF 18 SYSTEMS DISPLAYED
+          </span>
         </div>
 
         <!-- Projects Grid -->
@@ -77,7 +83,7 @@ import { projects, projectCategories } from '../../data/projects';
             <div
               class="project-wrapper"
               data-category={project.category}
-              data-search={`${project.title} ${project.headline} ${project.category} ${project.target} ${project.stack.join(' ')} ${project.role} ${project.id}`}
+              data-search={`${project.title} ${project.headline} ${project.category} ${project.target} ${project.stack.join(" ")} ${project.role} ${project.id}`}
             >
               <ProjectCard project={project} />
             </div>
@@ -86,9 +92,17 @@ import { projects, projectCategories } from '../../data/projects';
 
         <!-- Empty State -->
         <div id="empty-state" class="empty-state-card dossier-card" hidden>
-          <span class="tech-micro signal-text">ERR: NO MATCHING SYSTEMS FOUND</span>
-          <p class="text-body-sm">No engineering records matched your query. Try clearing search filters.</p>
-          <button type="button" id="reset-filter-btn" class="btn btn-primary" style="margin-top: 12px;">
+          <span class="tech-micro signal-text">No matching projects</span>
+          <p class="text-body-sm">
+            No engineering records matched your query. Try clearing search
+            filters.
+          </p>
+          <button
+            type="button"
+            id="reset-filter-btn"
+            class="btn btn-primary"
+            style="margin-top: 12px;"
+          >
             RESET FILTERS
           </button>
         </div>
@@ -147,12 +161,16 @@ import { projects, projectCategories } from '../../data/projects';
   }
 
   .category-pills-list {
+    min-width: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
 
   .filter-pill {
+    max-width: 100%;
+    white-space: normal;
+    min-height: 44px;
     padding: 6px 12px;
     background-color: var(--bg-surface-dim);
     border: 1px solid var(--border-color);
@@ -171,7 +189,7 @@ import { projects, projectCategories } from '../../data/projects';
   .filter-pill.active {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
-    color: #FFFFFF;
+    color: var(--on-signal);
   }
 
   .search-input-wrapper {
@@ -191,6 +209,7 @@ import { projects, projectCategories } from '../../data/projects';
   }
 
   .search-input {
+    min-width: 0;
     width: 100%;
     background: transparent;
     border: none;
@@ -200,6 +219,10 @@ import { projects, projectCategories } from '../../data/projects';
 
   .search-input::placeholder {
     color: var(--text-dim);
+  }
+  .search-input:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
   }
 
   .projects-display-section {
@@ -250,25 +273,28 @@ import { projects, projectCategories } from '../../data/projects';
       align-items: stretch;
     }
     .search-input-wrapper {
-      min-width: 100%;
+      min-width: 0;
+      width: 100%;
     }
   }
 </style>
 
 <script>
   function setupProjectFiltering() {
-    const pills = document.querySelectorAll('.filter-pill');
-    const searchInput = document.getElementById('project-search-input') as HTMLInputElement | null;
-    const projectWrappers = document.querySelectorAll('.project-wrapper');
-    const emptyState = document.getElementById('empty-state');
-    const resetBtn = document.getElementById('reset-filter-btn');
-    const activeLabel = document.getElementById('active-filter-label');
-    const countBadge = document.getElementById('results-count-badge');
+    const pills = document.querySelectorAll(".filter-pill");
+    const searchInput = document.getElementById(
+      "project-search-input",
+    ) as HTMLInputElement | null;
+    const projectWrappers = document.querySelectorAll(".project-wrapper");
+    const emptyState = document.getElementById("empty-state");
+    const resetBtn = document.getElementById("reset-filter-btn");
+    const activeLabel = document.getElementById("active-filter-label");
+    const countBadge = document.getElementById("results-count-badge");
 
     if (!pills.length || !projectWrappers.length) return;
 
-    let activeCategory = 'All';
-    let searchQuery = '';
+    let activeCategory = "All";
+    let searchQuery = "";
 
     function applyFilter() {
       let visibleCount = 0;
@@ -276,17 +302,19 @@ import { projects, projectCategories } from '../../data/projects';
 
       projectWrappers.forEach((el) => {
         const item = el as HTMLElement;
-        const cat = item.getAttribute('data-category') || '';
-        const searchData = (item.getAttribute('data-search') || '').toLowerCase();
+        const cat = item.getAttribute("data-category") || "";
+        const searchData = (
+          item.getAttribute("data-search") || ""
+        ).toLowerCase();
 
-        const matchesCat = activeCategory === 'All' || cat === activeCategory;
+        const matchesCat = activeCategory === "All" || cat === activeCategory;
         const matchesQuery = !q || searchData.includes(q);
 
         if (matchesCat && matchesQuery) {
-          item.style.display = '';
+          item.style.display = "";
           visibleCount++;
         } else {
-          item.style.display = 'none';
+          item.style.display = "none";
         }
       });
 
@@ -304,31 +332,36 @@ import { projects, projectCategories } from '../../data/projects';
     }
 
     pills.forEach((pill) => {
-      pill.addEventListener('click', () => {
-        pills.forEach((p) => p.classList.remove('active'));
-        pill.classList.add('active');
-        activeCategory = pill.getAttribute('data-category') || 'All';
+      pill.addEventListener("click", () => {
+        pills.forEach((p) => {
+          p.classList.remove("active");
+          p.setAttribute("aria-pressed", "false");
+        });
+        pill.classList.add("active");
+        pill.setAttribute("aria-pressed", "true");
+        activeCategory = pill.getAttribute("data-category") || "All";
         applyFilter();
       });
     });
 
-    searchInput?.addEventListener('input', () => {
+    searchInput?.addEventListener("input", () => {
       searchQuery = searchInput.value;
       applyFilter();
     });
 
-    resetBtn?.addEventListener('click', () => {
-      activeCategory = 'All';
-      searchQuery = '';
-      if (searchInput) searchInput.value = '';
+    resetBtn?.addEventListener("click", () => {
+      activeCategory = "All";
+      searchQuery = "";
+      if (searchInput) searchInput.value = "";
       pills.forEach((p, idx) => {
-        if (idx === 0) p.classList.add('active');
-        else p.classList.remove('active');
+        p.setAttribute("aria-pressed", String(idx === 0));
+        if (idx === 0) p.classList.add("active");
+        else p.classList.remove("active");
       });
       applyFilter();
     });
   }
 
   setupProjectFiltering();
-  document.addEventListener('astro:page-load', setupProjectFiltering);
+  document.addEventListener("astro:page-load", setupProjectFiltering);
 </script>

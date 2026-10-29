@@ -1,0 +1,79 @@
+Sol2Rust
+Converter
+Documentation
+Examples
+Ethereum
+Connect Wallet
+Solidity to Rust Contract Converter
+
+Enter your Solidity smart contract code and convert it to Rust for deployment on various blockchain networks.
+
+Convert to Rust
+Deploy Contract
+Load Example
+Clear
+Solidity Source
+Input your Solidity smart contract
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+contract SimpleStorage {
+    uint256 private value;
+    
+    event ValueChanged(uint256 newValue);
+    
+    constructor(uint256 initialValue) {
+        value = initialValue;
+    }
+    
+    function setValue(uint256 newValue) public {
+        value = newValue;
+        emit ValueChanged(newValue);
+    }
+    
+    function getValue() public view returns (uint256) {
+        return value;
+    }
+}
+Rust Output
+1
+2
+// Your converted Rust code will appear here after conversion.
+// Click the "Convert to Rust" button to start the process.
+Features
+Smart Code Conversion
+
+AI-powered conversion from Solidity to Rust with support for common contract patterns.
+
+Wallet Integration
+
+Connect your favorite wallet (MetaMask, etc.) to deploy converted contracts directly.
+
+Multi-Chain Support
+
+Deploy your converted contracts on Ethereum, Polygon, Optimism, Arbitrum, and more.
+
+GitHub
+Twitter
+
+© 2023 Sol2Rust. All rights reserved.

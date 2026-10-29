@@ -1,6 +1,6 @@
 ---
 // src/components/ecosystems/GtmCaseCard.astro
-import type { GtmInitiative } from '../../data/ecosystems';
+import type { GtmInitiative } from "../../data/ecosystems";
 
 interface Props {
   initiative: GtmInitiative;
@@ -16,9 +16,7 @@ const { initiative } = Astro.props;
       <span class="card-index-pill tech-label">{initiative.id}</span>
       <span class="gtm-period tech-micro">{initiative.period}</span>
     </div>
-    <div class="gtm-location tech-micro">
-      LOCATION: {initiative.location}
-    </div>
+    <div class="gtm-location tech-micro">LOCATION: {initiative.location}</div>
   </div>
 
   <div class="gtm-card-body">
@@ -35,7 +33,9 @@ const { initiative } = Astro.props;
         <p class="text-body-sm">{initiative.objective}</p>
       </div>
       <div class="gtm-brief-block">
-        <span class="brief-label tech-label">02 // TARGET DEVELOPER AUDIENCE</span>
+        <span class="brief-label tech-label">
+          02 // TARGET DEVELOPER AUDIENCE
+        </span>
         <p class="text-body-sm">{initiative.targetAudience}</p>
       </div>
       <div class="gtm-brief-block gtm-span-2">
@@ -45,28 +45,34 @@ const { initiative } = Astro.props;
     </div>
 
     <!-- Verified Outcomes Metrics Strip -->
-    <div class="gtm-outcomes-section">
-      <div class="outcomes-header tech-label-signal">
-        QUANTIFIABLE GTM METRICS &amp; IMPACT
+    {initiative.outcomes.length > 0 && (
+      <div class="gtm-outcomes-section">
+        <div class="outcomes-header tech-label-signal">
+          OWNER-REPORTED OUTCOMES
+        </div>
+        <div class="outcomes-grid">
+          {initiative.outcomes.map((metric) => (
+            <div class="outcome-cell">
+              <span class="outcome-value heading-md">{metric.value}</span>
+              <span class="outcome-label tech-label">{metric.label}</span>
+              <span class="outcome-detail text-body-sm">{metric.detail}</span>
+            </div>
+          ))}
+        </div>
       </div>
-      <div class="outcomes-grid">
-        {initiative.outcomes.map((metric) => (
-          <div class="outcome-cell">
-            <span class="outcome-value heading-md">{metric.value}</span>
-            <span class="outcome-label tech-label">{metric.label}</span>
-            <span class="outcome-detail text-body-sm">{metric.detail}</span>
-          </div>
-        ))}
-      </div>
-    </div>
+    )}
 
     <!-- Individual Responsibilities -->
     <div class="gtm-section-block">
-      <span class="brief-label tech-label">INDIVIDUAL LEADERSHIP &amp; EXECUTION</span>
+      <span class="brief-label tech-label">
+        INDIVIDUAL LEADERSHIP &amp; EXECUTION
+      </span>
       <ul class="gtm-resp-list">
         {initiative.responsibilities.map((resp) => (
           <li class="text-body-sm">
-            <span class="resp-bullet tech-label" aria-hidden="true">&gt;</span>
+            <span class="resp-bullet tech-label" aria-hidden="true">
+              &gt;
+            </span>
             <span>{resp}</span>
           </li>
         ))}
@@ -74,15 +80,27 @@ const { initiative } = Astro.props;
     </div>
 
     <!-- Key Learnings -->
-    <div class="gtm-section-block learnings-block">
-      <span class="brief-label tech-label">RETROSPECTIVE GTM LEARNINGS</span>
-      <ul class="gtm-learnings-list">
-        {initiative.learnings.map((learning) => (
-          <li class="text-body-sm">
-            <span>&bull; {learning}</span>
-          </li>
-        ))}
-      </ul>
+    {initiative.learnings.length > 0 && (
+      <div class="gtm-section-block learnings-block">
+        <span class="brief-label tech-label">RETROSPECTIVE GTM LEARNINGS</span>
+        <ul class="gtm-learnings-list">
+          {initiative.learnings.map((learning) => (
+            <li class="text-body-sm">
+              <span>&bull; {learning}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <div class="gtm-section-block">
+      <span class="brief-label tech-label">
+        {initiative.id === "GTM-04" ? "PLANNED ACTIVITY" : "EXECUTION"}
+      </span>
+      <p class="text-body-sm">{initiative.executionDetails}</p>
+      <p class="text-body-sm">
+        Channels: {initiative.channelsAndPartners.join(", ")}
+      </p>
     </div>
 
     {initiative.statusNote && (
@@ -253,4 +271,3 @@ const { initiative } = Astro.props;
     }
   }
 </style>
-

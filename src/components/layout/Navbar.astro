@@ -23,30 +23,11 @@ function isActive(href: string): boolean {
 ---
 
 <header class="site-header">
-  <!-- Top Dossier Meta Bar -->
-  <div class="top-meta-bar">
-    <div class="container top-meta-content">
-      <div class="meta-item">
-        <span class="meta-dot"></span>
-        <span class="tech-micro">AUT: BUILDERBASE</span>
-      </div>
-      <div class="meta-item hide-mobile">
-        <span class="tech-micro">ACADEMIC: BTECH AI &amp; DS</span>
-      </div>
-      <div class="meta-item hide-mobile">
-        <span class="tech-micro">RECOGNITION: 5X PODIUM FINISHER</span>
-      </div>
-      <div class="meta-item">
-        <span class="tech-micro" id="live-ist-clock">IST 00:00:00</span>
-      </div>
-    </div>
-  </div>
-
   <!-- Primary Navigation Bar -->
   <div class="main-nav-bar">
     <div class="container nav-content">
       <!-- Brand Logo / Wordmark -->
-      <a href="/" class="brand-link" aria-label="Punit Pal — Homepage">
+      <a href="/" class="brand-link" aria-label="Punit Pal — IMPURE® homepage">
         <span class="brand-name">PUNIT PAL</span>
         <span class="brand-badge tech-micro">IMPURE&reg;</span>
       </a>
@@ -54,25 +35,21 @@ function isActive(href: string): boolean {
       <!-- Desktop Nav Menu -->
       <nav class="desktop-nav" aria-label="Main Navigation">
         <ul class="nav-links-list">
-          {
-            navItems.map((item) => {
-              const active = isActive(item.href);
-              return (
-                <li>
-                  <a
-                    href={item.href}
-                    class:list={["nav-link", { active: active }]}
-                    aria-current={active ? "page" : undefined}
-                  >
-                    <span class="nav-text">{item.label}</span>
-                    {active && (
-                      <span class="nav-indicator" aria-hidden="true" />
-                    )}
-                  </a>
-                </li>
-              );
-            })
-          }
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={["nav-link", { active: active }]}
+                  aria-current={active ? "page" : undefined}
+                >
+                  <span class="nav-text">{item.label}</span>
+                  {active && <span class="nav-indicator" aria-hidden="true" />}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
@@ -130,7 +107,7 @@ function isActive(href: string): boolean {
   <div id="mobile-nav-drawer" class="mobile-drawer" hidden>
     <div class="mobile-drawer-content">
       <div class="mobile-drawer-header">
-        <span class="tech-micro">DOSSIER DIRECTORY</span>
+        <span class="tech-micro">Navigation</span>
         <button
           id="mobile-close-btn"
           class="mobile-close-btn"
@@ -140,20 +117,18 @@ function isActive(href: string): boolean {
         </button>
       </div>
       <nav class="mobile-nav-list" aria-label="Mobile Navigation">
-        {
-          navItems.map((item, index) => (
-            <a
-              href={item.href}
-              class:list={["mobile-nav-item", { active: isActive(item.href) }]}
-            >
-              <span class="mobile-nav-num">/0{index + 1}</span>
-              <span class="mobile-nav-text">{item.label}</span>
-              {isActive(item.href) && (
-                <span class="dossier-stamp signal">ACTIVE</span>
-              )}
-            </a>
-          ))
-        }
+        {navItems.map((item, index) => (
+          <a
+            href={item.href}
+            class:list={["mobile-nav-item", { active: isActive(item.href) }]}
+          >
+            <span class="mobile-nav-num">/0{index + 1}</span>
+            <span class="mobile-nav-text">{item.label}</span>
+            {isActive(item.href) && (
+              <span class="dossier-stamp signal">ACTIVE</span>
+            )}
+          </a>
+        ))}
       </nav>
       <div class="mobile-drawer-footer">
         <div class="mobile-socials">
@@ -161,23 +136,29 @@ function isActive(href: string): boolean {
             href="https://github.com/ShahiTechnovation"
             target="_blank"
             rel="noopener noreferrer"
-            class="tech-micro inline-link">GITHUB</a
+            class="tech-micro inline-link"
           >
+            GITHUB
+          </a>
           <a
             href="https://x.com/its_punit05"
             target="_blank"
             rel="noopener noreferrer"
-            class="tech-micro inline-link">X / TWITTER</a
+            class="tech-micro inline-link"
           >
+            X / TWITTER
+          </a>
           <a
             href="https://linkedin.com/in/punit05"
             target="_blank"
             rel="noopener noreferrer"
-            class="tech-micro inline-link">LINKEDIN</a
+            class="tech-micro inline-link"
           >
-          <a href="mailto:punit@builderbase.xyz" class="tech-micro inline-link"
-            >EMAIL</a
-          >
+            LINKEDIN
+          </a>
+          <a href="mailto:punit@builderbase.xyz" class="tech-micro inline-link">
+            EMAIL
+          </a>
         </div>
       </div>
     </div>
@@ -483,23 +464,6 @@ function isActive(href: string): boolean {
 
 <script>
   function setupNavbar() {
-    // Live IST Clock updater (Indian Standard Time, UTC+5:30)
-    const clockEl = document.getElementById("live-ist-clock");
-    if (clockEl) {
-      const istFormatter = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Asia/Kolkata",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false
-      });
-      const updateClock = () => {
-        clockEl.textContent = `IST ${istFormatter.format(new Date())}`;
-      };
-      updateClock();
-      setInterval(updateClock, 1000);
-    }
-
     // Mobile menu drawer
     const menuBtn = document.getElementById("mobile-menu-btn");
     const closeBtn = document.getElementById("mobile-close-btn");
@@ -511,12 +475,14 @@ function isActive(href: string): boolean {
       drawer.hidden = false;
       menuBtn.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
+      closeBtn?.focus();
     };
 
     const closeMenu = () => {
       drawer.hidden = true;
       menuBtn.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
+      menuBtn.focus();
     };
 
     menuBtn.addEventListener("click", openMenu);
@@ -528,6 +494,18 @@ function isActive(href: string): boolean {
 
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !drawer.hidden) closeMenu();
+      if (e.key === "Tab" && !drawer.hidden) {
+        const items = [...drawer.querySelectorAll<HTMLElement>("a, button")];
+        const first = items[0],
+          last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
     });
   }
 

@@ -1,7 +1,7 @@
 ---
 // src/components/ui/CommandPalette.astro
-import { projects } from '../../data/projects';
-import { achievements } from '../../data/achievements';
+import { projects } from "../../data/projects";
+import { achievements } from "../../data/achievements";
 ---
 
 <div
@@ -16,10 +16,17 @@ import { achievements } from '../../data/achievements';
     <!-- Header -->
     <div class="cmd-header">
       <div class="cmd-header-left">
-        <span class="cmd-prompt-glyph" aria-hidden="true">&gt;</span>
+        <span class="cmd-prompt-glyph" aria-hidden="true">
+          &gt;
+        </span>
         <span class="tech-micro">DOSSIER COMMAND // [ESC] TO ABORT</span>
       </div>
-      <button id="cmd-close-btn" class="cmd-close-btn" type="button" aria-label="Close command palette">
+      <button
+        id="cmd-close-btn"
+        class="cmd-close-btn"
+        type="button"
+        aria-label="Close command palette"
+      >
         <kbd>ESC</kbd>
       </button>
     </div>
@@ -29,6 +36,7 @@ import { achievements } from '../../data/achievements';
       <input
         type="text"
         id="cmd-search-input"
+        aria-label="Search pages, projects and recognition"
         class="cmd-input"
         placeholder="Search projects, routes, achievements, or protocols..."
         autocomplete="off"
@@ -37,32 +45,70 @@ import { achievements } from '../../data/achievements';
     </div>
 
     <!-- Results Container -->
-    <div class="cmd-results-list" id="cmd-results" role="listbox">
+    <div
+      class="cmd-results-list"
+      id="cmd-results"
+      role="listbox"
+      aria-label="Search results"
+    >
       <!-- Section: Navigation Routes -->
       <div class="cmd-group-label tech-micro">PAGES & DOSSIERS</div>
-      <a href="/" class="cmd-item" role="option" data-search="home punit pal hero overview dossier">
+      <a
+        href="/"
+        class="cmd-item"
+        role="option"
+        data-search="home punit pal hero overview dossier"
+      >
         <span class="cmd-item-code">/01</span>
         <span class="cmd-item-title">INDEX // Overview & Selected Works</span>
         <span class="cmd-item-meta tech-micro">HOME</span>
       </a>
-      <a href="/build" class="cmd-item" role="option" data-search="build engineering projects compilers tools agents code">
+      <a
+        href="/build"
+        class="cmd-item"
+        role="option"
+        data-search="build engineering projects compilers tools agents code"
+      >
         <span class="cmd-item-code">/02</span>
-        <span class="cmd-item-title">BUILD // Engineering Portfolio & Archive</span>
+        <span class="cmd-item-title">
+          BUILD // Engineering Portfolio & Archive
+        </span>
         <span class="cmd-item-meta tech-micro">18 PROJECTS</span>
       </a>
-      <a href="/grow" class="cmd-item" role="option" data-search="grow devrel ecosystem builder base community gtm hackathons">
+      <a
+        href="/grow"
+        class="cmd-item"
+        role="option"
+        data-search="grow devrel ecosystem builder base community gtm hackathons"
+      >
         <span class="cmd-item-code">/03</span>
-        <span class="cmd-item-title">GROW // Developer Relations & Ecosystem GTM</span>
+        <span class="cmd-item-title">
+          GROW // Developer Relations & Ecosystem GTM
+        </span>
         <span class="cmd-item-meta tech-micro">BUILDER BASE</span>
       </a>
-      <a href="/story" class="cmd-item" role="option" data-search="story bio background education rgpv journey milestones">
+      <a
+        href="/story"
+        class="cmd-item"
+        role="option"
+        data-search="story bio background education rgpv journey milestones"
+      >
         <span class="cmd-item-code">/04</span>
-        <span class="cmd-item-title">STORY // Personal Journey, Education & Principles</span>
+        <span class="cmd-item-title">
+          STORY // Personal Journey, Education & Principles
+        </span>
         <span class="cmd-item-meta tech-micro">BIOGRAPHY</span>
       </a>
-      <a href="/contact" class="cmd-item" role="option" data-search="contact email hire collaboration speak partnerships">
+      <a
+        href="/contact"
+        class="cmd-item"
+        role="option"
+        data-search="contact email hire collaboration speak partnerships"
+      >
         <span class="cmd-item-code">/05</span>
-        <span class="cmd-item-title">CONTACT // Inquiries, Collaborations & Speaking</span>
+        <span class="cmd-item-title">
+          CONTACT // Inquiries, Collaborations & Speaking
+        </span>
         <span class="cmd-item-meta tech-micro">CONNECT</span>
       </a>
 
@@ -73,16 +119,22 @@ import { achievements } from '../../data/achievements';
           href={`/build/${p.slug}`}
           class="cmd-item"
           role="option"
-          data-search={`${p.title} ${p.target} ${p.category} ${p.stack.join(' ')} ${p.id}`}
+          data-search={`${p.title} ${p.target} ${p.category} ${p.stack.join(" ")} ${p.id}`}
         >
           <span class="cmd-item-code">{p.id}</span>
-          <span class="cmd-item-title">{p.title} — <span class="cmd-item-sub">{p.target}</span></span>
-          <span class="cmd-item-meta tech-micro">{p.placement || p.category}</span>
+          <span class="cmd-item-title">
+            {p.title} — <span class="cmd-item-sub">{p.target}</span>
+          </span>
+          <span class="cmd-item-meta tech-micro">
+            {p.placement || p.category}
+          </span>
         </a>
       ))}
 
       <!-- Section: Hackathon Accolades -->
-      <div class="cmd-group-label tech-micro">VERIFIED HACKATHON RECORDS</div>
+      <div class="cmd-group-label tech-micro">
+        OWNER-REPORTED HACKATHON RECORDS
+      </div>
       {achievements.map((a) => (
         <a
           href={a.evidenceUrl}
@@ -93,13 +145,19 @@ import { achievements } from '../../data/achievements';
           data-search={`${a.competition} ${a.projectTitle} ${a.placement} ${a.ecosystem}`}
         >
           <span class="cmd-item-code">{a.id}</span>
-          <span class="cmd-item-title">{a.competition} — {a.projectTitle}</span>
-          <span class="cmd-item-meta tech-micro signal-text">{a.placement}</span>
+          <span class="cmd-item-title">
+            {a.competition} — {a.projectTitle}
+          </span>
+          <span class="cmd-item-meta tech-micro signal-text">
+            {a.placement}
+          </span>
         </a>
       ))}
 
       <!-- Section: Quick Actions -->
-      <div class="cmd-group-label tech-micro">SYSTEM COMMANDS &amp; PROFILES</div>
+      <div class="cmd-group-label tech-micro">
+        SYSTEM COMMANDS &amp; PROFILES
+      </div>
       <button
         type="button"
         class="cmd-item"
@@ -109,7 +167,9 @@ import { achievements } from '../../data/achievements';
         style="width: 100%; text-align: left; background: none; border: none; cursor: pointer;"
       >
         <span class="cmd-item-code">SYS-01</span>
-        <span class="cmd-item-title">TOGGLE THEME // Switch Light (Paper) &amp; Dark (Night)</span>
+        <span class="cmd-item-title">
+          TOGGLE THEME // Switch Light (Paper) &amp; Dark (Night)
+        </span>
         <span class="cmd-item-meta tech-micro">THEME</span>
       </button>
       <a
@@ -119,7 +179,9 @@ import { achievements } from '../../data/achievements';
         data-search="email mail founder builderbase send message"
       >
         <span class="cmd-item-code">ACT-01</span>
-        <span class="cmd-item-title">SEND TRANSMISSION // punit@builderbase.xyz</span>
+        <span class="cmd-item-title">
+          SEND TRANSMISSION // punit@builderbase.xyz
+        </span>
         <span class="cmd-item-meta tech-micro">MAILTO</span>
       </a>
       <a
@@ -131,7 +193,9 @@ import { achievements } from '../../data/achievements';
         data-search="github code repos source open source"
       >
         <span class="cmd-item-code">ACT-02</span>
-        <span class="cmd-item-title">GITHUB REPOSITORIES // @ShahiTechnovation</span>
+        <span class="cmd-item-title">
+          GITHUB REPOSITORIES // @ShahiTechnovation
+        </span>
         <span class="cmd-item-meta tech-micro">EXTERNAL</span>
       </a>
       <a
@@ -186,7 +250,9 @@ import { achievements } from '../../data/achievements';
     max-width: 680px;
     background-color: var(--bg-surface);
     border: 2px solid var(--border-strong);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), var(--shadow-dossier);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.35),
+      var(--shadow-dossier);
     border-radius: var(--radius-sm);
     display: flex;
     flex-direction: column;
@@ -329,66 +395,90 @@ import { achievements } from '../../data/achievements';
   }
 
   @keyframes cmdFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes cmdSlideUp {
-    from { opacity: 0; transform: translateY(-10px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 </style>
 
 <script>
   function setupCommandPalette() {
-    const modal = document.getElementById('cmd-palette-modal');
-    const input = document.getElementById('cmd-search-input') as HTMLInputElement | null;
-    const closeBtn = document.getElementById('cmd-close-btn');
-    const resultsContainer = document.getElementById('cmd-results');
-    const triggers = document.querySelectorAll('[data-open-cmd]');
+    const modal = document.getElementById("cmd-palette-modal");
+    const input = document.getElementById(
+      "cmd-search-input",
+    ) as HTMLInputElement | null;
+    const closeBtn = document.getElementById("cmd-close-btn");
+    const resultsContainer = document.getElementById("cmd-results");
+    const triggers = document.querySelectorAll("[data-open-cmd]");
 
     if (!modal || !input || !resultsContainer) return;
 
     let selectedIndex = -1;
 
     function getVisibleItems(): HTMLElement[] {
-      return Array.from(resultsContainer!.querySelectorAll('.cmd-item:not([hidden])'));
+      return Array.from(
+        resultsContainer!.querySelectorAll(".cmd-item:not([hidden])"),
+      );
     }
 
     function updateActiveItem(items: HTMLElement[]) {
       items.forEach((item, idx) => {
         if (idx === selectedIndex) {
-          item.classList.add('active');
-          item.scrollIntoView({ block: 'nearest' });
+          item.classList.add("active");
+          item.scrollIntoView({ block: "nearest" });
         } else {
-          item.classList.remove('active');
+          item.classList.remove("active");
         }
       });
     }
 
+    let previousFocus: HTMLElement | null = null;
+
     function openModal() {
+      previousFocus = document.activeElement as HTMLElement;
       modal!.hidden = false;
-      document.body.style.overflow = 'hidden';
-      input!.value = '';
-      filterItems('');
+      document.body.style.overflow = "hidden";
+      input!.value = "";
+      filterItems("");
       setTimeout(() => input!.focus(), 50);
     }
 
     function closeModal() {
       modal!.hidden = true;
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
       selectedIndex = -1;
+      previousFocus?.focus();
     }
 
     function filterItems(query: string) {
       const q = query.toLowerCase().trim();
-      const items = Array.from(resultsContainer!.querySelectorAll('.cmd-item')) as HTMLElement[];
-      const labels = Array.from(resultsContainer!.querySelectorAll('.cmd-group-label')) as HTMLElement[];
+      const items = Array.from(
+        resultsContainer!.querySelectorAll(".cmd-item"),
+      ) as HTMLElement[];
+      const labels = Array.from(
+        resultsContainer!.querySelectorAll(".cmd-group-label"),
+      ) as HTMLElement[];
 
       let matchCount = 0;
       items.forEach((item) => {
-        const searchData = (item.getAttribute('data-search') || '').toLowerCase();
-        const text = item.textContent?.toLowerCase() || '';
+        const searchData = (
+          item.getAttribute("data-search") || ""
+        ).toLowerCase();
+        const text = item.textContent?.toLowerCase() || "";
         const match = !q || searchData.includes(q) || text.includes(q);
         item.hidden = !match;
         if (match) matchCount++;
@@ -398,7 +488,7 @@ import { achievements } from '../../data/achievements';
       labels.forEach((label) => {
         let sibling = label.nextElementSibling as HTMLElement | null;
         let hasVisibleChild = false;
-        while (sibling && !sibling.classList.contains('cmd-group-label')) {
+        while (sibling && !sibling.classList.contains("cmd-group-label")) {
           if (!sibling.hidden) {
             hasVisibleChild = true;
             break;
@@ -415,62 +505,73 @@ import { achievements } from '../../data/achievements';
 
     // Attach open triggers
     triggers.forEach((trigger) => {
-      trigger.addEventListener('click', (e) => {
+      trigger.addEventListener("click", (e) => {
         e.preventDefault();
         openModal();
       });
     });
 
-    closeBtn?.addEventListener('click', closeModal);
+    closeBtn?.addEventListener("click", closeModal);
 
-    const themeBtn = document.getElementById('cmd-theme-toggle-action');
-    themeBtn?.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme') || 'light';
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('impure_theme', next);
+    const themeBtn = document.getElementById("cmd-theme-toggle-action");
+    themeBtn?.addEventListener("click", () => {
+      const current =
+        document.documentElement.getAttribute("data-theme") || "light";
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("impure_theme", next);
       closeModal();
     });
 
-    modal.addEventListener('click', (e) => {
+    modal.addEventListener("click", (e) => {
       if (e.target === modal) closeModal();
     });
 
     // Keyboard handling
-    input.addEventListener('input', () => {
+    input.addEventListener("input", () => {
       filterItems(input.value);
     });
 
-    input.addEventListener('keydown', (e) => {
+    input.addEventListener("keydown", (e) => {
       const visible = getVisibleItems();
-      if (e.key === 'ArrowDown') {
+      if (e.key === "ArrowDown") {
         e.preventDefault();
         if (visible.length > 0) {
           selectedIndex = (selectedIndex + 1) % visible.length;
           updateActiveItem(visible);
         }
-      } else if (e.key === 'ArrowUp') {
+      } else if (e.key === "ArrowUp") {
         e.preventDefault();
         if (visible.length > 0) {
           selectedIndex = (selectedIndex - 1 + visible.length) % visible.length;
           updateActiveItem(visible);
         }
-      } else if (e.key === 'Enter') {
+      } else if (e.key === "Enter") {
         e.preventDefault();
         if (selectedIndex >= 0 && visible[selectedIndex]) {
           const target = visible[selectedIndex] as HTMLAnchorElement;
           target.click();
           closeModal();
         }
-      } else if (e.key === 'Escape') {
+      } else if (e.key === "Escape") {
         e.preventDefault();
         closeModal();
       }
     });
 
+    modal.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { e.preventDefault(); closeModal(); }
+      if (e.key === "Tab") {
+        const focusable = [...modal.querySelectorAll<HTMLElement>('button, input, a[href]')].filter(el => !el.hidden && el.offsetParent !== null);
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+      }
+    });
+
     // Global shortcut Ctrl+K / Cmd+K
-    window.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+    window.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         if (modal.hidden) {
           openModal();
@@ -482,6 +583,5 @@ import { achievements } from '../../data/achievements';
   }
 
   setupCommandPalette();
-  document.addEventListener('astro:page-load', setupCommandPalette);
+  document.addEventListener("astro:page-load", setupCommandPalette);
 </script>
-

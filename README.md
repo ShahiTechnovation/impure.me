@@ -171,3 +171,22 @@ dist
 
 *Authored with precision for Punit Pal (IMPURE®).*
 
+
+
+## V2.2 visual refinement and QA
+
+See [design results](DESIGN_REFINEMENT_REPORT.md), [content density audit](CONTENT_DENSITY_AUDIT.md), and [source verification](CONTENT_VERIFICATION_V2_2.md). Screenshots are local artifacts under `artifacts/design/`.
+
+```sh
+npm install
+npm run check
+npm run lint
+npm run build
+npm test
+npm run preview -- --host 127.0.0.1 --port 4322
+# In another terminal, with Google Chrome installed:
+npm run qa:browser
+npm run qa:capture
+```
+
+Browser QA covers all 23 routes at seven widths in both themes, plus keyboard workflows and axe accessibility scans. Set `QA_URL` to test a different preview server. `scripts/check-seo.mjs` compares a normal `dist/` build against `dist-preview/` built with `VERCEL_ENV=preview`. Scripts that collect reference media access public websites and are separate from build/acceptance tests.

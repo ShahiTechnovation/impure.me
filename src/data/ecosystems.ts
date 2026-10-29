@@ -138,7 +138,7 @@ export const gtmInitiatives: GtmInitiative[] = [
       { label: 'Program Phase', value: 'Finalist Cohorts', detail: 'Regional hackathon milestones active through late 2026' }
     ],
     learnings: [
-      'Hands-on starter repositories and pre-event setup calls reduce day-one team churn by more than half.',
+      'Hands-on starter repositories and pre-event setup calls help participants resolve setup problems before day one.',
       'Aligning bounties directly with core protocol engineering needs produces significantly more usable prototypes.'
     ],
     statusNote: 'Note: As of October 2026, finalist cohorts and summit preparations are underway.'
@@ -153,7 +153,7 @@ export const gtmInitiatives: GtmInitiative[] = [
     targetAudience: 'Software engineers, AI developers, product founders, and computer science students.',
     strategy: 'Focus on hands-on code walkthroughs rather than high-level talk: setting up MCP servers, chaining LLM function calls, and running live tool-calling applications.',
     responsibilities: [
-      'Technical curriculum preparation and live live-coding demonstrations.',
+      'Technical curriculum preparation and live-coding demonstrations.',
       'Hands-on workshop facilitation and debugging participant environments.',
       'Community open-source repository maintenance and project showcase.'
     ],
@@ -199,7 +199,7 @@ export const gtmInitiatives: GtmInitiative[] = [
     id: 'GTM-04',
     title: 'Mumbai Devcon Week',
     subtitle: 'Technical Gatherings & Cross-Protocol Side Events',
-    period: '2025',
+    period: 'November 2026 · Upcoming',
     location: 'Mumbai, India',
     objective: 'Curate high-signal side events and technical discussions during major developer gatherings, connecting builders with protocol engineers.',
     targetAudience: 'Protocol engineers, technical founders, and hackathon builders.',
@@ -209,17 +209,10 @@ export const gtmInitiatives: GtmInitiative[] = [
       'Audience curation and attendee management.',
       'Technical panel facilitation and discussion moderation.'
     ],
-    channelsAndPartners: ['Builder Base', 'Arbitrum ecosystem', 'Avalanche community', 'Monad teams'],
-    executionDetails: 'Co-hosted technical sessions where developers and protocol contributors discussed roadmap architectures, benchmark results, and upcoming ecosystem opportunities.',
-    outcomes: [
-      { label: 'Event Attendance', value: '500+', detail: 'Curated developers and protocol contributors across side sessions' },
-      { label: 'Participating Teams', value: '6 Ecosystems', detail: 'Cross-protocol panel participation and developer discussions' },
-      { label: 'Builder Connections', value: 'Direct Grants', detail: 'Connected hackathon teams directly with protocol grant leads' }
-    ],
-    learnings: [
-      'Focused, topical technical discussions attract significantly higher caliber builders than open networking parties.',
-      'In-person workshops during major conference weeks provide an efficient channel for direct developer feedback.'
-    ]
+    channelsAndPartners: ['Builder Base; other contributors to be confirmed'],
+    executionDetails: 'Planning technical sessions for November 2026, focused on developer tools and cross-community discussion. Attendance and participating teams have not yet been confirmed.',
+    outcomes: [],
+    learnings: [],
+    statusNote: 'Upcoming as of October 29, 2026. Program planning is in progress; no completed attendance, partnership or grant outcomes are claimed.'
   }
 ];
-

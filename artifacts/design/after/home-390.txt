@@ -1,0 +1,166 @@
+DEVELOPER / FOUNDER / ECOSYSTEM BUILDER
+
+PUNIT PAL.
+
+I build products.
+I build communities.
+I bring them together.
+
+Building developer tools, AI infrastructure, and communities that help people ship.
+
+Explore work
+↘
+About me
+↗
+Punit Pal / India
+
+01 / SELECTED WORK
+
+Tools for the
+people building next.
+
+From a familiar programming language to a new execution environment, I work on the tools between an idea and working software. These three projects trace that interest across compilers and agent workflows. The case studies explain what I built, how it works, and the tradeoffs along the way.
+
+PYVAX / COMPILER OVERVIEW
+Python
+↓
+EVM.
+Python source → bytecode → Avalanche C-Chain
+
+PYTHON / AVALANCHE
+
+PyVax
+
+Write smart contracts in Python. PyVax compiles them to EVM bytecode for Avalanche, bringing a familiar language to on-chain development.
+
+1st Runner-Up · AVAX Kolkata
+
+Case study
+↗
+GitHub ↗
+
+RUST / ARBITRUM STYLUS
+
+Sol2Rust
+
+Move Solidity contracts into Rust for Arbitrum Stylus, with a transpiler that connects existing smart-contract code to a different execution environment.
+
+1st Place · Core Nexus
+
+Case study
+↗
+GitHub ↗
+Demo ↗
+
+TYPESCRIPT / MONAD
+
+FlowMon
+
+Compose on-chain AI-agent workflows on a visual canvas. Connect protocol agents, define their dependencies, and follow the flow from input to execution.
+
+1st Runner-Up · Monad Blitz V3
+
+Case study
+↗
+GitHub ↗
+Demo ↗
+
+Product screens captured from the public demos. PyVax is shown as a compiler overview; its live site is currently unavailable. Screens illustrate the interface, not a benchmark or production guarantee.
+
+RustAG
+SOLANA INFRASTRUCTURE
+
+Simulate privileged transactions before execution, checking account ownership and balance invariants against a local state fork.
+
+↗
+RxGR
+AI RESEARCH
+
+Explore drug–disease relationships through biomedical knowledge graphs and retrieval, with a research prototype built around connected evidence.
+
+↗
+With Claude
+COMMUNITY PUBLISHING
+
+Discover and share projects built with Claude through a publishing platform using Astro, React islands, Neon and Drizzle.
+
+↗
+
+The wider archive includes APV3RSE, Bloopa, NeuroFit, PyMon and experiments in developer infrastructure. Each project keeps its implementation notes, source links and technical decisions.
+
+Explore all 18 projects
+→
+
+02 / BEYOND ENGINEERING
+
+Code meets
+community.
+
+I founded Builder Base to connect developers with the tools, people, and opportunities they need to build.
+
+That means sitting beside someone debugging their first deployment, preparing a workshop that starts with working code, and creating places where builders can find each other.
+
+My Developer Relations and ecosystem work brings together technical workshops, hackathon programs, developer documentation and community distribution across India. Engineering gives me something useful to share; community helps me understand what to build next.
+
+Explore ecosystem work
+↗
+Luma registrations
+64K+
+Newsletter reach
+70K+
+WhatsApp circles
+2K+
+
+Owner-reported channel reach. These figures can overlap and do not represent unique active members.
+
+03 / RECOGNITION
+
+Built under pressure.
+
+Five podium finishes, each with a different problem to solve. Two further projects received Top 15 recognition.
+
+2025
+Core Nexus ↗
+1st Place
+Sol2Rust ↗
+2025
+AVAX Kolkata ↗
+1st Runner-Up
+PyVax ↗
+2025
+Monad Delhi V2 ↗
+1st Runner-Up
+PyMon ↗
+2026
+Monad Blitz V3 ↗
+1st Runner-Up
+FlowMon ↗
+2025
+BrahmaX 1.0 ↗
+2nd Runner-Up
+NeuroFit ↗
+
+APV3RSE · Top 15 Finalist · Aptos Winter School 2025 ↗
+
+Bloopa · Top 15 Finalist · Algorand Hack Series 3.0 ↗
+
+Placements are owner-reported. Event and project links provide context; they are not independently verified award certificates.
+
+04 / FIELD NOTES
+
+Beyond the screen.
+
+A few moments from the communities around the code. Photographs from Builder Base’s public event archive, with the people and conversations that give this work its purpose.
+
+01 / The people behind Builder Base. A community gathering, shared in the event archive.
+02 / Claude Community, Bhopal. A room full of builders, photographed together after a community session.
+From the Builder Base archive ↗
+
+05 / GET IN TOUCH
+
+Let’s build
+something useful.
+
+A developer tool, a technical workshop, or a community with a reason to exist. Tell me what you’re working on.
+
+punit@builderbase.xyz ↗

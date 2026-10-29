@@ -27,3 +27,6 @@ dist-ssr
 
 # Astro
 .astro/
+
+# Local preview SEO verification build
+dist-preview/

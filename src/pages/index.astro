@@ -1,1484 +1,396 @@
 ---
-// src/pages/index.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ArchitectureDiagram from "../components/projects/ArchitectureDiagram.astro";
-import HackathonRecord from "../components/achievements/HackathonRecord.astro";
 import { projects } from "../data/projects";
-import { builderBaseData } from "../data/ecosystems";
-
-const pyvax = projects.find((p) => p.slug === "pyvax")!;
-const sol2rust = projects.find((p) => p.slug === "sol2rust")!;
-const flowmon = projects.find((p) => p.slug === "flowmon")!;
-const rustag = projects.find((p) => p.slug === "rustag")!;
-const rxgr = projects.find((p) => p.slug === "rxgr")!;
-const bloopa = projects.find((p) => p.slug === "bloopa")!;
-const apv3rse = projects.find((p) => p.slug === "apv3rse")!;
-const withClaude = projects.find((p) => p.slug === "with-claude")!;
-
-const fieldNotes = [
+import { achievements } from "../data/achievements";
+const selected = ["pyvax", "sol2rust", "flowmon"].map((slug) =>
+  projects.find((p) => p.slug === slug)!,
+);
+const summaries = [
+  "Write smart contracts in Python. PyVax compiles them to EVM bytecode for Avalanche, bringing a familiar language to on-chain development.",
+  "Move Solidity contracts into Rust for Arbitrum Stylus, with a transpiler that connects existing smart-contract code to a different execution environment.",
+  "Compose on-chain AI-agent workflows on a visual canvas. Connect protocol agents, define their dependencies, and follow the flow from input to execution.",
+];
+const supporting = [
   {
-    date: "MARCH 2026",
-    tag: "MONAD BLITZ V3",
-    title: "Orchestrating 43 Agents at 10,000 TPS",
-    body: "Shipped FlowMon during Monad Blitz V3. Interconnected 43 autonomous protocol agents across DeFi price oracles, yield monitors, and swap routers via Agent Message Protocol with live on-chain execution.",
-    link: "/build/flowmon",
+    slug: "rustag",
+    name: "RustAG",
+    category: "Solana infrastructure",
+    description:
+      "Simulate privileged transactions before execution, checking account ownership and balance invariants against a local state fork.",
   },
   {
-    date: "SEPTEMBER 2025",
-    tag: "AVALANCHE TEAM1",
-    title: "Lowering Python AST into EVM Opcodes",
-    body: "Shipped PyVax at AVAX Kolkata. Built compiler tooling that allows Python developers to write smart contracts and compile directly to EVM bytecode for Avalanche C-Chain.",
-    link: "/build/pyvax",
+    slug: "rxgr",
+    name: "RxGR",
+    category: "AI research",
+    description:
+      "Explore drug–disease relationships through biomedical knowledge graphs and retrieval, with a research prototype built around connected evidence.",
   },
   {
-    date: "APRIL 2025",
-    tag: "ARBITRUM STYLUS",
-    title: "Transpiling Solidity to High-Speed Rust WASM",
-    body: "Won 1st Place at Core Nexus for Sol2Rust. Transpiles Solidity state variables, functions, and modifiers into idiomatic Rust using Arbitrum Stylus SDK primitives.",
-    link: "/build/sol2rust",
+    slug: "with-claude",
+    name: "With Claude",
+    category: "Community publishing",
+    description:
+      "Discover and share projects built with Claude through a publishing platform using Astro, React islands, Neon and Drizzle.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Punit Pal // IMPURE® — Technical Founder, Developer & Ecosystem GTM"
-  description="I build products. I build communities. I bring them together. Personal dossier of Punit Pal across compiler engineering, AI agent infrastructure, and developer ecosystems."
+  title="Punit Pal — Developer, Founder & Ecosystem Builder · IMPURE®"
+  description="I build products. I build communities. I bring them together. Explore Punit Pal’s developer tools, AI infrastructure and work with Builder Base."
 >
-  <!-- Section 01: Hero -->
-  <section class="hero-section" aria-label="Hero Introduction">
-    <div class="container hero-container">
-      <!-- Top Dossier Stamp Strip -->
-      <div class="hero-dossier-bar animate-reveal">
-        <div class="dossier-bar-left">
-          <span class="dossier-stamp signal">DOSSIER // CONFIDENTIAL</span>
-          <span class="tech-label-muted">IDENTITY: PUNIT PAL</span>
-          <span class="tech-micro hide-mobile">BRAND: IMPURE&reg;</span>
-        </div>
-        <div class="dossier-bar-right">
-          <span class="tech-micro">ACADEMIC: BTECH AI &amp; DS </span>
-          <span class="dossier-stamp">ACTIVE BUILDER</span>
-        </div>
-      </div>
-
-      <!-- Main Typographic Composition & Portrait Grid -->
-      <div class="hero-main-grid">
-        <!-- Left: Oversized Typographic Composition -->
-        <div class="hero-content animate-reveal">
-          <h1 class="hero-display">
-            PUNIT PAL<span class="signal-dot">.</span>
-          </h1>
-
-          <p class="hero-headline text-lead">
-            I build products. I build communities. I bring them together.
-          </p>
-
-          <p class="hero-support text-body">
-            Developer, technical founder, and ecosystem builder working across
-            compiler engineering, AI agent infrastructure, high-throughput
-            blockchains, and developer-led distribution.
-          </p>
-
-          <!-- Action Buttons -->
-          <div class="hero-actions">
-            <a href="/build" class="btn btn-primary hero-btn">
-              <span>EXPLORE ENGINEERING</span>
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-            <a href="/grow" class="btn hero-btn">
-              <span>ECOSYSTEM &amp; GTM</span>
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-            <button
-              type="button"
-              class="btn hero-cmd-btn"
-              data-open-cmd
-              aria-label="Search dossier with command palette"
-            >
-              <span class="tech-micro">EXECUTE [⌘K]</span>
-            </button>
-          </div>
-
-          <!-- Social Proof & Direct Channels -->
-          <div class="hero-social-strip">
-            <span class="tech-micro social-label">VERIFIED CHANNELS:</span>
-            <a
-              href="https://github.com/ShahiTechnovation"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-pill tech-micro"
-            >
-              <span>GITHUB</span>
-              <span class="ext-arrow">&nearr;</span>
-            </a>
-            <a
-              href="https://x.com/its_punit05"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-pill tech-micro"
-            >
-              <span>X / TWITTER</span>
-              <span class="ext-arrow">&nearr;</span>
-            </a>
-            <a
-              href="https://linkedin.com/in/punit05"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-pill tech-micro"
-            >
-              <span>LINKEDIN</span>
-              <span class="ext-arrow">&nearr;</span>
-            </a>
-            <a
-              href="https://www.builderbase.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-pill tech-micro"
-            >
-              <span>BUILDER BASE</span>
-              <span class="ext-arrow">&nearr;</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Right: Authentic Portrait in Editorial Brutalist Frame -->
-        <div class="hero-portrait-wrapper animate-reveal">
-          <div class="portrait-card">
-            <div class="portrait-meta-top">
-              <span class="tech-micro">SUBJECT: PUNIT PAL</span>
-              <span class="tech-micro">LOC: IN // GLOBAL</span>
-            </div>
-            <div class="portrait-image-container">
-              <img
-                src="/images/punit-pal.jpg"
-                alt="Punit Pal — Technical Founder and Developer"
-                class="portrait-img"
-                loading="eager"
-                width="360"
-                height="360"
-              />
-              <div class="portrait-scanline-overlay" aria-hidden="true"></div>
-            </div>
-            <div class="portrait-meta-bottom">
-              <div class="meta-tag">
-                <span class="meta-dot"></span>
-                <span class="tech-micro">STATUS: ONLINE / SHIPPING</span>
-              </div>
-              <span class="tech-micro">SN: 5X-HACK-WINNER</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 02: Evidence Strip -->
-  <section
-    class="evidence-strip-section"
-    aria-label="Key Proof and Credentials"
-  >
-    <div class="container">
-      <div class="evidence-grid animate-reveal">
-        <div class="evidence-cell">
-          <span class="evidence-metric heading-md">5&times;</span>
-          <span class="evidence-title tech-label">PODIUM FINISHES</span>
-          <span class="evidence-desc text-body-sm"
-            >1st Place at Arbitrum Core Nexus; 1st Runner-Up at AVAX Kolkata,
-            Monad Delhi &amp; Monad Blitz; 2nd Runner-Up at BrahmaX.</span
-          >
-        </div>
-        <div class="evidence-cell">
-          <span class="evidence-metric heading-md">2&times;</span>
-          <span class="evidence-title tech-label">TOP 15 SELECTIONS</span>
-          <span class="evidence-desc text-body-sm"
-            >Aptos Winter School 2025 (IIT Delhi, ~900 applicants) &amp; Algorand
-            Hack Series 3.0.</span
-          >
-        </div>
-        <div class="evidence-cell">
-          <span class="evidence-metric heading-md">64K+</span>
-          <span class="evidence-title tech-label">LUMA EVENT AUDIENCE</span>
-          <span class="evidence-desc text-body-sm"
-            >Total registrations across hackathons, workshops, and developer demo days.</span
-          >
-        </div>
-        <div class="evidence-cell">
-          <span class="evidence-metric heading-md">70K+</span>
-          <span class="evidence-title tech-label">NEWSLETTER REACH</span>
-          <span class="evidence-desc text-body-sm"
-            >Active technical subscribers receiving ecosystem dispatches and bounty roundups.</span
-          >
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 03: Selected Engineering Work (Varied Editorial Grid) -->
-  <section class="section-padding" aria-label="Selected Engineering Work">
-    <div class="container">
-      <div class="section-header-block animate-reveal">
-        <div class="section-tag-row">
-          <span class="dossier-stamp signal">SECTION 03</span>
-          <span class="tech-label">SELECTED ENGINEERING WORK</span>
-        </div>
-        <div class="section-title-row">
-          <h2 class="heading-lg">
-            COMPILERS, AGENT WORKFLOWS &amp; INFRASTRUCTURE
-          </h2>
-          <a href="/build" class="btn hide-mobile">
-            <span>VIEW ALL 18 PROJECTS</span>
-            <span aria-hidden="true">&rarr;</span>
+  <div class="editorial-home">
+    <section class="identity container" aria-label="Identity">
+      <div class="identity-copy">
+        <p class="eyebrow">Developer / Founder / Ecosystem builder</p>
+        <h1>
+          PUNIT PAL<span class="red-period">.</span>
+        </h1>
+        <p class="identity-line">
+          I build products.
+          <br />I build communities.
+          <br />
+          <span>I bring them together.</span>
+        </p>
+        <p class="identity-support">
+          Building developer tools, AI infrastructure, and communities that help
+          people ship.
+        </p>
+        <div class="editorial-actions">
+          <a class="btn btn-primary" href="#selected-work">
+            Explore work <span aria-hidden="true">↘</span>
+          </a>
+          <a class="text-link" href="/story">
+            About me <span aria-hidden="true">↗</span>
           </a>
         </div>
-        <p class="section-subtitle text-body">
-          Selected technical systems across compiler engineering, visual multi-agent orchestration,
-          and blockchain pre-execution simulation.
-        </p>
       </div>
+      <figure class="identity-photo">
+        <img
+          src="/images/punit-pal.webp"
+          srcset="/images/punit-pal-460.webp 460w, /images/punit-pal.webp 700w"
+          sizes="(max-width: 767px) 230px, 280px"
+          alt="Punit Pal, photographed in a city arcade"
+          width="700"
+          height="700"
+          fetchpriority="high"
+        />
+        <figcaption>Punit Pal / India</figcaption>
+      </figure>
+    </section>
 
-      <!-- Varied Editorial Showcase Grid -->
-      <div class="editorial-work-layout animate-reveal">
-        <!-- 01: PyVax (Large Featured Showcase) -->
-        <article class="dossier-card editorial-feature-card">
-          <div class="card-meta-bar">
-            <div class="meta-left">
-              <span class="card-index-pill tech-label">{pyvax.id}</span>
-              <span class="card-target-pill tech-micro">{pyvax.target}</span>
-              <span class="tech-micro">{pyvax.category}</span>
-            </div>
-            <div class="meta-right">
-              <span class="dossier-stamp signal">{pyvax.placement}</span>
-            </div>
-          </div>
-          <div class="editorial-card-body">
-            <div class="editorial-title-row">
-              <div>
-                <h3 class="heading-md">
-                  <a href={`/build/${pyvax.slug}`} class="title-link">{pyvax.title}</a>
-                </h3>
-                <p class="text-lead project-one-liner">{pyvax.headline}</p>
-              </div>
-              <span class="card-role tech-micro">{pyvax.role}</span>
-            </div>
-            <p class="text-body-sm card-summary-text">{pyvax.summary}</p>
-            <ArchitectureDiagram slug={pyvax.slug} variant="featured" />
-            <div class="card-stack-list">
-              {pyvax.stack.map((t) => (
-                <span class="stack-pill tech-micro">{t}</span>
-              ))}
-            </div>
-          </div>
-          <div class="card-footer">
-            <a href={`/build/${pyvax.slug}`} class="btn btn-primary card-action-btn">
-              <span>INSPECT DOSSIER</span>
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-            <div class="card-secondary-links">
-              <a href={pyvax.repoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn" title="View Source on GitHub">
-                <span>GITHUB</span>
-                <span class="ext-arrow">&nearr;</span>
-              </a>
-              {pyvax.demoUrl && (
-                <a href={pyvax.demoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn" title="Live Documentation">
-                  <span>LIVE SITE</span>
-                  <span class="ext-arrow">&nearr;</span>
-                </a>
+    <section
+      class="editorial-section container"
+      id="selected-work"
+      aria-label="Selected work"
+    >
+      <header class="editorial-heading">
+        <p class="eyebrow">01 / Selected work</p>
+        <h2>
+          Tools for the
+          <br />
+          people building next.
+        </h2>
+        <p>
+          From a familiar programming language to a new execution environment, I
+          work on the tools between an idea and working software. These three
+          projects trace that interest across compilers and agent workflows. The
+          case studies explain what I built, how it works, and the tradeoffs
+          along the way.
+        </p>
+      </header>
+      <div class="flagship-grid">
+        {selected.map((project, i) => (
+          <article class:list={["flagship", `flagship-${project.slug}`]}>
+            <a
+              href={`/build/${project.slug}`}
+              class="project-visual"
+              aria-label={
+                i === 0 ? undefined : `Read the ${project.title} case study`
+              }
+            >
+              {i === 0 ? (
+                <div class="compiler-visual">
+                  <span class="eyebrow">PyVax / Compiler overview</span>
+                  <div class="compiler-languages">
+                    <span>Python</span>
+                    <span class="compiler-arrow" aria-hidden="true">
+                      ↓
+                    </span>
+                    <span>
+                      EVM<span class="red-period">.</span>
+                    </span>
+                  </div>
+                  <span class="compiler-caption">
+                    Python source → bytecode → Avalanche C-Chain
+                  </span>
+                </div>
+              ) : (
+                <img
+                  src={`/images/work/${project.slug}.webp`}
+                  alt={
+                    i === 1
+                      ? "Sol2Rust converter showing a Solidity editor and Rust output pane"
+                      : "FlowMon application with its built-in demo workflow loaded on the agent canvas"
+                  }
+                  width={i === 1 ? 1220 : 1440}
+                  height={i === 1 ? 685 : 960}
+                  loading="lazy"
+                />
               )}
-            </div>
-          </div>
-        </article>
-
-        <!-- 02: Sol2Rust (Large Featured Showcase) -->
-        <article class="dossier-card editorial-feature-card">
-          <div class="card-meta-bar">
-            <div class="meta-left">
-              <span class="card-index-pill tech-label">{sol2rust.id}</span>
-              <span class="card-target-pill tech-micro">{sol2rust.target}</span>
-              <span class="tech-micro">{sol2rust.category}</span>
-            </div>
-            <div class="meta-right">
-              <span class="dossier-stamp solid-signal">{sol2rust.placement}</span>
-            </div>
-          </div>
-          <div class="editorial-card-body">
-            <div class="editorial-title-row">
-              <div>
-                <h3 class="heading-md">
-                  <a href={`/build/${sol2rust.slug}`} class="title-link">{sol2rust.title}</a>
-                </h3>
-                <p class="text-lead project-one-liner">{sol2rust.headline}</p>
-              </div>
-              <span class="card-role tech-micro">{sol2rust.role}</span>
-            </div>
-            <p class="text-body-sm card-summary-text">{sol2rust.summary}</p>
-            <ArchitectureDiagram slug={sol2rust.slug} variant="featured" />
-            <div class="card-stack-list">
-              {sol2rust.stack.map((t) => (
-                <span class="stack-pill tech-micro">{t}</span>
-              ))}
-            </div>
-          </div>
-          <div class="card-footer">
-            <a href={`/build/${sol2rust.slug}`} class="btn btn-primary card-action-btn">
-              <span>INSPECT DOSSIER</span>
-              <span aria-hidden="true">&rarr;</span>
             </a>
-            <div class="card-secondary-links">
-              <a href={sol2rust.repoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn" title="View Source on GitHub">
-                <span>GITHUB</span>
-                <span class="ext-arrow">&nearr;</span>
-              </a>
-              {sol2rust.demoUrl && (
-                <a href={sol2rust.demoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn" title="Live Deployment">
-                  <span>LIVE DEMO</span>
-                  <span class="ext-arrow">&nearr;</span>
+            <div class="flagship-copy">
+              <p class="eyebrow">
+                {i === 0
+                  ? "Python / Avalanche"
+                  : i === 1
+                    ? "Rust / Arbitrum Stylus"
+                    : "TypeScript / Monad"}
+              </p>
+              <h3>
+                <a href={`/build/${project.slug}`}>{project.title}</a>
+              </h3>
+              <p>{summaries[i]}</p>
+              <p class="project-result">
+                {project.placement} ·{" "}
+                {i === 0
+                  ? "AVAX Kolkata"
+                  : i === 1
+                    ? "Core Nexus"
+                    : "Monad Blitz V3"}
+              </p>
+              <div class="project-links">
+                <a class="text-link" href={`/build/${project.slug}`}>
+                  Case study <span aria-hidden="true">↗</span>
                 </a>
-              )}
-            </div>
-          </div>
-        </article>
-
-        <!-- 03: FlowMon (Prominent Agent-Workflow Showcase) -->
-        <article class="dossier-card editorial-feature-card flowmon-spotlight">
-          <div class="card-meta-bar">
-            <div class="meta-left">
-              <span class="card-index-pill tech-label">{flowmon.id}</span>
-              <span class="card-target-pill tech-micro">{flowmon.target}</span>
-              <span class="tech-micro">{flowmon.category}</span>
-            </div>
-            <div class="meta-right">
-              <span class="dossier-stamp signal">{flowmon.placement}</span>
-            </div>
-          </div>
-          <div class="editorial-card-body">
-            <div class="editorial-title-row">
-              <div>
-                <h3 class="heading-md">
-                  <a href={`/build/${flowmon.slug}`} class="title-link">{flowmon.title}</a>
-                </h3>
-                <p class="text-lead project-one-liner">{flowmon.headline}</p>
-              </div>
-              <span class="card-role tech-micro">{flowmon.role}</span>
-            </div>
-            <p class="text-body-sm card-summary-text">{flowmon.summary}</p>
-            <ArchitectureDiagram slug={flowmon.slug} variant="featured" />
-            <div class="card-stack-list">
-              {flowmon.stack.map((t) => (
-                <span class="stack-pill tech-micro">{t}</span>
-              ))}
-            </div>
-          </div>
-          <div class="card-footer">
-            <a href={`/build/${flowmon.slug}`} class="btn btn-primary card-action-btn">
-              <span>INSPECT DOSSIER</span>
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-            <div class="card-secondary-links">
-              <a href={flowmon.repoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn" title="View Source on GitHub">
-                <span>GITHUB</span>
-                <span class="ext-arrow">&nearr;</span>
-              </a>
-              {flowmon.demoUrl && (
-                <a href={flowmon.demoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn" title="Live Deployment">
-                  <span>LIVE DEMO</span>
-                  <span class="ext-arrow">&nearr;</span>
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub ↗
                 </a>
-              )}
-            </div>
-          </div>
-        </article>
-
-        <!-- 04 & 05: Paired Technical Projects (RustAG & RxGR) -->
-        <div class="paired-projects-grid">
-          <!-- RustAG -->
-          <article class="dossier-card paired-card">
-            <div class="card-meta-bar">
-              <div class="meta-left">
-                <span class="card-index-pill tech-label">{rustag.id}</span>
-                <span class="card-target-pill tech-micro">{rustag.target}</span>
-              </div>
-              <span class="dossier-stamp">{rustag.category}</span>
-            </div>
-            <div class="editorial-card-body">
-              <h3 class="heading-sm">
-                <a href={`/build/${rustag.slug}`} class="title-link">{rustag.title}</a>
-              </h3>
-              <p class="tech-micro project-sub-headline">{rustag.headline}</p>
-              <p class="text-body-sm card-summary-text">{rustag.summary}</p>
-              <ArchitectureDiagram slug={rustag.slug} variant="compact" />
-              <div class="card-stack-list">
-                {rustag.stack.slice(0, 4).map((t) => (
-                  <span class="stack-pill tech-micro">{t}</span>
-                ))}
-              </div>
-            </div>
-            <div class="card-footer">
-              <a href={`/build/${rustag.slug}`} class="btn btn-primary card-action-btn">
-                <span>INSPECT DOSSIER</span>
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-              <a href={rustag.repoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn">
-                <span>GITHUB</span>
-                <span class="ext-arrow">&nearr;</span>
-              </a>
-            </div>
-          </article>
-
-          <!-- RxGR -->
-          <article class="dossier-card paired-card">
-            <div class="card-meta-bar">
-              <div class="meta-left">
-                <span class="card-index-pill tech-label">{rxgr.id}</span>
-                <span class="card-target-pill tech-micro">{rxgr.target}</span>
-              </div>
-              <span class="dossier-stamp">{rxgr.category}</span>
-            </div>
-            <div class="editorial-card-body">
-              <h3 class="heading-sm">
-                <a href={`/build/${rxgr.slug}`} class="title-link">{rxgr.title}</a>
-              </h3>
-              <p class="tech-micro project-sub-headline">{rxgr.headline}</p>
-              <p class="text-body-sm card-summary-text">{rxgr.summary}</p>
-              <ArchitectureDiagram slug={rxgr.slug} variant="compact" />
-              <div class="card-stack-list">
-                {rxgr.stack.slice(0, 4).map((t) => (
-                  <span class="stack-pill tech-micro">{t}</span>
-                ))}
-              </div>
-            </div>
-            <div class="card-footer">
-              <a href={`/build/${rxgr.slug}`} class="btn btn-primary card-action-btn">
-                <span>INSPECT DOSSIER</span>
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-              <a href={rxgr.repoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn">
-                <span>GITHUB</span>
-                <span class="ext-arrow">&nearr;</span>
-              </a>
-            </div>
-          </article>
-        </div>
-
-        <!-- 06 & 07: Paired Specialized Projects (Bloopa & APV3RSE) -->
-        <div class="paired-projects-grid">
-          <!-- Bloopa -->
-          <article class="dossier-card paired-card">
-            <div class="card-meta-bar">
-              <div class="meta-left">
-                <span class="card-index-pill tech-label">{bloopa.id}</span>
-                <span class="card-target-pill tech-micro">{bloopa.target}</span>
-              </div>
-              <div class="meta-right">
-                <span class="dossier-stamp signal">{bloopa.placement}</span>
-              </div>
-            </div>
-            <div class="editorial-card-body">
-              <h3 class="heading-sm">
-                <a href={`/build/${bloopa.slug}`} class="title-link">{bloopa.title}</a>
-              </h3>
-              <p class="tech-micro project-sub-headline">{bloopa.headline}</p>
-              <p class="text-body-sm card-summary-text">{bloopa.summary}</p>
-              <ArchitectureDiagram slug={bloopa.slug} variant="compact" />
-              <div class="card-stack-list">
-                {bloopa.stack.slice(0, 4).map((t) => (
-                  <span class="stack-pill tech-micro">{t}</span>
-                ))}
-              </div>
-            </div>
-            <div class="card-footer">
-              <a href={`/build/${bloopa.slug}`} class="btn btn-primary card-action-btn">
-                <span>INSPECT DOSSIER</span>
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-              <a href={bloopa.repoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn">
-                <span>GITHUB</span>
-                <span class="ext-arrow">&nearr;</span>
-              </a>
-            </div>
-          </article>
-
-          <!-- APV3RSE -->
-          <article class="dossier-card paired-card">
-            <div class="card-meta-bar">
-              <div class="meta-left">
-                <span class="card-index-pill tech-label">{apv3rse.id}</span>
-                <span class="card-target-pill tech-micro">{apv3rse.target}</span>
-              </div>
-              <div class="meta-right">
-                <span class="dossier-stamp signal">{apv3rse.placement}</span>
-              </div>
-            </div>
-            <div class="editorial-card-body">
-              <h3 class="heading-sm">
-                <a href={`/build/${apv3rse.slug}`} class="title-link">{apv3rse.title}</a>
-              </h3>
-              <p class="tech-micro project-sub-headline">{apv3rse.headline}</p>
-              <p class="text-body-sm card-summary-text">{apv3rse.summary}</p>
-              <ArchitectureDiagram slug={apv3rse.slug} variant="compact" />
-              <div class="card-stack-list">
-                {apv3rse.stack.slice(0, 4).map((t) => (
-                  <span class="stack-pill tech-micro">{t}</span>
-                ))}
-              </div>
-            </div>
-            <div class="card-footer">
-              <a href={`/build/${apv3rse.slug}`} class="btn btn-primary card-action-btn">
-                <span>INSPECT DOSSIER</span>
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-              <div class="card-secondary-links">
-                <a href={apv3rse.repoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn">
-                  <span>GITHUB</span>
-                  <span class="ext-arrow">&nearr;</span>
-                </a>
-                {apv3rse.demoUrl && (
-                  <a href={apv3rse.demoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn">
-                    <span>LIVE</span>
-                    <span class="ext-arrow">&nearr;</span>
+                {i !== 0 && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Demo ↗
                   </a>
                 )}
               </div>
             </div>
           </article>
-        </div>
-
-        <!-- 08: With Claude (Full-Width Real-World Product Case Study) -->
-        <article class="dossier-card editorial-feature-card with-claude-showcase">
-          <div class="card-meta-bar">
-            <div class="meta-left">
-              <span class="card-index-pill tech-label">{withClaude.id}</span>
-              <span class="card-target-pill tech-micro">{withClaude.target}</span>
-              <span class="tech-micro">{withClaude.category}</span>
-            </div>
-            <div class="meta-right">
-              <span class="dossier-stamp">{withClaude.status}</span>
-            </div>
-          </div>
-          <div class="editorial-card-body">
-            <div class="editorial-title-row">
-              <div>
-                <h3 class="heading-md">
-                  <a href={`/build/${withClaude.slug}`} class="title-link">{withClaude.title}</a>
-                </h3>
-                <p class="text-lead project-one-liner">{withClaude.headline}</p>
-              </div>
-              <span class="card-role tech-micro">{withClaude.role}</span>
-            </div>
-            <p class="text-body-sm card-summary-text">{withClaude.summary}</p>
-            <ArchitectureDiagram slug={withClaude.slug} variant="featured" />
-            <div class="card-stack-list">
-              {withClaude.stack.map((t) => (
-                <span class="stack-pill tech-micro">{t}</span>
-              ))}
-            </div>
-          </div>
-          <div class="card-footer">
-            <a href={`/build/${withClaude.slug}`} class="btn btn-primary card-action-btn">
-              <span>INSPECT DOSSIER</span>
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-            <div class="card-secondary-links">
-              <a href={withClaude.repoUrl} target="_blank" rel="noopener noreferrer" class="btn card-icon-btn" title="View Source on GitHub">
-                <span>GITHUB</span>
-                <span class="ext-arrow">&nearr;</span>
-              </a>
-            </div>
-          </div>
-        </article>
+        ))}
       </div>
-
-      <div class="section-footer-cta animate-reveal">
-        <a href="/build" class="btn" style="width: 100%; justify-content: center; padding: 16px;">
-          <span>EXPLORE COMPLETE ENGINEERING ARCHIVE (18 PROJECTS &amp; PROTOCOLS)</span>
-          <span aria-hidden="true">&rarr;</span>
+      <p class="media-note">
+        Product screens captured from the public demos. PyVax is shown as a
+        compiler overview; its live site is currently unavailable. Screens
+        illustrate the interface, not a benchmark or production guarantee.
+      </p>
+      <div class="supporting-projects">
+        {supporting.map((p) => (
+          <a class="supporting-row" href={`/build/${p.slug}`}>
+            <h3>{p.name}</h3>
+            <div>
+              <span class="eyebrow">{p.category}</span>
+              <p>{p.description}</p>
+            </div>
+            <span class="row-arrow" aria-label="View project">
+              ↗
+            </span>
+          </a>
+        ))}
+      </div>
+      <div class="archive-invitation">
+        <p>
+          The wider archive includes APV3RSE, Bloopa, NeuroFit, PyMon and
+          experiments in developer infrastructure. Each project keeps its
+          implementation notes, source links and technical decisions.
+        </p>
+        <a class="text-link" href="/build">
+          Explore all {projects.length} projects{" "}
+          <span aria-hidden="true">→</span>
         </a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Section 04: Beyond the Code -->
-  <section
-    class="beyond-code-section"
-    aria-label="Beyond The Code: The Three Pillars"
-  >
-    <div class="container">
-      <div class="section-header-block animate-reveal">
-        <div class="section-tag-row">
-          <span class="dossier-stamp">SECTION 04</span>
-          <span class="tech-label">THE THREE PILLARS</span>
-        </div>
-        <h2 class="heading-lg">BEYOND THE CODE // THREE PILLARS OF WORK</h2>
-        <p class="section-subtitle text-body">
-          Writing software is one part of the journey. Designing distribution channels
-          and supporting developer communities who adopt it completes the picture.
-        </p>
-      </div>
-
-      <div class="pillars-grid animate-reveal">
-        <!-- Pillar 1: Systems & Compilers -->
-        <div class="pillar-card dossier-card">
-          <div class="pillar-number tech-label">
-            01 // SYSTEMS &amp; COMPILERS
-          </div>
-          <h3 class="heading-sm pillar-title">Ground-Up Engineering</h3>
-          <p class="text-body-sm pillar-text">
-            Designing compilers, AST transpilers, and pre-execution simulation
-            infrastructure. From lowering Python into EVM bytecode to converting
-            Solidity into Arbitrum Stylus Rust WASM.
+    <section class="community-section" aria-label="Beyond engineering">
+      <div class="container community-grid">
+        <div>
+          <p class="eyebrow">02 / Beyond engineering</p>
+          <h2>
+            Code meets
+            <br />
+            community<span class="red-period">.</span>
+          </h2>
+          <p class="community-lead">
+            I founded Builder Base to connect developers with the tools, people,
+            and opportunities they need to build.
           </p>
-          <div class="pillar-tags">
-            <span class="tech-micro stack-pill">AST Lowering</span>
-            <span class="tech-micro stack-pill">Rust WASM</span>
-            <span class="tech-micro stack-pill">EVM Bytecode</span>
-          </div>
         </div>
-
-        <!-- Pillar 2: Developer Relations -->
-        <div class="pillar-card dossier-card">
-          <div class="pillar-number tech-label">02 // DEVELOPER RELATIONS</div>
-          <h3 class="heading-sm pillar-title">Practical Developer Empathy</h3>
-          <p class="text-body-sm pillar-text">
-            Supporting builders through hands-on technical workshops, live coding
-            walkthroughs, and starter repositories across Claude Community, TigerGraph,
-            and Avalanche.
+        <div class="community-story">
+          <p>
+            That means sitting beside someone debugging their first deployment,
+            preparing a workshop that starts with working code, and creating
+            places where builders can find each other.
           </p>
-          <div class="pillar-tags">
-            <span class="tech-micro stack-pill">Technical Workshops</span>
-            <span class="tech-micro stack-pill">Developer Tooling</span>
-            <span class="tech-micro stack-pill">Live Coding</span>
-          </div>
-        </div>
-
-        <!-- Pillar 3: Ecosystem GTM -->
-        <div class="pillar-card dossier-card">
-          <div class="pillar-number tech-label">03 // ECOSYSTEM GTM</div>
-          <h3 class="heading-sm pillar-title">Community-Led Distribution</h3>
-          <p class="text-body-sm pillar-text">
-            Scaling Builder Base into an ecosystem distribution channel with 64K+
-            event audience on Luma and 70K+ newsletter readers, connecting technology
-            teams with active builders.
+          <p>
+            My Developer Relations and ecosystem work brings together technical
+            workshops, hackathon programs, developer documentation and community
+            distribution across India. Engineering gives me something useful to
+            share; community helps me understand what to build next.
           </p>
-          <div class="pillar-tags">
-            <span class="tech-micro stack-pill">64K+ Luma Reach</span>
-            <span class="tech-micro stack-pill">70K+ Newsletter</span>
-            <span class="tech-micro stack-pill">Hackathons</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 05: Builder Base Founder Case Study -->
-  <section class="section-padding" aria-label="Builder Base Founder Case Study">
-    <div class="container">
-      <div class="dossier-card builderbase-banner animate-reveal">
-        <div class="bb-header-bar">
-          <div class="bb-badge-group">
-            <span class="dossier-stamp solid-signal">FOUNDER CASE STUDY</span>
-            <span class="tech-label"
-              >BUILDER BASE // THE DISTRIBUTION LAYER FOR BUILDERS</span
-            >
-          </div>
-          <a
-            href="https://www.builderbase.xyz"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn bb-visit-btn"
-          >
-            <span>VISIT BUILDERBASE.XYZ</span>
-            <span class="ext-arrow">&nearr;</span>
+          <a class="text-link" href="/grow">
+            Explore ecosystem work <span aria-hidden="true">↗</span>
           </a>
         </div>
-
-        <div class="bb-body">
-          <div class="bb-grid">
-            <div class="bb-narrative">
-              <h3 class="heading-md bb-title">
-                {builderBaseData.positioning}
-              </h3>
-              <p class="text-body">
-                {builderBaseData.narrative}
-              </p>
-              <div class="bb-partner-strip">
-                <span class="tech-label-muted">ACTIVE PROTOCOL PARTNERS:</span>
-                <div class="bb-partner-pills">
-                  {
-                    builderBaseData.partnerEcosystems.map((partner) => (
-                      <span class="tech-micro stack-pill">{partner}</span>
-                    ))
-                  }
-                </div>
-              </div>
-            </div>
-
-            <div class="bb-metrics-col">
-              <div class="bb-metrics-box">
-                {
-                  builderBaseData.channels.map((ch) => (
-                    <div class="bb-metric-row">
-                      <span class="bb-metric-val heading-md">{ch.reach}</span>
-                      <span class="bb-metric-name tech-label">
-                        {ch.channel}
-                      </span>
-                      <span class="bb-metric-desc text-body-sm">
-                        {ch.description}
-                      </span>
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
+        <dl class="reach-strip">
+          <div>
+            <dt>Luma registrations</dt>
+            <dd>64K+</dd>
           </div>
-        </div>
-
-        <div class="bb-footer-bar">
-          <a href="/grow" class="btn btn-primary">
-            <span>READ FULL ECOSYSTEM GTM CASE STUDIES</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 06: Verified Recognition -->
-  <section class="section-padding" aria-label="Verified Hackathon Recognition">
-    <div class="container">
-      <div class="section-header-block animate-reveal">
-        <div class="section-tag-row">
-          <span class="dossier-stamp signal">SECTION 06</span>
-          <span class="tech-label">COMPETITIVE TRACK RECORD</span>
-        </div>
-        <h2 class="heading-lg">VERIFIED HACKATHON ACCOLADES</h2>
-        <p class="section-subtitle text-body">
-          Recognized natively by Arbitrum, Avalanche, Monad, Aptos, and Algorand
-          for shipping high-speed, verified technical prototypes in 48-hour
-          sprints.
+          <div>
+            <dt>Newsletter reach</dt>
+            <dd>70K+</dd>
+          </div>
+          <div>
+            <dt>WhatsApp circles</dt>
+            <dd>2K+</dd>
+          </div>
+        </dl>
+        <p class="reach-note">
+          Owner-reported channel reach. These figures can overlap and do not
+          represent unique active members.
         </p>
       </div>
+    </section>
 
-      <div class="animate-reveal">
-        <HackathonRecord />
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 07: Field Notes -->
-  <section class="section-padding" aria-label="Field Notes and Dispatches">
-    <div class="container">
-      <div class="section-header-block animate-reveal">
-        <div class="section-tag-row">
-          <span class="dossier-stamp">SECTION 07</span>
-          <span class="tech-label"
-            >FIELD NOTES // DISPATCHES FROM THE ARENA</span
-          >
-        </div>
-        <h2 class="heading-lg">MOMENTS OF TECHNICAL MOMENTUM</h2>
-        <p class="section-subtitle text-body">
-          Concise dispatches from intense hackathon weekends, community
-          workshops, and protocol deployments.
+    <section class="editorial-section container" aria-label="Recognition">
+      <header class="editorial-heading recognition-heading">
+        <p class="eyebrow">03 / Recognition</p>
+        <h2>Built under pressure.</h2>
+        <p>
+          Five podium finishes, each with a different problem to solve. Two
+          further projects received Top 15 recognition.
         </p>
+      </header>
+      <div class="recognition-list">
+        {achievements
+          .filter((a) => a.placementType !== "finalist")
+          .map((a) => (
+            <div class="recognition-row">
+              <span class="award-year">{a.date.split(" ").at(-1)}</span>
+              <a
+                class="award-event"
+                href={a.evidenceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${a.competition} event page`}
+              >
+                {a.competition.replace(" (Team1 Hack25)", "")} ↗
+              </a>
+              <strong>{a.placement}</strong>
+              <a class="award-project" href={`/build/${a.projectSlug}`}>
+                {a.projectTitle} ↗
+              </a>
+            </div>
+          ))}
       </div>
-
-      <div class="field-notes-grid animate-reveal">
-        {
-          fieldNotes.map((note) => (
-            <article class="field-note-card dossier-card">
-              <div class="note-meta-bar">
-                <span class="dossier-stamp signal">{note.tag}</span>
-                <span class="tech-micro">{note.date}</span>
-              </div>
-              <div class="note-body">
-                <h3 class="heading-sm note-title">{note.title}</h3>
-                <p class="text-body-sm note-text">{note.body}</p>
-              </div>
-              <div class="note-footer">
-                <a href={note.link} class="inline-link tech-micro">
-                  <span>VIEW CASE STUDY &rarr;</span>
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 08: Contact CTA -->
-  <section
-    class="contact-cta-section"
-    aria-label="Contact and Collaboration CTA"
-  >
-    <div class="container">
-      <div class="dossier-card contact-cta-card animate-reveal">
-        <div class="cta-header-bar">
-          <span class="dossier-stamp solid-signal"
-            >SECTION 08 // CONVERSION</span
-          >
-          <span class="tech-micro">TRANSMISSION CHANNEL</span>
-        </div>
-
-        <div class="cta-inner-grid">
-          <div class="cta-content-col">
-            <h2 class="heading-xl cta-title">HAVE SOMETHING WORTH BUILDING?</h2>
-            <p class="text-lead cta-subtitle">
-              Whether you are recruiting a technical founder, seeking Developer
-              Relations leadership, expanding protocol ecosystem distribution,
-              or exploring compiler and agent collaboration.
+      <div class="finalist-list">
+        {achievements
+          .filter((a) => a.placementType === "finalist")
+          .map((a) => (
+            <p>
+              <a class="text-link" href={`/build/${a.projectSlug}`}>
+                {a.projectTitle}
+              </a>{" "}
+              · {a.placement} ·{" "}
+              <a
+                class="evidence-link"
+                href={a.evidenceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {a.competition} ↗
+              </a>
             </p>
-            <div class="cta-buttons">
-              <a href="/contact" class="btn btn-primary cta-btn">
-                <span>INITIATE TRANSMISSION</span>
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-              <a href="mailto:punit@builderbase.xyz" class="btn cta-btn">
-                <span>punit@builderbase.xyz</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="cta-channels-col">
-            <span class="tech-label-muted">FAST-RESPONSE CHANNELS:</span>
-            <div class="cta-channel-list">
-              <a
-                href="https://x.com/its_punit05"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cta-channel-item"
-              >
-                <span class="tech-label">X / TWITTER:</span>
-                <span class="tech-micro inline-link">@its_punit05 &nearr;</span>
-              </a>
-              <a
-                href="https://github.com/ShahiTechnovation"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cta-channel-item"
-              >
-                <span class="tech-label">GITHUB:</span>
-                <span class="tech-micro inline-link"
-                  >@ShahiTechnovation &nearr;</span
-                >
-              </a>
-              <a
-                href="https://linkedin.com/in/punit05"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cta-channel-item"
-              >
-                <span class="tech-label">LINKEDIN:</span>
-                <span class="tech-micro inline-link">in/punit05 &nearr;</span>
-              </a>
-            </div>
-          </div>
-        </div>
+          ))}
       </div>
-    </div>
-  </section>
+      <p class="media-note">
+        Placements are owner-reported. Event and project links provide context;
+        they are not independently verified award certificates.
+      </p>
+    </section>
+
+    <section
+      class="editorial-section field-section container"
+      aria-label="Field notes"
+    >
+      <header class="editorial-heading">
+        <p class="eyebrow">04 / Field notes</p>
+        <h2>Beyond the screen.</h2>
+        <p>
+          A few moments from the communities around the code. Photographs from
+          Builder Base’s public event archive, with the people and conversations
+          that give this work its purpose.
+        </p>
+      </header>
+      <div class="field-grid">
+        <figure>
+          <img
+            src="/images/work/community-1.webp"
+            width="1400"
+            height="647"
+            alt="Builder Base participants gathered together holding a community banner"
+            loading="lazy"
+          />
+          <figcaption>
+            01 / The people behind Builder Base. A community gathering, shared
+            in the event archive.
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/work/community-2.webp"
+            width="1280"
+            height="960"
+            alt="Claude Community participants gathered in an auditorium in Bhopal"
+            loading="lazy"
+          />
+          <figcaption>
+            02 / Claude Community, Bhopal. A room full of builders, photographed
+            together after a community session.
+          </figcaption>
+        </figure>
+      </div>
+      <a
+        class="text-link photo-source"
+        href="https://www.builderbase.xyz"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        From the Builder Base archive ↗
+      </a>
+    </section>
+
+    <section class="home-contact container" aria-label="Contact">
+      <p class="eyebrow">05 / Get in touch</p>
+      <h2>
+        Let’s build
+        <br />
+        something useful<span class="red-period">.</span>
+      </h2>
+      <div>
+        <p>
+          A developer tool, a technical workshop, or a community with a reason
+          to exist. Tell me what you’re working on.
+        </p>
+        <a class="text-link" href="mailto:punit@builderbase.xyz">
+          punit@builderbase.xyz ↗
+        </a>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
-
-<style>
-  /* Section Padding Tokens */
-  .section-padding {
-    padding-top: clamp(3.5rem, 7vw, 6.5rem);
-    padding-bottom: clamp(3.5rem, 7vw, 6.5rem);
-  }
-
-  /* Section Header Standard Block */
-  .section-header-block {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: clamp(2rem, 4vw, 3.5rem);
-  }
-
-  .section-tag-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-title-row {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .section-subtitle {
-    max-width: 780px;
-  }
-
-  /* Hero Section Styling */
-  .hero-section {
-    padding-top: clamp(2rem, 5vw, 4rem);
-    padding-bottom: clamp(3rem, 6vw, 5rem);
-    border-bottom: 1px solid var(--border-color);
-    background-color: var(--bg-primary);
-  }
-
-  .hero-dossier-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 16px;
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    margin-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .dossier-bar-left,
-  .dossier-bar-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .hero-main-grid {
-    display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: clamp(24px, 4.5vw, 56px);
-    align-items: start;
-  }
-
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .signal-dot {
-    color: var(--accent-color);
-  }
-
-  .hero-headline {
-    font-size: clamp(1.25rem, 2.2vw, 1.65rem);
-    font-weight: 600;
-    line-height: 1.35;
-    color: var(--text-primary);
-    max-width: 760px;
-  }
-
-  .hero-support {
-    max-width: 720px;
-    font-size: 1.05rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-top: 6px;
-  }
-
-  .hero-btn {
-    padding: 14px 26px;
-  }
-
-  .hero-social-strip {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding-top: 14px;
-    border-top: 1px dashed var(--border-color);
-  }
-
-  .social-label {
-    color: var(--text-dim);
-  }
-
-  .social-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 4px 10px;
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    transition: all var(--transition-fast);
-  }
-
-  .social-pill:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-    transform: translateY(-1px);
-  }
-
-  /* Portrait Card Styling */
-  .portrait-card {
-    background-color: var(--bg-surface);
-    border: 2px solid var(--border-strong);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-dossier);
-    overflow: hidden;
-  }
-
-  .portrait-meta-top,
-  .portrait-meta-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px;
-    background-color: var(--bg-surface-dim);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .portrait-meta-bottom {
-    border-bottom: none;
-    border-top: 1px solid var(--border-color);
-  }
-
-  .portrait-image-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    background-color: var(--color-night);
-  }
-
-  .portrait-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(15%) contrast(105%);
-    transition: filter var(--transition-base);
-  }
-
-  .portrait-card:hover .portrait-img {
-    filter: grayscale(0%) contrast(100%);
-  }
-
-  .portrait-scanline-overlay {
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 2px,
-      rgba(0, 0, 0, 0.08) 2px,
-      rgba(0, 0, 0, 0.08) 4px
-    );
-    pointer-events: none;
-  }
-
-  .meta-tag {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  /* Section 02: Evidence Strip */
-  .evidence-strip-section {
-    background-color: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
-    padding: clamp(2rem, 4vw, 3rem) 0;
-  }
-
-  .evidence-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(16px, 3vw, 32px);
-  }
-
-  .evidence-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    border-left: 2px solid var(--border-color);
-    padding-left: 18px;
-  }
-
-  .evidence-cell:first-child {
-    border-left-color: var(--accent-color);
-  }
-
-  .evidence-metric {
-    color: var(--text-primary);
-  }
-
-  .evidence-title {
-    color: var(--accent-color);
-  }
-
-  /* Section 03: Varied Editorial Showcase Grid */
-  .editorial-work-layout {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(24px, 4vw, 40px);
-  }
-
-  .editorial-feature-card {
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-
-  .editorial-card-body {
-    padding: clamp(20px, 3.5vw, 32px);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .editorial-title-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .project-one-liner {
-    margin-top: 4px;
-    color: var(--text-muted);
-    font-size: 1.05rem;
-  }
-
-  .project-sub-headline {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    margin-top: 2px;
-  }
-
-  .card-summary-text {
-    line-height: 1.6;
-    color: var(--text-primary);
-  }
-
-  .paired-projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(20px, 3vw, 32px);
-  }
-
-  .paired-card {
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .paired-card .editorial-card-body {
-    flex: 1;
-  }
-
-  .card-icon-btn {
-    padding: 6px 14px;
-    font-size: 0.72rem;
-  }
-
-  .flowmon-spotlight {
-    border-color: var(--border-strong);
-    box-shadow: var(--shadow-dossier);
-  }
-
-  .with-claude-showcase {
-    background-color: var(--bg-surface);
-  }
-
-  /* Section 04: Beyond Code Pillars */
-  .beyond-code-section {
-    background-color: var(--bg-surface-dim);
-    padding: clamp(3.5rem, 7vw, 6.5rem) 0;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(16px, 2.5vw, 28px);
-  }
-
-  .pillar-card {
-    padding: clamp(24px, 3vw, 32px);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    border-radius: var(--radius-sm);
-  }
-
-  .pillar-number {
-    color: var(--accent-color);
-  }
-
-  .pillar-title {
-    margin: 0;
-  }
-
-  .pillar-text {
-    flex: 1;
-    color: var(--text-muted);
-  }
-
-  .pillar-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 8px;
-  }
-
-  /* Section 05: Builder Base */
-  .builderbase-banner {
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-
-  .bb-header-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 20px;
-    background-color: var(--bg-surface-dim);
-    border-bottom: 1px solid var(--border-color);
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .bb-badge-group {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .bb-visit-btn {
-    padding: 6px 12px;
-    font-size: 0.75rem;
-  }
-
-  .bb-body {
-    padding: clamp(24px, 4vw, 40px);
-  }
-
-  .bb-grid {
-    display: grid;
-    grid-template-columns: 1.25fr 1fr;
-    gap: clamp(24px, 4vw, 48px);
-    align-items: start;
-  }
-
-  .bb-narrative {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .bb-partner-strip {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 12px;
-  }
-
-  .bb-partner-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .bb-metrics-box {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    padding: 24px;
-    background-color: var(--bg-surface-dim);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-  }
-
-  .bb-metric-row {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding-bottom: 14px;
-    border-bottom: 1px dashed var(--border-color);
-  }
-
-  .bb-metric-row:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .bb-metric-val {
-    color: var(--accent-color);
-  }
-
-  .bb-footer-bar {
-    padding: 14px 20px;
-    background-color: var(--bg-surface-dim);
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  /* Section 07: Field Notes */
-  .field-notes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(16px, 2.5vw, 24px);
-  }
-
-  .field-note-card {
-    display: flex;
-    flex-direction: column;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-
-  .note-meta-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 16px;
-    background-color: var(--bg-surface-dim);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .note-body {
-    padding: 20px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-  }
-
-  .note-title {
-    margin: 0;
-  }
-
-  .note-footer {
-    padding: 10px 16px;
-    background-color: var(--bg-surface-dim);
-    border-top: 1px solid var(--border-color);
-  }
-
-  /* Section 08: Contact CTA */
-  .contact-cta-section {
-    padding-bottom: clamp(4rem, 8vw, 7rem);
-  }
-
-  .contact-cta-card {
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-
-  .cta-header-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
-    background-color: var(--bg-surface-dim);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .cta-inner-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: clamp(24px, 4vw, 48px);
-    padding: clamp(28px, 5vw, 56px);
-  }
-
-  .cta-content-col {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .cta-buttons {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-  }
-
-  .cta-channels-col {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 24px;
-    background-color: var(--bg-surface-dim);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-  }
-
-  .cta-channel-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .cta-channel-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text-primary);
-  }
-
-  .show-mobile {
-    display: none;
-  }
-
-  /* Responsive Breakpoints */
-  @media (max-width: 1024px) {
-    .hero-main-grid {
-      grid-template-columns: 1fr;
-    }
-    .hero-portrait-wrapper {
-      max-width: 320px;
-      margin: 0 auto;
-    }
-    .evidence-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .pillars-grid {
-      grid-template-columns: 1fr;
-    }
-    .bb-grid {
-      grid-template-columns: 1fr;
-    }
-    .field-notes-grid {
-      grid-template-columns: 1fr;
-    }
-    .cta-inner-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .paired-projects-grid {
-      grid-template-columns: 1fr;
-    }
-    .evidence-grid {
-      grid-template-columns: 1fr;
-    }
-    .show-mobile {
-      display: block;
-      margin-top: 24px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hero-actions {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    .hero-btn,
-    .hero-cmd-btn {
-      width: 100%;
-      text-align: center;
-      justify-content: center;
-    }
-    .dossier-bar-left,
-    .dossier-bar-right {
-      width: 100%;
-      justify-content: space-between;
-    }
-  }
-</style>

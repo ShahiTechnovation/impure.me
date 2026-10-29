@@ -1,3 +1,5 @@
+> Historical V2.1 report. For current findings and corrections, including X402 and unsupported performance claims, see [V2.2 verification](CONTENT_VERIFICATION_V2_2.md). Earlier “verified” claims are not independent certification.
+
 # impure.me V2.1 — Content & Claim Verification Report
 
 **Date of Audit**: October 29, 2026  

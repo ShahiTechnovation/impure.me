@@ -1,5 +1,4 @@
 ---
-// src/pages/grow.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 import GtmCaseCard from "../components/ecosystems/GtmCaseCard.astro";
 import {
@@ -10,614 +9,173 @@ import {
 ---
 
 <BaseLayout
-  title="Grow // Developer Relations & Ecosystem GTM — Punit Pal"
-  description="Developer relations, ecosystem distribution, and community growth case studies by Punit Pal, founder of Builder Base."
+  title="Builder Base & Developer Relations — Punit Pal"
+  description="The community side of Punit Pal’s work: Builder Base, technical workshops, hackathons and developer programs across India."
 >
-  <div class="grow-page-wrapper">
-    <!-- Header Hero -->
-    <section class="grow-hero-section" aria-label="Ecosystem GTM Introduction">
-      <div class="container">
-        <div class="grow-meta-bar animate-reveal">
-          <span class="dossier-stamp signal">DOSSIER // GROW.LOG</span>
-          <span class="tech-micro">FOUNDER: BUILDER BASE</span>
-          <span class="tech-micro hide-mobile"
-            >SPECIALIZATION: ECOSYSTEM GTM / DEVELOPER RELATIONS</span
-          >
-        </div>
-
-        <div class="grow-header-content animate-reveal">
-          <h1 class="heading-xl grow-title">
-            DEVELOPER RELATIONS &amp; ECOSYSTEM GTM<span class="signal-dot"
-              >.</span
-            >
-          </h1>
-          <p class="text-lead grow-subtitle">
-            "Code without distribution is an echo chamber. Community without
-            engineering is empty noise."
-          </p>
-          <p class="text-body grow-desc">
-            Through Builder Base, I organize developer programs and help technology companies
-            reach builders across India. I work directly with engineering teams to demystify
-            complex developer tools, run hands-on workshops, and organize high-density hackathons
-            that produce working software.
-          </p>
-        </div>
-
-        <!-- Ecosystem Metrics Strip -->
-        <div class="grow-stats-strip dossier-card animate-reveal">
-          <div class="grow-stat-cell">
-            <span class="grow-stat-num heading-md">64,000+</span>
-            <span class="grow-stat-label tech-label">LUMA EVENT AUDIENCE</span>
-            <span class="grow-stat-sub text-body-sm"
-              >Total registrations across hackathons, workshops &amp; developer
-              summits.</span
-            >
-          </div>
-          <div class="grow-stat-cell">
-            <span class="grow-stat-num heading-md">70,000+</span>
-            <span class="grow-stat-label tech-label">NEWSLETTER REACH</span>
-            <span class="grow-stat-sub text-body-sm"
-              >Technical subscribers receiving weekly ecosystem dispatches and
-              bounties.</span
-            >
-          </div>
-          <div class="grow-stat-cell">
-            <span class="grow-stat-num heading-md">2,000+</span>
-            <span class="grow-stat-label tech-label">WHATSAPP CIRCLES</span>
-            <span class="grow-stat-sub text-body-sm"
-              >Active builders and hackathon teams in curated regional discussion groups.</span
-            >
-          </div>
-          <div class="grow-stat-cell">
-            <span class="grow-stat-num heading-md">4</span>
-            <span class="grow-stat-label tech-label">ACTIVE HUBS</span>
-            <span class="grow-stat-sub text-body-sm"
-              >Regional developer programs across Delhi, Mumbai, Bhopal, and Himachal.</span
-            >
-          </div>
-        </div>
+  <div class="container editorial-page">
+    <header class="grow-intro">
+      <div>
+        <p class="eyebrow">Grow / Founder of Builder Base</p>
+        <h1 class="editorial-title">
+          Good tools.
+          <br />
+          People to build with<span class="red-period">.</span>
+        </h1>
+        <p class="editorial-intro">
+          I started Builder Base to bring developers together around working
+          code. Today, that work spans technical workshops, hackathons and
+          community programs across India.
+        </p>
+        <a
+          class="text-link"
+          href="https://www.builderbase.xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit Builder Base ↗
+        </a>
       </div>
-    </section>
-
-    <!-- Builder Base Deep-Dive Section -->
-    <section class="section-padding" aria-label="Builder Base Case Study">
-      <div class="container">
-        <div class="section-header-block animate-reveal">
-          <div class="section-tag-row">
-            <span class="dossier-stamp solid-signal">FOUNDER INITIATIVE</span>
-            <span class="tech-label"
-              >BUILDER BASE // THE DISTRIBUTION ENGINE</span
-            >
+      <figure>
+        <img
+          src="/images/work/community-1.webp"
+          width="1400"
+          height="647"
+          alt="Builder Base participants holding a community banner"
+        />
+        <figcaption>From the Builder Base event archive.</figcaption>
+      </figure>
+    </header>
+    <section class="editorial-block" aria-label="Builder Base reach">
+      <h2>A community with several ways in.</h2>
+      <dl class="reach-strip">
+        {builderBaseData.channels.map((c) => (
+          <div>
+            <dt>{c.channel}</dt>
+            <dd>{c.reach}</dd>
           </div>
-          <h2 class="heading-lg">THE DISTRIBUTION LAYER FOR BUILDERS</h2>
-          <p class="section-subtitle text-body">
-            Founded by Punit Pal to bridge the gap between protocol foundations
-            building complex infrastructure and developers seeking genuine
-            opportunities, distribution, and hackathon mentorship.
+        ))}
+      </dl>
+      <p class="media-note">
+        Owner-reported channel reach, as of October 2026. Audiences may overlap;
+        these are not deduplicated members or independently verified active-user
+        counts.
+      </p>
+      <details class="editorial-disclosure">
+        <summary>How Builder Base works</summary>
+        <div class="editorial-prose">
+          <p>{builderBaseData.narrative}</p>
+          <h3>From a first conversation to a first project</h3>
+          <p>
+            Regional meetups and developer outreach help people find a place to
+            start. Technical dispatches introduce tools and opportunities. In
+            workshops, builders clone starter repositories, set up local
+            environments and work through code together.
+          </p>
+          <p>
+            Hackathon programs give that learning a concrete challenge.
+            Mentorship and introductions to grant programs or contributor
+            opportunities help builders continue afterwards.
+          </p>
+          <h3>Distribution channels</h3>
+          <ul>
+            {builderBaseData.channels.map((c) => (
+              <li>
+                <strong>{c.channel}:</strong> {c.description}
+              </li>
+            ))}
+          </ul>
+          <h3>Ecosystems in the community’s work</h3>
+          <p>{builderBaseData.partnerEcosystems.join(" · ")}</p>
+          <p>
+            These are areas of community activity and contributor experience,
+            not a claim of formal corporate partnerships.
           </p>
         </div>
-
-        <div class="bb-detailed-card dossier-card animate-reveal">
-          <div class="bb-detailed-grid">
-            <div class="bb-detailed-narrative">
-              <h3 class="heading-md">How Builder Base Operates</h3>
-              <p class="text-body">
-                Traditional developer communities rely on noisy, unindexed
-                Discord channels that developers mute immediately. Builder Base
-                was designed as an intentional distribution funnel:
-              </p>
-              <ul class="bb-points-list">
-                <li class="text-body-sm">
-                  <strong class="tech-label"
-                    >01 // High-Density Regional Hackathons:</strong
-                  > We partner with protocol foundations (Arbitrum, Avalanche, Monad,
-                  Aptos) to host focused hackathons that prioritize real deployed
-                  dApps over generic pitch decks.
-                </li>
-                <li class="text-body-sm">
-                  <strong class="tech-label"
-                    >02 // Technical Code Walks &amp; Starter Kits:</strong
-                  > Instead of marketing presentations, our workshops have builders
-                  clone repositories, configure local RPC testnets, and deploy verifiable
-                  contracts.
-                </li>
-                <li class="text-body-sm">
-                  <strong class="tech-label"
-                    >03 // Long-Term Talent Incubation:</strong
-                  > Winning hackathon teams are directly connected with protocol grants,
-                  venture accelerators, and full-time engineering roles.
-                </li>
-              </ul>
-              <div class="bb-actions">
-                <a
-                  href="https://www.builderbase.xyz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn btn-primary"
-                >
-                  <span>VISIT BUILDER BASE PLATFORM</span>
-                  <span class="ext-arrow">&nearr;</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="bb-distribution-breakdown">
-              <span class="tech-label-muted"
-                >VERIFIED DISTRIBUTION CHANNELS:</span
-              >
-              <div class="distribution-channels-list">
-                {
-                  builderBaseData.channels.map((c) => (
-                    <div class="dist-channel-card">
-                      <span class="dist-reach heading-md">{c.reach}</span>
-                      <span class="dist-name tech-label">{c.channel}</span>
-                      <span class="dist-desc text-body-sm">
-                        {c.description}
-                      </span>
-                    </div>
-                  ))
-                }
-              </div>
-              <div class="dist-disclaimer">
-                <span class="tech-micro">
-                  * Note: Channel statistics represent total reach across
-                  distinct platforms and are not combined as unique members.
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- The Developer Activation Cycle: Acquire -> Engage -> Build -> Activate -> Continue -->
-        <div class="bb-lifecycle-model dossier-card animate-reveal" style="margin-top: 32px;">
-          <div class="bb-header-bar">
-            <span class="dossier-stamp signal">OPERATIONAL PROCESS</span>
-            <span class="tech-label">THE DEVELOPER ACTIVATION CYCLE</span>
-          </div>
-          <div class="lifecycle-steps-grid">
-            <div class="lifecycle-step">
-              <span class="step-num tech-label">01 // ACQUIRE</span>
-              <h4 class="heading-sm step-title">Developer Outreach</h4>
-              <p class="text-body-sm">Multi-city campus connections, developer circles, and Luma calendars reaching 64K+ registrations.</p>
-            </div>
-            <div class="lifecycle-step">
-              <span class="step-num tech-label">02 // ENGAGE</span>
-              <h4 class="heading-sm step-title">Technical Content</h4>
-              <p class="text-body-sm">Weekly newsletter (70K+ subscribers) breaking down bounties, technical guides, and project spotlights.</p>
-            </div>
-            <div class="lifecycle-step">
-              <span class="step-num tech-label">03 // BUILD</span>
-              <h4 class="heading-sm step-title">Hands-On Code Walks</h4>
-              <p class="text-body-sm">In-person workshops where builders clone starter repos, configure local RPCs, and run test suites.</p>
-            </div>
-            <div class="lifecycle-step">
-              <span class="step-num tech-label">04 // ACTIVATE</span>
-              <h4 class="heading-sm step-title">Hackathon Sprints</h4>
-              <p class="text-body-sm">Intensive sprints solving concrete protocol challenges, prioritizing deployed code over pitch decks.</p>
-            </div>
-            <div class="lifecycle-step">
-              <span class="step-num tech-label">05 // CONTINUE</span>
-              <h4 class="heading-sm step-title">Grants &amp; Roles</h4>
-              <p class="text-body-sm">Direct introductions connecting winning teams to protocol grants, accelerators, and contributor roles.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </details>
     </section>
-
-    <!-- Ecosystem Leadership Roles -->
-    <section
-      class="section-padding ecosystem-roles-section"
-      aria-label="Ecosystem Roles"
-    >
-      <div class="container">
-        <div class="section-header-block animate-reveal">
-          <div class="section-tag-row">
-            <span class="dossier-stamp">SECTION 02</span>
-            <span class="tech-label">PROTOCOL &amp; COMMUNITY ROLES</span>
+    <section class="editorial-block" aria-label="Developer programs">
+      <p class="eyebrow">Programs / Select a case study</p>
+      <h2>Work that brings people together.</h2>
+      <p class="program-note">
+        Program accounts and outcomes are owner-reported. Upcoming work is
+        labeled separately from completed activity.
+      </p>
+      {gtmInitiatives.map((initiative) => (
+        <details class="editorial-disclosure" id={initiative.id.toLowerCase()}>
+          <summary>
+            {initiative.title}
+            <span class="eyebrow">
+              {initiative.period} / {initiative.location}
+            </span>
+          </summary>
+          <div>
+            <GtmCaseCard initiative={initiative} />
           </div>
-          <h2 class="heading-lg">ECOSYSTEM LEADERSHIP</h2>
-          <p class="section-subtitle text-body">
-            Active community contributor roles across frontier AI and blockchain
-            ecosystems. Transparently distinguished from direct corporate
-            employment.
-          </p>
-        </div>
-
-        <div class="roles-grid animate-reveal">
-          {
-            ecosystemRoles.map((r) => (
-              <div class="role-card dossier-card">
-                <div class="role-meta-header">
-                  <span class="tech-label role-org">{r.organization}</span>
-                  <span class="tech-micro role-status">{r.period}</span>
-                </div>
-                <h3 class="heading-sm role-title">{r.role}</h3>
-                <p class="tech-micro role-scope">{r.scope}</p>
-                <ul class="role-contribs-list">
-                  {r.contributions.map((c) => (
-                    <li class="text-body-sm">
-                      <span class="resp-bullet tech-label" aria-hidden="true">
-                        &gt;
-                      </span>
-                      <span>{c}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))
-          }
-        </div>
-      </div>
+        </details>
+      ))}
     </section>
-
-    <!-- Selected GTM Case Studies -->
-    <section class="section-padding" aria-label="Selected GTM Case Studies">
-      <div class="container">
-        <div class="section-header-block animate-reveal">
-          <div class="section-tag-row">
-            <span class="dossier-stamp signal">SECTION 03</span>
-            <span class="tech-label">GTM INITIATIVES // CASE STUDIES</span>
-          </div>
-          <h2 class="heading-lg">DETAILED GTM CASE STUDIES</h2>
-          <p class="section-subtitle text-body">
-            Measurable, developer-focused go-to-market executions demonstrating
-            developer acquisition, activation, and retention.
-          </p>
-        </div>
-
-        <div class="gtm-cases-stack animate-reveal">
-          {
-            gtmInitiatives.map((initiative) => (
-              <GtmCaseCard initiative={initiative} />
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <!-- Bottom CTA -->
-    <section class="grow-cta-section" aria-label="Ecosystem Partnership CTA">
-      <div class="container">
-        <div class="dossier-card grow-cta-card animate-reveal">
-          <div class="grow-cta-header">
-            <span class="dossier-stamp solid-signal"
-              >COLLABORATION INVITATION</span
-            >
-            <span class="tech-micro">PARTNERSHIP PROTOCOL</span>
-          </div>
-          <div class="grow-cta-body">
-            <h2 class="heading-lg">
-              NEED DEVELOPER DISTRIBUTION FOR YOUR PROTOCOL?
-            </h2>
-            <p class="text-lead grow-cta-text">
-              Let's design a high-signal hackathon, technical workshop
-              curriculum, or developer acquisition campaign that turns
-              whitepapers into deployed software.
+    <section class="editorial-block" aria-label="Community roles">
+      <h2>Along the way.</h2>
+      <p class="program-note">
+        Community and contributor roles, rather than corporate employment or
+        endorsement.
+      </p>
+      {ecosystemRoles.map((role) => (
+        <details class="editorial-disclosure">
+          <summary>
+            {role.organization}
+            <span class="eyebrow">
+              {role.role} / {role.period}
+            </span>
+          </summary>
+          <div class="editorial-prose">
+            <p>
+              {role.scope} · {role.status}
             </p>
-            <div class="grow-cta-actions">
-              <a href="/contact" class="btn btn-primary">
-                <span>CONNECT FOR ECOSYSTEM GTM</span>
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-              <a href="mailto:punit@builderbase.xyz" class="btn">
-                <span>punit@builderbase.xyz</span>
-              </a>
-            </div>
+            <ul>
+              {role.contributions.map((c) => (
+                <li>{c}</li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </div>
+        </details>
+      ))}
     </section>
+    <div class="editorial-block">
+      <h2>Have a program in mind?</h2>
+      <a class="text-link" href="/contact">
+        Let’s talk ↗
+      </a>
+    </div>
   </div>
 </BaseLayout>
-
 <style>
-  .grow-hero-section {
-    padding-top: clamp(2.5rem, 5vw, 4.5rem);
-    padding-bottom: clamp(2.5rem, 5vw, 4rem);
-    border-bottom: 1px solid var(--border-color);
-    background-color: var(--bg-primary);
-  }
-
-  .grow-meta-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 16px;
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .grow-header-content {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    max-width: 860px;
-    margin-bottom: clamp(2rem, 4vw, 3.5rem);
-  }
-
-  .grow-title {
-    margin: 0;
-  }
-
-  .signal-dot {
-    color: var(--accent-color);
-  }
-
-  .grow-stats-strip {
+  .grow-intro {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(16px, 2.5vw, 24px);
-    padding: clamp(20px, 3vw, 28px);
-    border-radius: var(--radius-sm);
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
   }
-
-  .grow-stat-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    border-left: 2px solid var(--border-color);
-    padding-left: 16px;
+  .grow-intro img {
+    width: 100%;
+    height: auto;
   }
-
-  .grow-stat-cell:first-child {
-    border-left-color: var(--accent-color);
+  .grow-intro .text-link {
+    margin-top: 24px;
   }
-
-  .grow-stat-num {
-    color: var(--text-primary);
-  }
-
-  .grow-stat-label {
-    color: var(--accent-color);
-  }
-
-  .grow-stat-sub {
+  .program-note {
+    max-width: 65ch;
+    margin-bottom: 28px;
+    font-size: 0.9rem;
     color: var(--text-muted);
   }
-
-  /* Builder Base Detailed Card */
-  .bb-detailed-card {
-    border-radius: var(--radius-sm);
-    overflow: hidden;
+  .editorial-block {
+    max-width: 1000px;
   }
-
-  .bb-detailed-grid {
-    display: grid;
-    grid-template-columns: 1.25fr 1fr;
-    gap: clamp(24px, 4vw, 48px);
-    padding: clamp(24px, 4vw, 40px);
-  }
-
-  .bb-detailed-narrative {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .bb-points-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 8px;
-  }
-
-  .bb-actions {
-    margin-top: 16px;
-  }
-
-  .bb-distribution-breakdown {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 24px;
-    background-color: var(--bg-surface-dim);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-  }
-
-  .distribution-channels-list {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .dist-channel-card {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding-bottom: 12px;
-    border-bottom: 1px dashed var(--border-color);
-  }
-
-  .dist-channel-card:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .dist-reach {
-    color: var(--accent-color);
-  }
-
-  .dist-name {
-    color: var(--text-primary);
-  }
-
-  .dist-desc {
-    color: var(--text-muted);
-  }
-
-  .dist-disclaimer {
-    color: var(--text-dim);
-    padding-top: 8px;
-  }
-
-  /* Operational Lifecycle */
-  .bb-lifecycle-model {
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-
-  .lifecycle-steps-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1px;
-    background-color: var(--border-color);
-  }
-
-  .lifecycle-step {
-    background-color: var(--bg-surface);
-    padding: 20px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .step-num {
-    color: var(--accent-color);
-  }
-
-  .step-title {
-    margin: 0;
-  }
-
-  @media (max-width: 1024px) {
-    .lifecycle-steps-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 600px) {
-    .lifecycle-steps-grid {
+  @media (max-width: 767px) {
+    .grow-intro {
       grid-template-columns: 1fr;
-    }
-  }
-
-  /* Ecosystem Roles */
-  .ecosystem-roles-section {
-    background-color: var(--bg-surface-dim);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .roles-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(16px, 2.5vw, 24px);
-  }
-
-  .role-card {
-    padding: clamp(20px, 3vw, 28px);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    border-radius: var(--radius-sm);
-  }
-
-  .role-meta-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
-  }
-
-  .role-org {
-    color: var(--accent-color);
-  }
-
-  .role-status {
-    color: var(--text-dim);
-  }
-
-  .role-title {
-    margin: 0;
-  }
-
-  .role-scope {
-    color: var(--text-muted);
-  }
-
-  .role-contribs-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 6px;
-  }
-
-  .role-contribs-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .resp-bullet {
-    color: var(--accent-color);
-  }
-
-  /* GTM Stack */
-  .gtm-cases-stack {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(24px, 4vw, 40px);
-  }
-
-  /* Bottom CTA */
-  .grow-cta-section {
-    padding-bottom: clamp(4rem, 8vw, 7rem);
-  }
-
-  .grow-cta-card {
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-
-  .grow-cta-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
-    background-color: var(--bg-surface-dim);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .grow-cta-body {
-    padding: clamp(28px, 5vw, 48px);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 800px;
-  }
-
-  .grow-cta-actions {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-  }
-
-  @media (max-width: 900px) {
-    .grow-stats-strip {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .bb-detailed-grid {
-      grid-template-columns: 1fr;
-    }
-    .roles-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .grow-stats-strip {
-      grid-template-columns: 1fr;
+      gap: 30px;
     }
   }
 </style>

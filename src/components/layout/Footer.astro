@@ -1,353 +1,102 @@
 ---
-// src/components/layout/Footer.astro
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
-  <!-- Marquee Ribbon -->
-  <div class="footer-marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-segment">
-        COMPILERS &amp; DEV TOOLS // AI MULTI-AGENT ORCHESTRATION // ARBITRUM STYLUS // MONAD EVM // AVALANCHE // APTOS // 5X PODIUM FINISHER // BUILDER BASE //
-      </span>
-      <span class="marquee-segment">
-        COMPILERS &amp; DEV TOOLS // AI MULTI-AGENT ORCHESTRATION // ARBITRUM STYLUS // MONAD EVM // AVALANCHE // APTOS // 5X PODIUM FINISHER // BUILDER BASE //
-      </span>
-    </div>
-  </div>
-
-  <div class="container footer-content">
-    <div class="footer-grid">
-      <!-- Col 1: Identity & Value Statement -->
-      <div class="footer-col brand-col">
-        <a href="/" class="footer-brand">
-          <span class="brand-name">PUNIT PAL</span>
-          <span class="brand-badge tech-micro">IMPURE&reg;</span>
-        </a>
-        <p class="footer-tagline">
-          I build products. I build communities. I bring them together.
-        </p>
-        <p class="text-body-sm footer-bio">
-          Technical founder and ecosystem builder working at the intersection of compiler engineering, AI agent infrastructure, high-throughput blockchains, and developer-led distribution.
-        </p>
-        <div class="footer-status-pill">
-          <span class="meta-dot"></span>
-          <span class="tech-micro">STATUS: OPEN FOR TECHNICAL FOUNDING &amp; ECOSYSTEM GTM</span>
-        </div>
-      </div>
-
-      <!-- Col 2: Navigation Links -->
-      <div class="footer-col">
-        <div class="footer-col-title tech-label">DOSSIER INDEX</div>
-        <ul class="footer-links-list">
-          <li><a href="/" class="footer-link">01 // Overview</a></li>
-          <li><a href="/build" class="footer-link">02 // Engineering Portfolio</a></li>
-          <li><a href="/grow" class="footer-link">03 // Developer Relations &amp; GTM</a></li>
-          <li><a href="/story" class="footer-link">04 // Personal Journey &amp; Education</a></li>
-          <li><a href="/contact" class="footer-link">05 // Direct Transmission</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Ecosystem & Verified Channels -->
-      <div class="footer-col">
-        <div class="footer-col-title tech-label">ECOSYSTEM &amp; SOCIALS</div>
-        <ul class="footer-links-list">
-          <li>
-            <a href="https://github.com/ShahiTechnovation" target="_blank" rel="noopener noreferrer" class="footer-link">
-              GitHub <span class="ext-arrow">&nearr;</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://x.com/its_punit05" target="_blank" rel="noopener noreferrer" class="footer-link">
-              X / Twitter <span class="ext-arrow">&nearr;</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/in/punit05" target="_blank" rel="noopener noreferrer" class="footer-link">
-              LinkedIn <span class="ext-arrow">&nearr;</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://farcaster.xyz/0x9899" target="_blank" rel="noopener noreferrer" class="footer-link">
-              Farcaster <span class="ext-arrow">&nearr;</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.builderbase.xyz" target="_blank" rel="noopener noreferrer" class="footer-link">
-              Builder Base <span class="ext-arrow">&nearr;</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Col 4: Technical Colophon & Easter Egg Trigger -->
-      <div class="footer-col">
-        <div class="footer-col-title tech-label">COLOPHON &amp; SPECS</div>
-        <p class="text-body-sm">
-          Designed with editorial typography and brutalist dossier styling. Built using <strong>Astro 7</strong>, TypeScript strict mode, CSS Custom Properties, and static HTML generation. Zero third-party trackers.
-        </p>
-        <div class="easter-egg-wrapper">
-          <button
-            type="button"
-            id="easter-egg-btn"
-            class="easter-egg-btn"
-            aria-expanded="false"
-            aria-controls="easter-egg-terminal"
-          >
-            <span class="tech-micro">[&gt;] SYSTEM_TELEMETRY</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Hidden Terminal Easter Egg (Non-intrusive) -->
-    <div id="easter-egg-terminal" class="easter-egg-box" hidden>
-      <div class="easter-egg-header">
-        <span class="tech-micro">SYS_TELEMETRY // RETRO DOSSIER HOMAGE</span>
-        <span class="tech-micro">ID-001845</span>
-      </div>
-      <div class="easter-egg-body font-mono">
-        <p>&gt; RUN sys_query --telemetry</p>
-        <p>&gt; ARCHITECTURE: ASTRO_SSG_STATIC // HOST: VERCEL_EDGE</p>
-        <p>&gt; PROTOCOLS_VERIFIED: ARBITRUM_STYLUS, AVALANCHE_C_CHAIN, MONAD_EVM, APTOS_MOVE, SOLANA</p>
-        <p>&gt; COMMUNITY_NODE: BUILDER_BASE [64,000+ AUDIENCE REGISTERED]</p>
-        <p>&gt; PODIUM_WINS: 5X PODIUM [SOL2RUST 1ST, PYVAX 1ST-RU, PYMON 1ST-RU, FLOWMON 1ST-RU, NEUROFIT 2ND-RU]</p>
-        <p>&gt; HOMAGE: Conceptualized with respect to original dossier roots &amp; creative identity.</p>
-        <p class="signal-text">&gt; SYSTEM STATUS: 100% OPERATIONAL. READY TO COLLABORATE.</p>
-      </div>
-    </div>
-
-    <!-- Bottom Copyright & Coordinate Bar -->
-    <div class="footer-bottom">
-      <div class="footer-bottom-left">
-        <span class="tech-micro">&copy; 2024–{currentYear} PUNIT PAL. ALL RIGHTS RESERVED.</span>
-      </div>
-      <div class="footer-bottom-right">
-        <span class="tech-micro">COORDINATES: BHOPAL // DELHI // MUMBAI</span>
-        <span class="tech-micro">DOMAIN: IMPURE.ME</span>
-      </div>
-    </div>
+<footer class="quiet-footer">
+  <div class="container">
+    <a
+      href="/"
+      class="footer-wordmark"
+      aria-label="IMPURE® — Punit Pal homepage"
+    >
+      IMPURE®
+    </a>
+    <nav aria-label="Social links">
+      <a
+        href="https://github.com/ShahiTechnovation"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub ↗
+      </a>
+      <a
+        href="https://x.com/its_punit05"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        X ↗
+      </a>
+      <a
+        href="https://linkedin.com/in/punit05"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn ↗
+      </a>
+      <a
+        href="https://farcaster.xyz/0x9899"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Farcaster ↗
+      </a>
+    </nav>
+    <span>© {currentYear} Punit Pal</span>
+    <details>
+      <summary>Colophon</summary>
+      <p>
+        Built with Astro and TypeScript. Inspired by paper, editorial typography
+        and the original IMPURE identity. No third-party trackers.
+      </p>
+    </details>
   </div>
 </footer>
-
 <style>
-  .site-footer {
-    border-top: 1px solid var(--border-color);
-    background-color: var(--bg-surface);
-    position: relative;
-    z-index: 10;
+  .quiet-footer {
+    border-top: 1px solid var(--editorial-rule);
+    padding: 30px 0;
   }
-
-  .footer-marquee {
-    overflow: hidden;
-    white-space: nowrap;
-    border-bottom: 1px solid var(--border-color);
-    background-color: var(--color-night);
-    color: #F4F1EB;
-    padding: 10px 0;
+  .quiet-footer > .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 40px;
   }
-
-  .marquee-track {
-    display: inline-flex;
-    animation: marqueeScroll 35s linear infinite;
+  .footer-wordmark {
+    font: 700 1.25rem var(--font-display);
   }
-
-  .marquee-segment {
-    font-family: var(--font-mono);
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-right: auto;
+  }
+  nav a,
+  summary {
     font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding-right: 2rem;
+    padding: 12px 0;
+    min-height: 44px;
   }
-
-  @keyframes marqueeScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .footer-content {
-    padding-top: clamp(3rem, 6vw, 5rem);
-    padding-bottom: 2rem;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: clamp(24px, 4vw, 48px);
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-
-  .footer-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-  }
-
-  .footer-tagline {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.125rem;
-    line-height: 1.35;
-    margin-bottom: 0.75rem;
-    color: var(--text-primary);
-  }
-
-  .footer-bio {
-    margin-bottom: 1.25rem;
-  }
-
-  .footer-status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 10px;
-    background-color: var(--bg-surface-dim);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-  }
-
-  .footer-col-title {
-    margin-bottom: 1rem;
-    color: var(--text-dim);
-  }
-
-  .footer-links-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .footer-link {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
+  span {
+    font-size: 0.7rem;
     color: var(--text-muted);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    transition: color var(--transition-fast);
   }
-
-  .footer-link:hover {
-    color: var(--accent-color);
-  }
-
-  .ext-arrow {
-    font-size: 0.9em;
-    color: var(--text-dim);
-  }
-
-  .easter-egg-wrapper {
-    margin-top: 1.25rem;
-  }
-
-  .easter-egg-btn {
-    padding: 6px 12px;
-    background-color: var(--bg-surface-dim);
-    border: 1px dashed var(--border-color);
-    border-radius: var(--radius-sm);
-    color: var(--text-muted);
+  summary {
     cursor: pointer;
-    transition: all var(--transition-fast);
   }
-
-  .easter-egg-btn:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
+  details p {
+    max-width: 400px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
   }
-
-  .easter-egg-box {
-    margin-bottom: 2rem;
-    background-color: var(--color-night);
-    color: #ECE8E0;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    padding: 16px;
-    box-shadow: var(--shadow-md);
-  }
-
-  .easter-egg-box[hidden] {
-    display: none;
-  }
-
-  .easter-egg-header {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #2C2E33;
-    margin-bottom: 12px;
-    color: var(--text-dim);
-  }
-
-  .easter-egg-body {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .signal-text {
-    color: var(--accent-color);
-    font-weight: 700;
-  }
-
-  .footer-bottom {
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .footer-bottom-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  @media (max-width: 900px) {
-    .footer-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-    .brand-col {
-      grid-column: span 2;
-    }
-  }
-
   @media (max-width: 600px) {
-    .footer-grid {
-      grid-template-columns: 1fr;
+    nav {
+      width: 100%;
+      order: 3;
+      gap: 22px;
     }
-    .brand-col {
-      grid-column: span 1;
+    details {
+      order: 4;
     }
   }
 </style>
-
-<script>
-  function setupEasterEgg() {
-    const btn = document.getElementById('easter-egg-btn');
-    const terminal = document.getElementById('easter-egg-terminal');
-
-    if (!btn || !terminal) return;
-
-    btn.addEventListener('click', () => {
-      const isHidden = terminal.hidden;
-      terminal.hidden = !isHidden;
-      btn.setAttribute('aria-expanded', String(isHidden));
-    });
-  }
-
-  setupEasterEgg();
-  document.addEventListener('astro:page-load', setupEasterEgg);
-</script>
-

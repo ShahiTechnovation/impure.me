@@ -1,0 +1,11 @@
+{
+  "routes": 23,
+  "projects": 18,
+  "layoutChecks": 322,
+  "accessibilityChecks": 37,
+  "layout": [],
+  "accessibility": [],
+  "consoleErrors": [],
+  "brokenInternalLinks": [],
+  "interactions": "passed: skip link, focus, mobile menu/trap/Escape, theme persistence, command search/keyboard navigation, archive search/filter/reset, disclosure keyboard activation, copy email"
+}

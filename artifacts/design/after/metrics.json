@@ -1,0 +1,68 @@
+[
+  {
+    "width": 1440,
+    "height": 5937,
+    "words": 661,
+    "bodyWords": 690,
+    "sections": [
+      {
+        "name": "Identity",
+        "words": 39
+      },
+      {
+        "name": "Selected work",
+        "words": 306
+      },
+      {
+        "name": "Beyond engineering",
+        "words": 111
+      },
+      {
+        "name": "Recognition",
+        "words": 103
+      },
+      {
+        "name": "Field notes",
+        "words": 71
+      },
+      {
+        "name": "Contact",
+        "words": 31
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "height": 7378,
+    "words": 661,
+    "bodyWords": 680,
+    "sections": [
+      {
+        "name": "Identity",
+        "words": 39
+      },
+      {
+        "name": "Selected work",
+        "words": 306
+      },
+      {
+        "name": "Beyond engineering",
+        "words": 111
+      },
+      {
+        "name": "Recognition",
+        "words": 103
+      },
+      {
+        "name": "Field notes",
+        "words": 71
+      },
+      {
+        "name": "Contact",
+        "words": 31
+      }
+    ],
+    "overflow": false
+  }
+]

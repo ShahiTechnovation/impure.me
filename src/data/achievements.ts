@@ -30,7 +30,7 @@ export const achievements: Achievement[] = [
     evidenceLabel: 'View Core Nexus Hackathon on Luma',
     summary: 'Awarded 1st Place for building a high-speed Solidity-to-Rust transpiler enabling frictionless smart contract migration onto Arbitrum Stylus WASM.',
     metrics: '1st Place / 50k INR Award',
-    verified: true
+    verified: false
   },
   {
     id: 'ACH-02',
@@ -46,7 +46,7 @@ export const achievements: Achievement[] = [
     evidenceLabel: 'View AVAX Kolkata Hack25 on Luma',
     summary: 'Awarded 1st Runner-Up for engineering a Python-to-EVM compiler allowing developers to write smart contracts natively in Python for Avalanche C-Chain.',
     metrics: '1st Runner-Up / $500 Award',
-    verified: true
+    verified: false
   },
   {
     id: 'ACH-03',
@@ -62,7 +62,7 @@ export const achievements: Achievement[] = [
     evidenceLabel: 'View Monad Delhi V2 on Luma',
     summary: 'Awarded 1st Runner-Up for bringing Python-native smart contract compilation and deployment toolchains to Monad parallel EVM.',
     metrics: '1st Runner-Up / $500 Award',
-    verified: true
+    verified: false
   },
   {
     id: 'ACH-04',
@@ -76,9 +76,9 @@ export const achievements: Achievement[] = [
     date: 'March 2026',
     evidenceUrl: 'https://luma.com/blitz-delhi-mar-2026',
     evidenceLabel: 'View Monad Blitz V3 on Luma',
-    summary: 'Awarded 1st Runner-Up for visual multi-agent orchestration enabling 43 protocol agents to execute on-chain pipelines with zero glue code.',
-    metrics: '1st Runner-Up / 43 Protocol Agents',
-    verified: true
+    summary: 'Awarded 1st Runner-Up for visual multi-agent orchestration connecting protocol agents into visual on-chain workflows.',
+    metrics: '1st Runner-Up / Visual Agent Workflows',
+    verified: false
   },
   {
     id: 'ACH-05',
@@ -94,7 +94,7 @@ export const achievements: Achievement[] = [
     evidenceLabel: 'View BrahmaX 1.0 on Unstop',
     summary: 'Awarded 2nd Runner-Up for adaptive neural network fitness modeling that customizes progressive training regimes based on real-time feedback.',
     metrics: '2nd Runner-Up / 3k INR Award',
-    verified: true
+    verified: false
   },
   {
     id: 'ACH-06',
@@ -106,11 +106,11 @@ export const achievements: Achievement[] = [
     host: 'Aptos Foundation & IIT Delhi',
     ecosystem: 'Aptos (Move VM)',
     date: 'January 2025',
-    evidenceUrl: 'https://www.apv3rse.xyz',
-    evidenceLabel: 'View APV3RSE Platform & Showcase',
+    evidenceUrl: 'https://github.com/ShahiTechnovation/Apv3rse',
+    evidenceLabel: 'View APV3RSE source repository (project context)',
     summary: 'Selected as Top 15 Finalist at IIT Delhi among ~900 applicants for natural language Move contract generation and in-browser IDE integration.',
     metrics: 'Top 15 / ~900 Applicants',
-    verified: true
+    verified: false
   },
   {
     id: 'ACH-07',
@@ -126,7 +126,7 @@ export const achievements: Achievement[] = [
     evidenceLabel: 'View Bloopa Repository on GitHub',
     summary: 'Selected as Top 15 Finalist for on-chain credit infrastructure and programmable micro-lending for autonomous AI agents.',
     metrics: 'Top 15 Finalist Selection',
-    verified: true
+    verified: false
   }
 ];
 

@@ -10,6 +10,7 @@ export interface Project {
   featured: boolean;
   repoUrl: string;
   demoUrl?: string;
+  unavailableDemoUrl?: string;
   evidenceUrl?: string;
   evidenceLabel?: string;
   award?: string;
@@ -42,7 +43,7 @@ export const projects: Project[] = [
     status: 'Production Open Source // AVAX Kolkata 1st Runner-Up',
     featured: true,
     repoUrl: 'https://github.com/ShahiTechnovation/pyvax-cli',
-    demoUrl: 'https://pyvax.xyz',
+    unavailableDemoUrl: 'https://pyvax.xyz',
     evidenceUrl: 'https://luma.com/T1-Hack25-Kolkata',
     evidenceLabel: 'AVAX Kolkata (Team1 Hack25) — 1st Runner-Up',
     award: '1st Runner-Up // AVAX Kolkata',
@@ -163,7 +164,7 @@ impl VaultContract {
     award: '1st Runner-Up // Monad Blitz V3',
     placement: '1st Runner-Up',
     stack: ['TypeScript', 'Next.js', 'Agent Message Protocol (AMP)', 'React Flow', 'Monad EVM', 'Chainlink Oracles'],
-    summary: 'Visual multi-agent orchestration system for Web3 pipelines. Developers drag 43 protocol agents onto an interactive canvas, wire them together with Agent Message Protocol, and execute live on-chain operations with zero glue code.',
+    summary: 'Visual multi-agent orchestration system for Web3 pipelines. Developers drag protocol agents onto an interactive canvas, wire them together with Agent Message Protocol, and execute live on-chain operations with zero glue code.',
     problem: 'Chaining decentralized finance actions across multiple protocols (oracles, lending vaults, DEX aggregators, cross-chain bridges) requires hundreds of lines of fragile SDK glue code, manual nonce synchronization, and custom error rollback handlers. Autonomous agents lack an interoperable protocol to pass structured transaction data to one another.',
     contribution: 'Architected the Agent Message Protocol (AMP) specification where output envelopes from upstream agents directly satisfy input schema requirements of downstream agents. Built the visual graph canvas, live dependency resolver, and transaction batcher running against Monad testnet.',
     architecture: 'A DAG-based execution pipeline where each agent is an isolated execution worker conforming to a strict input/output interface. When an upstream trigger fires (e.g., Chainlink ETH price deviation), the AMP dispatcher propagates typed state envelopes to intermediate analytical agents (Lido yield monitors) and terminal execution agents (Uniswap router, Base transaction executor).',
@@ -196,13 +197,13 @@ export async function executeAgentPipeline(
 }`
     },
     challenges: [
-      'Managing asynchronous state race conditions when multiple parallel agents resolve dependencies at 10,000 TPS speed.',
+      'Managing asynchronous state when parallel agents resolve workflow dependencies.',
       'Implementing atomic multi-agent rollbacks if an on-chain execution step reverts midway through the canvas graph.',
-      'Connecting 43 distinct protocol adapters (Uniswap, Lido, Aave, Chainlink) with zero mock responses.'
+      'Distinguishing implemented protocol adapters from placeholder integrations in the agent catalog.'
     ],
     results: [
       'Awarded 1st Runner-Up at Monad Blitz V3.',
-      'Successfully orchestrated 43 live protocol agents across 23 Web3 protocols.',
+      'Built a visual workflow editor with a protocol-agent catalog and demo pipelines; integration completeness varies by agent.',
       'Demonstrated sub-second pipeline throughput on Monad high-throughput EVM testnet.'
     ],
     relatedSlugs: ['bloopa', 'rxgr', 'apv3rse'],
@@ -372,7 +373,7 @@ def evaluate_agent_credit(agent_account: Expr) -> Expr:
     status: 'Top 15 Finalist // Aptos Winterschool IIT Delhi',
     featured: true,
     repoUrl: 'https://github.com/ShahiTechnovation/Apv3rse',
-    demoUrl: 'https://www.apv3rse.xyz',
+    unavailableDemoUrl: 'https://www.apv3rse.xyz',
     evidenceLabel: 'Aptos Winter School 2025 (IIT Delhi) — Top 15 Finalist (~900 applicants)',
     award: 'Top 15 Finalist // Aptos Winterschool',
     placement: 'Top 15 Finalist',
@@ -431,11 +432,11 @@ module apv3rse::marketplace {
     repoUrl: 'https://github.com/ShahiTechnovation/with-claude',
     award: 'Independent Community Platform',
     placement: 'Active',
-    stack: ['Astro', 'React', 'TypeScript', 'Neon PostgreSQL', 'Drizzle ORM', 'Privy', 'Better Auth', 'Vercel Blob', 'Resend'],
+    stack: ['Astro', 'React', 'TypeScript', 'Neon PostgreSQL', 'Drizzle ORM', 'Privy', 'Vercel Blob', 'Resend'],
     summary: 'Full-stack discovery and community showcase platform for developers building software with Claude. Features community project submissions, moderation review workflows, verified builder badges, and categorized technical showcases.',
     problem: 'Developer prototypes, tools, and experiments built with Claude models are frequently scattered across social channels and forums without a unified index, persistent showcase directory, or structured taxonomy.',
-    contribution: 'Architected and built the full-stack platform using Astro with React islands for dynamic interactions. Structured the database schema using Drizzle ORM backed by Neon serverless PostgreSQL, with Privy and Better Auth authentication, Vercel Blob asset storage, and Resend for transactional notification workflows.',
-    architecture: 'A hybrid architecture utilizing Astro static site generation for sub-50ms project directory indexing and React islands for dynamic client states (submission forms, user authentication, review queues). Integrates Drizzle ORM with Neon serverless PostgreSQL for relational project metadata, Privy/Better Auth for builder identity, and Resend for review status notifications.',
+    contribution: 'Architected and built the full-stack platform using Astro with React islands for dynamic interactions. Structured the database schema using Drizzle ORM backed by Neon serverless PostgreSQL, with Privy authentication, Vercel Blob asset storage, and Resend for transactional notification workflows.',
+    architecture: 'Astro renders static pages alongside server-rendered routes for live data. A React island supplies Privy authentication. Drizzle ORM and Neon PostgreSQL store project metadata, Vercel Blob stores uploads, and Resend handles notification workflows.',
     codeSnippet: {
       language: 'typescript',
       title: 'schema/projects.ts — Drizzle ORM Schema & Type Definition (Illustrative)',
@@ -490,7 +491,7 @@ export type NewProjectInput = typeof projects.$inferInsert;`
     award: '1st Runner-Up // Monad Delhi V2',
     placement: '1st Runner-Up',
     stack: ['Python', 'EVM Opcodes', 'Monad EVM', 'Web3.py'],
-    summary: 'Enables Python developers to author and deploy native smart contracts on Monad 10,000 TPS EVM with automated RPC deployment tooling.',
+    summary: 'Enables Python developers to author and deploy native smart contracts on Monad EVM with automated RPC deployment tooling.',
     problem: 'Extending Python compilation to high-speed asynchronous EVM architectures like Monad.',
     contribution: 'Integrated PyVax core compiler targeting Monad testnet RPC parameters and gas schedules.',
     architecture: 'Python AST lowering directly into Monad EVM compatible opcode binaries.',
@@ -560,7 +561,7 @@ export type NewProjectInput = typeof projects.$inferInsert;`
     status: 'Live IDE Platform',
     featured: false,
     repoUrl: 'https://github.com/ShahiTechnovation/zerothon',
-    demoUrl: 'https://zerothon.vercel.app',
+    unavailableDemoUrl: 'https://zerothon.vercel.app',
     award: 'Multi-EVM Developer Tool',
     placement: 'Active',
     stack: ['Python', 'WebAssembly', 'Monaco Editor', 'Chainlist RPC'],
@@ -592,8 +593,8 @@ export type NewProjectInput = typeof projects.$inferInsert;`
     problem: 'Developer communities require accessible, fast web portals that load instantly without heavy client-side JavaScript or fragile server dependencies during high-traffic hackathon launches.',
     contribution: 'Architected and built the static web experience using Astro 7, delivering fast load times and responsive editorial layouts.',
     architecture: 'Static Site Generation (SSG) architecture built with Astro 7 and TypeScript, integrating external Luma event calendars and newsletter distribution channels.',
-    challenges: ['Maintaining sub-50ms page load speeds and zero client-side JavaScript overhead across high-traffic launch days.'],
-    results: ['Primary digital home supporting Builder Base distribution across 64K+ event audience and 70K+ newsletter readers.'],
+    challenges: ['Keeping event discovery responsive while integrating external calendars and interactive community features.'],
+    results: ['Primary digital home for Builder Base; channel reach is owner-reported and is not a count of unique active members.'],
     relatedSlugs: ['with-claude'],
     verifiedDate: 'October 2026'
   },
@@ -696,17 +697,17 @@ export type NewProjectInput = typeof projects.$inferInsert;`
     headline: 'Decentralized Compute-Session & Lifecycle Settlement Protocol',
     category: 'Experiments',
     role: 'Systems & Protocol Engineer',
-    target: 'Solana & Distributed Systems',
+    target: 'EVM / Base Sepolia',
     status: 'Research Protocol',
     featured: false,
     repoUrl: 'https://github.com/ShahiTechnovation/X402',
     award: 'Compute Session Protocol',
     placement: 'Active',
-    stack: ['Rust', 'Solana', 'Decentralized Compute', 'Session Protocols'],
+    stack: ['Solidity', 'Hardhat', 'TypeScript', 'OpenZeppelin', 'Base Sepolia'],
     summary: 'Decentralized compute-session protocol implementing node registration, session lifecycle management, and cryptographic payment settlement.',
     problem: 'Distributed compute networks lack standardized, lightweight session protocols to track resource allocation, verify session duration, and settle micropayments deterministically.',
-    contribution: 'Implemented node registration mechanisms, session lifecycle state machines, and payment settlement logic in Rust.',
-    architecture: 'Compute nodes register capabilities and deposit operational collateral; clients initiate signed session handles; periodic heartbeat proofs verify uptime before triggering settlement releases on Solana.',
+    contribution: 'Implemented Solidity contracts for node registration, compute-session management and token settlement, with Hardhat tooling.',
+    architecture: 'X402Token supplies ERC-20 protocol payments, NodeRegistry manages compute-node registration, and SessionManager handles session deposits, lifecycle and settlement. Hardhat scripts target local development and Base Sepolia.',
     challenges: ['Ensuring deterministic session teardown and settlement without latency bottlenecks.'],
     results: ['Specification and protocol implementation for decentralized node session lifecycle management.'],
     relatedSlugs: ['bloopa', 'flowmon'],

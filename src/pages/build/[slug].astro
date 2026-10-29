@@ -1,13 +1,13 @@
 ---
 // src/pages/build/[slug].astro
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ArchitectureDiagram from '../../components/projects/ArchitectureDiagram.astro';
-import { projects, type Project } from '../../data/projects';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArchitectureDiagram from "../../components/projects/ArchitectureDiagram.astro";
+import { projects, type Project } from "../../data/projects";
 
 export function getStaticPaths() {
   return projects.map((project) => ({
     params: { slug: project.slug },
-    props: { project }
+    props: { project },
   }));
 }
 
@@ -17,7 +17,9 @@ interface Props {
 
 const { project } = Astro.props;
 
-const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.slug));
+const relatedProjects = projects.filter((p) =>
+  project.relatedSlugs?.includes(p.slug),
+);
 ---
 
 <BaseLayout
@@ -45,15 +47,30 @@ const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.
     <header class="case-hero-header">
       <div class="container">
         <div class="case-title-block animate-reveal">
-          <div class="case-env-tag tech-label-muted">ENVIRONMENT: {project.target}</div>
+          <div class="case-env-tag tech-label-muted">
+            ENVIRONMENT: {project.target}
+          </div>
           <h1 class="heading-xl case-main-title">
-            {project.title}<span class="signal-dot">.</span>
+            {project.title}
+            <span class="signal-dot">.</span>
           </h1>
-          <p class="case-headline text-lead">
-            {project.headline}
-          </p>
+          <p class="case-headline text-lead">{project.headline}</p>
         </div>
 
+        {["sol2rust", "flowmon"].includes(project.slug) && (
+          <figure class="case-media">
+            <img
+              src={`/images/work/${project.slug}.webp`}
+              width={project.slug === "sol2rust" ? 1220 : 1440}
+              height={project.slug === "sol2rust" ? 685 : 960}
+              alt={`${project.title} public demo interface`}
+            />
+            <figcaption>
+              Public demo captured October 29, 2026. An interface view, not a
+              performance benchmark.
+            </figcaption>
+          </figure>
+        )}
         <!-- Technical Parameters Grid -->
         <div class="case-params-grid dossier-card animate-reveal">
           <div class="param-cell">
@@ -69,28 +86,50 @@ const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.
             <span class="param-val tech-label">{project.status}</span>
           </div>
           <div class="param-cell">
-            <span class="param-key tech-micro">LAST VERIFIED</span>
+            <span class="param-key tech-micro">CONTENT REVIEWED</span>
             <span class="param-val tech-label">{project.verifiedDate}</span>
           </div>
         </div>
 
+        {project.unavailableDemoUrl && (
+          <p class="media-note">
+            Live site unavailable when checked on October 29, 2026:{" "}
+            {project.unavailableDemoUrl}. Source and case study remain
+            available.
+          </p>
+        )}
         <!-- Direct Actions Bar -->
         <div class="case-actions-bar animate-reveal">
           {project.repoUrl && (
-            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
               <span>VIEW SOURCE ON GITHUB</span>
               <span class="ext-arrow">&nearr;</span>
             </a>
           )}
           {project.demoUrl && (
-            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" class="btn">
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn"
+            >
               <span>EXPLORE LIVE DEPLOYMENT</span>
               <span class="ext-arrow">&nearr;</span>
             </a>
           )}
           {project.evidenceUrl && (
-            <a href={project.evidenceUrl} target="_blank" rel="noopener noreferrer" class="btn">
-              <span>VERIFY HACKATHON EVIDENCE</span>
+            <a
+              href={project.evidenceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn"
+            >
+              <span>EVENT / PROJECT REFERENCE</span>
               <span class="ext-arrow">&nearr;</span>
             </a>
           )}
@@ -103,17 +142,19 @@ const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.
       <div class="container reading-container">
         <!-- 01: Problem Statement -->
         <section class="case-section-block animate-reveal">
-          <div class="section-marker tech-label">01 // PROBLEM &amp; MOTIVATION</div>
-          <h2 class="heading-md section-heading">The Architectural Problem</h2>
-          <p class="text-body case-narrative-paragraph">
-            {project.problem}
-          </p>
+          <div class="section-marker tech-label">
+            01 // PROBLEM &amp; MOTIVATION
+          </div>
+          <h2 class="heading-md section-heading">Why I built it</h2>
+          <p class="text-body case-narrative-paragraph">{project.problem}</p>
         </section>
 
         <!-- 02: Punit's Specific Contribution -->
         <section class="case-section-block animate-reveal">
-          <div class="section-marker tech-label">02 // INDIVIDUAL CONTRIBUTION</div>
-          <h2 class="heading-md section-heading">Systems Design &amp; Execution</h2>
+          <div class="section-marker tech-label">
+            02 // INDIVIDUAL CONTRIBUTION
+          </div>
+          <h2 class="heading-md section-heading">What I built</h2>
           <p class="text-body case-narrative-paragraph">
             {project.contribution}
           </p>
@@ -121,8 +162,10 @@ const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.
 
         <!-- 03: Technical Architecture -->
         <section class="case-section-block animate-reveal">
-          <div class="section-marker tech-label">03 // ARCHITECTURE &amp; PIPELINE</div>
-          <h2 class="heading-md section-heading">Technical Pipeline &amp; VM Lowering</h2>
+          <div class="section-marker tech-label">
+            03 // ARCHITECTURE &amp; PIPELINE
+          </div>
+          <h2 class="heading-md section-heading">How it works</h2>
           <p class="text-body case-narrative-paragraph">
             {project.architecture}
           </p>
@@ -132,7 +175,9 @@ const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.
 
           <!-- Stack Tags -->
           <div class="tech-stack-showcase">
-            <span class="tech-label-muted">ACTIVE TECHNOLOGIES &amp; CRATES:</span>
+            <span class="tech-label-muted">
+              ACTIVE TECHNOLOGIES &amp; CRATES:
+            </span>
             <div class="stack-pills-row">
               {project.stack.map((t) => (
                 <span class="stack-pill tech-micro">{t}</span>
@@ -145,21 +190,30 @@ const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.
         {project.codeSnippet && (
           <section class="case-section-block animate-reveal">
             <div class="section-marker tech-label">04 // CODE ARTIFACT</div>
-            <h2 class="heading-md section-heading">Implementation Snippet</h2>
+            <h2 class="heading-md section-heading">
+              Illustrative code example
+            </h2>
             <div class="code-artifact-card">
               <div class="code-artifact-header">
                 <span class="tech-micro">{project.codeSnippet.title}</span>
-                <span class="tech-micro">{project.codeSnippet.language.toUpperCase()}</span>
+                <span class="tech-micro">
+                  {project.codeSnippet.language.toUpperCase()}
+                </span>
               </div>
-              <pre><code>{project.codeSnippet.code}</code></pre>
+              <pre
+                tabindex="0"
+                aria-label="Scrollable code example"
+              ><code>{project.codeSnippet.code}</code></pre>
             </div>
           </section>
         )}
 
         <!-- 05: Challenges & Tradeoffs -->
         <section class="case-section-block animate-reveal">
-          <div class="section-marker tech-label">05 // CHALLENGES &amp; TRADEOFFS</div>
-          <h2 class="heading-md section-heading">Engineering Roadblocks Solved</h2>
+          <div class="section-marker tech-label">
+            05 // CHALLENGES &amp; TRADEOFFS
+          </div>
+          <h2 class="heading-md section-heading">Technical decisions</h2>
           <div class="challenges-list">
             {project.challenges.map((c, idx) => (
               <div class="challenge-item dossier-card">
@@ -170,14 +224,26 @@ const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.
           </div>
         </section>
 
-        <!-- 06: Verified Results & Accolades -->
+        <!-- 06: Results and reported recognition & Accolades -->
         <section class="case-section-block animate-reveal">
-          <div class="section-marker tech-label">06 // IMPACT &amp; VALIDATION</div>
-          <h2 class="heading-md section-heading">Verified Results</h2>
+          <div class="section-marker tech-label">
+            06 // IMPACT &amp; VALIDATION
+          </div>
+          <h2 class="heading-md section-heading">
+            Results and reported recognition
+          </h2>
+          {project.evidenceUrl && (
+            <p class="media-note">
+              Placements are owner-reported. Event and project links provide
+              context, not independent award certification.
+            </p>
+          )}
           <ul class="results-bullet-list">
             {project.results.map((r) => (
               <li class="result-bullet-item text-body">
-                <span class="bullet-arrow tech-label" aria-hidden="true">&gt;</span>
+                <span class="bullet-arrow tech-label" aria-hidden="true">
+                  &gt;
+                </span>
                 <span>{r}</span>
               </li>
             ))}
@@ -191,7 +257,10 @@ const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.
             <h2 class="heading-md section-heading">Connected Systems</h2>
             <div class="related-grid">
               {relatedProjects.map((rel) => (
-                <a href={`/build/${rel.slug}`} class="related-card dossier-card">
+                <a
+                  href={`/build/${rel.slug}`}
+                  class="related-card dossier-card"
+                >
                   <span class="tech-label signal-text">{rel.id}</span>
                   <h4 class="heading-sm">{rel.title}</h4>
                   <p class="text-body-sm">{rel.headline}</p>
@@ -435,4 +504,3 @@ const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.
     }
   }
 </style>
-
