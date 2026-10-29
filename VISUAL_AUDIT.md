@@ -138,3 +138,4 @@ The site was tested and calibrated across seven standard viewports:
 3. **Refined typography and whitespace** across hero, section headers, case studies, and footer colophon.
 4. **Integrated the Developer Activation Cycle** (*Acquire → Engage → Build → Activate → Continue*) into the `/grow` case study.
 5. **Fixed mobile layout constraints** across 320px–430px widths, ensuring zero horizontal overflow, clipped text, or overlapping controls.
+
