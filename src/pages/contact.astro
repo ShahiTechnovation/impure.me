@@ -185,21 +185,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <!-- Submit Button -->
                 <div class="form-submit-row">
                   <button type="submit" id="submit-btn" class="btn btn-primary form-submit-btn">
-                    <span>DISPATCH VIA CLIENT</span>
+                    <span>OPEN IN EMAIL CLIENT</span>
                     <span aria-hidden="true">&rarr;</span>
                   </button>
                   <span class="tech-micro form-hint">
-                    * Prepares secure mailto transmission payload directly into your preferred email client.
+                    * Prepares a structured message in your default email client addressed to punit@builderbase.xyz.
                   </span>
                 </div>
               </form>
 
-              <!-- Success Alert Message -->
+              <!-- Prepared Payload Box with Clipboard Fallback -->
               <div id="form-success-box" class="form-success-alert" hidden>
-                <div class="success-header tech-label-signal">✓ TRANSMISSION PAYLOAD READY</div>
-                <p class="text-body-sm">
-                  Your mail client has been opened with your structured message. If it did not launch automatically, send directly to <a href="mailto:punit@builderbase.xyz" class="inline-link">punit@builderbase.xyz</a>.
+                <div class="success-header tech-label-signal">EMAIL MESSAGE PREPARED</div>
+                <p class="text-body-sm" id="payload-notice">
+                  Your email client has been launched with your structured inquiry. If your browser does not open a mail client automatically, you can copy the message or write directly to <a href="mailto:punit@builderbase.xyz" class="inline-link">punit@builderbase.xyz</a>.
                 </p>
+                <div class="payload-actions" style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+                  <button type="button" id="copy-payload-btn" class="btn btn-secondary tech-micro">
+                    <span>COPY MESSAGE TO CLIPBOARD</span>
+                  </button>
+                  <a href="mailto:punit@builderbase.xyz" class="btn tech-micro">
+                    <span>RETRY MAILTO</span>
+                    <span class="ext-arrow">&nearr;</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -442,17 +451,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       if (hasError) return;
 
-      const subject = encodeURIComponent(`[INQUIRY: ${catInput?.value || 'Collab'}] from ${nameInput?.value}`);
-      const body = encodeURIComponent(
-        `From: ${nameInput?.value} (${emailInput?.value})\nCategory: ${catInput?.value}\n\nDispatch Message:\n${msgInput?.value}\n\nSent via impure.me V2 Transmission Dispatch`
-      );
+      const subjectText = `[INQUIRY: ${catInput?.value || 'Collab'}] from ${nameInput?.value}`;
+      const bodyText = `From: ${nameInput?.value} (${emailInput?.value})\nCategory: ${catInput?.value}\n\nDispatch Message:\n${msgInput?.value}\n\nSent via impure.me Transmission Dispatch`;
+
+      const subject = encodeURIComponent(subjectText);
+      const body = encodeURIComponent(bodyText);
 
       // Launch native email client with structured mailto
       window.location.href = `mailto:punit@builderbase.xyz?subject=${subject}&body=${body}`;
 
       if (successBox) {
         successBox.hidden = false;
-        form.reset();
+        const copyBtn = document.getElementById('copy-payload-btn');
+        if (copyBtn) {
+          copyBtn.onclick = () => {
+            navigator.clipboard.writeText(`Subject: ${subjectText}\nTo: punit@builderbase.xyz\n\n${bodyText}`).then(() => {
+              copyBtn.innerHTML = '<span>COPIED TO CLIPBOARD! ✓</span>';
+              setTimeout(() => {
+                copyBtn.innerHTML = '<span>COPY MESSAGE TO CLIPBOARD</span>';
+              }, 3000);
+            });
+          };
+        }
       }
     });
   }

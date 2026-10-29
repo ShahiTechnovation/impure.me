@@ -1,6 +1,7 @@
 ---
 // src/components/projects/ProjectCard.astro
 import type { Project } from '../../data/projects';
+import ArchitectureDiagram from './ArchitectureDiagram.astro';
 
 interface Props {
   project: Project;
@@ -44,6 +45,12 @@ const { project, featuredLayout = false } = Astro.props;
     <p class="card-summary text-body-sm">
       {project.summary}
     </p>
+
+    {featuredLayout && (
+      <div class="card-diagram-preview">
+        <ArchitectureDiagram slug={project.slug} variant="compact" />
+      </div>
+    )}
 
     <!-- Tech Stack Monospace Pills -->
     <div class="card-stack-list">

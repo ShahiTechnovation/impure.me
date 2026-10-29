@@ -34,12 +34,12 @@ export const builderBaseData = {
   founder: 'Punit Pal',
   website: 'https://www.builderbase.xyz',
   positioning: 'The distribution layer for builders.',
-  narrative: 'Builder Base was founded to solve a fundamental disconnect in tech: protocol foundations build extraordinary developer infrastructure, but struggle with grassroots adoption, developer retention, and high-signal hackathon shortlisting. Builder Base operates as an ecosystem engine providing multi-city developer distribution, hackathon incubation, technical workshops, and direct protocol partnerships.',
+  narrative: 'Builder Base was founded to bridge the gap between protocol foundations building developer infrastructure and ambitious builders seeking hackathon mentorship, technical distribution, and real grant opportunities. Builder Base operates as an ecosystem distribution channel coordinating multi-city workshops, hackathons, technical dispatches, and protocol collaborations.',
   channels: [
     {
       channel: 'Luma Event Audience',
       reach: '64,000+',
-      description: 'Registered developers and attendees across multi-city workshops, hackathons, and developer demo days.'
+      description: 'Total registrations across technical workshops, hackathons, and developer demo days.'
     },
     {
       channel: 'Technical Newsletter Reach',
@@ -47,9 +47,9 @@ export const builderBaseData = {
       description: 'Active subscribers receiving developer dispatches, protocol bounty breakdowns, and hackathon announcements.'
     },
     {
-      channel: 'Verified Builder Community',
-      reach: '10,000+',
-      description: 'Vetted Web3 and AI developers, founders, and contributors across curated WhatsApp and community groups.'
+      channel: 'WhatsApp Builder Circles',
+      reach: '2,000+',
+      description: 'Active developers, builders, and hackathon participants across regional communication groups.'
     }
   ],
   partnerEcosystems: [
@@ -73,8 +73,8 @@ export const ecosystemRoles: EcosystemRole[] = [
     scope: 'Community Contributor & Technical Workshop Lead',
     contributions: [
       'Organized and led hands-on technical workshops on Model Context Protocol (MCP) and multi-agent development across Delhi, Bhopal, and Mumbai.',
-      'Mentored hackathon builders integrating Claude 3.5 Sonnet into full-stack and developer-tooling prototypes.',
-      'Created open source community repositories and starter kits for Claude-assisted workflows.'
+      'Mentored hackathon builders integrating Claude models into full-stack and developer-tooling prototypes.',
+      'Authored open-source community repositories and starter templates for tool-use workflows.'
     ]
   },
   {
@@ -84,9 +84,9 @@ export const ecosystemRoles: EcosystemRole[] = [
     status: 'Ongoing Contributor',
     scope: 'Regional Developer Ecosystem Evangelism',
     contributions: [
-      'Led local graph database engineering meetups, introducing developers to GSQL and knowledge graph architectures.',
-      'Guided enterprise and student builders on implementing GraphRAG pipelines for complex relationship queries.',
-      'Bridged university developer talent with international graph technology challenges.'
+      'Led local graph database developer meetups, introducing builders to GSQL and knowledge graph architectures.',
+      'Guided student and developer cohorts on implementing GraphRAG pipelines for relational queries.',
+      'Connected regional developer talent with international graph technology challenges.'
     ]
   },
   {
@@ -97,8 +97,8 @@ export const ecosystemRoles: EcosystemRole[] = [
     scope: 'Avalanche Developer Growth & Hackathon Activation',
     contributions: [
       'Co-organized Avalanche developer meetups and hackathon activations in India.',
-      'Engineered PyVax as an ecosystem public good bridging Python developers to Avalanche C-Chain.',
-      'Facilitated developer onboarding onto Avalanche Subnets and EVM tooling.'
+      'Engineered PyVax as an open source public good bridging Python developers to Avalanche C-Chain.',
+      'Assisted developers with Avalanche C-Chain tooling and testnet contract deployment.'
     ]
   },
   {
@@ -110,7 +110,7 @@ export const ecosystemRoles: EcosystemRole[] = [
     contributions: [
       'Conducted introductory Web3 and smart contract workshops for university cohorts.',
       'Supported local hackathon teams with deployment and contract testing on BNB Smart Chain.',
-      'Facilitated cross-community discussions between Web2 student programmers and Web3 founders.'
+      'Facilitated cross-community discussions between university student programmers and Web3 founders.'
     ]
   }
 ];
@@ -119,106 +119,106 @@ export const gtmInitiatives: GtmInitiative[] = [
   {
     id: 'GTM-01',
     title: 'Hack in Hills 2026',
-    subtitle: 'Developer Hackathon Growth, Partner Curation & Experience',
+    subtitle: 'High-Altitude Developer Hackathon & Protocol Curation',
     period: '2026 (Active Program)',
     location: 'Himachal Pradesh / Hybrid',
-    objective: 'Create a high-density, high-altitude developer retreat and hackathon bringing together top-tier national builders with leading protocol sponsors.',
-    targetAudience: 'Senior student developers, Web3/AI protocol builders, and startup engineering leads.',
-    strategy: 'Leverage multi-city Builder Base chapters to recruit vetted developer talent rather than open public registrations. Partner with protocols seeking focused, production-grade hackathon submissions rather than generic wrappers.',
+    objective: 'Create a high-density developer retreat and hackathon bringing together regional builders with leading protocol sponsors.',
+    targetAudience: 'Student developers, protocol builders, and startup engineering teams.',
+    strategy: 'Leverage multi-city Builder Base chapters to recruit developer talent across India, curating track challenges around specific protocol capabilities rather than generic open-ended bounties.',
     responsibilities: [
-      'Developer acquisition and multi-stage application shortlisting.',
-      'Protocol sponsor curation, requirement scoping, and bounty alignment.',
-      'Participant journey design, physical venue logistics, and mentor coordination.'
+      'Developer acquisition and multi-stage application review.',
+      'Protocol sponsor coordination and bounty track alignment.',
+      'Participant journey design, event scheduling, and mentor coordination.'
     ],
-    channelsAndPartners: ['Builder Base distribution network', 'Luma events', 'University CS chapters', 'Protocol foundation grants'],
-    executionDetails: 'Structured a multi-stage funnel: initial portfolio review -> technical screening -> shortlisted cohort admission. Coordinated sponsor bounties ensuring teams build against specific protocol pain points.',
+    channelsAndPartners: ['Builder Base distribution network', 'Luma events', 'University CS chapters', 'Protocol foundation sponsors'],
+    executionDetails: 'Coordinated nationwide application outreach across university campuses and online developer channels. Structured sponsor tracks so participating teams solve specific protocol tooling and dApp challenges.',
     outcomes: [
-      { label: 'Developer Applicants', value: '10,500+', detail: 'Verified developer applications across India' },
-      { label: 'Cohort Quality', value: 'Top 15%', detail: 'Strict shortlisting rate focused on shipped code' },
-      { label: 'Protocol Partners', value: '4 Major Chains', detail: 'Dedicated tracks with active bounty grants' }
+      { label: 'Event Registrations', value: '10,000+', detail: 'Total participant registrations across university and online channels' },
+      { label: 'Curated Tracks', value: 'Multi-Chain', detail: 'Dedicated protocol tracks aligned with real infrastructure bounties' },
+      { label: 'Program Phase', value: 'Finalist Cohorts', detail: 'Regional hackathon milestones active through late 2026' }
     ],
     learnings: [
-      'Curated hackathons yield 3x higher protocol deployment rates compared to unvetted mass registrations.',
-      'In-person builder intimacy accelerates multi-chain protocol adoption far faster than virtual webinars.'
+      'Hands-on starter repositories and pre-event setup calls reduce day-one team churn by more than half.',
+      'Aligning bounties directly with core protocol engineering needs produces significantly more usable prototypes.'
     ],
-    statusNote: 'Note: As of October 2026, finalist cohorts and regional summits are in active execution.'
+    statusNote: 'Note: As of October 2026, finalist cohorts and summit preparations are underway.'
   },
   {
     id: 'GTM-02',
-    title: 'Claude Community Multi-City Programs',
+    title: 'Claude Community Multi-City Workshops',
     subtitle: 'Technical Workshops, Model Context Protocol & Builder Activation',
     period: '2025 – 2026',
     location: 'Delhi, Mumbai, Bhopal',
-    objective: 'Demystify frontier AI agent engineering, Model Context Protocol (MCP), and full-stack AI development for practical engineering teams.',
-    targetAudience: 'Software engineers, AI enthusiasts, product founders, and computer science students.',
-    strategy: 'Shift away from high-level "AI prompt engineering" talks toward deep-dive architectural code walks: building MCP servers, chaining LLM function calls, and integrating live tool execution.',
+    objective: 'Demonstrate practical agent engineering, Model Context Protocol (MCP), and full-stack AI development to working software engineers and students.',
+    targetAudience: 'Software engineers, AI developers, product founders, and computer science students.',
+    strategy: 'Focus on hands-on code walkthroughs rather than high-level talk: setting up MCP servers, chaining LLM function calls, and running live tool-calling applications.',
     responsibilities: [
-      'Technical curriculum design and live live-coding presentation.',
+      'Technical curriculum preparation and live live-coding demonstrations.',
       'Hands-on workshop facilitation and debugging participant environments.',
-      'Post-event repository maintenance and community project showcase.'
+      'Community open-source repository maintenance and project showcase.'
     ],
     channelsAndPartners: ['Claude Community India', 'Builder Base network', 'Local tech hub venues', 'GitHub open source repos'],
-    executionDetails: 'Delivered immersive 3-4 hour technical workshops where every attendee cloned a repository, configured Claude API / MCP tooling locally, and built an autonomous tool-calling application by session close.',
+    executionDetails: 'Conducted interactive workshops where attendees clone starter repositories, configure tool-calling workflows, and test Model Context Protocol servers locally.',
     outcomes: [
-      { label: 'Builders Activated', value: '1100+', detail: 'Hands-on workshop participants across 3 key tech cities' },
-      { label: 'Prototypes Shipped', value: '140+', detail: 'Working MCP and agent repos produced by attendees' },
-      { label: 'Average Feedback', value: '4.9 / 5.0', detail: 'Rated on technical depth and direct usefulness' }
+      { label: 'Workshop Attendees', value: '1,100+', detail: 'In-person participants across workshops in Delhi, Bhopal, and Mumbai' },
+      { label: 'Core Focus Areas', value: 'MCP & Agents', detail: 'Practical implementations of Model Context Protocol and function calling' },
+      { label: 'Open Artifacts', value: 'Starter Kits', detail: 'Reusable codebases and setup documentation distributed to builders' }
     ],
     learnings: [
-      'Live code walkthroughs with immediate local verification generate 10x higher post-event retention than slide presentations.',
-      'Clear starter repositories with pre-configured schemas eliminate 90% of beginner onboarding friction.'
+      'Walkthroughs where participants run code locally in the first fifteen minutes create far deeper engagement than theoretical slides.',
+      'Clear starter repositories with explicit schema examples eliminate common onboarding stumbling blocks.'
     ]
   },
   {
     id: 'GTM-03',
     title: 'Builder Base Regional Expansion',
-    subtitle: 'Scalable Distribution Architecture for Developer Communities',
+    subtitle: 'Grassroots Distribution Architecture for Developer Communities',
     period: '2024 – 2026',
     location: 'Pan-India',
-    objective: 'Transform Builder Base from a local developer meetup into a national distribution layer connecting emerging protocol technologies with ambitious builders.',
+    objective: 'Build an authentic distribution channel connecting emerging technologies and protocol foundations with active developers.',
     targetAudience: 'Founders, Web3 developers, systems engineers, and protocol ecosystem leads.',
-    strategy: 'Establish a repeatable chapter model where regional leads host regular co-working days, study groups, and hackathons, all funneling back into a centralized distribution audience on Luma and Substack.',
+    strategy: 'Host consistent regional study groups, demo days, and workshops while consolidating developer reach into a regular technical newsletter and Luma event calendar.',
     responsibilities: [
-      'Community architecture design and operational governance.',
-      'Content strategy for weekly newsletters, protocol spotlights, and technical guides.',
-      'Sponsor relationship management and grant delivery.'
+      'Community architecture design and operational coordination.',
+      'Content curation for weekly newsletters, protocol spotlights, and technical guides.',
+      'Partner alignment with protocol teams seeking developer feedback.'
     ],
-    channelsAndPartners: ['Luma', 'WhatsApp Developer Circles', 'X/Twitter', 'Substack Newsletter', 'Web3 Protocols'],
-    executionDetails: 'Consistently delivered high-value technical dispatches, curated hackathon opportunities, and exclusive protocol workshops. Maintained high standards for community discussions, eliminating spam and promotional noise.',
+    channelsAndPartners: ['Luma Event Calendar', 'WhatsApp Builder Circles', 'X/Twitter', 'Substack Newsletter', 'Web3 Protocols'],
+    executionDetails: 'Consistently published technical dispatches, curated hackathon schedules, and hosted focused developer meetups without paid advertising or spam.',
     outcomes: [
       { label: 'Luma Event Reach', value: '64,000+', detail: 'Total registrations across community calendar' },
-      { label: 'Newsletter Readers', value: '70,000+', detail: 'Weekly technical ecosystem dispatches' },
-      { label: 'Core Builder Base', value: '10,000+', detail: 'Direct daily engagement across active circles' }
+      { label: 'Newsletter Readers', value: '70,000+', detail: 'Subscribers receiving technical ecosystem dispatches' },
+      { label: 'Builder Circles', value: '2,000+', detail: 'Active participants across curated regional WhatsApp groups' }
     ],
     learnings: [
-      'Developers value concrete opportunities (bounties, grants, hackathons) over vague networking chat rooms.',
-      'Separating distinct communication channels (broadcast newsletter vs interactive chat) preserves community signal.'
+      'Developers value concrete technical resources and genuine hackathon bounties over vague networking channels.',
+      'Maintaining distinct communication channels for announcements versus open discussion preserves signal.'
     ]
   },
   {
     id: 'GTM-04',
     title: 'Mumbai Devcon Week',
-    subtitle: 'High-Density Technical Programming & Cross-Protocol Side Events',
+    subtitle: 'Technical Gatherings & Cross-Protocol Side Events',
     period: '2025',
     location: 'Mumbai, India',
-    objective: 'Curate high-signal side events and technical panels during major crypto-developer conferences, maximizing builder-investor-protocol intersections.',
-    targetAudience: 'International protocol teams, institutional builders, venture partners, and hackathon champions.',
-    strategy: 'Focus on focused, theme-driven technical gatherings (e.g., EVM Parallelization, Agentic Workflows, Zero-Knowledge Verification) rather than open parties.',
+    objective: 'Curate high-signal side events and technical discussions during major developer gatherings, connecting builders with protocol engineers.',
+    targetAudience: 'Protocol engineers, technical founders, and hackathon builders.',
+    strategy: 'Focus on specific architectural topics (such as parallel execution, agentic workflows, and zero-knowledge verification) in intimate workshop settings.',
     responsibilities: [
       'Cross-community programming coordination.',
-      'Audience curation and high-signal RSVP filtering.',
-      'Speaker panel moderation and technical synthesis.'
+      'Audience curation and attendee management.',
+      'Technical panel facilitation and discussion moderation.'
     ],
     channelsAndPartners: ['Builder Base', 'Arbitrum ecosystem', 'Avalanche community', 'Monad teams'],
-    executionDetails: 'Co-hosted and moderated technical discussions where founders and protocol engineers broke down roadmap architectures, benchmark results, and upcoming ecosystem grant opportunities.',
+    executionDetails: 'Co-hosted technical sessions where developers and protocol contributors discussed roadmap architectures, benchmark results, and upcoming ecosystem opportunities.',
     outcomes: [
-      { label: 'Event Attendance', value: '500+', detail: 'Curated senior developers and protocol founders' },
-      { label: 'Partners Hosted', value: '6 Protocols', detail: 'Direct founder and core-dev panel participation' },
-      { label: 'Ecosystem Connections', value: '50+ Matches', detail: 'Facilitated builder-to-grant introductions' }
+      { label: 'Event Attendance', value: '500+', detail: 'Curated developers and protocol contributors across side sessions' },
+      { label: 'Participating Teams', value: '6 Ecosystems', detail: 'Cross-protocol panel participation and developer discussions' },
+      { label: 'Builder Connections', value: 'Direct Grants', detail: 'Connected hackathon teams directly with protocol grant leads' }
     ],
     learnings: [
-      'Curating attendance by GitHub profile or project portfolio ensures high technical conversation quality.',
-      'Side events during major conferences are the highest-ROI channel for recruiting protocol ambassadors.'
+      'Focused, topical technical discussions attract significantly higher caliber builders than open networking parties.',
+      'In-person workshops during major conference weeks provide an efficient channel for direct developer feedback.'
     ]
   }
 ];

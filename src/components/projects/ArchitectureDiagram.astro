@@ -1,0 +1,434 @@
+---
+// src/components/projects/ArchitectureDiagram.astro
+interface Props {
+  slug: string;
+  variant?: 'featured' | 'detail' | 'compact';
+}
+
+const { slug, variant = 'detail' } = Astro.props;
+---
+
+<div class:list={['arch-diagram-wrapper', `variant-${variant}`, `slug-${slug}`]} aria-label={`Architecture schematic for ${slug}`}>
+  {slug === 'pyvax' && (
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <span class="tech-micro signal-text">PIPELINE // AST COMPILER & LOWERING</span>
+        <span class="tech-micro">TARGET: AVALANCHE C-CHAIN</span>
+      </div>
+      <div class="diagram-flow horizontal-flow">
+        <div class="diagram-node">
+          <span class="node-badge tech-micro">INPUT</span>
+          <div class="node-title">Python Contract</div>
+          <div class="node-detail tech-micro">@contract, state[T], @event</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">PHASE 01</span>
+          <div class="node-title">AST Visitor &amp; Types</div>
+          <div class="node-detail tech-micro">Type inference, static constraints</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">PHASE 02</span>
+          <div class="node-title">IR &amp; Opcode Emission</div>
+          <div class="node-detail tech-micro">EVM 256-bit word stack lowers</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node success-node">
+          <span class="node-badge tech-micro">TARGET</span>
+          <div class="node-title">AVAX C-Chain</div>
+          <div class="node-detail tech-micro">Bytecode + ABI + CLI deploy</div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {slug === 'sol2rust' && (
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <span class="tech-micro signal-text">TRANSPILER // SOLIDITY TO ARBITRUM STYLUS</span>
+        <span class="tech-micro">TARGET: WASM EXECUTION</span>
+      </div>
+      <div class="diagram-flow horizontal-flow">
+        <div class="diagram-node">
+          <span class="node-badge tech-micro">INPUT</span>
+          <div class="node-title">Solidity Source</div>
+          <div class="node-detail tech-micro">State vars, modifiers, mappings</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">PARSER</span>
+          <div class="node-title">Syn / Quote Engine</div>
+          <div class="node-detail tech-micro">AST transformation, borrow rules</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">CODEGEN</span>
+          <div class="node-title">Stylus SDK Macros</div>
+          <div class="node-detail tech-micro">#[entrypoint], sol_storage!</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node success-node">
+          <span class="node-badge tech-micro">DEPLOY</span>
+          <div class="node-title">Arbitrum Stylus</div>
+          <div class="node-detail tech-micro">Compiled WASM bytecode</div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {slug === 'flowmon' && (
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <span class="tech-micro signal-text">ORCHESTRATION // AGENT MESSAGE PROTOCOL (AMP)</span>
+        <span class="tech-micro">NETWORK: MONAD EVM (10K TPS)</span>
+      </div>
+      <div class="diagram-flow flowmon-flow">
+        <div class="flowmon-col">
+          <div class="diagram-node">
+            <span class="node-badge tech-micro">TRIGGER</span>
+            <div class="node-title">Chainlink Oracle</div>
+            <div class="node-detail tech-micro">Price deviation envelope</div>
+          </div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flowmon-col">
+          <div class="diagram-node active-node">
+            <span class="node-badge tech-micro">AMP BUS</span>
+            <div class="node-title">Yield Evaluator</div>
+            <div class="node-detail tech-micro">Lido stETH APR calculation</div>
+          </div>
+          <div class="diagram-node active-node" style="margin-top: 8px;">
+            <span class="node-badge tech-micro">AMP BUS</span>
+            <div class="node-title">DEX Quoter</div>
+            <div class="node-detail tech-micro">Uniswap optimal route build</div>
+          </div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flowmon-col">
+          <div class="diagram-node success-node">
+            <span class="node-badge tech-micro">EXECUTION</span>
+            <div class="node-title">Monad Parallel EVM</div>
+            <div class="node-detail tech-micro">State delta confirmed on-chain</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {slug === 'rustag' && (
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <span class="tech-micro signal-text">ASSURANCE // SOLANA PRE-EXECUTION SIMULATION</span>
+        <span class="tech-micro">LAYER: LOCAL BANK FORK</span>
+      </div>
+      <div class="diagram-flow horizontal-flow">
+        <div class="diagram-node">
+          <span class="node-badge tech-micro">INPUT</span>
+          <div class="node-title">Versioned Tx</div>
+          <div class="node-detail tech-micro">Serialized instruction payload</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">SIMULATION</span>
+          <div class="node-title">BankFork Sandbox</div>
+          <div class="node-detail tech-micro">State delta capture, CPI trace</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">AUDIT</span>
+          <div class="node-title">Invariant Guards</div>
+          <div class="node-detail tech-micro">Owner checks &amp; lamport conservation</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node success-node">
+          <span class="node-badge tech-micro">OUTPUT</span>
+          <div class="node-title">Signed Report</div>
+          <div class="node-detail tech-micro">Pre-execution verification proof</div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {slug === 'rxgr' && (
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <span class="tech-micro signal-text">GRAPHRAG // BIOMEDICAL KNOWLEDGE TRAVERSAL</span>
+        <span class="tech-micro">REASONING: CLAUDE 3.5 SONNET</span>
+      </div>
+      <div class="diagram-flow horizontal-flow">
+        <div class="diagram-node">
+          <span class="node-badge tech-micro">QUERY</span>
+          <div class="node-title">Biomedical Input</div>
+          <div class="node-detail tech-micro">Candidate drug / target query</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">GRAPH</span>
+          <div class="node-title">Neo4j Cypher</div>
+          <div class="node-detail tech-micro">Multi-hop traversal (Drug&rarr;Target&rarr;Disease)</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">RAG</span>
+          <div class="node-title">Literature Context</div>
+          <div class="node-detail tech-micro">PubMed citations &amp; structured paths</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node success-node">
+          <span class="node-badge tech-micro">SYNTHESIS</span>
+          <div class="node-title">Clinical Synthesis</div>
+          <div class="node-detail tech-micro">Grounded repurposing hypotheses</div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {slug === 'bloopa' && (
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <span class="tech-micro signal-text">CREDIT LAYER // AUTONOMOUS AGENT LIQUIDITY</span>
+        <span class="tech-micro">NETWORK: ALGORAND &amp; X402</span>
+      </div>
+      <div class="diagram-flow horizontal-flow">
+        <div class="diagram-node">
+          <span class="node-badge tech-micro">IDENTITY</span>
+          <div class="node-title">Agent Public Key</div>
+          <div class="node-detail tech-micro">Algorithmic bot identity handle</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">SCORING</span>
+          <div class="node-title">PyTeal Smart Contract</div>
+          <div class="node-detail tech-micro">Repayment ratio &amp; volume tiering</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">PROTOCOL</span>
+          <div class="node-title">x402 Integration</div>
+          <div class="node-detail tech-micro">BloopX402Client micropayment loans</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node success-node">
+          <span class="node-badge tech-micro">FACILITY</span>
+          <div class="node-title">Autonomous Loan</div>
+          <div class="node-detail tech-micro">Non-collateralized operational gas</div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {slug === 'apv3rse' && (
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <span class="tech-micro signal-text">DEV STUDIO // PROMPT TO MOVE SMART CONTRACT</span>
+        <span class="tech-micro">TARGET: APTOS (MOVE VM)</span>
+      </div>
+      <div class="diagram-flow horizontal-flow">
+        <div class="diagram-node">
+          <span class="node-badge tech-micro">INPUT</span>
+          <div class="node-title">Natural Language</div>
+          <div class="node-detail tech-micro">Prompt describing dApp logic</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">MCP</span>
+          <div class="node-title">Aptos Docs MCP</div>
+          <div class="node-detail tech-micro">Context retrieval, module imports</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">IDE</span>
+          <div class="node-title">Monaco Editor</div>
+          <div class="node-detail tech-micro">In-browser syntax diagnostics</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node success-node">
+          <span class="node-badge tech-micro">TESTNET</span>
+          <div class="node-title">Aptos Network</div>
+          <div class="node-detail tech-micro">Direct wallet compile &amp; deploy</div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {slug === 'with-claude' && (
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <span class="tech-micro signal-text">PLATFORM // ASTRO ISLANDS &amp; DRIZZLE ORM</span>
+        <span class="tech-micro">DEPLOYMENT: VERCEL + NEON POSTGRESQL</span>
+      </div>
+      <div class="diagram-flow horizontal-flow">
+        <div class="diagram-node">
+          <span class="node-badge tech-micro">FRONTEND</span>
+          <div class="node-title">Astro + Islands</div>
+          <div class="node-detail tech-micro">SSG showcases &amp; React islands</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">AUTH &amp; BLOB</span>
+          <div class="node-title">Privy &amp; Vercel Blob</div>
+          <div class="node-detail tech-micro">Builder login &amp; media uploads</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node active-node">
+          <span class="node-badge tech-micro">DATABASE</span>
+          <div class="node-title">Drizzle + Neon</div>
+          <div class="node-detail tech-micro">Serverless PostgreSQL schemas</div>
+        </div>
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+        <div class="diagram-node success-node">
+          <span class="node-badge tech-micro">NOTIFICATIONS</span>
+          <div class="node-title">Resend Queue</div>
+          <div class="node-detail tech-micro">Review status &amp; community alerts</div>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
+
+<style>
+  .arch-diagram-wrapper {
+    background-color: var(--bg-surface-dim);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .diagram-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border-color);
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .diagram-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .horizontal-flow {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .flowmon-flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .flowmon-col {
+    flex: 1;
+  }
+
+  .diagram-node {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .diagram-node:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-color);
+  }
+
+  .active-node {
+    border-color: var(--border-strong);
+    background-color: var(--bg-surface);
+  }
+
+  .success-node {
+    border-color: var(--accent-color);
+    background-color: var(--color-signal-subtle);
+  }
+
+  .node-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    background-color: var(--bg-surface-dim);
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--text-muted);
+  }
+
+  .success-node .node-badge {
+    background-color: var(--accent-color);
+    color: #FFFFFF;
+    border-color: var(--accent-color);
+  }
+
+  .node-title {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .node-detail {
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+  }
+
+  .diagram-arrow {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0 4px;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  /* Compact variant for cards */
+  .variant-compact {
+    padding: 12px 14px;
+    margin: 12px 0;
+  }
+
+  .variant-compact .node-title {
+    font-size: 0.75rem;
+  }
+
+  .variant-compact .node-detail {
+    font-size: 0.62rem;
+  }
+
+  @media (max-width: 768px) {
+    .horizontal-flow {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .diagram-arrow {
+      transform: rotate(90deg);
+      text-align: center;
+      margin: 4px 0;
+    }
+
+    .flowmon-flow {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>

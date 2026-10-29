@@ -21,6 +21,9 @@ const {
   noindex = false
 } = Astro.props;
 
+const isPreviewHost = Astro.url.hostname.includes('vercel.app');
+const shouldNoIndex = noindex || isPreviewHost;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://impure.me');
 const socialImageURL = new URL(ogImage, Astro.site || 'https://impure.me');
 
@@ -71,7 +74,11 @@ const personSchema = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {shouldNoIndex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
 
     <!-- Theme Initialization Script (Zero FOUC) -->
     <script is:inline>

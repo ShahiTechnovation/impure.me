@@ -36,11 +36,10 @@ import {
             engineering is empty noise."
           </p>
           <p class="text-body grow-desc">
-            Protocol foundations spend millions engineering revolutionary
-            virtual machines, consensus layers, and developer SDKs. But without
-            genuine developer empathy, multi-city hackathon incubation, and
-            clear technical distribution, adoption stalls. I build the systems
-            that connect ambitious developers with emerging technologies.
+            Through Builder Base, I organize developer programs and help technology companies
+            reach builders across India. I work directly with engineering teams to demystify
+            complex developer tools, run hands-on workshops, and organize high-density hackathons
+            that produce working software.
           </p>
         </div>
 
@@ -58,22 +57,22 @@ import {
             <span class="grow-stat-num heading-md">70,000+</span>
             <span class="grow-stat-label tech-label">NEWSLETTER REACH</span>
             <span class="grow-stat-sub text-body-sm"
-              >Weekly technical dispatches, grant breakdowns &amp; bounty
-              guides.</span
+              >Technical subscribers receiving weekly ecosystem dispatches and
+              bounties.</span
             >
           </div>
           <div class="grow-stat-cell">
-            <span class="grow-stat-num heading-md">50,000+</span>
-            <span class="grow-stat-label tech-label">VERIFIED BUILDERS</span>
+            <span class="grow-stat-num heading-md">2,000+</span>
+            <span class="grow-stat-label tech-label">WHATSAPP CIRCLES</span>
             <span class="grow-stat-sub text-body-sm"
-              >Active vetted developers and founders in curated circles.</span
+              >Active builders and hackathon teams in curated regional discussion groups.</span
             >
           </div>
           <div class="grow-stat-cell">
-            <span class="grow-stat-num heading-md">10+</span>
-            <span class="grow-stat-label tech-label">MAJOR INITIATIVES</span>
+            <span class="grow-stat-num heading-md">4</span>
+            <span class="grow-stat-label tech-label">ACTIVE HUBS</span>
             <span class="grow-stat-sub text-body-sm"
-              >Multi-city hackathons, retreat incubators, and protocol tracks.</span
+              >Regional developer programs across Delhi, Mumbai, Bhopal, and Himachal.</span
             >
           </div>
         </div>
@@ -165,6 +164,41 @@ import {
                   distinct platforms and are not combined as unique members.
                 </span>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Developer Activation Cycle: Acquire -> Engage -> Build -> Activate -> Continue -->
+        <div class="bb-lifecycle-model dossier-card animate-reveal" style="margin-top: 32px;">
+          <div class="bb-header-bar">
+            <span class="dossier-stamp signal">OPERATIONAL PROCESS</span>
+            <span class="tech-label">THE DEVELOPER ACTIVATION CYCLE</span>
+          </div>
+          <div class="lifecycle-steps-grid">
+            <div class="lifecycle-step">
+              <span class="step-num tech-label">01 // ACQUIRE</span>
+              <h4 class="heading-sm step-title">Developer Outreach</h4>
+              <p class="text-body-sm">Multi-city campus connections, developer circles, and Luma calendars reaching 64K+ registrations.</p>
+            </div>
+            <div class="lifecycle-step">
+              <span class="step-num tech-label">02 // ENGAGE</span>
+              <h4 class="heading-sm step-title">Technical Content</h4>
+              <p class="text-body-sm">Weekly newsletter (70K+ subscribers) breaking down bounties, technical guides, and project spotlights.</p>
+            </div>
+            <div class="lifecycle-step">
+              <span class="step-num tech-label">03 // BUILD</span>
+              <h4 class="heading-sm step-title">Hands-On Code Walks</h4>
+              <p class="text-body-sm">In-person workshops where builders clone starter repos, configure local RPCs, and run test suites.</p>
+            </div>
+            <div class="lifecycle-step">
+              <span class="step-num tech-label">04 // ACTIVATE</span>
+              <h4 class="heading-sm step-title">Hackathon Sprints</h4>
+              <p class="text-body-sm">Intensive sprints solving concrete protocol challenges, prioritizing deployed code over pitch decks.</p>
+            </div>
+            <div class="lifecycle-step">
+              <span class="step-num tech-label">05 // CONTINUE</span>
+              <h4 class="heading-sm step-title">Grants &amp; Roles</h4>
+              <p class="text-body-sm">Direct introductions connecting winning teams to protocol grants, accelerators, and contributor roles.</p>
             </div>
           </div>
         </div>
@@ -421,6 +455,47 @@ import {
   .dist-disclaimer {
     color: var(--text-dim);
     padding-top: 8px;
+  }
+
+  /* Operational Lifecycle */
+  .bb-lifecycle-model {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .lifecycle-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background-color: var(--border-color);
+  }
+
+  .lifecycle-step {
+    background-color: var(--bg-surface);
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .step-num {
+    color: var(--accent-color);
+  }
+
+  .step-title {
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .lifecycle-steps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .lifecycle-steps-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* Ecosystem Roles */

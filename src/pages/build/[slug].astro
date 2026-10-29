@@ -1,6 +1,7 @@
 ---
 // src/pages/build/[slug].astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArchitectureDiagram from '../../components/projects/ArchitectureDiagram.astro';
 import { projects, type Project } from '../../data/projects';
 
 export function getStaticPaths() {
@@ -125,6 +126,9 @@ const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.
           <p class="text-body case-narrative-paragraph">
             {project.architecture}
           </p>
+
+          <!-- Verified Architecture Schematic -->
+          <ArchitectureDiagram slug={project.slug} variant="detail" />
 
           <!-- Stack Tags -->
           <div class="tech-stack-showcase">

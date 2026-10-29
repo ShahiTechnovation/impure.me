@@ -66,9 +66,9 @@ import { achievements } from '../../data/achievements';
         <span class="cmd-item-meta tech-micro">CONNECT</span>
       </a>
 
-      <!-- Section: Featured Projects -->
-      <div class="cmd-group-label tech-micro">FEATURED ENGINEERING DOSSIERS</div>
-      {projects.filter(p => p.featured).map((p) => (
+      <!-- Section: Engineering Projects Archive -->
+      <div class="cmd-group-label tech-micro">ALL ENGINEERING DOSSIERS</div>
+      {projects.map((p) => (
         <a
           href={`/build/${p.slug}`}
           class="cmd-item"
@@ -99,7 +99,19 @@ import { achievements } from '../../data/achievements';
       ))}
 
       <!-- Section: Quick Actions -->
-      <div class="cmd-group-label tech-micro">DIRECT COMMS & PROFILES</div>
+      <div class="cmd-group-label tech-micro">SYSTEM COMMANDS &amp; PROFILES</div>
+      <button
+        type="button"
+        class="cmd-item"
+        id="cmd-theme-toggle-action"
+        role="option"
+        data-search="theme toggle invert dark light mode colors"
+        style="width: 100%; text-align: left; background: none; border: none; cursor: pointer;"
+      >
+        <span class="cmd-item-code">SYS-01</span>
+        <span class="cmd-item-title">TOGGLE THEME // Switch Light (Paper) &amp; Dark (Night)</span>
+        <span class="cmd-item-meta tech-micro">THEME</span>
+      </button>
       <a
         href="mailto:punit@builderbase.xyz"
         class="cmd-item"
@@ -410,6 +422,15 @@ import { achievements } from '../../data/achievements';
     });
 
     closeBtn?.addEventListener('click', closeModal);
+
+    const themeBtn = document.getElementById('cmd-theme-toggle-action');
+    themeBtn?.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('impure_theme', next);
+      closeModal();
+    });
 
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();

@@ -82,7 +82,7 @@ class SimpleVault:
     ],
     results: [
       'Awarded 1st Runner-Up at AVAX Kolkata (Team1 Hack25 Hackathon).',
-      'Over 500+ successful test contract compilations during live testing.',
+      'Successfully lowers Python syntax to EVM bytecode for Avalanche C-Chain testnet deployment.',
       'Zero external Solidity dependency required for end-to-end contract authoring and deployment.'
     ],
     relatedSlugs: ['sol2rust', 'pymon', 'zerothon'],
@@ -221,11 +221,11 @@ export async function executeAgentPipeline(
     repoUrl: 'https://github.com/ShahiTechnovation/RustAG',
     award: 'Open Source Security Infra',
     placement: 'Active',
-    stack: ['Rust', 'Solana Program SDK', 'BPF Loader', 'Transaction Simulation', 'Anchor Framework'],
-    summary: 'Pre-execution assurance infrastructure for privileged Solana operations. Simulates transactions deterministically against local account state, verifies authority delegations, audits state deltas, and generates signed execution reports prior to validator broadcast.',
-    problem: 'Autonomous agents and automated multisig bots operating on Solana often execute blind instruction payloads where unintended authority delegation or front-running slippage causes irreversible loss of funds. Existing RPC simulateTransaction endpoints do not verify deep invariant constraints or detect privilege escalation.',
-    contribution: 'Authored the Rust transaction simulation engine, privilege verification logic, and signed audit report generator. Designed tests simulating hostile state transitions and unauthorized account balance deductions.',
-    architecture: 'RustAG sits between client-side transaction builders and Solana RPC nodes. It captures the serialized VersionedTransaction, reconstructs affected account states locally via bank simulation forks, verifies that no unexpected write-locks or account owner transfers occur, and produces an immutable cryptographic execution report.',
+    stack: ['Rust', 'Solana Program SDK', 'Transaction Simulation', 'Anchor Framework'],
+    summary: 'Pre-execution assurance infrastructure for privileged Solana operations. Simulates transactions locally against bank state forks, verifies authority delegations, audits state deltas, and generates signed execution reports prior to validator broadcast.',
+    problem: 'Autonomous agents and automated multisig bots operating on Solana often execute instruction payloads where unintended authority delegation or front-running slippage causes irreversible loss of funds. Existing RPC simulateTransaction endpoints do not verify deep invariant constraints or detect privilege escalation.',
+    contribution: 'Authored the Rust transaction simulation engine, privilege verification logic, and signed audit report generator. Implemented test suites evaluating state transitions and unauthorized account balance deductions.',
+    architecture: 'RustAG sits between client-side transaction builders and Solana RPC nodes. It captures the serialized VersionedTransaction, reconstructs affected account states locally via bank simulation forks, verifies that no unexpected write-locks or account owner transfers occur, and produces a cryptographic execution report.',
     codeSnippet: {
       language: 'rust',
       title: 'RustAG Invariant Guard & Simulation Verifier',
@@ -250,14 +250,14 @@ pub fn verify_transaction_safety(
 }`
     },
     challenges: [
-      'Faithfully recreating Solana BPF instruction limits and compute budget consumption in local simulation.',
-      'Accurately tracking dynamic CPI (Cross-Program Invocation) cascades across multiple invoked programs.',
-      'Keeping total simulation latency under 25 milliseconds to ensure transactions still hit their slot windows.'
+      'Recreating Solana instruction limits and compute budget consumption in local simulation forks.',
+      'Tracking dynamic Cross-Program Invocation (CPI) cascades across multiple invoked programs.',
+      'Maintaining low simulation latency to prevent transactions from missing target slot windows.'
     ],
     results: [
-      'Detects 100% of tested unauthorized privilege escalation payloads before submission to validator mempools.',
-      'Generates cryptographic execution proofs verifiable by upstream automated multisigs.',
-      'Adopted by community builder tooling for automated transaction validation.'
+      'Verified local invariant checks for account ownership and balance conservation in test suites.',
+      'Emits cryptographic execution reports verifiable by automated workflows.',
+      'Open-source pre-execution harness for Solana developer tooling.'
     ],
     relatedSlugs: ['sol2rust', 'flowmon', 'bloopa'],
     verifiedDate: 'October 2026'
@@ -270,16 +270,16 @@ pub fn verify_transaction_safety(
     category: 'AI & Agent Infrastructure',
     role: 'Systems & GraphRAG Architect',
     target: 'Biomedical AI & Research',
-    status: 'Research Prototype & Benchmark Evaluation',
+    status: 'Research Prototype',
     featured: true,
     repoUrl: 'https://github.com/ShahiTechnovation/RxGR',
     award: 'Biomedical AI Research Prototype',
     placement: 'Active',
     stack: ['Python', 'Neo4j', 'Knowledge Graphs', 'GraphRAG', 'NetworkX', 'Claude API', 'PubMed API'],
-    summary: 'A biomedical GraphRAG system that synergizes knowledge graph entity traversal with LLM retrieval, reasoning across multi-hop drug-disease relationships to identify drug repurposing candidates and reduce clinical hallucinations.',
-    problem: 'Standard vector-based RAG architectures perform flat semantic searches across unstructured literature. When tasked with multi-hop biomedical inquiries (e.g. "Identify kinase inhibitors that downregulate Protein X while sparing Pathway Y"), vector search misses relational graph topology and hallucinates molecular mechanisms.',
-    contribution: 'Constructed the biomedical knowledge graph extraction pipeline indexing PubMed medical abstracts, disease ontologies, and drug compound databases into Neo4j. Implemented the hybrid retrieval engine combining Cypher graph queries with vector embeddings and Claude 3.5 Sonnet synthesis.',
-    architecture: 'RxGR parses user biomedical hypotheses into structured entities and relationships, executes multi-hop subgraph traversals across Neo4j nodes (Drug -> Target -> Biological Process -> Disease), extracts factual path subgraphs, and prompts an LLM with both structured graph paths and contextual literature abstracts.',
+    summary: 'A biomedical GraphRAG prototype combining knowledge graph entity traversal with language model retrieval, reasoning across multi-hop drug-disease relationships to explore drug repurposing candidates.',
+    problem: 'Standard vector-based RAG architectures perform flat semantic searches across unstructured literature. When tasked with multi-hop biomedical inquiries, vector search often misses relational graph topology and can generate inaccurate molecular mechanism associations.',
+    contribution: 'Constructed the biomedical knowledge graph extraction pipeline indexing disease ontologies, PubMed citations, and drug compound databases into Neo4j. Implemented hybrid retrieval combining Cypher graph queries with language model synthesis via Claude 3.5 Sonnet.',
+    architecture: 'RxGR parses biomedical queries into structured entities, executes multi-hop subgraph traversals across Neo4j nodes (Drug -> Target -> Biological Process -> Disease), extracts path subgraphs, and provides both structured graph paths and literature context to an LLM for structured reasoning.',
     codeSnippet: {
       language: 'python',
       title: 'GraphRAG Multi-Hop Pathway Traversal',
@@ -300,14 +300,14 @@ def query_pathway_candidates(disease_id: str, max_hops: int = 3):
     return synthesize_clinical_reasoning(subgraph)`
     },
     challenges: [
-      'Resolving contradictory clinical statements across historical scientific publications into edge weights.',
-      'Optimizing multi-hop Cypher queries to execute sub-100ms across 500,000+ biomedical nodes.',
-      'Formulating rigorous benchmark evaluation datasets to measure clinical accuracy versus raw vector RAG.'
+      'Representing contradictory clinical statements across historical publications into weighted graph edges.',
+      'Optimizing multi-hop Cypher queries across dense biomedical relationship graphs.',
+      'Designing structured prompts that ground model synthesis in extracted graph topology.'
     ],
     results: [
-      'Demonstrated 38% reduction in factual hallucination rates compared to standard vector similarity RAG.',
-      'Identified 12 high-confidence off-target drug repurposing candidates verified against clinical literature.',
-      'Clean modular architecture ready for open biomedical research collaboration.'
+      'Prototype demonstrator for multi-hop graph retrieval paired with LLM reasoning.',
+      'Exploratory toolchain identifying candidate pathways for drug repurposing hypotheses.',
+      'Open-source research prototype designed for biomedical knowledge exploration.'
     ],
     relatedSlugs: ['flowmon', 'bloopa', 'with-claude'],
     verifiedDate: 'October 2026'
@@ -424,56 +424,50 @@ module apv3rse::marketplace {
     title: 'With Claude',
     headline: 'Full-Stack Project Discovery & Community Publishing Platform',
     category: 'Full-Stack Products',
-    role: 'Independent Platform Architect & Community Contributor',
-    target: 'Web & AI Developer Ecosystem',
+    role: 'Platform Architect & Full-Stack Developer',
+    target: 'Claude Developer Community',
     status: 'Live Community Platform',
     featured: true,
     repoUrl: 'https://github.com/ShahiTechnovation/with-claude',
     award: 'Independent Community Platform',
     placement: 'Active',
-    stack: ['TypeScript', 'Next.js', 'Tailwind CSS', 'PostgreSQL', 'Prisma ORM', 'Claude API'],
-    summary: 'Full-stack discovery and community platform for developers building software with Claude. Features community project submissions, moderation review workflows, verified builder badges, and categorized technical showcases.',
-    problem: 'Thousands of high-quality prototypes, tools, and developer experiments built with Anthropic models are scattered across social media and Discord channels without a unified, searchable index or permanent showcase directory.',
-    contribution: 'Architected and built the entire full-stack application from scratch: relational database schema, user authentication, submission review pipelines, automated metadata scraping, responsive editorial UI, and community showcase feeds.',
-    architecture: 'Next.js App Router application backed by PostgreSQL. Implements server-side rendering for optimal SEO discovery, authenticated project submission workflows with form validation, and automated Claude API calls to summarize and tag submissions by technical domain.',
+    stack: ['Astro', 'React', 'TypeScript', 'Neon PostgreSQL', 'Drizzle ORM', 'Privy', 'Better Auth', 'Vercel Blob', 'Resend'],
+    summary: 'Full-stack discovery and community showcase platform for developers building software with Claude. Features community project submissions, moderation review workflows, verified builder badges, and categorized technical showcases.',
+    problem: 'Developer prototypes, tools, and experiments built with Claude models are frequently scattered across social channels and forums without a unified index, persistent showcase directory, or structured taxonomy.',
+    contribution: 'Architected and built the full-stack platform using Astro with React islands for dynamic interactions. Structured the database schema using Drizzle ORM backed by Neon serverless PostgreSQL, with Privy and Better Auth authentication, Vercel Blob asset storage, and Resend for transactional notification workflows.',
+    architecture: 'A hybrid architecture utilizing Astro static site generation for sub-50ms project directory indexing and React islands for dynamic client states (submission forms, user authentication, review queues). Integrates Drizzle ORM with Neon serverless PostgreSQL for relational project metadata, Privy/Better Auth for builder identity, and Resend for review status notifications.',
     codeSnippet: {
       language: 'typescript',
-      title: 'Automated Community Submission Tagging & Verification',
-      code: `// With Claude Project Ingestion Pipeline
-export async function processSubmission(project: SubmissionInput) {
-  // 1. Verify source repository accessibility
-  const repoData = await fetchGitHubMetadata(project.repoUrl);
-  
-  // 2. Classify and extract technical categories with Claude API
-  const taxonomy = await claudeClient.messages.create({
-    model: "claude-3-5-sonnet-latest",
-    max_tokens: 300,
-    messages: [{
-      role: "user",
-      content: \`Classify this project into tech stacks and architecture tags: \${project.description}\`
-    }]
-  });
-  
-  // 3. Persist verified record to PostgreSQL database
-  return await db.project.create({
-    data: {
-      ...project,
-      stars: repoData.stargazers_count,
-      tags: extractTagsFromResponse(taxonomy),
-      status: "APPROVED_FOR_REVIEW"
-    }
-  });
-}`
+      title: 'schema/projects.ts — Drizzle ORM Schema & Type Definition (Illustrative)',
+      code: `// With Claude Project Schema Definition (Drizzle ORM + Neon PostgreSQL)
+import { pgTable, text, timestamp, varchar, integer } from 'drizzle-orm/pg-core';
+
+export const projects = pgTable('community_projects', {
+  id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+  title: varchar('title', { length: 120 }).notNull(),
+  headline: text('headline').notNull(),
+  description: text('description').notNull(),
+  repoUrl: text('repo_url').notNull(),
+  demoUrl: text('demo_url'),
+  authorId: text('author_id').notNull(),
+  authorHandle: varchar('author_handle', { length: 64 }).notNull(),
+  category: varchar('category', { length: 64 }).notNull(),
+  status: varchar('status', { length: 32 }).default('PENDING_REVIEW').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull()
+});
+
+export type ProjectRecord = typeof projects.$inferSelect;
+export type NewProjectInput = typeof projects.$inferInsert;`
     },
     challenges: [
-      'Establishing spam protection and automated submission quality filters without adding user friction.',
-      'Designing an editorial aesthetic that feels authentic to the developer community rather than promotional SaaS.',
-      'Ensuring strict independent status disclosure while honoring Anthropic community guidelines.'
+      'Balancing instant static rendering performance with dynamic client-side authentication and project submissions.',
+      'Maintaining clean community submission review workflows and spam prevention without unnecessary user friction.',
+      'Ensuring clear independent community status while maintaining high architectural standards.'
     ],
     results: [
-      'Built a vibrant repository of developer tools and experiments built with Claude.',
-      'Provides a real-world testing ground for Claude Community workshops across India.',
-      'Completely open source and modular architecture for ongoing community maintenance.'
+      'Live community platform indexing developer prototypes and tools built with Claude.',
+      'Open-source reference architecture pairing Astro, React islands, Drizzle ORM, and Neon PostgreSQL.',
+      'Active resource for developer workshops and community cohorts across India.'
     ],
     relatedSlugs: ['flowmon', 'rxgr', 'apv3rse'],
     verifiedDate: 'October 2026'
@@ -583,23 +577,23 @@ export async function processSubmission(project: SubmissionInput) {
     slug: 'builderbase-v2',
     id: 'PRJ-13',
     title: 'Builder Base V2',
-    headline: 'Next-Gen Distribution Platform for Web3 Developers',
+    headline: 'High-Performance Static Distribution Platform for Web3 Developers',
     category: 'Full-Stack Products',
-    role: 'Founder & Full-Stack Architect',
-    target: 'Web3 & AI Ecosystem',
-    status: 'Production Community Hub',
+    role: 'Founder & Frontend Architect',
+    target: 'Web3 & AI Developer Community',
+    status: 'Live Community Hub',
     featured: false,
-    repoUrl: 'https://github.com/ShahiTechnovation',
+    repoUrl: 'https://github.com/ShahiTechnovation/builderbase-v2',
     demoUrl: 'https://www.builderbase.xyz',
     award: 'Community Distribution Engine',
     placement: 'Active',
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL'],
-    summary: 'The central digital platform for Builder Base, coordinating developer hackathon registrations, bounty distributions, and technical workshops.',
-    problem: 'Traditional developer communities rely on fragmented Discord channels and unindexed spreadsheets to track builder progress.',
-    contribution: 'Architected the community directory, event RSVP tracker, and partner onboarding workflows.',
-    architecture: 'High-performance SSR application integrated with Luma webhooks and newsletter distribution APIs.',
-    challenges: ['Handling massive traffic spikes during nationwide hackathon launch windows.'],
-    results: ['Serves community across 64K+ event audience and 70K+ newsletter subscribers.'],
+    stack: ['Astro 7', 'TypeScript', 'Tailwind CSS', 'Static Site Generation (SSG)'],
+    summary: 'The central digital platform for Builder Base, coordinating developer event calendars, hackathon registration gateways, and community spotlights.',
+    problem: 'Developer communities require accessible, fast web portals that load instantly without heavy client-side JavaScript or fragile server dependencies during high-traffic hackathon launches.',
+    contribution: 'Architected and built the static web experience using Astro 7, delivering fast load times and responsive editorial layouts.',
+    architecture: 'Static Site Generation (SSG) architecture built with Astro 7 and TypeScript, integrating external Luma event calendars and newsletter distribution channels.',
+    challenges: ['Maintaining sub-50ms page load speeds and zero client-side JavaScript overhead across high-traffic launch days.'],
+    results: ['Primary digital home supporting Builder Base distribution across 64K+ event audience and 70K+ newsletter readers.'],
     relatedSlugs: ['with-claude'],
     verifiedDate: 'October 2026'
   },
@@ -618,7 +612,7 @@ export async function processSubmission(project: SubmissionInput) {
     placement: 'Active',
     stack: ['Python', 'Rust', 'WASM', 'Arbitrum Stylus'],
     summary: 'Experimental toolchain compiling Python contracts into intermediate Rust Stylus representations for direct WASM generation.',
-    problem: 'Exploring whether Python syntax can leverage Arbitrum Stylus 10x gas improvements without manual Rust rewriting.',
+    problem: 'Exploring whether Python syntax can leverage Arbitrum Stylus gas improvements without manual Rust rewriting.',
     contribution: 'Synthesized lessons from PyVax and Sol2Rust into an experimental pipeline.',
     architecture: 'Two-stage lowering: Python -> Intermediate AST -> Stylus Rust -> WASM.',
     challenges: ['Reconciling Python memory model with Stylus zero-copy storage requirements.'],
@@ -630,22 +624,22 @@ export async function processSubmission(project: SubmissionInput) {
     slug: 'solmeet',
     id: 'PRJ-15',
     title: 'SolMeet',
-    headline: 'Decentralized Proof-of-Attendance & Verification System',
+    headline: 'Decentralized Proof-of-Attendance Verification on Solana',
     category: 'Experiments',
-    role: 'Solidity Developer',
-    target: 'Ethereum & Layer 2s',
+    role: 'Solana & Systems Developer',
+    target: 'Solana',
     status: 'Experimental Prototype',
     featured: false,
-    repoUrl: 'https://github.com/ShahiTechnovation',
-    award: 'Hackathon Tooling Experiment',
+    repoUrl: 'https://github.com/ShahiTechnovation/SolMeet',
+    award: 'Solana Attendance Protocol',
     placement: 'Active',
-    stack: ['Solidity', 'React', 'Ethers.js'],
-    summary: 'Decentralized event attendance verification protocol issuing soulbound attendance badges.',
-    problem: 'Verifying real physical developer participation at technical workshops and hackathons.',
-    contribution: 'Wrote ERC-5192 compliant soulbound token contracts with gas-efficient batch minting.',
-    architecture: 'QR signature exchange verified against on-chain whitelist contracts.',
-    challenges: ['Preventing attendance ticket transfers while allowing multi-device verification.'],
-    results: ['Used to verify pilot participant cohorts during local hackathons.'],
+    stack: ['Solana', 'Rust', 'Anchor Framework', 'Next.js', 'Python', 'Telegram Bot API'],
+    summary: 'Decentralized event attendance verification protocol issuing on-chain participation proofs on Solana with QR check-in and Telegram bot integration.',
+    problem: 'Verifying real physical developer participation at technical workshops and hackathons without relying on centralized spreadsheets or easily spoofed forms.',
+    contribution: 'Built the Solana Anchor program for verifying on-chain attendance proofs, paired with a Next.js frontend and Python Telegram bot for event-floor check-ins.',
+    architecture: 'Anchor program on Solana verifying cryptographic QR signatures at check-in stations, coupled with a Python Telegram bot handler notifying attendees and logging check-in status.',
+    challenges: ['Preventing attendance ticket transfers while allowing multi-device verification on-site.'],
+    results: ['Functional prototype integrating Solana on-chain verification with Telegram bot automation.'],
     relatedSlugs: ['cpop'],
     verifiedDate: 'October 2026'
   },
@@ -653,22 +647,22 @@ export async function processSubmission(project: SubmissionInput) {
     slug: 'cpop',
     id: 'PRJ-16',
     title: 'cPOP',
-    headline: 'Community Proof of Participation Protocol',
+    headline: 'Compressed Proof of Participation Protocol on Solana',
     category: 'Blockchain Infrastructure',
     role: 'Protocol Author',
-    target: 'EVM Chains',
+    target: 'Solana (Light Protocol)',
     status: 'Open Protocol Draft',
     featured: false,
-    repoUrl: 'https://github.com/ShahiTechnovation',
-    award: 'Protocol Design Draft',
+    repoUrl: 'https://github.com/ShahiTechnovation/cpop',
+    award: 'Compressed State Protocol Draft',
     placement: 'Active',
-    stack: ['Solidity', 'ERC-721', 'Merkle Trees', 'Node.js'],
-    summary: 'Cryptographic proof-of-participation protocol using Merkle trees to enable gasless claim of developer workshop credentials.',
-    problem: 'High gas fees prevent organizers from issuing participation NFTs to thousands of students.',
-    contribution: 'Authored Merkle distributor contracts and offline proof generation scripts.',
-    architecture: 'Off-chain attendance tree generated post-event; attendees claim tokens using minimal calldata proofs.',
+    stack: ['Solana', 'Rust', 'Light Protocol', 'State Compression', 'TypeScript'],
+    summary: 'Compressed proof-of-participation protocol on Solana using Light Protocol to issue zero-rent verifiable attendance credentials at scale.',
+    problem: 'Traditional on-chain NFT and token minting on Solana incurs account rent costs that become prohibitive when issuing participation proofs to thousands of hackathon attendees.',
+    contribution: 'Designed the compressed token issuance specification leveraging Light Protocol state compression primitives for low-cost credential distribution.',
+    architecture: 'Compressed state leaves on Solana issued via Light Protocol zk-compression, allowing organizers to mint thousands of verifiable attendance records with near-zero state rent.',
     challenges: ['Ensuring proof generation remains deterministic across distributed event checkpoints.'],
-    results: ['Demonstrated 95% reduction in issuer gas costs for large-scale cohorts.'],
+    results: ['Demonstrated low-cost minting model for large-scale developer cohorts using Solana compressed state.'],
     relatedSlugs: ['solmeet'],
     verifiedDate: 'October 2026'
   },
@@ -699,22 +693,22 @@ export async function processSubmission(project: SubmissionInput) {
     slug: 'x402',
     id: 'PRJ-18',
     title: 'X402',
-    headline: 'Agent-to-Agent HTTP 402 Payment Simulation Protocol',
+    headline: 'Decentralized Compute-Session & Lifecycle Settlement Protocol',
     category: 'Experiments',
-    role: 'Protocol Engineer',
-    target: 'Solana & Web Standards',
+    role: 'Systems & Protocol Engineer',
+    target: 'Solana & Distributed Systems',
     status: 'Research Protocol',
     featured: false,
-    repoUrl: 'https://github.com/ShahiTechnovation',
-    award: 'Web Standards Experiment',
+    repoUrl: 'https://github.com/ShahiTechnovation/X402',
+    award: 'Compute Session Protocol',
     placement: 'Active',
-    stack: ['Rust', 'HTTP 402 Standards', 'Solana Pay', 'TypeScript'],
-    summary: 'Reviving the HTTP 402 Payment Required standard for autonomous AI agents paying per API call using high-speed micro-transactions.',
-    problem: 'AI agents making machine-to-machine API queries cannot complete credit card checkouts.',
-    contribution: 'Designed HTTP 402 middleware requesting Solana Pay payment requests before unlocking endpoint responses.',
-    architecture: 'API gateway intercepting requests, returning HTTP 402 with transaction payload, unlocking stream upon on-chain confirmation.',
-    challenges: ['Achieving sub-second confirmation so streaming LLM calls remain uninterrupted.'],
-    results: ['Demonstrated automated agent-to-agent micro-billing simulation.'],
+    stack: ['Rust', 'Solana', 'Decentralized Compute', 'Session Protocols'],
+    summary: 'Decentralized compute-session protocol implementing node registration, session lifecycle management, and cryptographic payment settlement.',
+    problem: 'Distributed compute networks lack standardized, lightweight session protocols to track resource allocation, verify session duration, and settle micropayments deterministically.',
+    contribution: 'Implemented node registration mechanisms, session lifecycle state machines, and payment settlement logic in Rust.',
+    architecture: 'Compute nodes register capabilities and deposit operational collateral; clients initiate signed session handles; periodic heartbeat proofs verify uptime before triggering settlement releases on Solana.',
+    challenges: ['Ensuring deterministic session teardown and settlement without latency bottlenecks.'],
+    results: ['Specification and protocol implementation for decentralized node session lifecycle management.'],
     relatedSlugs: ['bloopa', 'flowmon'],
     verifiedDate: 'October 2026'
   }
