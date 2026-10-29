@@ -1,0 +1,117 @@
+/* ==========================================================================
+   impure.me V2 — Design Tokens (THE EDITORIAL DOSSIER)
+   ========================================================================== */
+
+:root {
+  /* Editorial Light Theme (Primary Default) */
+  --color-paper: #F4F1EB;
+  --color-ink: #171717;
+  --color-signal: #D92E32;
+  --color-signal-hover: #B52226;
+  --color-signal-subtle: rgba(217, 46, 50, 0.08);
+  --color-signal-glow: rgba(217, 46, 50, 0.25);
+  --color-muted: #67645F;
+  --color-muted-light: #8E8A84;
+  --color-line: #D5D0C9;
+  --color-line-dark: #B8B2A8;
+  --color-surface: #FFFFFF;
+  --color-surface-dim: #ECE8E0;
+  --color-night: #101114;
+  --color-badge-bg: #EAE6DE;
+
+  /* Semantic Mappings */
+  --bg-primary: var(--color-paper);
+  --bg-surface: var(--color-surface);
+  --bg-surface-dim: var(--color-surface-dim);
+  --text-primary: var(--color-ink);
+  --text-muted: var(--color-muted);
+  --text-dim: var(--color-muted-light);
+  --border-color: var(--color-line);
+  --border-strong: var(--color-line-dark);
+  --accent-color: var(--color-signal);
+  --accent-hover: var(--color-signal-hover);
+
+  /* Typography Stack */
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, Menlo, monospace;
+
+  /* Modular Spacing Scale (4px base unit) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Layout Boundaries */
+  --container-max: 1440px;
+  --container-reading: 760px;
+  --header-height: 72px;
+
+  /* Grid & Borders */
+  --border-width: 1px;
+  --border-width-thick: 2px;
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-full: 9999px;
+
+  /* Shadows (Subtle, tactile print aesthetics) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-dossier: 4px 4px 0px var(--color-ink);
+  --shadow-signal: 3px 3px 0px var(--color-signal);
+
+  /* Transitions & Animation Timing */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms var(--ease-editorial);
+  --transition-base: 250ms var(--ease-editorial);
+  --transition-slow: 450ms var(--ease-editorial);
+
+  /* Texture Overlay Opacity */
+  --texture-opacity: 0.045;
+  --color-scheme: light;
+}
+
+/* Brutalist Dark Theme */
+[data-theme="dark"] {
+  --color-paper: #101114;
+  --color-ink: #F4F1EB;
+  --color-signal: #FF464B;
+  --color-signal-hover: #FF666A;
+  --color-signal-subtle: rgba(255, 70, 75, 0.12);
+  --color-signal-glow: rgba(255, 70, 75, 0.35);
+  --color-muted: #A4A29F;
+  --color-muted-light: #6E6D6A;
+  --color-line: #2C2E33;
+  --color-line-dark: #3F4248;
+  --color-surface: #18191E;
+  --color-surface-dim: #131417;
+  --color-night: #090A0C;
+  --color-badge-bg: #212328;
+
+  --bg-primary: var(--color-paper);
+  --bg-surface: var(--color-surface);
+  --bg-surface-dim: var(--color-surface-dim);
+  --text-primary: var(--color-ink);
+  --text-muted: var(--color-muted);
+  --text-dim: var(--color-muted-light);
+  --border-color: var(--color-line);
+  --border-strong: var(--color-line-dark);
+  --accent-color: var(--color-signal);
+  --accent-hover: var(--color-signal-hover);
+
+  --shadow-dossier: 4px 4px 0px #000000;
+  --shadow-signal: 3px 3px 0px var(--color-signal);
+  --texture-opacity: 0.03;
+  --color-scheme: dark;
+}

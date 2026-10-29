@@ -1,14 +1,22 @@
 {
-  "name": "web3",
-  "version": "0.0.0",
+  "name": "impure-v2",
+  "version": "2.0.0",
+  "description": "impure.me V2 — Personal Website & Digital Brand of Punit Pal (IMPURE®)",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "lint": "tsc --noEmit",
+    "test": "node scripts/test-build.js"
   },
-  "devDependencies": {
-    "vite": "^8.0.4"
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.4",
+    "typescript": "^6.0.3"
   }
 }

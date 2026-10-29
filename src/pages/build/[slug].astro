@@ -1,0 +1,433 @@
+---
+// src/pages/build/[slug].astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects, type Project } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const relatedProjects = projects.filter((p) => project.relatedSlugs?.includes(p.slug));
+---
+
+<BaseLayout
+  title={`${project.title} // Engineering Dossier — Punit Pal`}
+  description={project.summary}
+>
+  <article class="case-study-page">
+    <!-- Top Dossier Navigation Strip -->
+    <div class="case-meta-header">
+      <div class="container case-meta-inner">
+        <a href="/build" class="case-back-link tech-label">
+          <span>[&larr;] RETURN TO ARCHIVE</span>
+        </a>
+        <div class="case-header-tags">
+          <span class="dossier-stamp signal">{project.id}</span>
+          <span class="tech-micro">{project.category}</span>
+          {project.placement && (
+            <span class="dossier-stamp solid-signal">{project.placement}</span>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Title Header -->
+    <header class="case-hero-header">
+      <div class="container">
+        <div class="case-title-block animate-reveal">
+          <div class="case-env-tag tech-label-muted">ENVIRONMENT: {project.target}</div>
+          <h1 class="heading-xl case-main-title">
+            {project.title}<span class="signal-dot">.</span>
+          </h1>
+          <p class="case-headline text-lead">
+            {project.headline}
+          </p>
+        </div>
+
+        <!-- Technical Parameters Grid -->
+        <div class="case-params-grid dossier-card animate-reveal">
+          <div class="param-cell">
+            <span class="param-key tech-micro">ROLE</span>
+            <span class="param-val tech-label">{project.role}</span>
+          </div>
+          <div class="param-cell">
+            <span class="param-key tech-micro">TARGET NETWORK / VM</span>
+            <span class="param-val tech-label">{project.target}</span>
+          </div>
+          <div class="param-cell">
+            <span class="param-key tech-micro">STATUS</span>
+            <span class="param-val tech-label">{project.status}</span>
+          </div>
+          <div class="param-cell">
+            <span class="param-key tech-micro">LAST VERIFIED</span>
+            <span class="param-val tech-label">{project.verifiedDate}</span>
+          </div>
+        </div>
+
+        <!-- Direct Actions Bar -->
+        <div class="case-actions-bar animate-reveal">
+          {project.repoUrl && (
+            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <span>VIEW SOURCE ON GITHUB</span>
+              <span class="ext-arrow">&nearr;</span>
+            </a>
+          )}
+          {project.demoUrl && (
+            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" class="btn">
+              <span>EXPLORE LIVE DEPLOYMENT</span>
+              <span class="ext-arrow">&nearr;</span>
+            </a>
+          )}
+          {project.evidenceUrl && (
+            <a href={project.evidenceUrl} target="_blank" rel="noopener noreferrer" class="btn">
+              <span>VERIFY HACKATHON EVIDENCE</span>
+              <span class="ext-arrow">&nearr;</span>
+            </a>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <!-- Case Study Narrative Body -->
+    <div class="case-body-section">
+      <div class="container reading-container">
+        <!-- 01: Problem Statement -->
+        <section class="case-section-block animate-reveal">
+          <div class="section-marker tech-label">01 // PROBLEM &amp; MOTIVATION</div>
+          <h2 class="heading-md section-heading">The Architectural Problem</h2>
+          <p class="text-body case-narrative-paragraph">
+            {project.problem}
+          </p>
+        </section>
+
+        <!-- 02: Punit's Specific Contribution -->
+        <section class="case-section-block animate-reveal">
+          <div class="section-marker tech-label">02 // INDIVIDUAL CONTRIBUTION</div>
+          <h2 class="heading-md section-heading">Systems Design &amp; Execution</h2>
+          <p class="text-body case-narrative-paragraph">
+            {project.contribution}
+          </p>
+        </section>
+
+        <!-- 03: Technical Architecture -->
+        <section class="case-section-block animate-reveal">
+          <div class="section-marker tech-label">03 // ARCHITECTURE &amp; PIPELINE</div>
+          <h2 class="heading-md section-heading">Technical Pipeline &amp; VM Lowering</h2>
+          <p class="text-body case-narrative-paragraph">
+            {project.architecture}
+          </p>
+
+          <!-- Stack Tags -->
+          <div class="tech-stack-showcase">
+            <span class="tech-label-muted">ACTIVE TECHNOLOGIES &amp; CRATES:</span>
+            <div class="stack-pills-row">
+              {project.stack.map((t) => (
+                <span class="stack-pill tech-micro">{t}</span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- 04: Code / Grammar Snippet -->
+        {project.codeSnippet && (
+          <section class="case-section-block animate-reveal">
+            <div class="section-marker tech-label">04 // CODE ARTIFACT</div>
+            <h2 class="heading-md section-heading">Implementation Snippet</h2>
+            <div class="code-artifact-card">
+              <div class="code-artifact-header">
+                <span class="tech-micro">{project.codeSnippet.title}</span>
+                <span class="tech-micro">{project.codeSnippet.language.toUpperCase()}</span>
+              </div>
+              <pre><code>{project.codeSnippet.code}</code></pre>
+            </div>
+          </section>
+        )}
+
+        <!-- 05: Challenges & Tradeoffs -->
+        <section class="case-section-block animate-reveal">
+          <div class="section-marker tech-label">05 // CHALLENGES &amp; TRADEOFFS</div>
+          <h2 class="heading-md section-heading">Engineering Roadblocks Solved</h2>
+          <div class="challenges-list">
+            {project.challenges.map((c, idx) => (
+              <div class="challenge-item dossier-card">
+                <span class="challenge-num tech-label">0{idx + 1}</span>
+                <p class="text-body-sm">{c}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- 06: Verified Results & Accolades -->
+        <section class="case-section-block animate-reveal">
+          <div class="section-marker tech-label">06 // IMPACT &amp; VALIDATION</div>
+          <h2 class="heading-md section-heading">Verified Results</h2>
+          <ul class="results-bullet-list">
+            {project.results.map((r) => (
+              <li class="result-bullet-item text-body">
+                <span class="bullet-arrow tech-label" aria-hidden="true">&gt;</span>
+                <span>{r}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Related Projects -->
+        {relatedProjects.length > 0 && (
+          <section class="related-projects-section animate-reveal">
+            <div class="section-marker tech-label">07 // RELATED DOSSIERS</div>
+            <h2 class="heading-md section-heading">Connected Systems</h2>
+            <div class="related-grid">
+              {relatedProjects.map((rel) => (
+                <a href={`/build/${rel.slug}`} class="related-card dossier-card">
+                  <span class="tech-label signal-text">{rel.id}</span>
+                  <h4 class="heading-sm">{rel.title}</h4>
+                  <p class="text-body-sm">{rel.headline}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .case-study-page {
+    padding-bottom: clamp(4rem, 8vw, 8rem);
+  }
+
+  .case-meta-header {
+    background-color: var(--bg-surface-dim);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+  }
+
+  .case-meta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .case-back-link {
+    color: var(--accent-color);
+    transition: color var(--transition-fast);
+  }
+
+  .case-back-link:hover {
+    color: var(--text-primary);
+  }
+
+  .case-header-tags {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .case-hero-header {
+    padding-top: clamp(2.5rem, 5vw, 4.5rem);
+    padding-bottom: clamp(2rem, 4vw, 3.5rem);
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+  }
+
+  .case-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .case-main-title {
+    margin: 0;
+  }
+
+  .signal-dot {
+    color: var(--accent-color);
+  }
+
+  .case-headline {
+    color: var(--text-muted);
+    max-width: 840px;
+  }
+
+  .case-params-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+  }
+
+  .param-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .param-key {
+    color: var(--text-dim);
+  }
+
+  .param-val {
+    color: var(--text-primary);
+  }
+
+  .case-actions-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .case-body-section {
+    padding-top: clamp(3rem, 6vw, 5rem);
+  }
+
+  .case-section-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px dashed var(--border-color);
+  }
+
+  .section-marker {
+    color: var(--accent-color);
+  }
+
+  .section-heading {
+    margin: 0;
+  }
+
+  .case-narrative-paragraph {
+    line-height: 1.75;
+    font-size: 1.0625rem;
+  }
+
+  .tech-stack-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 16px;
+    background-color: var(--bg-surface-dim);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+  }
+
+  .stack-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .code-artifact-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  .code-artifact-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background-color: var(--bg-surface-dim);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-dim);
+  }
+
+  .challenges-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .challenge-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+  }
+
+  .challenge-num {
+    color: var(--accent-color);
+    min-width: 24px;
+  }
+
+  .results-bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .result-bullet-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .bullet-arrow {
+    color: var(--accent-color);
+  }
+
+  .related-projects-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 2rem;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .related-card {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+
+  .signal-text {
+    color: var(--accent-color);
+  }
+
+  @media (max-width: 800px) {
+    .case-params-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .case-params-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

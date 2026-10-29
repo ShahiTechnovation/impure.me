@@ -1,0 +1,171 @@
+---
+// src/layouts/BaseLayout.astro
+import '../styles/global.css';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import CommandPalette from '../components/ui/CommandPalette.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  articleDate?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = 'Punit Pal // IMPURE® — Technical Founder, Developer & Ecosystem Builder',
+  description = 'Personal dossier of Punit Pal. Developer, technical founder, and ecosystem builder working across compiler engineering, AI agent infrastructure, high-throughput blockchains, and community distribution.',
+  ogImage = '/images/og-image.png',
+  articleDate,
+  noindex = false
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://impure.me');
+const socialImageURL = new URL(ogImage, Astro.site || 'https://impure.me');
+
+// Schema.org Structured Data
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Punit Pal',
+  alternateName: 'IMPURE®',
+  url: 'https://impure.me',
+  image: 'https://impure.me/images/punit-pal.jpg',
+  jobTitle: 'Technical Founder & Developer Relations Strategist',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Builder Base',
+    url: 'https://www.builderbase.xyz'
+  },
+  alumniOf: {
+    '@type': 'EducationalOrganization',
+    name: 'Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)'
+  },
+  sameAs: [
+    'https://github.com/ShahiTechnovation',
+    'https://x.com/its_punit05',
+    'https://linkedin.com/in/punit05',
+    'https://farcaster.xyz/0x9899',
+    'https://www.builderbase.xyz'
+  ],
+  knowsAbout: [
+    'Compiler Design',
+    'AI Multi-Agent Systems',
+    'Blockchain Infrastructure',
+    'Developer Relations',
+    'Ecosystem Go-To-Market',
+    'Arbitrum Stylus',
+    'Monad EVM',
+    'Avalanche C-Chain',
+    'Aptos Move'
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Theme Initialization Script (Zero FOUC) -->
+    <script is:inline>
+      (function () {
+        const storedTheme = localStorage.getItem('impure_theme');
+        if (storedTheme) {
+          document.documentElement.setAttribute('data-theme', storedTheme);
+        } else {
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+        }
+      })();
+    </script>
+
+    <!-- Preconnect & Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/images/punit-pal.jpg" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={articleDate ? 'article' : 'website'} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:site_name" content="Punit Pal // IMPURE®" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@its_punit05" />
+    <meta name="twitter:creator" content="@its_punit05" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body>
+    <!-- Skip to Content Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Global Navigation -->
+    <Navbar currentPath={Astro.url.pathname} />
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <Footer />
+
+    <!-- Global Accessible Command Palette -->
+    <CommandPalette />
+
+    <!-- IntersectionObserver Reveal Script -->
+    <script>
+      function setupScrollObserver() {
+        const elements = document.querySelectorAll('.animate-reveal');
+        if (!elements.length) return;
+
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('in-view');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+              rootMargin: '0px 0px -40px 0px'
+            }
+          );
+
+          elements.forEach((el) => observer.observe(el));
+        } else {
+          elements.forEach((el) => el.classList.add('in-view'));
+        }
+      }
+
+      setupScrollObserver();
+      document.addEventListener('astro:page-load', setupScrollObserver);
+    </script>
+  </body>
+</html>

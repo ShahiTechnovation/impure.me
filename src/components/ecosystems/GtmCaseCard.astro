@@ -1,0 +1,255 @@
+---
+// src/components/ecosystems/GtmCaseCard.astro
+import type { GtmInitiative } from '../../data/ecosystems';
+
+interface Props {
+  initiative: GtmInitiative;
+}
+
+const { initiative } = Astro.props;
+---
+
+<article class="dossier-card gtm-case-card">
+  <!-- Header Bar -->
+  <div class="gtm-header-bar">
+    <div class="gtm-badge-group">
+      <span class="card-index-pill tech-label">{initiative.id}</span>
+      <span class="gtm-period tech-micro">{initiative.period}</span>
+    </div>
+    <div class="gtm-location tech-micro">
+      LOCATION: {initiative.location}
+    </div>
+  </div>
+
+  <div class="gtm-card-body">
+    <!-- Title & Subtitle -->
+    <div class="gtm-title-area">
+      <h3 class="heading-md gtm-title">{initiative.title}</h3>
+      <p class="gtm-subtitle text-lead">{initiative.subtitle}</p>
+    </div>
+
+    <!-- Objective & Strategy Grid -->
+    <div class="gtm-brief-grid">
+      <div class="gtm-brief-block">
+        <span class="brief-label tech-label">01 // OBJECTIVE</span>
+        <p class="text-body-sm">{initiative.objective}</p>
+      </div>
+      <div class="gtm-brief-block">
+        <span class="brief-label tech-label">02 // TARGET DEVELOPER AUDIENCE</span>
+        <p class="text-body-sm">{initiative.targetAudience}</p>
+      </div>
+      <div class="gtm-brief-block gtm-span-2">
+        <span class="brief-label tech-label">03 // DISTRIBUTION STRATEGY</span>
+        <p class="text-body-sm">{initiative.strategy}</p>
+      </div>
+    </div>
+
+    <!-- Verified Outcomes Metrics Strip -->
+    <div class="gtm-outcomes-section">
+      <div class="outcomes-header tech-label-signal">
+        QUANTIFIABLE GTM METRICS &amp; IMPACT
+      </div>
+      <div class="outcomes-grid">
+        {initiative.outcomes.map((metric) => (
+          <div class="outcome-cell">
+            <span class="outcome-value heading-md">{metric.value}</span>
+            <span class="outcome-label tech-label">{metric.label}</span>
+            <span class="outcome-detail text-body-sm">{metric.detail}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Individual Responsibilities -->
+    <div class="gtm-section-block">
+      <span class="brief-label tech-label">INDIVIDUAL LEADERSHIP &amp; EXECUTION</span>
+      <ul class="gtm-resp-list">
+        {initiative.responsibilities.map((resp) => (
+          <li class="text-body-sm">
+            <span class="resp-bullet tech-label" aria-hidden="true">&gt;</span>
+            <span>{resp}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Key Learnings -->
+    <div class="gtm-section-block learnings-block">
+      <span class="brief-label tech-label">RETROSPECTIVE GTM LEARNINGS</span>
+      <ul class="gtm-learnings-list">
+        {initiative.learnings.map((learning) => (
+          <li class="text-body-sm">
+            <span>&bull; {learning}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {initiative.statusNote && (
+      <div class="gtm-status-note">
+        <span class="tech-micro">{initiative.statusNote}</span>
+      </div>
+    )}
+  </div>
+</article>
+
+<style>
+  .gtm-case-card {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .gtm-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: var(--bg-surface-dim);
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .gtm-badge-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .card-index-pill {
+    color: var(--accent-color);
+  }
+
+  .gtm-period {
+    padding: 2px 6px;
+    background-color: var(--color-badge-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+  }
+
+  .gtm-card-body {
+    padding: clamp(20px, 3.5vw, 36px);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .gtm-title {
+    margin-bottom: 4px;
+  }
+
+  .gtm-subtitle {
+    color: var(--text-muted);
+  }
+
+  .gtm-brief-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--bg-surface-dim);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+  }
+
+  .gtm-span-2 {
+    grid-column: span 2;
+  }
+
+  .brief-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-dim);
+  }
+
+  .gtm-outcomes-section {
+    border: 1px solid var(--accent-color);
+    background-color: var(--color-signal-subtle);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+  }
+
+  .outcomes-header {
+    margin-bottom: 16px;
+  }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .outcome-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .outcome-value {
+    color: var(--text-primary);
+  }
+
+  .outcome-label {
+    color: var(--accent-color);
+  }
+
+  .outcome-detail {
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+  }
+
+  .gtm-section-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gtm-resp-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gtm-resp-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .resp-bullet {
+    color: var(--accent-color);
+  }
+
+  .learnings-block {
+    padding-top: 16px;
+    border-top: 1px dashed var(--border-color);
+  }
+
+  .gtm-learnings-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gtm-status-note {
+    padding: 10px 14px;
+    background-color: var(--bg-surface-dim);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .gtm-brief-grid {
+      grid-template-columns: 1fr;
+    }
+    .gtm-span-2 {
+      grid-column: span 1;
+    }
+    .outcomes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

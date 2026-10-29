@@ -1,0 +1,465 @@
+---
+// src/components/ui/CommandPalette.astro
+import { projects } from '../../data/projects';
+import { achievements } from '../../data/achievements';
+---
+
+<div
+  id="cmd-palette-modal"
+  class="cmd-backdrop"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Command Palette"
+  hidden
+>
+  <div class="cmd-dialog">
+    <!-- Header -->
+    <div class="cmd-header">
+      <div class="cmd-header-left">
+        <span class="cmd-prompt-glyph" aria-hidden="true">&gt;</span>
+        <span class="tech-micro">DOSSIER COMMAND // [ESC] TO ABORT</span>
+      </div>
+      <button id="cmd-close-btn" class="cmd-close-btn" type="button" aria-label="Close command palette">
+        <kbd>ESC</kbd>
+      </button>
+    </div>
+
+    <!-- Input -->
+    <div class="cmd-input-wrapper">
+      <input
+        type="text"
+        id="cmd-search-input"
+        class="cmd-input"
+        placeholder="Search projects, routes, achievements, or protocols..."
+        autocomplete="off"
+        spellcheck="false"
+      />
+    </div>
+
+    <!-- Results Container -->
+    <div class="cmd-results-list" id="cmd-results" role="listbox">
+      <!-- Section: Navigation Routes -->
+      <div class="cmd-group-label tech-micro">PAGES & DOSSIERS</div>
+      <a href="/" class="cmd-item" role="option" data-search="home punit pal hero overview dossier">
+        <span class="cmd-item-code">/01</span>
+        <span class="cmd-item-title">INDEX // Overview & Selected Works</span>
+        <span class="cmd-item-meta tech-micro">HOME</span>
+      </a>
+      <a href="/build" class="cmd-item" role="option" data-search="build engineering projects compilers tools agents code">
+        <span class="cmd-item-code">/02</span>
+        <span class="cmd-item-title">BUILD // Engineering Portfolio & Archive</span>
+        <span class="cmd-item-meta tech-micro">18 PROJECTS</span>
+      </a>
+      <a href="/grow" class="cmd-item" role="option" data-search="grow devrel ecosystem builder base community gtm hackathons">
+        <span class="cmd-item-code">/03</span>
+        <span class="cmd-item-title">GROW // Developer Relations & Ecosystem GTM</span>
+        <span class="cmd-item-meta tech-micro">BUILDER BASE</span>
+      </a>
+      <a href="/story" class="cmd-item" role="option" data-search="story bio background education rgpv journey milestones">
+        <span class="cmd-item-code">/04</span>
+        <span class="cmd-item-title">STORY // Personal Journey, Education & Principles</span>
+        <span class="cmd-item-meta tech-micro">BIOGRAPHY</span>
+      </a>
+      <a href="/contact" class="cmd-item" role="option" data-search="contact email hire collaboration speak partnerships">
+        <span class="cmd-item-code">/05</span>
+        <span class="cmd-item-title">CONTACT // Inquiries, Collaborations & Speaking</span>
+        <span class="cmd-item-meta tech-micro">CONNECT</span>
+      </a>
+
+      <!-- Section: Featured Projects -->
+      <div class="cmd-group-label tech-micro">FEATURED ENGINEERING DOSSIERS</div>
+      {projects.filter(p => p.featured).map((p) => (
+        <a
+          href={`/build/${p.slug}`}
+          class="cmd-item"
+          role="option"
+          data-search={`${p.title} ${p.target} ${p.category} ${p.stack.join(' ')} ${p.id}`}
+        >
+          <span class="cmd-item-code">{p.id}</span>
+          <span class="cmd-item-title">{p.title} — <span class="cmd-item-sub">{p.target}</span></span>
+          <span class="cmd-item-meta tech-micro">{p.placement || p.category}</span>
+        </a>
+      ))}
+
+      <!-- Section: Hackathon Accolades -->
+      <div class="cmd-group-label tech-micro">VERIFIED HACKATHON RECORDS</div>
+      {achievements.map((a) => (
+        <a
+          href={a.evidenceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cmd-item"
+          role="option"
+          data-search={`${a.competition} ${a.projectTitle} ${a.placement} ${a.ecosystem}`}
+        >
+          <span class="cmd-item-code">{a.id}</span>
+          <span class="cmd-item-title">{a.competition} — {a.projectTitle}</span>
+          <span class="cmd-item-meta tech-micro signal-text">{a.placement}</span>
+        </a>
+      ))}
+
+      <!-- Section: Quick Actions -->
+      <div class="cmd-group-label tech-micro">DIRECT COMMS & PROFILES</div>
+      <a
+        href="mailto:founder@builderbase.xyz"
+        class="cmd-item"
+        role="option"
+        data-search="email mail founder builderbase send message"
+      >
+        <span class="cmd-item-code">ACT-01</span>
+        <span class="cmd-item-title">SEND TRANSMISSION // founder@builderbase.xyz</span>
+        <span class="cmd-item-meta tech-micro">MAILTO</span>
+      </a>
+      <a
+        href="https://github.com/ShahiTechnovation"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cmd-item"
+        role="option"
+        data-search="github code repos source open source"
+      >
+        <span class="cmd-item-code">ACT-02</span>
+        <span class="cmd-item-title">GITHUB REPOSITORIES // @ShahiTechnovation</span>
+        <span class="cmd-item-meta tech-micro">EXTERNAL</span>
+      </a>
+      <a
+        href="https://x.com/its_punit05"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cmd-item"
+        role="option"
+        data-search="twitter x social dispatches"
+      >
+        <span class="cmd-item-code">ACT-03</span>
+        <span class="cmd-item-title">X / TWITTER // @its_punit05</span>
+        <span class="cmd-item-meta tech-micro">EXTERNAL</span>
+      </a>
+    </div>
+
+    <!-- Footer Help Bar -->
+    <div class="cmd-footer">
+      <div class="cmd-shortcut-hint">
+        <kbd>&uarr;&darr;</kbd> <span>Navigate</span>
+      </div>
+      <div class="cmd-shortcut-hint">
+        <kbd>&crarr;</kbd> <span>Select</span>
+      </div>
+      <div class="cmd-shortcut-hint">
+        <kbd>Esc</kbd> <span>Close</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cmd-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(16, 17, 20, 0.7);
+    backdrop-filter: blur(6px);
+    z-index: 99999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(2rem, 10vh, 6rem) 1rem 1rem;
+    animation: cmdFadeIn 150ms ease-out;
+  }
+
+  .cmd-backdrop[hidden] {
+    display: none;
+  }
+
+  .cmd-dialog {
+    width: 100%;
+    max-width: 680px;
+    background-color: var(--bg-surface);
+    border: 2px solid var(--border-strong);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), var(--shadow-dossier);
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    overflow: hidden;
+    animation: cmdSlideUp 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cmd-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background-color: var(--bg-surface-dim);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .cmd-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+  }
+
+  .cmd-prompt-glyph {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-family: var(--font-mono);
+  }
+
+  .cmd-close-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .cmd-input-wrapper {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .cmd-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+
+  .cmd-input::placeholder {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+
+  .cmd-results-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+  }
+
+  .cmd-group-label {
+    padding: 10px 10px 4px;
+    color: var(--text-dim);
+    font-weight: 700;
+  }
+
+  .cmd-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: background-color var(--transition-fast);
+  }
+
+  .cmd-item:hover,
+  .cmd-item.active {
+    background-color: var(--bg-surface-dim);
+    outline: none;
+  }
+
+  .cmd-item.active {
+    border-left: 3px solid var(--accent-color);
+    padding-left: 9px;
+  }
+
+  .cmd-item-code {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    min-width: 50px;
+  }
+
+  .cmd-item-title {
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+
+  .cmd-item-sub {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .cmd-item-meta {
+    padding: 2px 6px;
+    background-color: var(--color-badge-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+  }
+
+  .signal-text {
+    color: var(--accent-color);
+    font-weight: 700;
+  }
+
+  .cmd-footer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 16px;
+    background-color: var(--bg-surface-dim);
+    border-top: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .cmd-shortcut-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  @keyframes cmdFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes cmdSlideUp {
+    from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+</style>
+
+<script>
+  function setupCommandPalette() {
+    const modal = document.getElementById('cmd-palette-modal');
+    const input = document.getElementById('cmd-search-input') as HTMLInputElement | null;
+    const closeBtn = document.getElementById('cmd-close-btn');
+    const resultsContainer = document.getElementById('cmd-results');
+    const triggers = document.querySelectorAll('[data-open-cmd]');
+
+    if (!modal || !input || !resultsContainer) return;
+
+    let selectedIndex = -1;
+
+    function getVisibleItems(): HTMLElement[] {
+      return Array.from(resultsContainer!.querySelectorAll('.cmd-item:not([hidden])'));
+    }
+
+    function updateActiveItem(items: HTMLElement[]) {
+      items.forEach((item, idx) => {
+        if (idx === selectedIndex) {
+          item.classList.add('active');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    function openModal() {
+      modal!.hidden = false;
+      document.body.style.overflow = 'hidden';
+      input!.value = '';
+      filterItems('');
+      setTimeout(() => input!.focus(), 50);
+    }
+
+    function closeModal() {
+      modal!.hidden = true;
+      document.body.style.overflow = '';
+      selectedIndex = -1;
+    }
+
+    function filterItems(query: string) {
+      const q = query.toLowerCase().trim();
+      const items = Array.from(resultsContainer!.querySelectorAll('.cmd-item')) as HTMLElement[];
+      const labels = Array.from(resultsContainer!.querySelectorAll('.cmd-group-label')) as HTMLElement[];
+
+      let matchCount = 0;
+      items.forEach((item) => {
+        const searchData = (item.getAttribute('data-search') || '').toLowerCase();
+        const text = item.textContent?.toLowerCase() || '';
+        const match = !q || searchData.includes(q) || text.includes(q);
+        item.hidden = !match;
+        if (match) matchCount++;
+      });
+
+      // Hide headers if no children match
+      labels.forEach((label) => {
+        let sibling = label.nextElementSibling as HTMLElement | null;
+        let hasVisibleChild = false;
+        while (sibling && !sibling.classList.contains('cmd-group-label')) {
+          if (!sibling.hidden) {
+            hasVisibleChild = true;
+            break;
+          }
+          sibling = sibling.nextElementSibling as HTMLElement | null;
+        }
+        label.hidden = !hasVisibleChild;
+      });
+
+      const visible = getVisibleItems();
+      selectedIndex = visible.length > 0 ? 0 : -1;
+      updateActiveItem(visible);
+    }
+
+    // Attach open triggers
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Keyboard handling
+    input.addEventListener('input', () => {
+      filterItems(input.value);
+    });
+
+    input.addEventListener('keydown', (e) => {
+      const visible = getVisibleItems();
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (visible.length > 0) {
+          selectedIndex = (selectedIndex + 1) % visible.length;
+          updateActiveItem(visible);
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (visible.length > 0) {
+          selectedIndex = (selectedIndex - 1 + visible.length) % visible.length;
+          updateActiveItem(visible);
+        }
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (selectedIndex >= 0 && visible[selectedIndex]) {
+          const target = visible[selectedIndex] as HTMLAnchorElement;
+          target.click();
+          closeModal();
+        }
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        closeModal();
+      }
+    });
+
+    // Global shortcut Ctrl+K / Cmd+K
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (modal.hidden) {
+          openModal();
+        } else {
+          closeModal();
+        }
+      }
+    });
+  }
+
+  setupCommandPalette();
+  document.addEventListener('astro:page-load', setupCommandPalette);
+</script>

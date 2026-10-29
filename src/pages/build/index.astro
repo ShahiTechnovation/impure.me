@@ -1,0 +1,334 @@
+---
+// src/pages/build/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/projects/ProjectCard.astro';
+import { projects, projectCategories } from '../../data/projects';
+---
+
+<BaseLayout
+  title="Build // Engineering Portfolio & Archive — Punit Pal"
+  description="18 production systems, compilers, multi-agent frameworks, and blockchain infrastructure projects engineered by Punit Pal."
+>
+  <div class="build-page-container">
+    <!-- Header Hero -->
+    <section class="build-header-section" aria-label="Portfolio Introduction">
+      <div class="container">
+        <div class="build-meta-bar animate-reveal">
+          <span class="dossier-stamp signal">DOSSIER // BUILD.LOG</span>
+          <span class="tech-micro">TOTAL CATALOG: 18 SYSTEMS &amp; PROTOCOLS</span>
+          <span class="tech-micro hide-mobile">CORE ARCHITECTURE: COMPILERS / AI AGENTS / MULTI-VM</span>
+        </div>
+
+        <div class="build-header-content animate-reveal">
+          <h1 class="heading-xl build-title">
+            ENGINEERING ARCHIVE<span class="signal-dot">.</span>
+          </h1>
+          <p class="text-lead build-subtitle">
+            Compilers, AI agent protocols, transaction simulation infrastructure, and full-stack developer tools.
+          </p>
+          <p class="text-body build-desc">
+            Every featured project represents original systems architecture designed to eliminate friction for developers, prove performance guarantees across novel VMs, or orchestrate autonomous on-chain workflows.
+          </p>
+        </div>
+
+        <!-- Filter Controls & Real-Time Search -->
+        <div class="filter-controls-bar animate-reveal">
+          <div class="category-pills-list" role="tablist" aria-label="Project Categories">
+            {projectCategories.map((cat, idx) => (
+              <button
+                type="button"
+                class:list={['filter-pill', 'tech-micro', { 'active': idx === 0 }]}
+                data-category={cat}
+                role="tab"
+                aria-selected={idx === 0 ? 'true' : 'false'}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          <div class="search-input-wrapper">
+            <span class="search-icon" aria-hidden="true">&gt;</span>
+            <input
+              type="text"
+              id="project-search-input"
+              class="search-input tech-micro"
+              placeholder="FILTER BY STACK, VM, OR KEYWORD..."
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Projects Section -->
+    <section class="projects-display-section" aria-label="Projects Grid">
+      <div class="container">
+        <!-- Results Count Readout -->
+        <div class="results-readout-bar">
+          <span class="tech-micro" id="active-filter-label">SHOWING: ALL PROJECTS</span>
+          <span class="tech-micro" id="results-count-badge">18 OF 18 SYSTEMS DISPLAYED</span>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="all-projects-grid" id="projects-grid">
+          {projects.map((project) => (
+            <div
+              class="project-wrapper"
+              data-category={project.category}
+              data-search={`${project.title} ${project.headline} ${project.category} ${project.target} ${project.stack.join(' ')} ${project.role} ${project.id}`}
+            >
+              <ProjectCard project={project} />
+            </div>
+          ))}
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state-card dossier-card" hidden>
+          <span class="tech-micro signal-text">ERR: NO MATCHING SYSTEMS FOUND</span>
+          <p class="text-body-sm">No engineering records matched your query. Try clearing search filters.</p>
+          <button type="button" id="reset-filter-btn" class="btn btn-primary" style="margin-top: 12px;">
+            RESET FILTERS
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .build-header-section {
+    padding-top: clamp(2.5rem, 5vw, 4.5rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+  }
+
+  .build-meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .build-header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 840px;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .build-title {
+    margin: 0;
+  }
+
+  .signal-dot {
+    color: var(--accent-color);
+  }
+
+  .filter-controls-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+  }
+
+  .category-pills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filter-pill {
+    padding: 6px 12px;
+    background-color: var(--bg-surface-dim);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+  }
+
+  .filter-pill:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+  }
+
+  .filter-pill.active {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #FFFFFF;
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background-color: var(--bg-surface-dim);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    min-width: 280px;
+  }
+
+  .search-icon {
+    color: var(--accent-color);
+    font-weight: 700;
+  }
+
+  .search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+  }
+
+  .search-input::placeholder {
+    color: var(--text-dim);
+  }
+
+  .projects-display-section {
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+  }
+
+  .results-readout-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+    border-bottom: 1px dashed var(--border-color);
+    color: var(--text-dim);
+  }
+
+  .all-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 3vw, 32px);
+  }
+
+  .empty-state-card {
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .empty-state-card[hidden] {
+    display: none;
+  }
+
+  .signal-text {
+    color: var(--accent-color);
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .all-projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .filter-controls-bar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .search-input-wrapper {
+      min-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  function setupProjectFiltering() {
+    const pills = document.querySelectorAll('.filter-pill');
+    const searchInput = document.getElementById('project-search-input') as HTMLInputElement | null;
+    const projectWrappers = document.querySelectorAll('.project-wrapper');
+    const emptyState = document.getElementById('empty-state');
+    const resetBtn = document.getElementById('reset-filter-btn');
+    const activeLabel = document.getElementById('active-filter-label');
+    const countBadge = document.getElementById('results-count-badge');
+
+    if (!pills.length || !projectWrappers.length) return;
+
+    let activeCategory = 'All';
+    let searchQuery = '';
+
+    function applyFilter() {
+      let visibleCount = 0;
+      const q = searchQuery.toLowerCase().trim();
+
+      projectWrappers.forEach((el) => {
+        const item = el as HTMLElement;
+        const cat = item.getAttribute('data-category') || '';
+        const searchData = (item.getAttribute('data-search') || '').toLowerCase();
+
+        const matchesCat = activeCategory === 'All' || cat === activeCategory;
+        const matchesQuery = !q || searchData.includes(q);
+
+        if (matchesCat && matchesQuery) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (emptyState) {
+        emptyState.hidden = visibleCount > 0;
+      }
+
+      if (activeLabel) {
+        activeLabel.textContent = `SHOWING: ${activeCategory.toUpperCase()}`;
+      }
+
+      if (countBadge) {
+        countBadge.textContent = `${visibleCount} OF ${projectWrappers.length} SYSTEMS DISPLAYED`;
+      }
+    }
+
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        pills.forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+        activeCategory = pill.getAttribute('data-category') || 'All';
+        applyFilter();
+      });
+    });
+
+    searchInput?.addEventListener('input', () => {
+      searchQuery = searchInput.value;
+      applyFilter();
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      activeCategory = 'All';
+      searchQuery = '';
+      if (searchInput) searchInput.value = '';
+      pills.forEach((p, idx) => {
+        if (idx === 0) p.classList.add('active');
+        else p.classList.remove('active');
+      });
+      applyFilter();
+    });
+  }
+
+  setupProjectFiltering();
+  document.addEventListener('astro:page-load', setupProjectFiltering);
+</script>

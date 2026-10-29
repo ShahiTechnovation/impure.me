@@ -1,0 +1,486 @@
+---
+// src/components/layout/Navbar.astro
+import ThemeToggle from '../ui/ThemeToggle.astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const navItems = [
+  { label: 'INDEX', href: '/' },
+  { label: 'BUILD', href: '/build' },
+  { label: 'GROW', href: '/grow' },
+  { label: 'STORY', href: '/story' },
+  { label: 'CONTACT', href: '/contact' }
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/' || currentPath === '';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="site-header">
+  <!-- Top Dossier Meta Bar -->
+  <div class="top-meta-bar">
+    <div class="container top-meta-content">
+      <div class="meta-item">
+        <span class="meta-dot"></span>
+        <span class="tech-micro">AUT: BUILDERBASE_3500</span>
+      </div>
+      <div class="meta-item hide-mobile">
+        <span class="tech-micro">ACADEMIC: BTECH AI &amp; DS (RGPV 24-28)</span>
+      </div>
+      <div class="meta-item hide-mobile">
+        <span class="tech-micro">RECOGNITION: 5X PODIUM FINISHER</span>
+      </div>
+      <div class="meta-item">
+        <span class="tech-micro" id="live-utc-clock">UTC 00:00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Navigation Bar -->
+  <div class="main-nav-bar">
+    <div class="container nav-content">
+      <!-- Brand Logo / Wordmark -->
+      <a href="/" class="brand-link" aria-label="Punit Pal — Homepage">
+        <span class="brand-name">PUNIT PAL</span>
+        <span class="brand-badge tech-micro">IMPURE&reg;</span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links-list">
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={['nav-link', { 'active': active }]}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  <span class="nav-text">{item.label}</span>
+                  {active && <span class="nav-indicator" aria-hidden="true" />}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      <!-- Right Controls: Command Trigger, Theme Toggle, Mobile Toggle -->
+      <div class="nav-controls">
+        <!-- Command Palette Trigger Pill -->
+        <button
+          type="button"
+          class="cmd-trigger-btn"
+          data-open-cmd
+          aria-label="Open Command Palette (Ctrl+K or Cmd+K)"
+          title="Open Command Palette (Ctrl+K or Cmd+K)"
+        >
+          <span class="cmd-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <span class="cmd-label tech-micro hide-mobile">SEARCH</span>
+          <kbd class="cmd-kbd">⌘K</kbd>
+        </button>
+
+        <!-- Theme Switcher -->
+        <ThemeToggle />
+
+        <!-- Mobile Menu Toggle Button -->
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          class="mobile-menu-btn"
+          aria-label="Toggle Navigation Menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav-drawer"
+        >
+          <span class="hamburger-box">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-nav-drawer" class="mobile-drawer" hidden>
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
+        <span class="tech-micro">DOSSIER DIRECTORY</span>
+        <button id="mobile-close-btn" class="mobile-close-btn" aria-label="Close Navigation Menu">
+          <kbd>ESC</kbd>
+        </button>
+      </div>
+      <nav class="mobile-nav-list" aria-label="Mobile Navigation">
+        {navItems.map((item, index) => (
+          <a
+            href={item.href}
+            class:list={['mobile-nav-item', { 'active': isActive(item.href) }]}
+          >
+            <span class="mobile-nav-num">/0{index + 1}</span>
+            <span class="mobile-nav-text">{item.label}</span>
+            {isActive(item.href) && <span class="dossier-stamp signal">ACTIVE</span>}
+          </a>
+        ))}
+      </nav>
+      <div class="mobile-drawer-footer">
+        <div class="mobile-socials">
+          <a href="https://github.com/ShahiTechnovation" target="_blank" rel="noopener noreferrer" class="tech-micro inline-link">GITHUB</a>
+          <a href="https://x.com/its_punit05" target="_blank" rel="noopener noreferrer" class="tech-micro inline-link">X / TWITTER</a>
+          <a href="https://linkedin.com/in/punit05" target="_blank" rel="noopener noreferrer" class="tech-micro inline-link">LINKEDIN</a>
+          <a href="mailto:founder@builderbase.xyz" class="tech-micro inline-link">EMAIL</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(8px);
+  }
+
+  .top-meta-bar {
+    background-color: var(--color-night);
+    color: #ECE8E0;
+    border-bottom: 1px solid var(--border-color);
+    padding: 4px 0;
+  }
+
+  .top-meta-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.6875rem;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .meta-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    box-shadow: 0 0 6px var(--accent-color);
+    animation: metaPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes metaPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .main-nav-bar {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+  }
+
+  .brand-badge {
+    padding: 2px 6px;
+    background-color: var(--color-badge-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--accent-color);
+    font-weight: 700;
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 28px;
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 8px 0;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-link.active {
+    color: var(--text-primary);
+  }
+
+  .nav-indicator {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+  }
+
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cmd-trigger-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .cmd-trigger-btn:hover {
+    border-color: var(--text-primary);
+    background-color: var(--bg-surface-dim);
+  }
+
+  .cmd-icon {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+  }
+
+  .cmd-kbd {
+    font-size: 0.6875rem;
+    padding: 1px 5px;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+
+  .hamburger-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 18px;
+  }
+
+  .hamburger-line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: transform var(--transition-fast);
+  }
+
+  /* Mobile Drawer */
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(16, 17, 20, 0.7);
+    backdrop-filter: blur(6px);
+    z-index: 99998;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mobile-drawer[hidden] {
+    display: none;
+  }
+
+  .mobile-drawer-content {
+    width: 85%;
+    max-width: 360px;
+    height: 100%;
+    background-color: var(--bg-surface);
+    border-left: 2px solid var(--border-strong);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .mobile-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 24px;
+  }
+
+  .mobile-close-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all var(--transition-fast);
+  }
+
+  .mobile-nav-item:hover,
+  .mobile-nav-item.active {
+    border-color: var(--accent-color);
+    background-color: var(--bg-surface-dim);
+  }
+
+  .mobile-nav-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-color);
+  }
+
+  .mobile-drawer-footer {
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .mobile-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .desktop-nav {
+      display: none;
+    }
+    .mobile-menu-btn {
+      display: flex;
+    }
+    .hide-mobile {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  function setupNavbar() {
+    // Live UTC Clock updater
+    const clockEl = document.getElementById('live-utc-clock');
+    if (clockEl) {
+      const updateClock = () => {
+        const now = new Date();
+        const utcStr = now.toISOString().slice(11, 19);
+        clockEl.textContent = `UTC ${utcStr}`;
+      };
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
+
+    // Mobile menu drawer
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('mobile-close-btn');
+    const drawer = document.getElementById('mobile-nav-drawer');
+
+    if (!menuBtn || !drawer) return;
+
+    const openMenu = () => {
+      drawer.hidden = false;
+      menuBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeMenu = () => {
+      drawer.hidden = true;
+      menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+
+    drawer.addEventListener('click', (e) => {
+      if (e.target === drawer) closeMenu();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !drawer.hidden) closeMenu();
+    });
+  }
+
+  setupNavbar();
+  document.addEventListener('astro:page-load', setupNavbar);
+</script>

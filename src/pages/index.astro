@@ -1,0 +1,953 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/projects/ProjectCard.astro';
+import HackathonRecord from '../components/achievements/HackathonRecord.astro';
+import { projects } from '../data/projects';
+import { builderBaseData } from '../data/ecosystems';
+
+const featuredProjects = projects.filter((p) => p.featured);
+
+const fieldNotes = [
+  {
+    date: 'MARCH 2026',
+    tag: 'MONAD BLITZ V3',
+    title: 'Orchestrating 43 Agents at 10,000 TPS',
+    body: 'During Monad Blitz V3, our team shipped FlowMon—connecting real DeFi protocols with zero mock responses. Witnessing 43 agents pass state through Agent Message Protocol in real-time proved that agentic finance is no longer speculative.',
+    link: '/build/flowmon'
+  },
+  {
+    date: 'SEPTEMBER 2025',
+    tag: 'AVALANCHE TEAM1',
+    title: 'Compiling Python AST into EVM Opcodes',
+    body: 'Shipped PyVax at AVAX Kolkata. Bridging Web2 developers into Web3 by letting them write native smart contracts in Python without Solidity domain barriers.',
+    link: '/build/pyvax'
+  },
+  {
+    date: 'APRIL 2025',
+    tag: 'ARBITRUM STYLUS',
+    title: 'Transpiling Solidity to High-Speed Rust WASM',
+    body: 'Core Nexus Hackathon 1st Place Champion. Lowered dApp porting friction to Stylus, validating 40%+ gas improvements on cryptographic workloads.',
+    link: '/build/sol2rust'
+  }
+];
+---
+
+<BaseLayout
+  title="Punit Pal // IMPURE® — Technical Founder, Developer & Ecosystem GTM"
+  description="I build products. I build communities. I bring them together. Personal dossier of Punit Pal across compiler engineering, AI agent infrastructure, and developer ecosystems."
+>
+  <!-- Section 01: Hero -->
+  <section class="hero-section" aria-label="Hero Introduction">
+    <div class="container hero-container">
+      <!-- Top Dossier Stamp Strip -->
+      <div class="hero-dossier-bar animate-reveal">
+        <div class="dossier-bar-left">
+          <span class="dossier-stamp signal">DOSSIER // CONFIDENTIAL</span>
+          <span class="tech-label-muted">IDENTITY: PUNIT PAL</span>
+          <span class="tech-micro hide-mobile">BRAND: IMPURE&reg;</span>
+        </div>
+        <div class="dossier-bar-right">
+          <span class="tech-micro">ACADEMIC: BTECH AI &amp; DS (RGPV 24-28)</span>
+          <span class="dossier-stamp">ACTIVE BUILDER</span>
+        </div>
+      </div>
+
+      <!-- Main Typographic Composition & Portrait Grid -->
+      <div class="hero-main-grid">
+        <!-- Left: Oversized Typographic Composition -->
+        <div class="hero-content animate-reveal">
+          <h1 class="hero-display">
+            PUNIT PAL<span class="signal-dot">.</span>
+          </h1>
+
+          <p class="hero-headline text-lead">
+            I build products. I build communities. I bring them together.
+          </p>
+
+          <p class="hero-support text-body">
+            Developer, technical founder, and ecosystem builder working across compiler engineering, AI agent infrastructure, high-throughput blockchains, and developer-led distribution.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="hero-actions">
+            <a href="/build" class="btn btn-primary hero-btn">
+              <span>EXPLORE ENGINEERING</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="/grow" class="btn hero-btn">
+              <span>ECOSYSTEM &amp; GTM</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+            <button type="button" class="btn hero-cmd-btn" data-open-cmd aria-label="Search dossier with command palette">
+              <span class="tech-micro">EXECUTE [⌘K]</span>
+            </button>
+          </div>
+
+          <!-- Social Proof & Direct Channels -->
+          <div class="hero-social-strip">
+            <span class="tech-micro social-label">VERIFIED CHANNELS:</span>
+            <a href="https://github.com/ShahiTechnovation" target="_blank" rel="noopener noreferrer" class="social-pill tech-micro">
+              <span>GITHUB</span>
+              <span class="ext-arrow">&nearr;</span>
+            </a>
+            <a href="https://x.com/its_punit05" target="_blank" rel="noopener noreferrer" class="social-pill tech-micro">
+              <span>X / TWITTER</span>
+              <span class="ext-arrow">&nearr;</span>
+            </a>
+            <a href="https://linkedin.com/in/punit05" target="_blank" rel="noopener noreferrer" class="social-pill tech-micro">
+              <span>LINKEDIN</span>
+              <span class="ext-arrow">&nearr;</span>
+            </a>
+            <a href="https://www.builderbase.xyz" target="_blank" rel="noopener noreferrer" class="social-pill tech-micro">
+              <span>BUILDER BASE</span>
+              <span class="ext-arrow">&nearr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Authentic Portrait in Editorial Brutalist Frame -->
+        <div class="hero-portrait-wrapper animate-reveal">
+          <div class="portrait-card">
+            <div class="portrait-meta-top">
+              <span class="tech-micro">SUBJECT: PUNIT PAL</span>
+              <span class="tech-micro">LOC: IN // GLOBAL</span>
+            </div>
+            <div class="portrait-image-container">
+              <img
+                src="/images/punit-pal.jpg"
+                alt="Punit Pal — Technical Founder and Developer"
+                class="portrait-img"
+                loading="eager"
+                width="360"
+                height="360"
+              />
+              <div class="portrait-scanline-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="portrait-meta-bottom">
+              <div class="meta-tag">
+                <span class="meta-dot"></span>
+                <span class="tech-micro">STATUS: ONLINE / SHIPPING</span>
+              </div>
+              <span class="tech-micro">SN: 5X-HACK-WINNER</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 02: Evidence Strip -->
+  <section class="evidence-strip-section" aria-label="Key Proof and Credentials">
+    <div class="container">
+      <div class="evidence-grid animate-reveal">
+        <div class="evidence-cell">
+          <span class="evidence-metric heading-md">5&times;</span>
+          <span class="evidence-title tech-label">PODIUM FINISHES</span>
+          <span class="evidence-desc text-body-sm">1st Place at Arbitrum Core Nexus; 1st Runner-Up at AVAX Kolkata, Monad Delhi &amp; Monad Blitz.</span>
+        </div>
+        <div class="evidence-cell">
+          <span class="evidence-metric heading-md">2&times;</span>
+          <span class="evidence-title tech-label">TOP 15 SELECTIONS</span>
+          <span class="evidence-desc text-body-sm">Aptos Winter School (IIT Delhi, 900+ applicants) &amp; Algorand Hack Series 3.0.</span>
+        </div>
+        <div class="evidence-cell">
+          <span class="evidence-metric heading-md">64K+</span>
+          <span class="evidence-title tech-label">BUILDER BASE REACH</span>
+          <span class="evidence-desc text-body-sm">Event audience on Luma, 70K+ technical newsletter reach, 2K+ vetted builders.</span>
+        </div>
+        <div class="evidence-cell">
+          <span class="evidence-metric heading-md">Multi-VM</span>
+          <span class="evidence-title tech-label">ENGINEERING DEPTH</span>
+          <span class="evidence-desc text-body-sm">Production systems across EVM Opcodes, Arbitrum Stylus (WASM), Aptos (Move), and Solana (Rust).</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 03: Selected Engineering Work -->
+  <section class="section-padding" aria-label="Selected Engineering Work">
+    <div class="container">
+      <div class="section-header-block animate-reveal">
+        <div class="section-tag-row">
+          <span class="dossier-stamp signal">SECTION 03</span>
+          <span class="tech-label">SELECTED ENGINEERING WORK</span>
+        </div>
+        <div class="section-title-row">
+          <h2 class="heading-lg">PRODUCTION COMPILERS, AI AGENTS &amp; INFRASTRUCTURE</h2>
+          <a href="/build" class="btn hide-mobile">
+            <span>VIEW ALL 18 PROJECTS</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+        <p class="section-subtitle text-body">
+          Rigorous systems engineering over promotional demos. Featured projects spanning low-level compilers, visual multi-agent orchestration, and blockchain pre-execution assurance.
+        </p>
+      </div>
+
+      <div class="projects-featured-grid animate-reveal">
+        {featuredProjects.map((project, idx) => (
+          <div class:list={['project-grid-item', { 'wide-item': idx === 0 || idx === 2 }]}>
+            <ProjectCard project={project} featuredLayout={idx === 0 || idx === 2} />
+          </div>
+        ))}
+      </div>
+
+      <div class="section-footer-cta animate-reveal show-mobile">
+        <a href="/build" class="btn btn-primary" style="width: 100%;">
+          <span>VIEW ALL 18 PROJECTS IN ARCHIVE</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 04: Beyond the Code -->
+  <section class="beyond-code-section" aria-label="Beyond The Code: The Three Pillars">
+    <div class="container">
+      <div class="section-header-block animate-reveal">
+        <div class="section-tag-row">
+          <span class="dossier-stamp">SECTION 04</span>
+          <span class="tech-label">THE THREE PILLARS</span>
+        </div>
+        <h2 class="heading-lg">BEYOND THE CODE // FULL-SPECTRUM BUILDER</h2>
+        <p class="section-subtitle text-body">
+          Writing software is half the journey. Designing the distribution layer and mobilizing the developer community that adopts it completes the equation.
+        </p>
+      </div>
+
+      <div class="pillars-grid animate-reveal">
+        <!-- Pillar 1: Systems & Compilers -->
+        <div class="pillar-card dossier-card">
+          <div class="pillar-number tech-label">01 // SYSTEMS &amp; COMPILERS</div>
+          <h3 class="heading-sm pillar-title">Ground-Up Engineering</h3>
+          <p class="text-body-sm pillar-text">
+            Designing compilers, AST transpilers, and pre-execution simulation infrastructure. From lowering Python into EVM bytecode to converting Solidity into Arbitrum Stylus Rust WASM.
+          </p>
+          <div class="pillar-tags">
+            <span class="tech-micro stack-pill">AST Lowering</span>
+            <span class="tech-micro stack-pill">Rust WASM</span>
+            <span class="tech-micro stack-pill">EVM Bytecode</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Developer Relations -->
+        <div class="pillar-card dossier-card">
+          <div class="pillar-number tech-label">02 // DEVELOPER RELATIONS</div>
+          <h3 class="heading-sm pillar-title">Technical Developer Empathy</h3>
+          <p class="text-body-sm pillar-text">
+            Demystifying frontier developer tools through hands-on technical workshops, live live-coding sessions, and open source starter kits across Claude Community, TigerGraph, and Avalanche.
+          </p>
+          <div class="pillar-tags">
+            <span class="tech-micro stack-pill">Workshops</span>
+            <span class="tech-micro stack-pill">Tooling Docs</span>
+            <span class="tech-micro stack-pill">Live Coding</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Ecosystem GTM -->
+        <div class="pillar-card dossier-card">
+          <div class="pillar-number tech-label">03 // ECOSYSTEM GTM</div>
+          <h3 class="heading-sm pillar-title">Community-Led Distribution</h3>
+          <p class="text-body-sm pillar-text">
+            Scaling Builder Base into an ecosystem distribution layer with 64K+ event audience on Luma. Connecting emerging protocol foundations with vetted, high-signal developer talent.
+          </p>
+          <div class="pillar-tags">
+            <span class="tech-micro stack-pill">64K+ Audience</span>
+            <span class="tech-micro stack-pill">Hackathons</span>
+            <span class="tech-micro stack-pill">Protocol Grants</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 05: Builder Base Founder Case Study -->
+  <section class="section-padding" aria-label="Builder Base Founder Case Study">
+    <div class="container">
+      <div class="dossier-card builderbase-banner animate-reveal">
+        <div class="bb-header-bar">
+          <div class="bb-badge-group">
+            <span class="dossier-stamp solid-signal">FOUNDER CASE STUDY</span>
+            <span class="tech-label">BUILDER BASE // THE DISTRIBUTION LAYER FOR BUILDERS</span>
+          </div>
+          <a href="https://www.builderbase.xyz" target="_blank" rel="noopener noreferrer" class="btn bb-visit-btn">
+            <span>VISIT BUILDERBASE.XYZ</span>
+            <span class="ext-arrow">&nearr;</span>
+          </a>
+        </div>
+
+        <div class="bb-body">
+          <div class="bb-grid">
+            <div class="bb-narrative">
+              <h3 class="heading-md bb-title">
+                {builderBaseData.positioning}
+              </h3>
+              <p class="text-body">
+                {builderBaseData.narrative}
+              </p>
+              <div class="bb-partner-strip">
+                <span class="tech-label-muted">ACTIVE PROTOCOL PARTNERS:</span>
+                <div class="bb-partner-pills">
+                  {builderBaseData.partnerEcosystems.map((partner) => (
+                    <span class="tech-micro stack-pill">{partner}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div class="bb-metrics-col">
+              <div class="bb-metrics-box">
+                {builderBaseData.channels.map((ch) => (
+                  <div class="bb-metric-row">
+                    <span class="bb-metric-val heading-md">{ch.reach}</span>
+                    <span class="bb-metric-name tech-label">{ch.channel}</span>
+                    <span class="bb-metric-desc text-body-sm">{ch.description}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bb-footer-bar">
+          <a href="/grow" class="btn btn-primary">
+            <span>READ FULL ECOSYSTEM GTM CASE STUDIES</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 06: Verified Recognition -->
+  <section class="section-padding" aria-label="Verified Hackathon Recognition">
+    <div class="container">
+      <div class="section-header-block animate-reveal">
+        <div class="section-tag-row">
+          <span class="dossier-stamp signal">SECTION 06</span>
+          <span class="tech-label">COMPETITIVE TRACK RECORD</span>
+        </div>
+        <h2 class="heading-lg">VERIFIED HACKATHON ACCOLADES</h2>
+        <p class="section-subtitle text-body">
+          Recognized natively by Arbitrum, Avalanche, Monad, Aptos, and Algorand for shipping high-speed, verified technical prototypes in 48-hour sprints.
+        </p>
+      </div>
+
+      <div class="animate-reveal">
+        <HackathonRecord />
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 07: Field Notes -->
+  <section class="section-padding" aria-label="Field Notes and Dispatches">
+    <div class="container">
+      <div class="section-header-block animate-reveal">
+        <div class="section-tag-row">
+          <span class="dossier-stamp">SECTION 07</span>
+          <span class="tech-label">FIELD NOTES // DISPATCHES FROM THE ARENA</span>
+        </div>
+        <h2 class="heading-lg">MOMENTS OF TECHNICAL MOMENTUM</h2>
+        <p class="section-subtitle text-body">
+          Concise dispatches from intense hackathon weekends, community workshops, and protocol deployments.
+        </p>
+      </div>
+
+      <div class="field-notes-grid animate-reveal">
+        {fieldNotes.map((note) => (
+          <article class="field-note-card dossier-card">
+            <div class="note-meta-bar">
+              <span class="dossier-stamp signal">{note.tag}</span>
+              <span class="tech-micro">{note.date}</span>
+            </div>
+            <div class="note-body">
+              <h3 class="heading-sm note-title">{note.title}</h3>
+              <p class="text-body-sm note-text">{note.body}</p>
+            </div>
+            <div class="note-footer">
+              <a href={note.link} class="inline-link tech-micro">
+                <span>VIEW CASE STUDY &rarr;</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 08: Contact CTA -->
+  <section class="contact-cta-section" aria-label="Contact and Collaboration CTA">
+    <div class="container">
+      <div class="dossier-card contact-cta-card animate-reveal">
+        <div class="cta-header-bar">
+          <span class="dossier-stamp solid-signal">SECTION 08 // CONVERSION</span>
+          <span class="tech-micro">TRANSMISSION CHANNEL</span>
+        </div>
+
+        <div class="cta-inner-grid">
+          <div class="cta-content-col">
+            <h2 class="heading-xl cta-title">
+              HAVE SOMETHING WORTH BUILDING?
+            </h2>
+            <p class="text-lead cta-subtitle">
+              Whether you are recruiting a technical founder, seeking Developer Relations leadership, expanding protocol ecosystem distribution, or exploring compiler and agent collaboration.
+            </p>
+            <div class="cta-buttons">
+              <a href="/contact" class="btn btn-primary cta-btn">
+                <span>INITIATE TRANSMISSION</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <a href="mailto:founder@builderbase.xyz" class="btn cta-btn">
+                <span>founder@builderbase.xyz</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="cta-channels-col">
+            <span class="tech-label-muted">FAST-RESPONSE CHANNELS:</span>
+            <div class="cta-channel-list">
+              <a href="https://x.com/its_punit05" target="_blank" rel="noopener noreferrer" class="cta-channel-item">
+                <span class="tech-label">X / TWITTER:</span>
+                <span class="tech-micro inline-link">@its_punit05 &nearr;</span>
+              </a>
+              <a href="https://github.com/ShahiTechnovation" target="_blank" rel="noopener noreferrer" class="cta-channel-item">
+                <span class="tech-label">GITHUB:</span>
+                <span class="tech-micro inline-link">@ShahiTechnovation &nearr;</span>
+              </a>
+              <a href="https://linkedin.com/in/punit05" target="_blank" rel="noopener noreferrer" class="cta-channel-item">
+                <span class="tech-label">LINKEDIN:</span>
+                <span class="tech-micro inline-link">in/punit05 &nearr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Section Padding Tokens */
+  .section-padding {
+    padding-top: clamp(3.5rem, 7vw, 6.5rem);
+    padding-bottom: clamp(3.5rem, 7vw, 6.5rem);
+  }
+
+  /* Section Header Standard Block */
+  .section-header-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .section-tag-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .section-subtitle {
+    max-width: 780px;
+  }
+
+  /* Hero Section Styling */
+  .hero-section {
+    padding-top: clamp(2rem, 5vw, 4rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+  }
+
+  .hero-dossier-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    margin-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .dossier-bar-left,
+  .dossier-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: clamp(24px, 4.5vw, 56px);
+    align-items: start;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .signal-dot {
+    color: var(--accent-color);
+  }
+
+  .hero-headline {
+    font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-primary);
+    max-width: 760px;
+  }
+
+  .hero-support {
+    max-width: 720px;
+    font-size: 1.05rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+
+  .hero-btn {
+    padding: 14px 26px;
+  }
+
+  .hero-social-strip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-color);
+  }
+
+  .social-label {
+    color: var(--text-dim);
+  }
+
+  .social-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+  }
+
+  .social-pill:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-1px);
+  }
+
+  /* Portrait Card Styling */
+  .portrait-card {
+    background-color: var(--bg-surface);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-dossier);
+    overflow: hidden;
+  }
+
+  .portrait-meta-top,
+  .portrait-meta-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background-color: var(--bg-surface-dim);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .portrait-meta-bottom {
+    border-bottom: none;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .portrait-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: var(--color-night);
+  }
+
+  .portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(15%) contrast(105%);
+    transition: filter var(--transition-base);
+  }
+
+  .portrait-card:hover .portrait-img {
+    filter: grayscale(0%) contrast(100%);
+  }
+
+  .portrait-scanline-overlay {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.08) 2px,
+      rgba(0, 0, 0, 0.08) 4px
+    );
+    pointer-events: none;
+  }
+
+  .meta-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Section 02: Evidence Strip */
+  .evidence-strip-section {
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    padding: clamp(2rem, 4vw, 3rem) 0;
+  }
+
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 3vw, 32px);
+  }
+
+  .evidence-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-left: 2px solid var(--border-color);
+    padding-left: 18px;
+  }
+
+  .evidence-cell:first-child {
+    border-left-color: var(--accent-color);
+  }
+
+  .evidence-metric {
+    color: var(--text-primary);
+  }
+
+  .evidence-title {
+    color: var(--accent-color);
+  }
+
+  /* Section 03: Projects Grid */
+  .projects-featured-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 3vw, 32px);
+  }
+
+  .wide-item {
+    grid-column: span 1;
+  }
+
+  /* Section 04: Beyond Code Pillars */
+  .beyond-code-section {
+    background-color: var(--bg-surface-dim);
+    padding: clamp(3.5rem, 7vw, 6.5rem) 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2.5vw, 28px);
+  }
+
+  .pillar-card {
+    padding: clamp(24px, 3vw, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-radius: var(--radius-sm);
+  }
+
+  .pillar-number {
+    color: var(--accent-color);
+  }
+
+  .pillar-title {
+    margin: 0;
+  }
+
+  .pillar-text {
+    flex: 1;
+    color: var(--text-muted);
+  }
+
+  .pillar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  /* Section 05: Builder Base */
+  .builderbase-banner {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .bb-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background-color: var(--bg-surface-dim);
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .bb-badge-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bb-visit-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+
+  .bb-body {
+    padding: clamp(24px, 4vw, 40px);
+  }
+
+  .bb-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: clamp(24px, 4vw, 48px);
+    align-items: start;
+  }
+
+  .bb-narrative {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .bb-partner-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .bb-partner-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .bb-metrics-box {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 24px;
+    background-color: var(--bg-surface-dim);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+  }
+
+  .bb-metric-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border-color);
+  }
+
+  .bb-metric-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .bb-metric-val {
+    color: var(--accent-color);
+  }
+
+  .bb-footer-bar {
+    padding: 14px 20px;
+    background-color: var(--bg-surface-dim);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Section 07: Field Notes */
+  .field-notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2.5vw, 24px);
+  }
+
+  .field-note-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .note-meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background-color: var(--bg-surface-dim);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .note-body {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .note-title {
+    margin: 0;
+  }
+
+  .note-footer {
+    padding: 10px 16px;
+    background-color: var(--bg-surface-dim);
+    border-top: 1px solid var(--border-color);
+  }
+
+  /* Section 08: Contact CTA */
+  .contact-cta-section {
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+  }
+
+  .contact-cta-card {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .cta-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: var(--bg-surface-dim);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .cta-inner-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: clamp(24px, 4vw, 48px);
+    padding: clamp(28px, 5vw, 56px);
+  }
+
+  .cta-content-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .cta-channels-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px;
+    background-color: var(--bg-surface-dim);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+  }
+
+  .cta-channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cta-channel-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+
+  .show-mobile {
+    display: none;
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 1024px) {
+    .hero-main-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-portrait-wrapper {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .evidence-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+    .bb-grid {
+      grid-template-columns: 1fr;
+    }
+    .field-notes-grid {
+      grid-template-columns: 1fr;
+    }
+    .cta-inner-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .projects-featured-grid {
+      grid-template-columns: 1fr;
+    }
+    .evidence-grid {
+      grid-template-columns: 1fr;
+    }
+    .show-mobile {
+      display: block;
+      margin-top: 24px;
+    }
+  }
+</style>

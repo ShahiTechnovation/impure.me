@@ -1,0 +1,247 @@
+---
+// src/components/achievements/HackathonRecord.astro
+import { achievements } from '../../data/achievements';
+---
+
+<div class="hackathon-record-wrapper">
+  <!-- Table Header Bar -->
+  <div class="record-meta-bar">
+    <div class="record-badge-group">
+      <span class="dossier-stamp solid-signal">VERIFIED RECORD</span>
+      <span class="tech-label">5&times; HACKATHON PODIUM FINISHER</span>
+    </div>
+    <div class="record-sub-label tech-micro">
+      2 ADDITIONAL TOP 15 FINALIST RECOGNITIONS
+    </div>
+  </div>
+
+  <!-- Records Grid / List -->
+  <div class="records-table">
+    {achievements.map((item) => {
+      const isFirst = item.placementType === 'podium-first';
+      const isRunnerUp = item.placementType === 'podium-runnerup';
+      const isThird = item.placementType === 'podium-third';
+      const isFinalist = item.placementType === 'finalist';
+
+      return (
+        <div class:list={['record-row', `type-${item.placementType}`]}>
+          <!-- Column 1: Placement Badge -->
+          <div class="record-col-placement">
+            <span class:list={[
+              'placement-badge',
+              { 'badge-gold': isFirst },
+              { 'badge-silver': isRunnerUp },
+              { 'badge-bronze': isThird },
+              { 'badge-finalist': isFinalist }
+            ]}>
+              <span class="badge-icon" aria-hidden="true">
+                {isFirst && '🏆'}
+                {isRunnerUp && '🥈'}
+                {isThird && '🥉'}
+                {isFinalist && '⭐'}
+              </span>
+              <span class="placement-text tech-label">{item.placement}</span>
+            </span>
+          </div>
+
+          <!-- Column 2: Competition & Project -->
+          <div class="record-col-main">
+            <div class="record-title-row">
+              <h4 class="record-comp-title heading-sm">{item.competition}</h4>
+              <span class="record-ecosystem tech-micro">{item.ecosystem}</span>
+            </div>
+            <div class="record-summary text-body-sm">
+              <strong>{item.projectTitle}:</strong> {item.summary}
+            </div>
+          </div>
+
+          <!-- Column 3: Evidence Link & Verification -->
+          <div class="record-col-evidence">
+            <a
+              href={item.evidenceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn record-evidence-btn"
+              title={item.evidenceLabel}
+            >
+              <span>VERIFY PROOF</span>
+              <span class="ext-arrow" aria-hidden="true">&nearr;</span>
+            </a>
+            <span class="record-date tech-micro">{item.date}</span>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  <div class="record-footnote">
+    <span class="tech-micro">
+      * Note: Placements verified from official hackathon submissions, Luma partner event portals, and protocol challenge records.
+    </span>
+  </div>
+</div>
+
+<style>
+  .hackathon-record-wrapper {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .record-meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background-color: var(--bg-surface-dim);
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .record-badge-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .records-table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .record-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 180px;
+    align-items: center;
+    gap: 24px;
+    padding: clamp(16px, 2.5vw, 24px);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color var(--transition-fast);
+  }
+
+  .record-row:last-child {
+    border-bottom: none;
+  }
+
+  .record-row:hover {
+    background-color: var(--bg-surface-dim);
+  }
+
+  /* Distinctive Borders & Accents */
+  .type-podium-first {
+    border-left: 4px solid var(--accent-color);
+  }
+
+  .type-podium-runnerup {
+    border-left: 4px solid var(--border-strong);
+  }
+
+  .type-podium-third {
+    border-left: 4px solid #C07D40;
+  }
+
+  .type-finalist {
+    border-left: 4px solid var(--border-color);
+  }
+
+  /* Badges */
+  .placement-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+
+  .badge-gold {
+    background-color: var(--color-signal-subtle);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+  }
+
+  .badge-silver {
+    background-color: var(--bg-surface-dim);
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+  }
+
+  .badge-bronze {
+    background-color: rgba(192, 125, 64, 0.1);
+    border-color: #C07D40;
+    color: #C07D40;
+  }
+
+  .badge-finalist {
+    background-color: var(--bg-surface-dim);
+    border-color: var(--border-color);
+    color: var(--text-muted);
+  }
+
+  .record-col-main {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .record-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .record-comp-title {
+    margin: 0;
+  }
+
+  .record-ecosystem {
+    padding: 2px 6px;
+    background-color: var(--bg-surface-dim);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+  }
+
+  .record-summary {
+    color: var(--text-muted);
+  }
+
+  .record-col-evidence {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .record-evidence-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+
+  .record-date {
+    color: var(--text-dim);
+  }
+
+  .record-footnote {
+    padding: 12px 20px;
+    background-color: var(--bg-surface-dim);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 850px) {
+    .record-row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .record-col-evidence {
+      align-items: flex-start;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+</style>
