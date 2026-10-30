@@ -8,15 +8,16 @@ const { eager = false } = Astro.props;
     <canvas aria-hidden="true"></canvas>
     <button type="button" hidden aria-pressed="false">Pause flag</button>
   </div>
-  <figcaption><span>Builder Base / A place to begin.</span><span>Flag study</span></figcaption>
+  <figcaption><span>Builder Base / A place to begin.</span><span>Interactive flag study</span></figcaption>
 </figure>
 <style>
   .builder-flag{min-width:0;margin:0}
-  .flag-stage{background:#0a0a0a;aspect-ratio:4/3;position:relative;overflow:hidden}
-  img{display:block;width:100%;height:100%;object-fit:contain}
-  canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
-  .builder-flag[data-ready] canvas{opacity:1}
-  button{position:absolute;right:12px;bottom:12px;min-height:44px;padding:8px 14px;border:1px solid #777;background:#171717;color:#f5f3ed;font:500 .75rem var(--font-body);cursor:pointer}
+  .flag-stage{background:#0a0a0a;aspect-ratio:4/3;position:relative;overflow:hidden;user-select:none;-webkit-user-select:none}
+  img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+  canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none;touch-action:none}
+  .builder-flag[data-ready] canvas{opacity:1;pointer-events:auto;cursor:grab}
+  .builder-flag[data-ready] canvas.grabbing{cursor:grabbing}
+  button{position:absolute;right:12px;bottom:12px;z-index:2;min-height:44px;padding:8px 14px;border:1px solid #777;background:#171717;color:#f5f3ed;font:500 .75rem var(--font-body);cursor:pointer}
   button[hidden]{display:none}
   figcaption{display:flex;justify-content:space-between;gap:16px;font-size:.72rem}
 </style>
@@ -24,12 +25,10 @@ const { eager = false } = Astro.props;
   for (const figure of document.querySelectorAll<HTMLElement>('[data-builder-flag]')) {
     const canvas = figure.querySelector('canvas')!;
     const button = figure.querySelector('button')!;
-    const motion = matchMedia('(prefers-reduced-motion: reduce)');
-    const desktop = matchMedia('(min-width: 900px)');
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
     let renderer: { ready: Promise<unknown>; play(): void; pause(): void; destroy(): void } | undefined;
     let loading = false, visible = false, paused = false, failed = false, ready = false;
-    const eligible = () => desktop.matches && !motion.matches && !connection?.saveData && (navigator.hardwareConcurrency || 8) >= 4;
+    const eligible = () => !connection?.saveData;
     async function sync() {
       if (!eligible() || failed) {
         renderer?.pause(); delete figure.dataset.ready; button.hidden = true;
@@ -40,7 +39,6 @@ const { eager = false } = Astro.props;
         loading = true;
         try {
           const { createFlag } = await import('../../scripts/builder-flag.js');
-          // Preference may have changed while the module was loading.
           if (!eligible() || !visible || document.hidden) return;
           renderer = createFlag(canvas);
           await renderer!.ready;
@@ -61,7 +59,6 @@ const { eager = false } = Astro.props;
     });
     const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; void sync(); }, { threshold: .05 });
     observer.observe(figure);
-    motion.addEventListener('change', sync); desktop.addEventListener('change', sync);
     document.addEventListener('visibilitychange', sync);
     canvas.addEventListener('webglcontextlost', () => {
       failed = true; renderer?.pause(); delete figure.dataset.ready; button.hidden = true;
