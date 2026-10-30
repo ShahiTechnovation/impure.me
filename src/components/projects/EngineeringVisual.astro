@@ -1,0 +1,91 @@
+---
+import { Code } from 'astro:components';
+interface Props { slug: string }
+const { slug } = Astro.props;
+// Exact excerpts: pyvax-cli/contracts/Counter.py and Sol2Rust/client/src/components/conversion-panel.tsx.
+const python = `@public_function
+def increment(self):
+    """Increment counter."""
+    self.count = self.count + 1
+    self.event("Incremented", self.count)`;
+const solidity = `function getValue() public view
+    returns (uint256) {
+    return value;
+}`;
+// Explicitly illustrative target sketch, never represented as generated output.
+const rust = `pub fn get_value(&self) -> U256 {
+    self.value.get()
+}`;
+---
+{slug === 'pyvax' && <figure class="engineering-visual pyvax-plate">
+  <div class="plate-title"><span>01 / Python → EVM</span><span>Compiler anatomy</span></div>
+  <div class="source-sheet">
+    <span class="file-label">Counter.py <span>repository excerpt</span></span>
+    <Code code={python} lang="python" theme="github-light" wrap />
+  </div>
+  <ol class="compiler-stages" aria-label="Illustrated compiler stages">
+    <li><span>01</span><strong>Parse</strong><small>Python AST</small></li>
+    <li><span>02</span><strong>Lower</strong><small>State & opcodes</small></li>
+    <li><span>03</span><strong>Emit</strong><small>EVM bytecode</small></li>
+  </ol>
+  <div class="compiler-destination"><span class="opcode-key">SLOAD <b>54</b> · ADD <b>01</b> · SSTORE <b>55</b></span><strong>Avalanche ↗</strong></div>
+  <figcaption>Pipeline illustration. Opcode key, not execution output. <a href="https://github.com/ShahiTechnovation/pyvax-cli/blob/main/contracts/Counter.py" target="_blank" rel="noopener noreferrer">Read source ↗</a></figcaption>
+</figure>}
+{slug === 'sol2rust' && <figure class="engineering-visual sol2rust-plate">
+  <div class="plate-title"><span>02 / A change of language</span><span aria-hidden="true">.sol → .rs</span></div>
+  <div class="code-comparison">
+    <div class="code-half"><span class="file-label">Solidity <span>repository excerpt</span></span><Code code={solidity} lang="solidity" theme="github-dark" wrap /></div>
+    <span class="transform-arrow" aria-hidden="true">→</span>
+    <div class="code-half"><span class="file-label">Rust / Stylus <span>illustrative target</span></span><Code code={rust} lang="rust" theme="github-dark" wrap /></div>
+  </div>
+  <figcaption>Target sketch, not generated output. The current prototype uses AI conversion; compilation is simulated. <a href="/build/sol2rust">Implementation notes ↗</a></figcaption>
+</figure>}
+{slug === 'flowmon' && <figure class="engineering-visual flowmon-plate">
+  <div class="product-bar"><span class="window-dots" aria-hidden="true">● ● ●</span><span>flow-mon.vercel.app / app</span><span>Demo canvas</span></div>
+  <a class="flowmon-screen" href="/images/work/flowmon-v23.webp" target="_blank" rel="noopener noreferrer" aria-label="Open full-resolution FlowMon screenshot">
+    <img src="/images/work/flowmon-v23.webp" width="1440" height="960" alt="FlowMon’s real agent canvas with the built-in Monad demo loaded: connected workflow nodes, protocol library and run controls" loading="lazy" />
+    <span class="image-open">View full screen ↗</span>
+  </a>
+  <figcaption>Public demo, 29 Oct 2026. Workflow loaded; no transactions executed.</figcaption>
+</figure>}
+<style>
+  .engineering-visual{min-width:0;margin:0}
+  .plate-title,.file-label,.product-bar{display:flex;justify-content:space-between;gap:16px;font:500 .72rem/1.6 var(--font-mono)}
+  .plate-title{margin-bottom:28px;letter-spacing:.04em}
+  .pyvax-plate{background:#e9e6de;color:#24221e;padding:30px}
+  .source-sheet{background:#f9f7f2;border:1px solid #c9c4ba;padding:20px;box-shadow:6px 6px 0 #d9d5cc}
+  .file-label{padding-bottom:15px;border-bottom:1px solid #c9c4ba;flex-wrap:wrap}
+  .file-label span{font-size:.65rem;color:#656158}
+  :global(.engineering-visual pre.astro-code){background:transparent!important;padding:20px 0 0;margin:0;font:400 .8rem/1.9 var(--font-mono);border:0;max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere}
+  :global(.engineering-visual pre code){font-size:1em}
+  :global(.pyvax-plate .astro-code span[style*="#D73A49"]){color:#b52437!important}
+  .compiler-stages{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:28px 0}
+  .compiler-stages li{border-top:1px solid #a8a296;padding-top:10px;display:flex;flex-direction:column;position:relative}
+  .compiler-stages li:not(:last-child)::after{content:'→';position:absolute;right:0;top:9px;color:#9e1732}
+  .compiler-stages span{font:400 .68rem var(--font-mono);color:#6a645b;margin-bottom:12px}
+  .compiler-stages strong{font:500 1.5rem var(--font-display);letter-spacing:-.04em}
+  .compiler-stages small{font-size:.72rem;color:#625c53}
+  .compiler-destination{display:flex;gap:16px;align-items:center;justify-content:space-between;border-top:1px solid #b9b3a7;padding-top:18px;flex-wrap:wrap}
+  .compiler-destination strong{font:500 1rem var(--font-display)}
+  .opcode-key{font:400 .65rem/1.8 var(--font-mono)}
+  .opcode-key b{color:#a31936;font-weight:500}
+  .engineering-visual figcaption{font-size:.73rem;margin-top:22px;max-width:80ch;line-height:1.7}
+  .engineering-visual figcaption a{text-decoration:underline;text-underline-offset:3px}
+  .pyvax-plate figcaption{color:#625c53}
+  .sol2rust-plate{padding:30px;background:#202524;color:#f4f2e9}
+  .code-comparison{display:grid;grid-template-columns:minmax(0,1fr) 30px minmax(0,1fr);align-items:center;gap:20px}
+  .code-half{min-width:0;align-self:stretch}
+  .code-half .file-label{border-color:#515955}
+  .code-half .file-label span{color:#b6c2bc}
+  .transform-arrow{font-size:1.6rem;color:#b9d3b5;text-align:center}
+  .sol2rust-plate figcaption{color:#c0c8c1;border-top:1px solid #515955;padding-top:18px;margin-top:28px}
+  .flowmon-plate{background:#17141d;color:#f4f2ed;padding:18px 18px 20px}
+  .product-bar{color:#c8c4cf;padding-bottom:16px;font-size:.67rem;align-items:center}
+  .window-dots{color:#8e859a;font-size:.6rem;white-space:nowrap}
+  .flowmon-screen{display:block;position:relative;border:1px solid #3a3344}
+  .flowmon-screen img{display:block;width:100%;height:auto}
+  .image-open{display:block;font-size:.75rem;text-align:right;padding:10px 14px;background:#24202d;color:#e5dfec}
+  .flowmon-screen:hover .image-open{background:#36303f}
+  .flowmon-plate figcaption{color:#c8c4cf;margin-top:12px}
+  @media(max-width:767px){.pyvax-plate,.sol2rust-plate{padding:20px}.plate-title{flex-wrap:wrap;gap:6px;margin-bottom:20px}.source-sheet{padding:14px}.code-comparison{grid-template-columns:1fr;gap:12px}.transform-arrow{transform:rotate(90deg);justify-self:center}.code-half{padding-bottom:10px}:global(.engineering-visual pre.astro-code){font-size:.76rem}.compiler-stages{gap:12px}.compiler-stages strong{font-size:1.3rem}.flowmon-plate{padding:10px}.product-bar{flex-wrap:wrap;gap:6px}.product-bar>:last-child{display:none}}
+</style>

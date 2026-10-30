@@ -1,181 +1,61 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import GtmCaseCard from "../components/ecosystems/GtmCaseCard.astro";
-import {
-  builderBaseData,
-  ecosystemRoles,
-  gtmInitiatives,
-} from "../data/ecosystems";
+import BuilderFlag from "../components/ecosystems/BuilderFlag.astro";
+import { programs } from "../data/programs";
+import { ecosystemRoles } from "../data/ecosystems";
 ---
-
-<BaseLayout
-  title="Builder Base & Developer Relations — Punit Pal"
-  description="The community side of Punit Pal’s work: Builder Base, technical workshops, hackathons and developer programs across India."
->
-  <div class="container editorial-page">
+<BaseLayout title="Builder Base & Developer Relations — Punit Pal" description="Builder Base’s work in the field: technical workshops, developer meetups and hackathons, with authentic photographs and public host and partner credits.">
+  <div class="container editorial-page grow-page">
     <header class="grow-intro">
-      <div>
-        <p class="eyebrow">Grow / Founder of Builder Base</p>
-        <h1 class="editorial-title">
-          Good tools.
-          <br />
-          People to build with<span class="red-period">.</span>
-        </h1>
-        <p class="editorial-intro">
-          I started Builder Base to bring developers together around working
-          code. Today, that work spans technical workshops, hackathons and
-          community programs across India.
-        </p>
-        <a
-          class="text-link"
-          href="https://www.builderbase.xyz"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Visit Builder Base ↗
-        </a>
+      <div><p class="eyebrow">01 / Founder · Builder Base</p>
+        <h1 class="editorial-title">Good tools.<br />People to build with<span class="red-period">.</span></h1>
+        <p class="founder-position">The distribution layer for builders.</p>
+        <p class="editorial-intro">I founded Builder Base to bring developers closer to the tools, people and opportunities they need to build.</p>
+        <a class="text-link" href="https://www.builderbase.xyz/" target="_blank" rel="noopener noreferrer">Visit Builder Base ↗</a>
       </div>
-      <figure>
-        <img
-          src="/images/work/community-1.webp"
-          width="1400"
-          height="647"
-          alt="Builder Base participants holding a community banner"
-        />
-        <figcaption>From the Builder Base event archive.</figcaption>
-      </figure>
+      <BuilderFlag eager />
     </header>
-    <section class="editorial-block" aria-label="Builder Base reach">
-      <h2>A community with several ways in.</h2>
-      <dl class="reach-strip">
-        {builderBaseData.channels.map((c) => (
-          <div>
-            <dt>{c.channel}</dt>
-            <dd>{c.reach}</dd>
-          </div>
-        ))}
-      </dl>
-      <p class="media-note">
-        Owner-reported channel reach, as of October 2026. Audiences may overlap;
-        these are not deduplicated members or independently verified active-user
-        counts.
-      </p>
-      <details class="editorial-disclosure">
-        <summary>How Builder Base works</summary>
-        <div class="editorial-prose">
-          <p>{builderBaseData.narrative}</p>
-          <h3>From a first conversation to a first project</h3>
-          <p>
-            Regional meetups and developer outreach help people find a place to
-            start. Technical dispatches introduce tools and opportunities. In
-            workshops, builders clone starter repositories, set up local
-            environments and work through code together.
-          </p>
-          <p>
-            Hackathon programs give that learning a concrete challenge.
-            Mentorship and introductions to grant programs or contributor
-            opportunities help builders continue afterwards.
-          </p>
-          <h3>Distribution channels</h3>
-          <ul>
-            {builderBaseData.channels.map((c) => (
-              <li>
-                <strong>{c.channel}:</strong> {c.description}
-              </li>
-            ))}
-          </ul>
-          <h3>Ecosystems in the community’s work</h3>
-          <p>{builderBaseData.partnerEcosystems.join(" · ")}</p>
-          <p>
-            These are areas of community activity and contributor experience,
-            not a claim of formal corporate partnerships.
-          </p>
-        </div>
-      </details>
+    <section class="distribution editorial-block" aria-labelledby="distribution-title">
+      <p class="eyebrow">02 / Distribution</p><div><h2 id="distribution-title">From discovering a tool<br />to building with it.</h2><p>Local meetups introduce the people. Workshops introduce the code. Hackathons give builders a reason to put both to work.</p><p>Builder Base connects those experiences through its event calendar, newsletter and regional community groups.</p></div>
     </section>
-    <section class="editorial-block" aria-label="Developer programs">
-      <p class="eyebrow">Programs / Select a case study</p>
-      <h2>Work that brings people together.</h2>
-      <p class="program-note">
-        Program accounts and outcomes are owner-reported. Upcoming work is
-        labeled separately from completed activity.
-      </p>
-      {gtmInitiatives.map((initiative) => (
-        <details class="editorial-disclosure" id={initiative.id.toLowerCase()}>
-          <summary>
-            {initiative.title}
-            <span class="eyebrow">
-              {initiative.period} / {initiative.location}
-            </span>
-          </summary>
-          <div>
-            <GtmCaseCard initiative={initiative} />
+    <section class="editorial-block" id="selected-programs" aria-labelledby="programs-title">
+      <header class="program-heading"><p class="eyebrow">03 / Selected programs</p><h2 id="programs-title">Out of the repository.<br />Into the room.</h2><p>Five records from Builder Base’s Proof of Work. Host and partner credits belong to the community; individual roles are identified where documented.</p></header>
+      <div class="program-gallery">
+        {programs.map((program,i)=>(<article class:list={['program-story',{'program-feature':i===0}]} id={program.id}>
+          {'image' in program && program.image && <figure><a href={program.image} target="_blank" rel="noopener noreferrer" aria-label={`Open photograph: ${program.title}`}><img src={program.image} width={program.width} height={program.height} alt={program.alt} loading="lazy" /></a><figcaption>{program.photoNote} · <a href={program.photoSource} target="_blank" rel="noopener noreferrer">Photo source ↗</a></figcaption></figure>}
+          <div class="program-copy"><p class="eyebrow">{String(i+1).padStart(2,'0')} / {program.category}</p><h3>{program.title}</h3>
+            <p class="program-date"><time datetime={program.date}>{program.dateLabel}</time> · {program.city}</p>
+            <p class="program-credit">{program.credit}</p><p>{program.description}</p>
+            <details class="program-proof"><summary>Record & outcome</summary><div><p>{program.outcome}</p><p>{program.evidence}</p></div></details>
+            <div class="program-links"><a class="text-link" href={program.source} target="_blank" rel="noopener noreferrer">Event record ↗</a>{'project' in program&&<a class="text-link" href={program.project}>FlowMon case study ↗</a>}</div>
           </div>
-        </details>
-      ))}
+        </article>))}
+      </div>
     </section>
-    <section class="editorial-block" aria-label="Community roles">
-      <h2>Along the way.</h2>
-      <p class="program-note">
-        Community and contributor roles, rather than corporate employment or
-        endorsement.
-      </p>
-      {ecosystemRoles.map((role) => (
-        <details class="editorial-disclosure">
-          <summary>
-            {role.organization}
-            <span class="eyebrow">
-              {role.role} / {role.period}
-            </span>
-          </summary>
-          <div class="editorial-prose">
-            <p>
-              {role.scope} · {role.status}
-            </p>
-            <ul>
-              {role.contributions.map((c) => (
-                <li>{c}</li>
-              ))}
-            </ul>
-          </div>
-        </details>
-      ))}
+    <section class="editorial-block" aria-labelledby="roles-title">
+      <div class="program-heading"><p class="eyebrow">04 / Community roles</p><h2 id="roles-title">Working across ecosystems.</h2><p>Owner-reported community and contributor roles. These titles do not imply corporate employment or endorsement.</p></div>
+      <div class="role-index">{ecosystemRoles.map(role=><div><h3>{role.organization}</h3><p>{role.role}</p><span>{role.organization.includes('BNB')?'Former community role':'Community contribution'}</span></div>)}</div>
+      <p class="media-note">Role dates are omitted while conflicting public records are reconciled. <a href="https://impure.notion.site/" target="_blank" rel="noopener noreferrer">Personal Proof of Work ↗</a></p>
     </section>
-    <div class="editorial-block">
-      <h2>Have a program in mind?</h2>
-      <a class="text-link" href="/contact">
-        Let’s talk ↗
-      </a>
-    </div>
+    <section class="editorial-block" aria-labelledby="next-title">
+      <p class="eyebrow">05 / In progress · As of 29 October 2026</p><h2 id="next-title">The next rooms.</h2>
+      <details class="editorial-disclosure" id="gtm-01"><summary>Hack in Hills 2026 <span class="eyebrow">Finals upcoming / Himachal Pradesh · Hybrid</span></summary><div class="editorial-prose"><p>Finalist and summit preparations are in progress. The finals are upcoming; completed attendance and program outcomes are not yet available.</p></div></details>
+      <details class="editorial-disclosure" id="gtm-04"><summary>Mumbai Devcon Week <span class="eyebrow">November 2026 · Upcoming / Mumbai</span></summary><div class="editorial-prose"><p>Technical gatherings and community programming are being planned for November 2026. Attendance, participating teams and outcomes remain unconfirmed.</p></div></details>
+    </section>
+    <section class="archive-close editorial-block" aria-labelledby="archive-title"><div><p class="eyebrow">06 / The full record</p><h2 id="archive-title">More rooms. More builders.</h2><p>The wider archive collects event pages, recaps and media across India and online.</p><a class="text-link" href="https://builderbase.notion.site/" target="_blank" rel="noopener noreferrer">Explore the complete Builder Base event archive ↗</a></div><a class="text-link" href="/contact">Plan a program together ↗</a></section>
   </div>
 </BaseLayout>
 <style>
-  .grow-intro {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .grow-intro img {
-    width: 100%;
-    height: auto;
-  }
-  .grow-intro .text-link {
-    margin-top: 24px;
-  }
-  .program-note {
-    max-width: 65ch;
-    margin-bottom: 28px;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-  }
-  .editorial-block {
-    max-width: 1000px;
-  }
-  @media (max-width: 767px) {
-    .grow-intro {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-  }
+  .grow-intro{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.grow-intro .text-link{margin-top:24px}
+  .distribution{display:grid;grid-template-columns:1fr 2fr;gap:70px;padding-top:32px;border-top:1px solid var(--editorial-rule)}.distribution p:not(.eyebrow){max-width:60ch}
+  .program-heading{border-top:1px solid var(--editorial-rule);padding-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:18px 70px;margin-bottom:40px}.program-heading .eyebrow{grid-column:1/-1}.program-heading h2{font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.05em;margin-bottom:0}.program-heading>p:last-child{align-self:end;font-size:.9rem;max-width:50ch}
+  .program-gallery{display:grid;grid-template-columns:1fr 1fr;gap:56px 40px}.program-story{min-width:0;border-top:1px solid var(--editorial-rule);padding-top:24px}.program-feature{grid-column:1/-1;display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center;border-top:0;padding-top:0}
+  .program-story figure{margin-bottom:24px}.program-story img{display:block;width:100%;height:auto}.program-feature figure{margin-bottom:0}.program-story figcaption{font-size:.72rem}.program-story figcaption a{text-decoration:underline;text-underline-offset:3px}
+  .program-story:not(.program-feature) figure>a{display:flex;align-items:center;justify-content:center;background:var(--bg-surface-dim);aspect-ratio:4/3}
+  .program-story:not(.program-feature) img{width:100%;height:100%;max-height:420px;object-fit:contain}
+  .program-copy h3{font:500 clamp(1.7rem,3vw,2.4rem)/1.15 var(--font-display);letter-spacing:-.045em;margin:12px 0 16px}.program-copy p{font-size:.9rem;max-width:56ch;margin:0 0 14px!important}.program-copy .program-date{font-size:.78rem}.program-copy .program-credit{color:var(--text-primary);font-weight:600;font-size:.8rem}
+  .program-proof{margin-top:20px;border-top:1px solid var(--editorial-rule)}.program-proof summary{cursor:pointer;font-size:.8rem;min-height:44px;padding-block:12px}.program-proof>div{padding-top:12px}.program-proof p{font-size:.82rem}
+  .program-links{display:flex;gap:24px;flex-wrap:wrap}.program-links a{font-size:.8rem}.role-index>div{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px;align-items:baseline;border-top:1px solid var(--editorial-rule);padding:22px 0}.role-index h3{font:500 1.2rem var(--font-display);letter-spacing:-.03em}.role-index p,.role-index span{font-size:.8rem}.role-index span{color:var(--text-muted);text-align:right}
+  .archive-close{border-top:1px solid var(--editorial-rule);padding-top:32px;display:flex;justify-content:space-between;align-items:end;gap:40px}.archive-close h2{margin-top:20px}.archive-close>div{max-width:65ch}.archive-close .text-link{margin-top:16px}
+  @media(max-width:767px){.grow-intro,.distribution,.program-heading,.program-gallery,.program-feature{grid-template-columns:1fr;gap:28px}.program-gallery{gap:40px}.role-index>div{grid-template-columns:1fr;gap:8px}.role-index span{text-align:left}.archive-close{display:block}.program-feature{grid-column:auto}.grow-intro{gap:36px}.program-heading>p:last-child{margin:0}}
 </style>

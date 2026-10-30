@@ -1,4 +1,6 @@
 ---
+import EngineeringVisual from "../components/projects/EngineeringVisual.astro";
+import BuilderFlag from "../components/ecosystems/BuilderFlag.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { projects } from "../data/projects";
 import { achievements } from "../data/achievements";
@@ -6,31 +8,34 @@ const selected = ["pyvax", "sol2rust", "flowmon"].map((slug) =>
   projects.find((p) => p.slug === slug)!,
 );
 const summaries = [
-  "Write smart contracts in Python. PyVax compiles them to EVM bytecode for Avalanche, bringing a familiar language to on-chain development.",
-  "Move Solidity contracts into Rust for Arbitrum Stylus, with a transpiler that connects existing smart-contract code to a different execution environment.",
-  "Compose on-chain AI-agent workflows on a visual canvas. Connect protocol agents, define their dependencies, and follow the flow from input to execution.",
+  "Python smart contracts, lowered to EVM bytecode. A compiler and CLI for Avalanche.",
+  "An AI-assisted Solidity-to-Rust prototype, exploring the path to Arbitrum Stylus.",
+  "Connect protocol agents on a visual canvas. Define a workflow, inspect its dependencies, and explore the tools behind it.",
 ];
 const supporting = [
   {
     slug: "rustag",
     name: "RustAG",
     category: "Solana infrastructure",
+    tech: "Rust / Solana",
     description:
-      "Simulate privileged transactions before execution, checking account ownership and balance invariants against a local state fork.",
+      "Pre-execution transaction simulation for Solana.",
   },
   {
     slug: "rxgr",
     name: "RxGR",
     category: "AI research",
+    tech: "Python / GraphRAG",
     description:
-      "Explore drug–disease relationships through biomedical knowledge graphs and retrieval, with a research prototype built around connected evidence.",
+      "Explore drug–disease relationships with biomedical knowledge graphs.",
   },
   {
     slug: "with-claude",
     name: "With Claude",
     category: "Community publishing",
+    tech: "Astro / PostgreSQL",
     description:
-      "Discover and share projects built with Claude through a publishing platform using Astro, React islands, Neon and Drizzle.",
+      "A place to discover and share projects built with Claude.",
   },
 ];
 ---
@@ -92,59 +97,19 @@ const supporting = [
           people building next.
         </h2>
         <p>
-          From a familiar programming language to a new execution environment, I
-          work on the tools between an idea and working software. These three
-          projects trace that interest across compilers and agent workflows. The
-          case studies explain what I built, how it works, and the tradeoffs
-          along the way.
+          Compilers, developer tools and agent workflows. Three ways of making the next build possible.
         </p>
       </header>
       <div class="flagship-grid">
         {selected.map((project, i) => (
           <article class:list={["flagship", `flagship-${project.slug}`]}>
-            <a
-              href={`/build/${project.slug}`}
-              class="project-visual"
-              aria-label={
-                i === 0 ? undefined : `Read the ${project.title} case study`
-              }
-            >
-              {i === 0 ? (
-                <div class="compiler-visual">
-                  <span class="eyebrow">PyVax / Compiler overview</span>
-                  <div class="compiler-languages">
-                    <span>Python</span>
-                    <span class="compiler-arrow" aria-hidden="true">
-                      ↓
-                    </span>
-                    <span>
-                      EVM<span class="red-period">.</span>
-                    </span>
-                  </div>
-                  <span class="compiler-caption">
-                    Python source → bytecode → Avalanche C-Chain
-                  </span>
-                </div>
-              ) : (
-                <img
-                  src={`/images/work/${project.slug}.webp`}
-                  alt={
-                    i === 1
-                      ? "Sol2Rust converter showing a Solidity editor and Rust output pane"
-                      : "FlowMon application with its built-in demo workflow loaded on the agent canvas"
-                  }
-                  width={i === 1 ? 1220 : 1440}
-                  height={i === 1 ? 685 : 960}
-                  loading="lazy"
-                />
-              )}
-            </a>
+            <EngineeringVisual slug={project.slug} />
             <div class="flagship-copy">
               <p class="eyebrow">
                 {i === 0
                   ? "Python / Avalanche"
                   : i === 1
-                    ? "Rust / Arbitrum Stylus"
+                    ? "Solidity / Rust / AI"
                     : "TypeScript / Monad"}
               </p>
               <h3>
@@ -184,18 +149,13 @@ const supporting = [
           </article>
         ))}
       </div>
-      <p class="media-note">
-        Product screens captured from the public demos. PyVax is shown as a
-        compiler overview; its live site is currently unavailable. Screens
-        illustrate the interface, not a benchmark or production guarantee.
-      </p>
       <div class="supporting-projects">
         {supporting.map((p) => (
           <a class="supporting-row" href={`/build/${p.slug}`}>
             <h3>{p.name}</h3>
             <div>
               <span class="eyebrow">{p.category}</span>
-              <p>{p.description}</p>
+              <p>{p.description}</p><span class="supporting-tech">{p.tech}</span>
             </div>
             <span class="row-arrow" aria-label="View project">
               ↗
@@ -205,9 +165,7 @@ const supporting = [
       </div>
       <div class="archive-invitation">
         <p>
-          The wider archive includes APV3RSE, Bloopa, NeuroFit, PyMon and
-          experiments in developer infrastructure. Each project keeps its
-          implementation notes, source links and technical decisions.
+          More experiments, prototypes and engineering notes.
         </p>
         <a class="text-link" href="/build">
           Explore all {projects.length} projects{" "}
@@ -216,54 +174,22 @@ const supporting = [
       </div>
     </section>
 
-    <section class="community-section" aria-label="Beyond engineering">
+    <section class="community-section" aria-label="Founder of Builder Base">
       <div class="container community-grid">
-        <div>
-          <p class="eyebrow">02 / Beyond engineering</p>
-          <h2>
-            Code meets
-            <br />
-            community<span class="red-period">.</span>
-          </h2>
-          <p class="community-lead">
-            I founded Builder Base to connect developers with the tools, people,
-            and opportunities they need to build.
-          </p>
+        <div class="founder-copy">
+          <p class="eyebrow">02 / Founder</p>
+          <h2>Builder Base<span class="red-period">.</span></h2>
+          <p class="founder-position">The distribution layer for builders.</p>
+          <p class="community-lead">I founded Builder Base to bring developers closer to the tools, people, and opportunities they need to build.</p>
+          <p class="founder-detail">Workshops, hackathons and developer programs across India.</p>
+          <a class="text-link" href="/grow">Meet the community <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="community-story">
-          <p>
-            That means sitting beside someone debugging their first deployment,
-            preparing a workshop that starts with working code, and creating
-            places where builders can find each other.
-          </p>
-          <p>
-            My Developer Relations and ecosystem work brings together technical
-            workshops, hackathon programs, developer documentation and community
-            distribution across India. Engineering gives me something useful to
-            share; community helps me understand what to build next.
-          </p>
-          <a class="text-link" href="/grow">
-            Explore ecosystem work <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <dl class="reach-strip">
-          <div>
-            <dt>Luma registrations</dt>
-            <dd>64K+</dd>
-          </div>
-          <div>
-            <dt>Newsletter reach</dt>
-            <dd>70K+</dd>
-          </div>
-          <div>
-            <dt>WhatsApp circles</dt>
-            <dd>2K+</dd>
-          </div>
-        </dl>
-        <p class="reach-note">
-          Owner-reported channel reach. These figures can overlap and do not
-          represent unique active members.
-        </p>
+        <BuilderFlag />
+        <figure class="founder-photo">
+          <img src="/images/work/community-1.webp" width="1400" height="647" alt="Builders gathered around the Builder Base banner at a community event" loading="lazy" />
+          <figcaption>From the Builder Base public photo archive. <a href="https://www.builderbase.xyz/" target="_blank" rel="noopener noreferrer">Source ↗</a></figcaption>
+        </figure>
+        <div class="founder-footnote"><p>Good tools need people to build with.</p><a class="text-link" href="/grow#selected-programs">Selected programs ↗</a></div>
       </div>
     </section>
 
@@ -324,59 +250,8 @@ const supporting = [
       </p>
     </section>
 
-    <section
-      class="editorial-section field-section container"
-      aria-label="Field notes"
-    >
-      <header class="editorial-heading">
-        <p class="eyebrow">04 / Field notes</p>
-        <h2>Beyond the screen.</h2>
-        <p>
-          A few moments from the communities around the code. Photographs from
-          Builder Base’s public event archive, with the people and conversations
-          that give this work its purpose.
-        </p>
-      </header>
-      <div class="field-grid">
-        <figure>
-          <img
-            src="/images/work/community-1.webp"
-            width="1400"
-            height="647"
-            alt="Builder Base participants gathered together holding a community banner"
-            loading="lazy"
-          />
-          <figcaption>
-            01 / The people behind Builder Base. A community gathering, shared
-            in the event archive.
-          </figcaption>
-        </figure>
-        <figure>
-          <img
-            src="/images/work/community-2.webp"
-            width="1280"
-            height="960"
-            alt="Claude Community participants gathered in an auditorium in Bhopal"
-            loading="lazy"
-          />
-          <figcaption>
-            02 / Claude Community, Bhopal. A room full of builders, photographed
-            together after a community session.
-          </figcaption>
-        </figure>
-      </div>
-      <a
-        class="text-link photo-source"
-        href="https://www.builderbase.xyz"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        From the Builder Base archive ↗
-      </a>
-    </section>
-
     <section class="home-contact container" aria-label="Contact">
-      <p class="eyebrow">05 / Get in touch</p>
+      <p class="eyebrow">04 / Get in touch</p>
       <h2>
         Let’s build
         <br />

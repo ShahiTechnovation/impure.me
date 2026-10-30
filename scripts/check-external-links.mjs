@@ -7,7 +7,7 @@ const routes = await page
   .locator(".project-card h3 a")
   .evaluateAll((xs) => xs.map((x) => x.href));
 const urls = new Set();
-for (const route of ["http://127.0.0.1:4322/", ...routes]) {
+for (const route of ["http://127.0.0.1:4322/", "http://127.0.0.1:4322/grow", "http://127.0.0.1:4322/story", "http://127.0.0.1:4322/contact", ...routes]) {
   await page.goto(route);
   for (const href of await page
     .locator('main a[href^="https://"]')
@@ -34,7 +34,7 @@ await Promise.all(
   }),
 );
 await fs.writeFile(
-  "artifacts/design/external-links.json",
+  `${process.env.QA_DIR || 'artifacts/design'}/external-links.json`,
   JSON.stringify(results, null, 2),
 );
 console.log(

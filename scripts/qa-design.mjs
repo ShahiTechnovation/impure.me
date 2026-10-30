@@ -3,7 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
 const base = process.env.QA_URL || "http://127.0.0.1:4322";
-const dir = "artifacts/design/qa";
+const dir = process.env.QA_DIR || "artifacts/design/qa";
 await fs.mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 const context = await browser.newContext({
@@ -50,6 +50,8 @@ for (const route of [
     internalLinks.add(href);
   for (const width of [320, 375, 390, 430, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
+    // Chrome acknowledges viewport changes before the next responsive style/layout frame.
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     for (const theme of ["light", "dark"]) {
       await page.evaluate(
         (t) => (document.documentElement.dataset.theme = t),
@@ -90,6 +92,7 @@ for (const route of [
       "/story",
       "/contact",
       "/build/pyvax",
+      "/build/sol2rust",
       "/build/flowmon",
       "/build/x402",
     ].includes(route)

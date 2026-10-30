@@ -11,7 +11,7 @@ for (const [dir,preview] of [['dist',false],['dist-preview',true]]) {
  results.push({build:dir,pages:files.length,robots:preview?'noindex, nofollow':'index, follow',canonical:'https://impure.me/'});
 }
 const sitemap=await fs.readFile('dist/sitemap-0.xml','utf8');assert.equal((sitemap.match(/<loc>/g)||[]).length,23);
-const preview=await fetch('https://impureme-coral.vercel.app/');
+const preview=await fetch(process.env.PREVIEW_URL || 'https://impureme-coral.vercel.app/');
 assert.equal(preview.headers.get('x-robots-tag'),'noindex, nofollow');
 const report={builds:results,sitemapUrls:23,livePreviewRobotsHeader:preview.headers.get('x-robots-tag')};
-await fs.writeFile('artifacts/design/seo-results.json',JSON.stringify(report,null,2));console.log(report);
+await fs.writeFile(`${process.env.QA_DIR || 'artifacts/design'}/seo-results.json`,JSON.stringify(report,null,2));console.log(report);

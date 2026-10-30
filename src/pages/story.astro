@@ -1,162 +1,58 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { storyData } from "../data/story";
 ---
-
-<BaseLayout
-  title="The Story — Punit Pal · IMPURE®"
-  description="Why Punit Pal builds developer tools and communities, from compiler experiments to founding Builder Base."
->
+<BaseLayout title="The Story — Punit Pal · IMPURE®" description="A developer, a student and the founder of Builder Base. Punit Pal’s journey through compiler experiments, AI systems and developer communities.">
   <div class="container editorial-page">
     <header class="story-intro">
-      <div>
-        <p class="eyebrow">Story / Punit Pal</p>
-        <h1 class="editorial-title">
-          Curiosity brought me
-          <br />
-          to the code.
-          <br />
-          People kept me here<span class="red-period">.</span>
-        </h1>
-        <p class="editorial-intro">
-          I’m a developer and the founder of Builder Base, studying Computer
-          Science with a focus on AI and Data Science in Bhopal.
-        </p>
+      <div><p class="eyebrow">Story / Punit Pal</p>
+        <h1 class="editorial-title">Curiosity brought me<br />to the code.<br />People kept me here<span class="red-period">.</span></h1>
+        <p class="editorial-intro">I’m a developer and the founder of Builder Base, studying Computer Science with a focus on AI and Data Science in Bhopal.</p>
       </div>
-      <figure>
-        <img
-          src="/images/punit-pal.webp"
-          alt="Punit Pal in a city arcade"
-          width="700"
-          height="700"
-        />
-        <figcaption>Builder, student, and always learning.</figcaption>
-      </figure>
+      <figure><img src="/images/punit-pal.webp" alt="Punit Pal in a city arcade" width="700" height="700" /><figcaption>India / Between code and community.</figcaption></figure>
     </header>
-    <section
-      class="editorial-block editorial-prose"
-      aria-label="Personal story"
-    >
-      <h2>Making it easier to begin.</h2>
-      <p>
-        I started programming because I wanted to understand how systems work.
-        Smart contracts made that curiosity practical: why should a developer
-        have to learn a new language before trying an idea?
-      </p>
-      <p>
-        That question led me into compilers and projects like PyVax and
-        Sol2Rust. Hackathons taught me to choose a problem, make something work,
-        and explain the tradeoffs clearly.
-      </p>
-      <p>
-        Building also showed me a different kind of friction. Developers outside
-        major tech hubs needed mentorship, useful documentation and people to
-        learn alongside. I founded Builder Base to help close that gap, starting
-        with technical meetups and study groups.
-      </p>
-      <p>
-        Today I move between those two kinds of work: writing tools and helping
-        people use them. A workshop setup problem can be as useful a starting
-        point as an engineering experiment.
-      </p>
-      <a class="text-link" href="/build">
-        Explore my work ↗
-      </a>
+    <section class="story-chapter" aria-labelledby="building-title">
+      <p class="eyebrow">01 / Building</p>
+      <div><h2 id="building-title">Start with the friction.</h2>
+        <p>I wanted to understand what happens between writing a program and running it. Smart contracts gave that curiosity a practical question: could a Python developer build on an EVM chain without starting over in another language?</p>
+        <p>That became PyVax. Sol2Rust explores a different language boundary; FlowMon makes the connections between agents visible. Each project gives me another way to study the tools developers work with.</p>
+        <a class="text-link" href="/build">Engineering notes ↗</a>
+      </div>
     </section>
-    <section class="editorial-block editorial-prose" aria-label="Education">
-      <h2>Still a student.</h2>
-      <p>
-        {storyData.education.degree} · {storyData.education.specialization}
-      </p>
-      <p>
-        {storyData.education.institution}
-        <br />
-        {storyData.education.location} · {storyData.education.timeline}
-      </p>
-      <details class="editorial-disclosure">
-        <summary>Coursework and foundations</summary>
-        <div>
-          <ul>
-            {storyData.education.coursework.map((c) => (
-              <li>{c}</li>
-            ))}
-          </ul>
-        </div>
-      </details>
+    <section class="story-chapter" aria-labelledby="beyond-title">
+      <p class="eyebrow">02 / Beyond code</p>
+      <div><h2 id="beyond-title">Someone to build beside.</h2>
+        <p>A useful tool still needs a way to reach people. I started Builder Base to bring developers closer to technical workshops, project opportunities and other builders.</p>
+        <p>There’s a practical connection between the two: the questions people ask in a workshop help me see where a tool or its documentation needs work.</p>
+        <a class="text-link" href="/grow">See the programs ↗</a>
+      </div>
     </section>
-    <section
-      class="editorial-block editorial-prose"
-      aria-label="More of the story"
-    >
-      <h2>The longer version.</h2>
-      {storyData.narrativeSections.map((section) => (
-        <details class="editorial-disclosure">
-          <summary>{section.subtitle}</summary>
-          <div>
-            {section.content.split("\n\n").map((p) => (
-              <p class="story-paragraph">{p}</p>
-            ))}
-          </div>
-        </details>
-      ))}
-      <details class="editorial-disclosure">
-        <summary>Milestones, 2024–2026</summary>
-        <div>
-          {storyData.milestones.map((m) => (
-            <article class="milestone">
-              <p class="eyebrow">
-                {m.year} / {m.quarter}
-              </p>
-              <h3>{m.title}</h3>
-              <p>{m.description}</p>
-              <p>{m.impact}</p>
-            </article>
-          ))}
-        </div>
-      </details>
-      <details class="editorial-disclosure">
-        <summary>What I try to bring to the work</summary>
-        <div>
-          {storyData.operatingPrinciples.map((p) => (
-            <article>
-              <h3>{p.title}</h3>
-              <p>{p.detail}</p>
-            </article>
-          ))}
-        </div>
-      </details>
+    <figure class="story-community"><img src="/images/work/community-2.webp" width="1280" height="960" loading="lazy" alt="Claude Community participants gathered in an auditorium in Bhopal" /><figcaption>Claude Community, Bhopal. Photograph from <a href="https://www.builderbase.xyz/" target="_blank" rel="noopener noreferrer">Builder Base’s public photo archive ↗</a>.</figcaption></figure>
+    <section class="story-chapter" aria-labelledby="milestones-title">
+      <p class="eyebrow">03 / Milestones</p>
+      <div><h2 id="milestones-title">A few points along the way.</h2>
+        <ol class="story-timeline">
+          <li><span>2024–2028</span><p>BTech in Computer Science Engineering, AI & Data Science at RGPV. Studies in progress.</p></li>
+          <li><span>20 Dec 2025</span><p>Listed co-host of <a href="https://luma.com/pq4gfjtt" target="_blank" rel="noopener noreferrer">A Series All About Move ↗</a> at Galgotias University.</p></li>
+          <li><span>28 Mar 2026</span><p>FlowMon at Monad Blitz V3. <a href="/build/flowmon">The project ↗</a> connects the engineering work with a Builder Base co-hosted event.</p></li>
+        </ol>
+        <p class="media-note">Education and project participation are owner-reported. Event dates and host credits are linked to public listings.</p>
+        <a class="text-link" href="https://impure.notion.site/" target="_blank" rel="noopener noreferrer">Full Proof of Work ↗</a>
+      </div>
+    </section>
+    <section class="story-chapter" aria-labelledby="now-title">
+      <p class="eyebrow">04 / Now · October 2026</p>
+      <div><h2 id="now-title">Still learning. Still building.</h2><p>Compiler tooling, agent workflows and developer programs through Builder Base. Alongside that, I’m continuing my 2024–2028 undergraduate degree.</p><a class="text-link" href="/contact">Get in touch ↗</a></div>
     </section>
   </div>
 </BaseLayout>
 <style>
-  .story-intro {
-    display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 80px;
-    align-items: center;
-  }
-  .story-intro img {
-    width: 100%;
-    height: auto;
-    filter: grayscale(1);
-  }
-  .story-paragraph {
-    white-space: pre-line;
-  }
-  .milestone {
-    margin-bottom: 32px;
-  }
-  .milestone h3 {
-    margin-top: 10px;
-  }
-  @media (max-width: 767px) {
-    .story-intro {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-    .story-intro figure {
-      width: 180px;
-      justify-self: end;
-    }
-  }
+  .story-intro{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:70px;align-items:center}
+  .story-intro img{display:block;width:100%;height:auto;filter:grayscale(1)}
+  .story-chapter{display:grid;grid-template-columns:1fr 2fr;gap:70px;padding-top:32px;margin-top:72px;border-top:1px solid var(--editorial-rule)}
+  .story-chapter h2{font:500 2.2rem/1.2 var(--font-display);letter-spacing:-.045em;margin-bottom:24px}
+  .story-chapter p:not(.eyebrow){max-width:62ch;color:var(--text-muted);margin-bottom:20px}
+  .story-community{margin:64px 0 0 25%;max-width:680px}.story-community img{width:100%;height:auto;display:block}
+  .story-community a,.story-timeline a{text-decoration:underline;text-underline-offset:3px}
+  .story-timeline{list-style:none}.story-timeline li{display:grid;grid-template-columns:120px 1fr;gap:24px;border-top:1px solid var(--editorial-rule);padding-top:22px}.story-timeline span{font:500 .75rem/1.6 var(--font-mono);color:var(--text-muted)}
+  @media(max-width:767px){.story-intro,.story-chapter{grid-template-columns:1fr;gap:24px}.story-intro figure{width:180px;justify-self:end}.story-chapter{margin-top:48px}.story-community{margin:40px 0 0}.story-timeline li{grid-template-columns:1fr;gap:10px}}
 </style>

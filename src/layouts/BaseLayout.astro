@@ -49,10 +49,6 @@ const personSchema = {
     name: "Builder Base",
     url: "https://www.builderbase.xyz",
   },
-  alumniOf: {
-    "@type": "EducationalOrganization",
-    name: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)",
-  },
   sameAs: [
     "https://github.com/ShahiTechnovation",
     "https://x.com/its_punit05",
@@ -94,7 +90,9 @@ const personSchema = {
     <!-- Theme Initialization Script (Zero FOUC) -->
     <script is:inline>
       (function () {
-        const storedTheme = localStorage.getItem("impure_theme");
+        let storedTheme;
+        try { storedTheme = localStorage.getItem("impure_theme"); } catch {}
+        if (storedTheme !== "light" && storedTheme !== "dark") storedTheme = null;
         if (storedTheme) {
           document.documentElement.setAttribute("data-theme", storedTheme);
         } else {
@@ -127,6 +125,7 @@ const personSchema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:alt" content="IMPURE — Punit Pal, developer and founder of Builder Base" />
     <meta property="og:site_name" content="Punit Pal // IMPURE®" />
 
     <!-- Twitter / X -->
@@ -137,6 +136,7 @@ const personSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image:alt" content="IMPURE — Punit Pal, developer and founder of Builder Base" />
 
     <!-- Schema.org JSON-LD -->
     <script

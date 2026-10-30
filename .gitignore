@@ -30,3 +30,20 @@ dist-ssr
 
 # Local preview SEO verification build
 dist-preview/
+
+# Generated screenshots, research captures, and QA reports
+/artifacts/
+/playwright-report/
+/test-results/
+/coverage/
+/vercel_logs.txt
+
+# Local environment configuration (keep shareable templates)
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Tool caches and incremental build state
+.cache/
+*.tsbuildinfo

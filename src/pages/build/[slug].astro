@@ -1,5 +1,6 @@
 ---
 // src/pages/build/[slug].astro
+import EngineeringVisual from "../../components/projects/EngineeringVisual.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArchitectureDiagram from "../../components/projects/ArchitectureDiagram.astro";
 import { projects, type Project } from "../../data/projects";
@@ -57,20 +58,7 @@ const relatedProjects = projects.filter((p) =>
           <p class="case-headline text-lead">{project.headline}</p>
         </div>
 
-        {["sol2rust", "flowmon"].includes(project.slug) && (
-          <figure class="case-media">
-            <img
-              src={`/images/work/${project.slug}.webp`}
-              width={project.slug === "sol2rust" ? 1220 : 1440}
-              height={project.slug === "sol2rust" ? 685 : 960}
-              alt={`${project.title} public demo interface`}
-            />
-            <figcaption>
-              Public demo captured October 29, 2026. An interface view, not a
-              performance benchmark.
-            </figcaption>
-          </figure>
-        )}
+        {["pyvax", "sol2rust", "flowmon"].includes(project.slug) && <div class="case-media"><EngineeringVisual slug={project.slug} /></div>}
         <!-- Technical Parameters Grid -->
         <div class="case-params-grid dossier-card animate-reveal">
           <div class="param-cell">
@@ -171,7 +159,7 @@ const relatedProjects = projects.filter((p) =>
           </p>
 
           <!-- Verified Architecture Schematic -->
-          <ArchitectureDiagram slug={project.slug} variant="detail" />
+          {!["pyvax", "sol2rust", "flowmon"].includes(project.slug) && <ArchitectureDiagram slug={project.slug} variant="detail" />}
 
           <!-- Stack Tags -->
           <div class="tech-stack-showcase">

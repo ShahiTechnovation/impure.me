@@ -38,9 +38,9 @@ export const projects: Project[] = [
     title: 'PyVax',
     headline: 'Python-to-EVM Compiler & Developer Tooling for Avalanche',
     category: 'Compilers & Developer Tools',
-    role: 'Core Compiler Architect & Tooling Author',
+    role: "Compiler & CLI developer",
     target: 'Avalanche C-Chain',
-    status: 'Production Open Source // AVAX Kolkata 1st Runner-Up',
+    status: "Open-source compiler prototype",
     featured: true,
     repoUrl: 'https://github.com/ShahiTechnovation/pyvax-cli',
     unavailableDemoUrl: 'https://pyvax.xyz',
@@ -50,42 +50,11 @@ export const projects: Project[] = [
     placement: '1st Runner-Up',
     stack: ['Python', 'AST Parsing', 'EVM Opcodes', 'Avalanche C-Chain', 'Click CLI', 'Web3.py'],
     summary: 'A Python-to-EVM compiler and developer tooling suite for the Avalanche C-Chain. Enables developers to write smart contracts natively in Python and compile directly to EVM bytecode without Solidity.',
-    problem: 'Millions of Python developers are locked out of EVM smart contract development due to Solidity domain complexity, verbose memory management, and fragmented local development toolchains. Existing Python bridges either rely on heavy runtime interpreters or cloud transpilers with zero offline validation.',
-    contribution: 'Designed and implemented the core Abstract Syntax Tree (AST) visitor that parses a statically-typed subset of Python into EVM bytecode opcodes. Built the CLI tooling for local simulation, contract ABI generation, gas estimation, and Avalanche C-Chain RPC testnet deployment.',
-    architecture: 'PyVax operates in three sequential compiler phases: (1) Python AST extraction and type-inference validation, (2) Intermediate Representation (IR) lowering to an EVM opcode instruction sequence, and (3) Bytecode assembler and ABI metadata generator with automated Avalanche C-Chain deployment bindings.',
-    codeSnippet: {
-      language: 'python',
-      title: 'contracts/token.py -> EVM Bytecode Translation',
-      code: `# Python smart contract syntax compiled by PyVax
-from pyvax import contract, state, event
-
-@contract
-class SimpleVault:
-    owner: state[address]
-    balance: state[uint256]
-
-    @event
-    def Deposit(sender: address, amount: uint256): pass
-
-    def __init__(self):
-        self.owner = msg.sender
-        self.balance = 0
-
-    def deposit(self) -> None:
-        assert msg.value > 0, "Zero deposit"
-        self.balance += msg.value
-        self.Deposit(msg.sender, msg.value)`
-    },
-    challenges: [
-      'Mapping Python dynamic scoping and variable allocation onto the rigid 256-bit EVM word memory and storage layout.',
-      'Constructing efficient jumps and function selector dispatching without exceeding EVM contract code size limits.',
-      'Handling custom gas optimization passes to prevent unoptimized AST jumps from draining caller gas.'
-    ],
-    results: [
-      'Awarded 1st Runner-Up at AVAX Kolkata (Team1 Hack25 Hackathon).',
-      'Successfully lowers Python syntax to EVM bytecode for Avalanche C-Chain testnet deployment.',
-      'Zero external Solidity dependency required for end-to-end contract authoring and deployment.'
-    ],
+    problem: "Writing an EVM contract usually means adopting a new language and toolchain. PyVax explores a Python-based path to contract development on Avalanche.",
+    contribution: "Built Python contract tooling around AST analysis, EVM bytecode generation, ABI output and CLI deployment commands.",
+    architecture: "The repository uses PythonASTAnalyzer to collect contract state and functions, then EVMBytecodeGenerator to emit initialization and runtime bytecode. The CLI also contains a Solidity compilation path. This is a prototype, not an audited contract compiler.",
+    challenges: ["Mapping Python state onto EVM storage slots and 256-bit operations.","Resolving function selectors and jump destinations during bytecode generation.","Defining the supported Python subset and testing contract behavior."],
+    results: ["1st Runner-Up at AVAX Kolkata, owner-reported.","Published source includes Python example contracts, AST analysis, opcode generation and CLI tooling.","No independent compiler audit or performance benchmark is claimed."],
     relatedSlugs: ['sol2rust', 'pymon', 'zerothon'],
     verifiedDate: 'October 2026'
   },
@@ -93,11 +62,11 @@ class SimpleVault:
     slug: 'sol2rust',
     id: 'PRJ-02',
     title: 'Sol2Rust',
-    headline: 'Solidity-to-Rust Transpiler for Arbitrum Stylus WASM',
+    headline: "Solidity-to-Rust Conversion Prototype",
     category: 'Compilers & Developer Tools',
-    role: 'Lead Systems Engineer & Transpiler Architect',
-    target: 'Arbitrum Stylus',
-    status: 'Champion // Core Nexus 1st Place',
+    role: "Prototype developer",
+    target: "Rust / Arbitrum Stylus exploration",
+    status: "AI-assisted prototype // Core Nexus 1st Place",
     featured: true,
     repoUrl: 'https://github.com/ShahiTechnovation/Sol2Rust',
     demoUrl: 'https://sol2rust.vercel.app',
@@ -105,45 +74,13 @@ class SimpleVault:
     evidenceLabel: 'Core Nexus (Arbitrum Hackathon) — 1st Place Champion',
     award: '1st Place Champion // Core Nexus',
     placement: '1st Place',
-    stack: ['Rust', 'Solidity AST', 'Syn', 'Quote', 'Arbitrum Stylus SDK', 'WASM'],
-    summary: 'A transpiler converting Solidity smart contracts to high-performance, memory-safe Rust for Arbitrum Stylus, dramatically lowering the friction of dApp migration into WASM execution environments.',
-    problem: 'Arbitrum Stylus allows writing smart contracts in Rust and C++ that compile to WASM, running over 10x faster and cutting gas consumption by 10-100x compared to EVM bytecode. However, rewriting thousands of lines of battle-tested Solidity into Rust Stylus SDK syntax manually is labor-intensive and error-prone.',
-    contribution: 'Authored the Solidity grammar parser and Rust code-generation engine using the syn and quote crates. Implemented automated translation of Solidity state variables, functions, modifiers, events, and storage mapping into Stylus Rust macros.',
-    architecture: 'Sol2Rust ingests Solidity source, parses the contract into an Abstract Syntax Tree, resolves types (mapping address to stylus_sdk::alloy_primitives::Address, uint256 to U256), translates modifiers into guard clauses, and emits idiomatic Rust code annotated with #[stylus_sdk::prelude::entrypoint] and storage decorators.',
-    codeSnippet: {
-      language: 'rust',
-      title: 'Transpiled Output (Arbitrum Stylus Rust)',
-      code: `// Emitted by Sol2Rust transpiler for Arbitrum Stylus
-#![cfg_attr(not(feature = "export-abi"), no_main)]
-extern crate alloc;
-
-use stylus_sdk::{alloy_primitives::{Address, U256}, prelude::*};
-
-sol_storage! {
-    #[entrypoint]
-    pub struct VaultContract {
-        address owner;
-        mapping(address => uint256) balances;
-    }
-}
-
-#[public]
-impl VaultContract {
-    pub fn get_balance(&self, account: Address) -> U256 {
-        self.balances.get(account)
-    }
-}`
-    },
-    challenges: [
-      'Mapping Solidity fallback/receive functions and payable modifiers into Rust explicit transfer semantics.',
-      'Preserving exact arithmetic overflow checks without introducing unnecessary gas overhead in WASM release builds.',
-      'Handling nested dynamic arrays and complex mapping references while satisfying Rust borrow checker constraints.'
-    ],
-    results: [
-      'Won 1st Place at Core Nexus (Arbitrum Hackathon) among dozens of participating teams.',
-      'Transpiles standard ERC-20 and vault contracts in under 80 milliseconds with valid Stylus ABI export.',
-      'Demonstrated 40%+ gas reduction on complex cryptographic verification logic ported from EVM to Stylus.'
-    ],
+    stack: ["TypeScript","React","Express","Gemini API","Solidity","Rust"],
+    summary: "An AI-assisted Solidity-to-Rust conversion prototype. Built around a split editor, conversion API and wallet interface, with Arbitrum Stylus as the portfolio’s intended direction.",
+    problem: "Moving a Solidity contract to Rust requires understanding different storage APIs, type systems and execution models. This prototype explores an assisted editing workflow for that migration.",
+    contribution: "Built the Solidity input and Rust output workflow, conversion API and wallet-facing interface. The inspected implementation calls Gemini for conversion; it is not a deterministic syn/quote compiler.",
+    architecture: "client/src/components/conversion-panel.tsx sends Solidity to the conversion endpoint. server/conversion.ts delegates to Gemini. The current prompt targets ink! rather than Stylus, and the compilation path returns fixed example EVM bytecode with an AI-generated ABI. It does not establish a working Solidity-to-Stylus build pipeline.",
+    challenges: ["Reconciling the intended Stylus target with the current ink! generation prompt.","Checking semantic equivalence and storage behavior before trusting generated Rust.","Replacing simulated compilation with a real target-specific build and test pipeline."],
+    results: ["1st Place at Core Nexus, owner-reported.","Public source demonstrates the conversion interface and AI service integration.","Earlier latency and gas-saving claims were removed: no reproducible supporting benchmark was found."],
     relatedSlugs: ['pyvax', 'rustag', 'pystylus'],
     verifiedDate: 'October 2026'
   },
@@ -155,7 +92,7 @@ impl VaultContract {
     category: 'AI & Agent Infrastructure',
     role: 'Lead Systems & Multi-Agent Architect',
     target: 'Monad EVM & Multi-Chain',
-    status: '1st Runner-Up // Monad Blitz V3',
+    status: "Workflow prototype // Monad Blitz V3 1st Runner-Up",
     featured: true,
     repoUrl: 'https://github.com/ShahiTechnovation/FlowMon',
     demoUrl: 'https://flow-mon.vercel.app',
@@ -163,49 +100,13 @@ impl VaultContract {
     evidenceLabel: 'Monad Blitz V3 — 1st Runner-Up',
     award: '1st Runner-Up // Monad Blitz V3',
     placement: '1st Runner-Up',
-    stack: ['TypeScript', 'Next.js', 'Agent Message Protocol (AMP)', 'React Flow', 'Monad EVM', 'Chainlink Oracles'],
-    summary: 'Visual multi-agent orchestration system for Web3 pipelines. Developers drag protocol agents onto an interactive canvas, wire them together with Agent Message Protocol, and execute live on-chain operations with zero glue code.',
-    problem: 'Chaining decentralized finance actions across multiple protocols (oracles, lending vaults, DEX aggregators, cross-chain bridges) requires hundreds of lines of fragile SDK glue code, manual nonce synchronization, and custom error rollback handlers. Autonomous agents lack an interoperable protocol to pass structured transaction data to one another.',
-    contribution: 'Architected the Agent Message Protocol (AMP) specification where output envelopes from upstream agents directly satisfy input schema requirements of downstream agents. Built the visual graph canvas, live dependency resolver, and transaction batcher running against Monad testnet.',
-    architecture: 'A DAG-based execution pipeline where each agent is an isolated execution worker conforming to a strict input/output interface. When an upstream trigger fires (e.g., Chainlink ETH price deviation), the AMP dispatcher propagates typed state envelopes to intermediate analytical agents (Lido yield monitors) and terminal execution agents (Uniswap router, Base transaction executor).',
-    codeSnippet: {
-      language: 'typescript',
-      title: 'Agent Message Protocol (AMP) Node Execution',
-      code: `// FlowMon Agent Message Protocol (AMP) Execution Node
-interface AgentMessageEnvelope<T = unknown> {
-  sourceAgentId: string;
-  timestamp: number;
-  payload: T;
-  signature: string;
-}
-
-export async function executeAgentPipeline(
-  nodes: AgentNode[], 
-  context: PipelineExecutionContext
-): Promise<PipelineResult> {
-  const dependencyGraph = resolveAgentDAG(nodes);
-  const executionStream = dependencyGraph.streamParallel();
-
-  for await (const stage of executionStream) {
-    const envelope = await stage.agent.process(stage.inputs);
-    context.broadcastEnvelope(stage.id, envelope);
-    if (stage.requiresOnChainVerification) {
-      await verifyMonadStateDelta(stage.agent, envelope);
-    }
-  }
-  return context.finalize();
-}`
-    },
-    challenges: [
-      'Managing asynchronous state when parallel agents resolve workflow dependencies.',
-      'Implementing atomic multi-agent rollbacks if an on-chain execution step reverts midway through the canvas graph.',
-      'Distinguishing implemented protocol adapters from placeholder integrations in the agent catalog.'
-    ],
-    results: [
-      'Awarded 1st Runner-Up at Monad Blitz V3.',
-      'Built a visual workflow editor with a protocol-agent catalog and demo pipelines; integration completeness varies by agent.',
-      'Demonstrated sub-second pipeline throughput on Monad high-throughput EVM testnet.'
-    ],
+    stack: ["TypeScript","Next.js","React Flow","Zustand","wagmi / viem","Venice AI"],
+    summary: "A visual multi-agent workflow builder for Web3. Connect protocol tools on a canvas and inspect the flow between nodes. The public app includes both live and stub integrations.",
+    problem: "Multi-step Web3 workflows bring together protocol tools, data dependencies and wallet actions. A visual graph makes those relationships easier to inspect.",
+    contribution: "Built a canvas-based workflow interface and protocol-agent integration layer. The public demo exposes a tool library, import/export, logs and a built-in Monad example.",
+    architecture: "The repository uses Next.js, React Flow for nodes and edges, Zustand for state, and wagmi/viem for wallet interactions. Venice AI is documented as the primary model integration with Gemini as a fallback. Tool capabilities vary; the interface explicitly distinguishes live integrations from stubs.",
+    challenges: ["Making dependencies between protocol agents visible and understandable.","Separating configured workflows from successful execution.","Handling wallet requirements and external provider availability."],
+    results: ["1st Runner-Up at Monad Blitz V3, owner-reported.","The live interface and built-in demo graph were inspected on 29 October 2026.","No wallet was connected and no transaction or workflow was executed during portfolio verification."],
     relatedSlugs: ['bloopa', 'rxgr', 'apv3rse'],
     verifiedDate: 'October 2026'
   },
@@ -227,29 +128,6 @@ export async function executeAgentPipeline(
     problem: 'Autonomous agents and automated multisig bots operating on Solana often execute instruction payloads where unintended authority delegation or front-running slippage causes irreversible loss of funds. Existing RPC simulateTransaction endpoints do not verify deep invariant constraints or detect privilege escalation.',
     contribution: 'Authored the Rust transaction simulation engine, privilege verification logic, and signed audit report generator. Implemented test suites evaluating state transitions and unauthorized account balance deductions.',
     architecture: 'RustAG sits between client-side transaction builders and Solana RPC nodes. It captures the serialized VersionedTransaction, reconstructs affected account states locally via bank simulation forks, verifies that no unexpected write-locks or account owner transfers occur, and produces a cryptographic execution report.',
-    codeSnippet: {
-      language: 'rust',
-      title: 'RustAG Invariant Guard & Simulation Verifier',
-      code: `// Deterministic pre-execution invariant check
-pub fn verify_transaction_safety(
-    tx: &VersionedTransaction,
-    bank_fork: &BankForkState,
-) -> Result<ExecutionReport, AssuranceError> {
-    let simulation = bank_fork.simulate_transaction(tx)?;
-    
-    // Invariant 1: Ensure no unauthorized account owner mutation
-    for (pubkey, account) in &simulation.state_deltas {
-        if account.owner_changed() && !is_whitelisted_governance(pubkey) {
-            return Err(AssuranceError::UnauthorizedOwnershipTransfer(*pubkey));
-        }
-    }
-    
-    // Invariant 2: Verify lamport balance conservation
-    verify_sol_balance_conservation(&simulation)?;
-    
-    Ok(ExecutionReport::sign(&simulation, &KEYPAIR))
-}`
-    },
     challenges: [
       'Recreating Solana instruction limits and compute budget consumption in local simulation forks.',
       'Tracking dynamic Cross-Program Invocation (CPI) cascades across multiple invoked programs.',
@@ -281,25 +159,6 @@ pub fn verify_transaction_safety(
     problem: 'Standard vector-based RAG architectures perform flat semantic searches across unstructured literature. When tasked with multi-hop biomedical inquiries, vector search often misses relational graph topology and can generate inaccurate molecular mechanism associations.',
     contribution: 'Constructed the biomedical knowledge graph extraction pipeline indexing disease ontologies, PubMed citations, and drug compound databases into Neo4j. Implemented hybrid retrieval combining Cypher graph queries with language model synthesis via Claude 3.5 Sonnet.',
     architecture: 'RxGR parses biomedical queries into structured entities, executes multi-hop subgraph traversals across Neo4j nodes (Drug -> Target -> Biological Process -> Disease), extracts path subgraphs, and provides both structured graph paths and literature context to an LLM for structured reasoning.',
-    codeSnippet: {
-      language: 'python',
-      title: 'GraphRAG Multi-Hop Pathway Traversal',
-      code: `# Multi-hop biomedical relationship extraction
-def query_pathway_candidates(disease_id: str, max_hops: int = 3):
-    cypher_query = """
-    MATCH path = (d:Disease {id: $disease_id})
-          -[:ASSOCIATED_WITH]->(p:Protein)
-          <-[:TARGETS]-(dr:Drug)
-    WHERE dr.approval_status = 'FDA_APPROVED'
-    RETURN dr.name AS drug, p.name AS target, length(path) AS hops,
-           relationships(path) AS evidence_edges
-    ORDER BY hops ASC
-    LIMIT 25
-    """
-    with graph_db.session() as session:
-        subgraph = session.run(cypher_query, disease_id=disease_id).data()
-    return synthesize_clinical_reasoning(subgraph)`
-    },
     challenges: [
       'Representing contradictory clinical statements across historical publications into weighted graph edges.',
       'Optimizing multi-hop Cypher queries across dense biomedical relationship graphs.',
@@ -331,24 +190,6 @@ def query_pathway_candidates(disease_id: str, max_hops: int = 3):
     problem: 'Autonomous AI agents executing high-frequency arbitrage, data scraping, or on-chain governance cannot open bank accounts and have no decentralized credit identity. Requiring 100% upfront collateralization strangles autonomous agent utility and limits capital efficiency.',
     contribution: 'Designed the PyTeal smart contracts managing undercollateralized micro-lending pools, dynamic credit scoring based on historic execution profitability, and automated liquidation thresholds.',
     architecture: 'Bloopa issues a cryptographic Agent Credit Profile (ACP) bound to an agent public key. The smart contract measures on-chain operational metrics (successful transaction volume, debt repayment velocity, protocol yield). As score increases, the borrowing limit against pool capital increases dynamically with interest automatically streamed back to liquidity providers.',
-    codeSnippet: {
-      language: 'python',
-      title: 'Bloopa Credit Score & Loan Disbursement (PyTeal)',
-      code: `# Algorand PyTeal credit assessment and loan disbursement
-@Subroutine(TealType.uint64)
-def evaluate_agent_credit(agent_account: Expr) -> Expr:
-    repayment_ratio = App.localGet(agent_account, Bytes("repay_ratio"))
-    active_defaults = App.localGet(agent_account, Bytes("defaults"))
-    volume_tier = App.localGet(agent_account, Bytes("tx_volume_tier"))
-    
-    return Seq(
-        Assert(active_defaults == Int(0)),
-        If(repayment_ratio > Int(9500), # > 95%
-           Return(volume_tier * Int(1000)),
-           Return(Int(0))
-        )
-    )`
-    },
     challenges: [
       'Mitigating sybil attack vectors where agents create disposable keys to borrow and default immediately.',
       'Enforcing deterministic liquidation triggers within Algorand stateless and stateful smart contract constraints.',
@@ -378,34 +219,10 @@ def evaluate_agent_credit(agent_account: Expr) -> Expr:
     award: 'Top 15 Finalist // Aptos Winterschool',
     placement: 'Top 15 Finalist',
     stack: ['TypeScript', 'React', 'Move Language', 'Model Context Protocol (MCP)', 'Aptos TS SDK'],
-    summary: 'AI-assisted Aptos development platform that turns natural language prompts into production-ready Move smart contracts, featuring MCP context injection, in-browser compilation, and one-click devnet/testnet deployment.',
+    summary: 'AI-assisted Aptos development platform that turns natural language prompts into Move smart-contract drafts, featuring MCP context injection, in-browser compilation, and one-click devnet/testnet deployment.',
     problem: 'The Move programming language offers unmatched asset security and resource model protections, but has a steep learning curve. Developers frequently struggle with resource capability management, acquire annotations, and framework module imports.',
     contribution: 'Built the end-to-end platform architecture integrating LLM code generation with Aptos Framework documentation context via Model Context Protocol (MCP). Implemented in-browser Monaco IDE with live syntax diagnostics and direct Aptos wallet transaction signing.',
     architecture: 'APV3RSE connects a client frontend to an intelligent context engine. When a developer prompts "Create an NFT marketplace with 2.5% royalty fees", the context engine retrieves official Aptos Framework move modules, enforces safe resource patterns, generates idiomatic Move code, validates compilation, and prepares deployment payloads.',
-    codeSnippet: {
-      language: 'rust',
-      title: 'Move Module Generated and Validated by APV3RSE',
-      code: `// Move smart contract on Aptos generated via APV3RSE
-module apv3rse::marketplace {
-    use std::signer;
-    use aptos_framework::coin;
-    use aptos_framework::aptos_coin::AptosCoin;
-
-    struct MarketState has key {
-        fee_recipient: address,
-        fee_basis_points: u64,
-    }
-
-    public entry fun initialize(account: &signer, fee_bps: u64) {
-        let account_addr = signer::address_of(account);
-        assert!(!exists<MarketState>(account_addr), 1);
-        move_to(account, MarketState {
-            fee_recipient: account_addr,
-            fee_basis_points: fee_bps,
-        });
-    }
-}`
-    },
     challenges: [
       'Eliminating LLM generation errors related to Move 2024 edition keyword updates and borrow rules.',
       'Compiling and verifying Move packages inside sandbox worker environments before wallet signing.',
@@ -437,29 +254,6 @@ module apv3rse::marketplace {
     problem: 'Developer prototypes, tools, and experiments built with Claude models are frequently scattered across social channels and forums without a unified index, persistent showcase directory, or structured taxonomy.',
     contribution: 'Architected and built the full-stack platform using Astro with React islands for dynamic interactions. Structured the database schema using Drizzle ORM backed by Neon serverless PostgreSQL, with Privy authentication, Vercel Blob asset storage, and Resend for transactional notification workflows.',
     architecture: 'Astro renders static pages alongside server-rendered routes for live data. A React island supplies Privy authentication. Drizzle ORM and Neon PostgreSQL store project metadata, Vercel Blob stores uploads, and Resend handles notification workflows.',
-    codeSnippet: {
-      language: 'typescript',
-      title: 'schema/projects.ts — Drizzle ORM Schema & Type Definition (Illustrative)',
-      code: `// With Claude Project Schema Definition (Drizzle ORM + Neon PostgreSQL)
-import { pgTable, text, timestamp, varchar, integer } from 'drizzle-orm/pg-core';
-
-export const projects = pgTable('community_projects', {
-  id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
-  title: varchar('title', { length: 120 }).notNull(),
-  headline: text('headline').notNull(),
-  description: text('description').notNull(),
-  repoUrl: text('repo_url').notNull(),
-  demoUrl: text('demo_url'),
-  authorId: text('author_id').notNull(),
-  authorHandle: varchar('author_handle', { length: 64 }).notNull(),
-  category: varchar('category', { length: 64 }).notNull(),
-  status: varchar('status', { length: 32 }).default('PENDING_REVIEW').notNull(),
-  createdAt: timestamp('created_at').defaultNow().notNull()
-});
-
-export type ProjectRecord = typeof projects.$inferSelect;
-export type NewProjectInput = typeof projects.$inferInsert;`
-    },
     challenges: [
       'Balancing instant static rendering performance with dynamic client-side authentication and project submissions.',
       'Maintaining clean community submission review workflows and spam prevention without unnecessary user friction.',
